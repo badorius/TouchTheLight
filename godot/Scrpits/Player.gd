@@ -8,6 +8,9 @@ const JUMP_VELOCITY = -350.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var score : int = 0
 @onready var score_text : Label = get_node("../CanvasLayer/ScoreText")
+const Arrow = preload("../Objects/Arrow.tscn")
+
+
 
 
 func _physics_process(delta):
@@ -23,9 +26,12 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("ui_left", "ui_right")
+	
 	if Input.is_action_pressed("ui_fire1"):
 		$AnimationPlayer.play("BowShooting")
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+		if Input.is_action_just_pressed("ui_fire1"):
+			shoot()
 	else:
 		if direction:
 			if direction == -1:
@@ -58,3 +64,14 @@ func game_quit ():
 func add_score (amount):
 	score += amount
 	score_text.text = str("Score: ", score)
+	
+func shoot():
+	var main = get_tree().current_scene
+	var A = Arrow.instantiate()
+	A.global_position = global_position
+	A.position.x = global_position.x + 35
+	A.position.y = global_position.y + 25
+	
+	main.add_child(A)
+	
+
