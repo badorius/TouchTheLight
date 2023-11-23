@@ -1066,6 +1066,17 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "Lives: 5"
 
+[node name="Lives2" type="Label" parent="CanvasLayer"]
+offset_left = 25.0
+offset_top = 74.0
+offset_right = 101.0
+offset_bottom = 105.0
+theme_override_colors/font_color = Color(0.788235, 0, 0.486275, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Gamepad/ keys: cursors, space, ctrl"
+
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0, 0, 0, 1)
 
