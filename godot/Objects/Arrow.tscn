@@ -1,7 +1,37 @@
-[gd_scene load_steps=4 format=3 uid="uid://bdudh83agh1xi"]
+[gd_scene load_steps=10 format=3 uid="uid://bdudh83agh1xi"]
 
 [ext_resource type="Texture2D" uid="uid://byphetjtyt6i8" path="res://Assets/weapons/arrow/arrow.png" id="1_r7oiu"]
 [ext_resource type="Script" path="res://Scrpits/Arrow.gd" id="1_vcaab"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ysdyi"]
+blend_mode = 1
+light_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_llc7j"]
+offsets = PackedFloat32Array(0, 0.658065)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_v6ava"]
+gradient = SubResource("Gradient_llc7j")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.509174, 0.463303)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dkb2j"]
+blend_mode = 1
+light_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_fwew8"]
+offsets = PackedFloat32Array(0, 0.645161)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ut8lf"]
+gradient = SubResource("Gradient_fwew8")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.490826, 0.477064)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_56qty"]
 radius = 2.63158
@@ -10,8 +40,22 @@ height = 5.26316
 [node name="Arrow" type="Area2D"]
 script = ExtResource("1_vcaab")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Arrow" type="Sprite2D" parent="."]
 texture = ExtResource("1_r7oiu")
+
+[node name="PointLight2D" type="PointLight2D" parent="Arrow"]
+material = SubResource("CanvasItemMaterial_ysdyi")
+position = Vector2(-1, 0)
+scale = Vector2(0.52202, 0.445687)
+color = Color(1, 1, 1, 0.537255)
+texture = SubResource("GradientTexture2D_v6ava")
+
+[node name="Alo" type="Sprite2D" parent="Arrow/PointLight2D"]
+modulate = Color(0.607843, 0.376471, 0.282353, 0.105882)
+material = SubResource("CanvasItemMaterial_dkb2j")
+position = Vector2(2.38419e-07, 0)
+scale = Vector2(1.00685, 0.964643)
+texture = SubResource("GradientTexture2D_ut8lf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(7, 0)
