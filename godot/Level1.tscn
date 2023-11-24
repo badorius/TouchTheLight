@@ -1036,7 +1036,8 @@ motion_mirroring = Vector2(1980, 0)
 texture = ExtResource("9_pakx4")
 
 [node name="CanvasModulate2" type="CanvasModulate" parent="ParallaxBackground"]
-color = Color(0.141176, 0.172549, 0.309804, 1)
+modulate = Color(0.262745, 0.0156863, 1, 0.870588)
+color = Color(0.180392, 1, 1, 0.282353)
 
 [node name="Player" parent="." instance=ExtResource("5_j31hv")]
 position = Vector2(423, -15)
