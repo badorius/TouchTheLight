@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d07i3cdmomp8e"]
+[gd_scene load_steps=16 format=3 uid="uid://d07i3cdmomp8e"]
 
 [ext_resource type="Texture2D" uid="uid://ccpnn3i3xafue" path="res://Assets/Tileset/Level1.png" id="1_ojwkr"]
 [ext_resource type="Texture2D" uid="uid://bfxxom2l16r8b" path="res://Assets/Background/The Dawn/Layers/1.png" id="2_6tde2"]
@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://cyp87grrigne2" path="res://Assets/Background/The Dawn/Layers/7.png" id="8_22ne4"]
 [ext_resource type="Texture2D" uid="uid://s1k2nuccsys1" path="res://Assets/Background/The Dawn/Layers/8.png" id="9_pakx4"]
 [ext_resource type="AudioStream" uid="uid://cbvpffgrq2nyi" path="res://Music/BGMUSIC/Stage1.mp3" id="11_0mkw3"]
+[ext_resource type="PackedScene" uid="uid://phnoalyvfkxs" path="res://Objects/SmallTorch.tscn" id="13_csh8u"]
+[ext_resource type="PackedScene" uid="uid://bis136hblwi22" path="res://Objects/skeleton.tscn" id="13_gfc1d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uwy2i"]
 texture = ExtResource("1_ojwkr")
@@ -979,6 +981,9 @@ layer_0/tile_data = PackedInt32Array(983020, 262144, 18, 983021, 327680, 18, 983
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
+[node name="CanvasModulate2" type="CanvasModulate" parent="ParallaxBackground"]
+color = Color(0.0235294, 1, 1, 0.376471)
+
 [node name="ParallaxLayer1" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_scale = Vector2(0.1, 0.1)
 motion_mirroring = Vector2(1980, 0)
@@ -1035,10 +1040,6 @@ motion_mirroring = Vector2(1980, 0)
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer8"]
 texture = ExtResource("9_pakx4")
 
-[node name="CanvasModulate2" type="CanvasModulate" parent="ParallaxBackground"]
-modulate = Color(0.262745, 0.0156863, 1, 0.870588)
-color = Color(0.180392, 1, 1, 0.282353)
-
 [node name="Player" parent="." instance=ExtResource("5_j31hv")]
 position = Vector2(423, -15)
 scale = Vector2(2, 2)
@@ -1082,8 +1083,23 @@ text = "Gamepad/ keys: cursors, space, ctrl"
 color = Color(0, 0, 0, 1)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-color = Color(0, 0.435294, 0.960784, 0.686275)
+color = Color(0, 0.435294, 0.960784, 0.498039)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("11_0mkw3")
 autoplay = true
+
+[node name="SmallTorch" parent="." instance=ExtResource("13_csh8u")]
+position = Vector2(1051, 23)
+
+[node name="Skeleton" parent="." instance=ExtResource("13_gfc1d")]
+position = Vector2(1413, 14)
+scale = Vector2(2, 1.784)
+
+[node name="Skeleton2" parent="." instance=ExtResource("13_gfc1d")]
+position = Vector2(2060, 14)
+scale = Vector2(2, 1.784)
+
+[node name="Skeleton3" parent="." instance=ExtResource("13_gfc1d")]
+position = Vector2(2484, 13)
+scale = Vector2(2, 1.784)

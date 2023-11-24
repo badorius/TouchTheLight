@@ -3,31 +3,35 @@
 [ext_resource type="Script" path="res://Scrpits/Player.gd" id="1_f0k0l"]
 [ext_resource type="Texture2D" uid="uid://cnvl248iy658b" path="res://Assets/Player/RedHood/red hood itch free Copy-Sheet.png" id="2_phcmd"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_j666y"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tyxwt"]
 blend_mode = 1
 light_mode = 2
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
 
-[sub_resource type="Gradient" id="Gradient_j84f8"]
-offsets = PackedFloat32Array(0, 0.658065)
+[sub_resource type="Gradient" id="Gradient_gmaye"]
+offsets = PackedFloat32Array(0, 0.645161)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_welqm"]
-gradient = SubResource("Gradient_j84f8")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fwqmo"]
+gradient = SubResource("Gradient_gmaye")
 width = 256
 height = 256
 fill = 1
-fill_from = Vector2(0.509174, 0.463303)
+fill_from = Vector2(0.513761, 0.490826)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_pahb3"]
 blend_mode = 1
 light_mode = 2
 
-[sub_resource type="Gradient" id="Gradient_xm1vk"]
-offsets = PackedFloat32Array(0, 0.645161)
+[sub_resource type="Gradient" id="Gradient_0x2va"]
+offsets = PackedFloat32Array(0, 0.567742)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_52isb"]
-gradient = SubResource("Gradient_xm1vk")
+gradient = SubResource("Gradient_0x2va")
 width = 256
 height = 256
 fill = 1
@@ -181,15 +185,15 @@ hframes = 12
 vframes = 11
 
 [node name="PointLight2D" type="PointLight2D" parent="Warrior"]
-material = SubResource("CanvasItemMaterial_j666y")
+material = SubResource("CanvasItemMaterial_tyxwt")
 position = Vector2(0, 22)
-scale = Vector2(0.702291, 0.70108)
-texture = SubResource("GradientTexture2D_welqm")
+scale = Vector2(0.5, 0.5)
+texture = SubResource("GradientTexture2D_fwqmo")
 
 [node name="Alo" type="Sprite2D" parent="Warrior/PointLight2D"]
-modulate = Color(0.443137, 0.964706, 0.917647, 0.0392157)
+modulate = Color(0, 0.247059, 0.741176, 0.8)
 material = SubResource("CanvasItemMaterial_pahb3")
-scale = Vector2(1.00685, 0.964643)
+position = Vector2(2.84782, -11.411)
 texture = SubResource("GradientTexture2D_52isb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

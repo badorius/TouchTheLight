@@ -92,7 +92,6 @@ func shoot(arrow_direction):
 	A.position.x = global_position.x + 35
 	A.position.y = global_position.y + 25
 	A.direction = arrow_direction
-	
 	main.add_child(A)
 	
 

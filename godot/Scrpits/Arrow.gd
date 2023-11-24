@@ -12,7 +12,9 @@ func _physics_process(delta):
 		position -= transform.x * speed * delta
 		get_node( "Arrow" ).set_flip_h( true )
 
-func _on_Arrow_body_entered(body):
-	if body.is_in_group("arrow"):
-		body.queue_free()
-	queue_free()
+
+func _on_area_entered(area):
+	if area.is_in_group("enemies"):
+		area.queue_free()
+		#area.explode()
+		queue_free()

@@ -1,0 +1,110 @@
+[gd_scene load_steps=13 format=3 uid="uid://phnoalyvfkxs"]
+
+[ext_resource type="Texture2D" uid="uid://cha6qncerkfu6" path="res://Assets/Objects/Torch-Sprites/SmallTorch.png" id="1_kal34"]
+[ext_resource type="Script" path="res://Scrpits/SmallTorch.gd" id="1_nncw6"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cu7ks"]
+blend_mode = 1
+light_mode = 2
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Gradient" id="Gradient_whf75"]
+offsets = PackedFloat32Array(0, 0.645161)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nxopm"]
+gradient = SubResource("Gradient_whf75")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.513761, 0.490826)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_41qik"]
+blend_mode = 1
+light_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_n7ywo"]
+offsets = PackedFloat32Array(0, 0.567742)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vpl58"]
+gradient = SubResource("Gradient_n7ywo")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.490826, 0.477064)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2ukha"]
+radius = 4.0
+
+[sub_resource type="Animation" id="Animation_q5lbk"]
+resource_name = "On"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SmallTourch:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_p0lt4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SmallTourch:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pvgiw"]
+_data = {
+"On": SubResource("Animation_q5lbk"),
+"RESET": SubResource("Animation_p0lt4")
+}
+
+[node name="SmallTorch" type="Area2D"]
+position = Vector2(43, 2)
+script = ExtResource("1_nncw6")
+
+[node name="SmallTourch" type="Sprite2D" parent="."]
+position = Vector2(-44, -4)
+texture = ExtResource("1_kal34")
+hframes = 4
+
+[node name="PointLight2D" type="PointLight2D" parent="SmallTourch"]
+material = SubResource("CanvasItemMaterial_cu7ks")
+position = Vector2(1, -17)
+scale = Vector2(0.3, 0.3)
+texture = SubResource("GradientTexture2D_nxopm")
+
+[node name="Alo" type="Sprite2D" parent="SmallTourch/PointLight2D"]
+modulate = Color(0, 0.247059, 0.741176, 0.8)
+material = SubResource("CanvasItemMaterial_41qik")
+position = Vector2(2.84782, -11.411)
+texture = SubResource("GradientTexture2D_vpl58")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-43, -22)
+shape = SubResource("CircleShape2D_2ukha")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pvgiw")
+}
