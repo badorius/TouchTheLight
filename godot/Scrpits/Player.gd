@@ -6,17 +6,46 @@ const JUMP_VELOCITY = -350.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
+#Socre vars
 var score : int = 0
 @onready var score_text : Label = get_node("../CanvasLayer/ScoreText")
+
+#Load Arrow tscn
 const Arrow = preload("../Objects/Arrow.tscn")
 var arrow_direction : int = 1
+
 #DEFAULT STATE START IDLE
 var state : String = "Idle"
 
+# Light vaule default
+var base_light : Vector2 = Vector2(0.5, 0.5)
+@export var decrease_value : Vector2 = Vector2(0.001, 0.001)
+@export var max_light : Vector2 = Vector2(2.0, 2.0)
+# Referencia al PointLight2D
+@export var player_light : PointLight2D
+
+#Sounds
+var jump_sound : AudioStreamPlayer2D
+var arrow_sound : AudioStreamPlayer2D 
+var dash_sound : AudioStreamPlayer2D
+
+
+func _ready():
+	# Utiliza get_node para acceder al nodo "Warrior" y luego al nodo "PointLight2D" dentro de él
+	player_light = $Warrior/PointLight2D
+
+	# Establecer la escala de la luz al valor base al iniciar
+	player_light.scale = base_light
+	
+	#SONIDOS
+	jump_sound = $Jump
+	arrow_sound = $arrow
+	dash_sound = $dash
+	
 func _physics_process(delta):
 	
 	var direction = Input.get_axis("ui_left", "ui_right")
-	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -26,6 +55,7 @@ func _physics_process(delta):
 		
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		jump_sound.play()
 		velocity.y = JUMP_VELOCITY
 		state = "Jump"
 		
@@ -34,6 +64,7 @@ func _physics_process(delta):
 		#velocity.x = move_toward(velocity.x, 0, SPEED)
 		state = "BowShooting"
 	if Input.is_action_just_released("ui_fire1"):
+			arrow_sound.play()
 			shoot(arrow_direction)
 			state = "Idle"
 
@@ -54,6 +85,8 @@ func _physics_process(delta):
 			state = "Jump"
 		elif Input.is_action_pressed("ui_down"):
 			state = "SlideDown"
+			if Input.is_action_just_pressed("ui_down"):
+				dash_sound.play()
 		else:
 			state = "WalkRight"
 	else:
@@ -62,6 +95,9 @@ func _physics_process(delta):
 	#ANIMATION
 	$AnimationPlayer.play(state)
 	move_and_slide()
+	
+	#Decrease light
+	decrease_light_scale(Vector2(decrease_value))
 	
 	#QUIT GAME
 	if Input.is_action_just_pressed("ui_cancel") and is_on_floor():
@@ -94,4 +130,15 @@ func shoot(arrow_direction):
 	A.direction = arrow_direction
 	main.add_child(A)
 	
+# Función para incrementar la escala de la luz
+func increment_light_scale(increment_amount: Vector2):
+	# Incrementa en ambas direcciones
+	if player_light.scale < max_light:
+		player_light.scale += increment_amount
+	
+func decrease_light_scale(decrease_amount: Vector2):
+	# Incrementa en ambas direcciones
+	if player_light.scale >= base_light:
+		player_light.scale -= decrease_amount
+
 

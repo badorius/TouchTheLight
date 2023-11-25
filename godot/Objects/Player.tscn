@@ -1,7 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://cf4d021lelowr"]
+[gd_scene load_steps=20 format=3 uid="uid://cf4d021lelowr"]
 
 [ext_resource type="Script" path="res://Scrpits/Player.gd" id="1_f0k0l"]
 [ext_resource type="Texture2D" uid="uid://cnvl248iy658b" path="res://Assets/Player/RedHood/red hood itch free Copy-Sheet.png" id="2_phcmd"]
+[ext_resource type="AudioStream" uid="uid://8wov8whd04ql" path="res://SoundFX/Minifantasy_Dungeon_SFX/12_human_jump_1.wav" id="3_vyoio"]
+[ext_resource type="AudioStream" uid="uid://cqal86melyso8" path="res://SoundFX/Minifantasy_Dungeon_SFX/07_human_atk_sword_1.wav" id="4_4au8g"]
+[ext_resource type="AudioStream" uid="uid://bltxytw31iap1" path="res://SoundFX/Minifantasy_Dungeon_SFX/15_human_dash_1.wav" id="5_riwm1"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tyxwt"]
 blend_mode = 1
@@ -173,7 +176,7 @@ _data = {
 "WalkRight": SubResource("Animation_krvfk")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 position = Vector2(-42, 52)
 scale = Vector2(0.5, 0.5)
 script = ExtResource("1_f0k0l")
@@ -210,3 +213,12 @@ speed_scale = 2.0
 libraries = {
 "": SubResource("AnimationLibrary_gp6am")
 }
+
+[node name="Jump" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_vyoio")
+
+[node name="arrow" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_4au8g")
+
+[node name="dash" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_riwm1")
