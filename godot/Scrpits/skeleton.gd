@@ -2,8 +2,13 @@ extends Area2D
 
 var speed = 100
 @export var direction : int = -1
+@export var live : int = 100
 var walk_count_max = 90
 var count = walk_count_max
+@onready var progress_bar : TextureProgressBar = get_node("../CanvasLayer/TextureProgressBar")
+
+func _process(delta):
+	pass
 
 
 func _physics_process(delta):
@@ -24,11 +29,12 @@ func _physics_process(delta):
 		
 	$AnimationPlayer.play("Walk")
 	
-	
-
-
-
 
 func _on_body_entered(body):
 		if body.is_in_group("Player"):
 			body.game_over()
+			
+func hurt(damage):
+		live -= damage
+		$CanvasLayer/TextureProgressBar.value = live
+		print(live)

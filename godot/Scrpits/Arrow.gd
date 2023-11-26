@@ -2,6 +2,7 @@ extends Area2D
 
 var speed = 750
 @export var direction : int = 1
+@export var damage : int = 10
 
 func _physics_process(delta):
 
@@ -15,6 +16,13 @@ func _physics_process(delta):
 
 func _on_area_entered(area):
 	if area.is_in_group("enemies"):
-		area.queue_free()
-		#area.explode()
-		queue_free()
+		area.live -= 1
+		if area.live <= 0:
+			area.queue_free()
+			#area.explode()
+			queue_free()
+		else:
+			queue_free()
+			area.hurt(damage)
+			
+		
