@@ -36,5 +36,6 @@ func _on_body_entered(body):
 			
 func hurt(damage):
 		live -= damage
-		$CanvasLayer/TextureProgressBar.value = live
-		print(live)
+		$TextureProgressBar.value = live
+
+		print($TextureProgressBar.value)
