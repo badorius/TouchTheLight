@@ -13,22 +13,23 @@ func _process(delta):
 
 
 func _on_area_entered(area):
-	if area.is_in_group("enemies"):
-		state = "Off"
-		$AnimationPlayer.play("Off")
-		$SmallTourch/PointLight2D.enabled = false
-		$SmallTourch/PointLight2D/Alo.visible = false
-		$CollisionShape2D.disabled = true
+	if state == "On":
+		if area.is_in_group("enemies"):
+			state = "Off"
+			$AnimationPlayer.play("Off")
+			$SmallTourch/PointLight2D.enabled = false
+			$SmallTourch/PointLight2D/Alo.visible = false
+
 
 
 func _on_body_entered(body):
-	if body.is_in_group("Player"):
-		state = "Off"
-		$AnimationPlayer.play("Off")
-		$SmallTourch/PointLight2D.enabled = false
-		$SmallTourch/PointLight2D/Alo.visible = false
-		$CollisionShape2D.disabled = true
-		body.increment_light_scale(Vector2(0.2, 0.2))
+	if state == "On":
+		if body.is_in_group("Player"):
+			state = "Off"
+			$AnimationPlayer.play("Off")
+			$SmallTourch/PointLight2D.enabled = false
+			$SmallTourch/PointLight2D/Alo.visible = false
+			body.increment_light_scale(Vector2(0.2, 0.2))
 
 		
 		

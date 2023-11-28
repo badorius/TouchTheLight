@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bdudh83agh1xi"]
+[gd_scene load_steps=15 format=3 uid="uid://bdudh83agh1xi"]
 
 [ext_resource type="Texture2D" uid="uid://byphetjtyt6i8" path="res://Assets/weapons/arrow/arrow.png" id="1_r7oiu"]
 [ext_resource type="Script" path="res://Scrpits/Arrow.gd" id="1_vcaab"]
+[ext_resource type="Texture2D" uid="uid://cs1i5ght724md" path="res://Assets/Impact/Retro Impact Effect Pack 3 C.png" id="3_4eptg"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7pdie"]
 blend_mode = 1
@@ -41,7 +42,72 @@ fill_from = Vector2(0.490826, 0.477064)
 radius = 2.63158
 height = 5.26316
 
+[sub_resource type="Animation" id="Animation_45wca"]
+resource_name = "Arrow_Fire"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RetroImpactEffectPack3C:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_782hk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RetroImpactEffectPack3C:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RetroImpactEffectPack3C:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_lhp2a"]
+resource_name = "Arrow_Explode"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RetroImpactEffectPack3C:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_og2ca"]
+_data = {
+"Arrow_Explode": SubResource("Animation_lhp2a"),
+"Arrow_Fire": SubResource("Animation_45wca"),
+"RESET": SubResource("Animation_782hk")
+}
+
 [node name="Arrow" type="Area2D" groups=["arrow"]]
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_vcaab")
 
 [node name="Arrow" type="Sprite2D" parent="."]
@@ -63,5 +129,18 @@ texture = SubResource("GradientTexture2D_2qj11")
 position = Vector2(7, 0)
 scale = Vector2(1.17122, 0.96)
 shape = SubResource("CapsuleShape2D_56qty")
+
+[node name="AnimationImpact" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_og2ca")
+}
+
+[node name="RetroImpactEffectPack3C" type="Sprite2D" parent="."]
+position = Vector2(-20, -1.33333)
+scale = Vector2(3, 3.059)
+texture = ExtResource("3_4eptg")
+hframes = 5
+vframes = 24
+frame = 5
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

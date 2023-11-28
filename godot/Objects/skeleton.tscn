@@ -1,10 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://bis136hblwi22"]
+[gd_scene load_steps=11 format=3 uid="uid://bis136hblwi22"]
 
 [ext_resource type="Script" path="res://Scrpits/skeleton.gd" id="1_7rtku"]
 [ext_resource type="Texture2D" uid="uid://5eaqqfu1k2k8" path="res://Assets/Enemys/Skeleton/Walk.png" id="1_wrqrp"]
-[ext_resource type="Texture2D" uid="uid://bxcwxpeeuvbvm" path="res://Assets/HUD/HelthBar/Progress.png" id="3_4j8at"]
-[ext_resource type="Texture2D" uid="uid://vrsvdphxn5us" path="res://Assets/HUD/HelthBar/Over.png" id="4_0f8mc"]
-[ext_resource type="Texture2D" uid="uid://diiykftbfcn2f" path="res://Assets/HUD/HelthBar/Under.png" id="4_mr8iw"]
+[ext_resource type="AudioStream" uid="uid://dfpqvm4laxcko" path="res://SoundFX/Minifantasy_Dungeon_SFX/11_human_damage_1.wav" id="3_oc76x"]
 
 [sub_resource type="Animation" id="Animation_i45ad"]
 length = 0.001
@@ -47,6 +45,15 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cikv1"]
 size = Vector2(1.08747, 36.0493)
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_d556t"]
+color = Color(0, 0.282353, 0.290196, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_02yfd"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5bwr1"]
+texture = SubResource("CanvasTexture_02yfd")
+modulate_color = Color(1, 0.0588235, 1, 1)
+
 [node name="Skeleton" type="Area2D" groups=["enemies"]]
 scale = Vector2(1.00123, 0.893328)
 script = ExtResource("1_7rtku")
@@ -66,14 +73,20 @@ rotation = -3.14159
 scale = Vector2(33.0638, -1.4284)
 shape = SubResource("RectangleShape2D_cikv1")
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
-offset_left = -35.9558
-offset_top = -70.5228
-offset_right = 44.0442
-offset_bottom = -30.5228
-value = 80.0
-texture_under = ExtResource("4_mr8iw")
-texture_over = ExtResource("4_0f8mc")
-texture_progress = ExtResource("3_4j8at")
+[node name="ProgressBar" type="ProgressBar" parent="."]
+modulate = Color(0.721569, 0.172549, 0, 1)
+clip_contents = true
+offset_left = -10.9865
+offset_top = -32.4629
+offset_right = -6.98649
+offset_bottom = -5.46288
+scale = Vector2(6.63397, 0.149427)
+theme_override_styles/background = SubResource("StyleBoxLine_d556t")
+theme_override_styles/fill = SubResource("StyleBoxTexture_5bwr1")
+rounded = true
+show_percentage = false
+
+[node name="ArrowDamage" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_oc76x")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -5,14 +5,15 @@ var speed = 100
 @export var live : int = 100
 var walk_count_max = 90
 var count = walk_count_max
-@onready var progress_bar : TextureProgressBar = get_node("../CanvasLayer/TextureProgressBar")
+@export var ArrowDamage_sound : AudioStreamPlayer2D
+
+func _ready():
+	ArrowDamage_sound = $ArrowDamage
 
 func _process(delta):
-	pass
-
+	$ProgressBar.value = live
 
 func _physics_process(delta):
-
 	if direction == 1:
 		count += 1 
 		position += transform.x * speed * delta
@@ -35,7 +36,10 @@ func _on_body_entered(body):
 			body.game_over()
 			
 func hurt(damage):
+		ArrowDamage_sound.play()
 		live -= damage
-		$TextureProgressBar.value = live
+		$ProgressBar.value = live
+		
+func explode():
+	pass
 
-		print($TextureProgressBar.value)

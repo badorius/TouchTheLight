@@ -4,8 +4,13 @@ var speed = 750
 @export var direction : int = 1
 @export var damage : int = 10
 
-func _physics_process(delta):
+#Sounds
 
+
+func _ready():
+	$AnimationImpact.play("Arrow_Fire")
+
+func _physics_process(delta):
 	if direction == 1:
 		position += transform.x * speed * delta
 		get_node( "Arrow" ).set_flip_h( false )
@@ -14,8 +19,12 @@ func _physics_process(delta):
 		get_node( "Arrow" ).set_flip_h( true )
 
 
+
 func _on_area_entered(area):
+	#FIX ##### Neds to wait before queue_free
+	$AnimationImpact.play("Arrow_Explode")
 	if area.is_in_group("enemies"):
+		$AnimationImpact.play("Arrow_Explode")
 		area.live -= 1
 		if area.live <= 0:
 			area.queue_free()
@@ -24,5 +33,8 @@ func _on_area_entered(area):
 		else:
 			queue_free()
 			area.hurt(damage)
+			
+func explode():
+	pass
 			
 		
