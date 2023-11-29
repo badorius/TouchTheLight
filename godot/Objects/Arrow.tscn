@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://bdudh83agh1xi"]
 
 [ext_resource type="Texture2D" uid="uid://byphetjtyt6i8" path="res://Assets/weapons/arrow/arrow.png" id="1_r7oiu"]
-[ext_resource type="Script" path="res://Scrpits/Arrow.gd" id="1_vcaab"]
+[ext_resource type="Script" path="res://Scripts/Arrow.gd" id="1_vcaab"]
 [ext_resource type="Texture2D" uid="uid://cs1i5ght724md" path="res://Assets/Impact/Retro Impact Effect Pack 3 C.png" id="3_4eptg"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7pdie"]
