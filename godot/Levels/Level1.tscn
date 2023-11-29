@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://d07i3cdmomp8e"]
 
 [ext_resource type="Texture2D" uid="uid://ccpnn3i3xafue" path="res://Assets/Tileset/Level1.png" id="1_ojwkr"]
-[ext_resource type="PackedScene" uid="uid://dqwoh4qxgemn" path="res://Objects/parallax_background.tscn" id="2_yujhc"]
+[ext_resource type="PackedScene" uid="uid://dqwoh4qxgemn" path="res://Objects/ParallaxBackground.tscn" id="2_yujhc"]
 [ext_resource type="AudioStream" uid="uid://cu2fsnbyykeub" path="res://Music/BGMUSIC/Ingrid.mp3" id="4_wpr7t"]
 [ext_resource type="PackedScene" uid="uid://cf4d021lelowr" path="res://Objects/Player.tscn" id="5_j31hv"]
 [ext_resource type="PackedScene" uid="uid://phnoalyvfkxs" path="res://Objects/SmallTorch.tscn" id="13_csh8u"]
-[ext_resource type="PackedScene" uid="uid://bis136hblwi22" path="res://Objects/skeleton.tscn" id="13_gfc1d"]
+[ext_resource type="PackedScene" uid="uid://bis136hblwi22" path="res://Objects/Skeleton.tscn" id="13_gfc1d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uwy2i"]
 texture = ExtResource("1_ojwkr")

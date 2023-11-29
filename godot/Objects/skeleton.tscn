@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://bis136hblwi22"]
 
-[ext_resource type="Script" path="res://Scrpits/skeleton.gd" id="1_7rtku"]
+[ext_resource type="Script" path="res://Scripts/Skeleton.gd" id="1_7rtku"]
 [ext_resource type="Texture2D" uid="uid://5eaqqfu1k2k8" path="res://Assets/Enemys/Skeleton/Walk.png" id="1_wrqrp"]
 [ext_resource type="AudioStream" uid="uid://dfpqvm4laxcko" path="res://SoundFX/Minifantasy_Dungeon_SFX/11_human_damage_1.wav" id="3_oc76x"]
 

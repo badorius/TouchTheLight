@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://cf4d021lelowr"]
 
-[ext_resource type="Script" path="res://Scrpits/Player.gd" id="1_f0k0l"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_f0k0l"]
 [ext_resource type="Texture2D" uid="uid://cnvl248iy658b" path="res://Assets/Player/RedHood/red hood itch free Copy-Sheet.png" id="2_phcmd"]
 [ext_resource type="AudioStream" uid="uid://8wov8whd04ql" path="res://SoundFX/Minifantasy_Dungeon_SFX/12_human_jump_1.wav" id="3_vyoio"]
 [ext_resource type="AudioStream" uid="uid://cqal86melyso8" path="res://SoundFX/Minifantasy_Dungeon_SFX/07_human_atk_sword_1.wav" id="4_4au8g"]
