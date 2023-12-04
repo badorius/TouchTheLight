@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://phnoalyvfkxs"]
+[gd_scene load_steps=15 format=3 uid="uid://phnoalyvfkxs"]
 
 [ext_resource type="Texture2D" uid="uid://cha6qncerkfu6" path="res://Assets/Objects/Torch-Sprites/SmallTorch.png" id="1_kal34"]
 [ext_resource type="Script" path="res://Scrpits/SmallTorch.gd" id="1_nncw6"]
+[ext_resource type="AudioStream" uid="uid://dhc3kia3e06e8" path="res://SoundFX/Minifantasy_Dungeon_SFX/LightCatch.mp3" id="3_2rv8o"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cu7ks"]
 blend_mode = 1
@@ -125,6 +126,9 @@ shape = SubResource("CircleShape2D_2ukha")
 libraries = {
 "": SubResource("AnimationLibrary_pvgiw")
 }
+
+[node name="LightCatch" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_2rv8o")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

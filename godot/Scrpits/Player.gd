@@ -67,6 +67,15 @@ func _physics_process(delta):
 			arrow_sound.play()
 			shoot(arrow_direction)
 			state = "Idle"
+			
+	# Sword Atack
+	if Input.is_action_pressed("ui_fire2") and not Input.is_action_just_released("ui_fire2"):
+		#velocity.x = move_toward(velocity.x, 0, SPEED)
+		state = "Atack1"
+	if Input.is_action_just_released("ui_fire2"):
+			arrow_sound.play()
+			#shoot(arrow_direction)
+			state = "Idle"
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -120,13 +129,14 @@ func add_score (amount):
 	score += amount
 	score_text.text = str("Score: ", score)
 	
+	
 #SHOOT ARROW FUNCTION
 func shoot(arrow_direction):
 	var main = get_tree().current_scene
 	var A = Arrow.instantiate()
 	A.global_position = global_position
 	A.position.x = global_position.x + 35
-	A.position.y = global_position.y + 25
+	A.position.y = global_position.y + 15
 	A.direction = arrow_direction
 	main.add_child(A)
 	
