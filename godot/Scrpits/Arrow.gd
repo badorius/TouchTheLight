@@ -9,6 +9,10 @@ var speed = 750
 
 func _ready():
 	$AnimationImpact.play("Arrow_Fire")
+	if direction == 1:
+		get_node( "RetroImpactEffectPack3C" ).set_flip_h( false )
+	if direction == -1:
+		get_node( "RetroImpactEffectPack3C" ).set_flip_h( true )
 
 func _physics_process(delta):
 	if direction == 1:

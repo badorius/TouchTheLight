@@ -48,10 +48,10 @@ size = Vector2(1.08747, 36.0493)
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_d556t"]
 color = Color(0, 0.282353, 0.290196, 1)
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_02yfd"]
+[sub_resource type="CanvasTexture" id="CanvasTexture_6fvn7"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5bwr1"]
-texture = SubResource("CanvasTexture_02yfd")
+texture = SubResource("CanvasTexture_6fvn7")
 modulate_color = Color(1, 0.0588235, 1, 1)
 
 [node name="Skeleton" type="Area2D" groups=["enemies"]]

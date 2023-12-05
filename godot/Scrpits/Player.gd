@@ -3,6 +3,8 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -350.0
+@export var live : int = 100
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -29,9 +31,12 @@ var base_light : Vector2 = Vector2(0.5, 0.5)
 var jump_sound : AudioStreamPlayer2D
 var arrow_sound : AudioStreamPlayer2D 
 var dash_sound : AudioStreamPlayer2D
+var hurt_sound : AudioStreamPlayer2D
+
 
 
 func _ready():
+	$ProgressBar.value = live
 	# Utiliza get_node para acceder al nodo "Warrior" y luego al nodo "PointLight2D" dentro de él
 	player_light = $Warrior/PointLight2D
 
@@ -42,7 +47,7 @@ func _ready():
 	jump_sound = $Jump
 	arrow_sound = $arrow
 	dash_sound = $dash
-	
+	hurt_sound = $Hurt
 func _physics_process(delta):
 	
 	var direction = Input.get_axis("ui_left", "ui_right")
@@ -150,5 +155,18 @@ func decrease_light_scale(decrease_amount: Vector2):
 	# Incrementa en ambas direcciones
 	if player_light.scale >= base_light:
 		player_light.scale -= decrease_amount
+		
+func hurt(damage):
+		live -= damage
+		hurt_sound.play()
+		$ProgressBar.value = live
+		state = "Hurt"
+		$AnimationPlayer.play("Hurt")
+
+		if live <= 0:
+			game_over()
+		
+func explode():
+	pass
 
 

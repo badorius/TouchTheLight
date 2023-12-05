@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d07i3cdmomp8e"]
+[gd_scene load_steps=19 format=3 uid="uid://d07i3cdmomp8e"]
 
 [ext_resource type="Texture2D" uid="uid://ccpnn3i3xafue" path="res://Assets/Tileset/Level1.png" id="1_ojwkr"]
 [ext_resource type="Texture2D" uid="uid://dgrf5yy23k4ym" path="res://Assets/Background/FortOfIllusion/tileset.png" id="2_8cdxx"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://phnoalyvfkxs" path="res://Objects/SmallTorch.tscn" id="13_csh8u"]
 [ext_resource type="PackedScene" uid="uid://bis136hblwi22" path="res://Objects/skeleton.tscn" id="13_gfc1d"]
 [ext_resource type="Texture2D" uid="uid://d2lfy54xgs6q2" path="res://Assets/Background/FortOfIllusion/front.png" id="13_xc64h"]
+[ext_resource type="PackedScene" uid="uid://ccixy0n1vgwcc" path="res://Objects/NightBorne.tscn" id="14_evytj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uwy2i"]
 texture = ExtResource("1_ojwkr")
@@ -1237,3 +1238,13 @@ position = Vector2(5420, -101)
 
 [node name="SmallTorch23" parent="." instance=ExtResource("13_csh8u")]
 position = Vector2(4619, -99)
+
+[node name="NightBorne" parent="." instance=ExtResource("14_evytj")]
+position = Vector2(3882, 11)
+
+[node name="NightBorne2" parent="." instance=ExtResource("14_evytj")]
+position = Vector2(31, 16)
+scale = Vector2(0.999736, 0.887341)
+
+[node name="NightBorne3" parent="." instance=ExtResource("14_evytj")]
+position = Vector2(5057, -127)

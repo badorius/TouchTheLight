@@ -35,7 +35,7 @@ func _on_body_entered(body):
 			$SmallTourch/PointLight2D.enabled = false
 			$SmallTourch/PointLight2D/Alo.visible = false
 			LightCatch.play()
-			body.increment_light_scale(Vector2(0.2, 0.2))
+			body.increment_light_scale(Vector2(0.5, 0.5))
 
 		
 		
