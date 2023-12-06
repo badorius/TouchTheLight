@@ -12,7 +12,7 @@
 [node name="ParallaxBackground" type="ParallaxBackground"]
 
 [node name="CanvasModulate2" type="CanvasModulate" parent="."]
-color = Color(0.482353, 1, 0.698039, 0.403922)
+color = Color(0.137255, 1, 0.980392, 0.403922)
 
 [node name="ParallaxLayer1" type="ParallaxLayer" parent="."]
 motion_scale = Vector2(0.1, 0.1)

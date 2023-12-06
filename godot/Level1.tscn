@@ -1112,10 +1112,6 @@ texture = ExtResource("8_ocdid")
 
 [node name="ParallaxBackground" parent="." instance=ExtResource("2_yujhc")]
 
-[node name="Player" parent="." instance=ExtResource("5_j31hv")]
-position = Vector2(423, -15)
-scale = Vector2(1, 1)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ScoreText" type="Label" parent="CanvasLayer"]
@@ -1248,3 +1244,7 @@ scale = Vector2(0.999736, 0.887341)
 
 [node name="NightBorne3" parent="." instance=ExtResource("14_evytj")]
 position = Vector2(5057, -127)
+
+[node name="Player" parent="." instance=ExtResource("5_j31hv")]
+position = Vector2(423, -15)
+scale = Vector2(1, 1)
