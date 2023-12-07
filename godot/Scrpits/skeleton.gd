@@ -42,4 +42,7 @@ func hurt(damage):
 		
 func explode():
 	pass
+	
+func death():
+	pass
 

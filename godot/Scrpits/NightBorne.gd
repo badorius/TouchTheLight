@@ -90,9 +90,12 @@ func _physics_process(delta):
 			if direction.x > 0:
 				get_node( "Sprite2D" ).set_flip_h( false )
 				$AnimationPlayer.play("atack")
+				_on_animation_player_animation_finished("atack")
 			else:
 				get_node( "Sprite2D" ).set_flip_h( true )
 				$AnimationPlayer.play("atack")
+				_on_animation_player_animation_finished("atack")
+
 			if global_position.distance_to(player.global_position) < DISTANCE_THRESHOLD:
 				state = "Idle"
 
@@ -103,6 +106,8 @@ func _on_body_entered(body):
 			
 func hurt(damage):
 		ArrowDamage_sound.play()
+		$AnimationPlayer.play("hurt")
+		_on_animation_player_animation_finished("hurt")
 		live -= damage
 		$ProgressBar.value = live
 		state = "ChasePlayer"
@@ -110,20 +115,21 @@ func hurt(damage):
 func explode():
 	pass
 		
-
-
-func _on_animation_finished(animation_name):
-	# Esta función se llama cuando cualquier animación en el AnimationPlayer se completa
-	if animation_name == "atack":
-		print("Animación de ataque completada. Realizando acciones adicionales.")
-		# Realiza aquí las acciones adicionales después de que la animación de ataque se complete
-		# Puedes cambiar el estado del enemigo o realizar otras acciones
-		state = "Idle"  # Cambia el estado a "Idle" después de completar la animación de ataque
-	
-
+func death():
+	$AnimationPlayer.play("death")
+	_on_animation_player_animation_finished("death")
 
 func _on_animation_player_animation_finished(anim_name):
 	if anim_name == "atack":
+		await  $AnimationPlayer.animation_finished
 		print("Atack")
+		state = "Idle"
+	if anim_name == "hurt":
+		await  $AnimationPlayer.animation_finished
+		print("hurt")
+		state = "Idle"
+	if anim_name == "death":
+		await  $AnimationPlayer.animation_finished
+		print("death")
 		state = "Idle"
 	

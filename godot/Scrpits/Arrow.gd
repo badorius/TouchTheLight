@@ -32,7 +32,7 @@ func _on_area_entered(area):
 		area.live -= 1
 		if area.live <= 0:
 			area.queue_free()
-			#area.explode()
+			area.death()
 			queue_free()
 		else:
 			queue_free()
