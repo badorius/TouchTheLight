@@ -23,6 +23,9 @@ func _physics_process(delta):
 		get_node( "Arrow" ).set_flip_h( true )
 
 
+func explode():
+	pass
+
 
 func _on_area_entered(area):
 	#FIX ##### Neds to wait before queue_free
@@ -38,7 +41,20 @@ func _on_area_entered(area):
 			queue_free()
 			area.hurt(damage)
 			
-func explode():
-	pass
-			
-		
+
+func _on_body_entered(body):
+	#FIX ##### Neds to wait before queue_free
+	$AnimationImpact.play("Arrow_Explode")
+	if body.is_in_group("enemies"):
+		$AnimationImpact.play("Arrow_Explode")
+		body.live -= 1
+		if body.live <= 0:
+			body.queue_free()
+			body.death()
+			queue_free()
+		else:
+			queue_free()
+			body.hurt(damage)
+	
+
+

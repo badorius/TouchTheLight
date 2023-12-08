@@ -1,19 +1,21 @@
-extends Area2D
+extends CharacterBody2D
 
 const SPEED = 200.0
 const DISTANCE_THRESHOLD = 200  # Distancia mínima para perseguir al jugador
 const DISTANCE_ATACK = 50
 
-var state : String = "Idle"
+var state : String = "idle"
 var target_position : Vector2
 var timer : float = 0
 @export var live : int = 200
 @export var ArrowDamage_sound : AudioStreamPlayer2D
+@onready var player : CharacterBody2D = get_node("/root/Main/Player")
 
 
 func _ready():
 	ArrowDamage_sound = $ArrowDamage
 
+	
 func _process(delta):
 	$ProgressBar.value = live
 
@@ -29,41 +31,41 @@ func _physics_process(delta):
 			state = "Atack"
 		
 	match state:
-		"Idle":
+		"idle":
 			if timer > 1.0:
 				var random_choice = randi() % 3
 				match random_choice:
 					0:
 						target_position = global_position + Vector2(randf_range(-50, -150), 0)
 						state = "WalkingLeft"
-						$AnimationPlayer.play("Run")
+						$AnimatedSprite2D.play("run")
 					1:
 						target_position = global_position + Vector2(randf_range(50, 150), 0)
 						state = "WalkingRight"
-						$AnimationPlayer.play("Run")
+						$AnimatedSprite2D.play("run")
 					2:
-						state = "Idle"
+						state = "idle"
 						timer = 0
 						position = position
-						$AnimationPlayer.play("Iddle")
+						$AnimatedSprite2D.play("idle")
 						
 						
 
 
 		"WalkingLeft":
-			position -= transform.x * SPEED * delta
-			get_node( "Sprite2D" ).set_flip_h( true )
-			$AnimationPlayer.play("Run")
+			velocity.x = -SPEED
+			get_node( "AnimatedSprite2D" ).set_flip_h( true )
+			$AnimatedSprite2D.play("run")
 			if global_position.x < target_position.x or timer > 3.0:
-				state = "Idle"
+				state = "idle"
 				timer = 0
 
 		"WalkingRight":
-			position += transform.x * SPEED * delta
-			get_node( "Sprite2D" ).set_flip_h( false )
-			$AnimationPlayer.play("Run")
+			velocity.x = SPEED
+			get_node( "AnimatedSprite2D" ).set_flip_h( false )
+			$AnimatedSprite2D.play("run")
 			if global_position.x > target_position.x or timer > 3.0:
-				state = "Idle"
+				state = "idle"
 				timer = 0
 				
 
@@ -71,16 +73,16 @@ func _physics_process(delta):
 		"ChasePlayer":
 			var direction = (player.global_position - global_position).normalized()
 			if direction.x > 0:
-				get_node( "Sprite2D" ).set_flip_h( false )
-				$AnimationPlayer.play("Run")
+				get_node( "AnimatedSprite2D" ).set_flip_h( false )
+				$AnimatedSprite2D.play("run")
 			else:
-				get_node( "Sprite2D" ).set_flip_h( true )
-				$AnimationPlayer.play("Run")	
+				get_node( "AnimatedSprite2D" ).set_flip_h( true )
+				$AnimatedSprite2D.play("run")	
 			
-			position += transform.x * direction * SPEED * delta
-			$AnimationPlayer.play("Run")
+			velocity= direction * SPEED
+			$AnimatedSprite2D.play("run")
 			if global_position.distance_to(player.global_position) < DISTANCE_THRESHOLD:
-				state = "Idle"
+				state = "idle"
 				
 		"Atack":
 			timer = 0
@@ -88,16 +90,24 @@ func _physics_process(delta):
 			
 			var direction = (player.global_position - global_position).normalized()
 			if direction.x > 0:
-				get_node( "Sprite2D" ).set_flip_h( false )
-				$AnimationPlayer.play("atack")
-				_on_animation_player_animation_finished("atack")
+				position=position
+				get_node( "AnimatedSprite2D" ).set_flip_h( false )
+				$AnimatedSprite2D.play("atack")
+				player.hurt(1)
+
+
 			else:
-				get_node( "Sprite2D" ).set_flip_h( true )
-				$AnimationPlayer.play("atack")
-				_on_animation_player_animation_finished("atack")
+				get_node( "AnimatedSprite2D" ).set_flip_h( true )
+				position=position
+				$AnimatedSprite2D.play("atack")
+				_on_animated_sprite_2d_animation_finished()
+				player.hurt(1)
+
 
 			if global_position.distance_to(player.global_position) < DISTANCE_THRESHOLD:
-				state = "Idle"
+				state = "idle"
+
+	move_and_slide()
 
 
 func _on_body_entered(body):
@@ -106,8 +116,7 @@ func _on_body_entered(body):
 			
 func hurt(damage):
 		ArrowDamage_sound.play()
-		$AnimationPlayer.play("hurt")
-		_on_animation_player_animation_finished("hurt")
+		$AnimatedSprite2D.play("hurt")
 		live -= damage
 		$ProgressBar.value = live
 		state = "ChasePlayer"
@@ -116,20 +125,21 @@ func explode():
 	pass
 		
 func death():
-	$AnimationPlayer.play("death")
-	_on_animation_player_animation_finished("death")
+	$AnimatedSprite2D.play("death")
 
-func _on_animation_player_animation_finished(anim_name):
-	if anim_name == "atack":
-		await  $AnimationPlayer.animation_finished
+
+
+func _on_animated_sprite_2d_animation_finished():
+
+		await  $AnimatedSprite2D.animation_finished
 		print("Atack")
-		state = "Idle"
-	if anim_name == "hurt":
-		await  $AnimationPlayer.animation_finished
+		state = "idle"
+
+		await  $AnimatedSprite2D.animation_finished
 		print("hurt")
-		state = "Idle"
-	if anim_name == "death":
-		await  $AnimationPlayer.animation_finished
+		state = "idle"
+
+		await  $AnimatedSprite2D.animation_finished
 		print("death")
-		state = "Idle"
+		state = "idle"
 	
