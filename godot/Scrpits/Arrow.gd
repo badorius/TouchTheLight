@@ -49,8 +49,8 @@ func _on_body_entered(body):
 		$AnimationImpact.play("Arrow_Explode")
 		body.live -= 1
 		if body.live <= 0:
-			body.queue_free()
 			body.death()
+			#body.queue_free()
 			queue_free()
 		else:
 			queue_free()
