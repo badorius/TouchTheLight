@@ -1,11 +1,12 @@
 extends CharacterBody2D
 
 const SPEED = 200.0
+var AttackCount = 3
 const DISTANCE_THRESHOLD = 100  # Distancia mínima para perseguir al jugador
 const DISTANCE_ATACK = 40
 const JUMP_VELOCITY = -350.0
 var state_machine
-var state : String = "idle"
+var state : String = "Iddle"
 var target_position : Vector2
 var timer : float = 0
 @export var live : int = 200
@@ -27,21 +28,19 @@ func _process(delta):
 		state = "ChasePlayer"
 		if global_position.distance_to(player.global_position) < DISTANCE_ATACK:
 			state = "Attack"
-			
 
-			
+	
 func _physics_process(delta):
-	timer += delta
 
+	timer += delta
 	state_machine = $AnimationTree.get('parameters/playback')
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
-		#state = "idle"
 		
 	match state:
 		"Iddle":
-			state_machine.travel('Iddle')
+			state_machine.travel('Start')
 			if timer > 1.0:
 				var random_choice = randi() % 4
 				match random_choice:
@@ -65,7 +64,8 @@ func _physics_process(delta):
 			if global_position.x < target_position.x or timer > 3.0:
 				state = "Iddle"
 				timer = 0
-				state_machine.travel('Iddle')
+				state_machine.travel('Start')
+
 
 
 		"WalkingRight":
@@ -75,8 +75,8 @@ func _physics_process(delta):
 			if global_position.x > target_position.x or timer > 3.0:
 				state = "Iddle"
 				timer = 0
-				state_machine.travel('Iddle')
-				
+				state_machine.travel('Start')
+
 				
 		"Jump":
 			if is_on_floor():
@@ -85,23 +85,25 @@ func _physics_process(delta):
 			else:
 				state = "Iddle"
 				timer = 0
-				state_machine.travel('Iddle')
+				state_machine.travel('Start')
+
 
 		"ChasePlayer":
 			var direction = (player.global_position - global_position).normalized()
 			if direction.x > 0:
 				get_node( "Sprite2D" ).set_flip_h( false )
 				velocity = direction * SPEED
-				state_machine.travel('Run')
 			else:
 				get_node( "Sprite2D" ).set_flip_h( true )
 				velocity = direction * SPEED
-				state_machine.travel('Run')
-				
-			if global_position.distance_to(player.global_position) < DISTANCE_THRESHOLD:
+
+			state_machine.travel('Run')	
+			if global_position.distance_to(player.global_position) > DISTANCE_THRESHOLD:
 				state = "Iddle"
 				timer = 0
-				state_machine.travel('Iddle')
+				state_machine.travel('Start')
+							
+				
 				
 				
 		"Attack":
@@ -109,19 +111,19 @@ func _physics_process(delta):
 			var direction = (player.global_position - global_position).normalized()
 			if direction.x > 0:
 				get_node( "Sprite2D" ).set_flip_h( false )
-				state_machine.travel('Attack')
-
 			else:
 				get_node( "Sprite2D" ).set_flip_h( true )
-				state_machine.travel('Attack')
-
-				
-			if global_position.distance_to(player.global_position) < DISTANCE_THRESHOLD:
+			state_machine.travel('Attack')
+			if global_position.distance_to(player.global_position) > DISTANCE_THRESHOLD:
 				state = "Iddle"
 				timer = 0
-				state_machine.travel('Iddle')
-				
-				
+				state_machine.travel('Start')
+							
+							
+
+		
+
+
 	move_and_slide()
 
 
