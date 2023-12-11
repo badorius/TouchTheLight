@@ -44,5 +44,6 @@ func explode():
 	pass
 	
 func death():
-	pass
+	queue_free()
+	
 

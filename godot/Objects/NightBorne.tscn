@@ -1,11 +1,45 @@
-[gd_scene load_steps=88 format=3 uid="uid://ccixy0n1vgwcc"]
+[gd_scene load_steps=95 format=3 uid="uid://ccixy0n1vgwcc"]
 
 [ext_resource type="Texture2D" uid="uid://cvhor6531eet2" path="res://Assets/Enemys/NightBorne/NightBorne.png" id="1_52vbf"]
 [ext_resource type="Script" path="res://Scrpits/NightBorne.gd" id="1_xauhk"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vo1ju"]
+blend_mode = 1
+light_mode = 2
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Gradient" id="Gradient_gmaye"]
+offsets = PackedFloat32Array(0, 0.645161)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ombhn"]
+gradient = SubResource("Gradient_gmaye")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.513761, 0.490826)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vl3jr"]
+blend_mode = 1
+light_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_0x2va"]
+offsets = PackedFloat32Array(0, 0.567742)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2d6ig"]
+gradient = SubResource("Gradient_0x2va")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.490826, 0.477064)
+
 [sub_resource type="Animation" id="Animation_0x1fp"]
 resource_name = "atack"
-length = 0.36
+length = 0.37
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -19,10 +53,24 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2), Vector2i(5, 2), Vector2i(6, 2), Vector2i(7, 2), Vector2i(8, 2), Vector2i(9, 2), Vector2i(10, 2), Vector2i(11, 2)]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.36),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"do_hurt"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_sflce"]
 resource_name = "death"
-length = 2.2
+length = 2.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -34,6 +82,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector2i(0, 4), Vector2i(1, 4), Vector2i(2, 4), Vector2i(3, 4), Vector2i(4, 4), Vector2i(5, 4), Vector2i(6, 4), Vector2i(7, 4), Vector2i(8, 4), Vector2i(9, 4), Vector2i(10, 4), Vector2i(11, 4), Vector2i(12, 4), Vector2i(13, 4), Vector2i(14, 4), Vector2i(15, 4), Vector2i(16, 4), Vector2i(17, 4), Vector2i(18, 4), Vector2i(19, 4), Vector2i(21, 4), Vector2i(22, 4)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_8hcg7"]
@@ -571,31 +633,49 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4hy7u"]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t083n"]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dq2po"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_herk8"]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5slqp"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mdibu"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yv1u8"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_oje4e"]
 states/Attack/node = SubResource("AnimationNodeAnimation_w5nm8")
-states/Attack/position = Vector2(504, 45)
+states/Attack/position = Vector2(274, 31)
 states/Death/node = SubResource("AnimationNodeAnimation_wh8af")
 states/Death/position = Vector2(909, 306)
 states/Hurt/node = SubResource("AnimationNodeAnimation_tp3qg")
-states/Hurt/position = Vector2(580, 171)
+states/Hurt/position = Vector2(578, 282)
 states/Iddle/node = SubResource("AnimationNodeAnimation_kjn71")
-states/Iddle/position = Vector2(344, 306)
+states/Iddle/position = Vector2(274, 277)
 states/Run/node = SubResource("AnimationNodeAnimation_7fui2")
-states/Run/position = Vector2(516, 570)
+states/Run/position = Vector2(274, 583)
 states/Start/position = Vector2(5, 306)
-transitions = ["Start", "Iddle", SubResource("AnimationNodeStateMachineTransition_ic34r"), "Iddle", "Run", SubResource("AnimationNodeStateMachineTransition_dpwdg"), "Run", "Iddle", SubResource("AnimationNodeStateMachineTransition_lqt1d"), "Iddle", "Attack", SubResource("AnimationNodeStateMachineTransition_gxqpt"), "Attack", "Iddle", SubResource("AnimationNodeStateMachineTransition_75uc5"), "Death", "End", SubResource("AnimationNodeStateMachineTransition_lfgwf"), "Iddle", "Hurt", SubResource("AnimationNodeStateMachineTransition_hsp2u"), "Hurt", "Iddle", SubResource("AnimationNodeStateMachineTransition_4hy7u"), "Iddle", "Death", SubResource("AnimationNodeStateMachineTransition_t083n"), "Attack", "Death", SubResource("AnimationNodeStateMachineTransition_dq2po"), "Hurt", "Death", SubResource("AnimationNodeStateMachineTransition_herk8"), "Run", "Death", SubResource("AnimationNodeStateMachineTransition_5slqp")]
-graph_offset = Vector2(-78.3125, 34.138)
+transitions = ["Start", "Iddle", SubResource("AnimationNodeStateMachineTransition_ic34r"), "Iddle", "Run", SubResource("AnimationNodeStateMachineTransition_dpwdg"), "Run", "Iddle", SubResource("AnimationNodeStateMachineTransition_lqt1d"), "Iddle", "Attack", SubResource("AnimationNodeStateMachineTransition_gxqpt"), "Attack", "Iddle", SubResource("AnimationNodeStateMachineTransition_75uc5"), "Death", "End", SubResource("AnimationNodeStateMachineTransition_lfgwf"), "Iddle", "Hurt", SubResource("AnimationNodeStateMachineTransition_hsp2u"), "Hurt", "Iddle", SubResource("AnimationNodeStateMachineTransition_4hy7u"), "Attack", "Death", SubResource("AnimationNodeStateMachineTransition_dq2po"), "Hurt", "Death", SubResource("AnimationNodeStateMachineTransition_herk8"), "Run", "Death", SubResource("AnimationNodeStateMachineTransition_5slqp"), "Run", "Hurt", SubResource("AnimationNodeStateMachineTransition_mdibu"), "Hurt", "Run", SubResource("AnimationNodeStateMachineTransition_yv1u8")]
+graph_offset = Vector2(-34.3125, -7.862)
 
 [node name="NightBorne" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_xauhk")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+material = SubResource("CanvasItemMaterial_vo1ju")
+position = Vector2(0, 22)
+scale = Vector2(0.5, 0.5)
+enabled = false
+texture = SubResource("GradientTexture2D_ombhn")
+
+[node name="Alo" type="Sprite2D" parent="PointLight2D"]
+modulate = Color(0.580392, 0, 0.282353, 0.160784)
+material = SubResource("CanvasItemMaterial_vl3jr")
+position = Vector2(2.84782, -11.411)
+texture = SubResource("GradientTexture2D_2d6ig")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)

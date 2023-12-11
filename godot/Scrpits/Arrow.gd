@@ -34,12 +34,12 @@ func _on_area_entered(area):
 		$AnimationImpact.play("Arrow_Explode")
 		area.live -= 1
 		if area.live <= 0:
-			area.queue_free()
 			area.death()
 			queue_free()
 		else:
-			queue_free()
 			area.hurt(damage)
+			queue_free()
+
 			
 
 func _on_body_entered(body):
@@ -49,7 +49,7 @@ func _on_body_entered(body):
 		$AnimationImpact.play("Arrow_Explode")
 		body.live -= 1
 		if body.live <= 0:
-			body.death()
+			#body.death()
 			#body.queue_free()
 			queue_free()
 		else:

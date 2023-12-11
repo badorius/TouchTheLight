@@ -10,8 +10,10 @@ const JUMP_VELOCITY = -350.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 #Socre vars
-var score : int = 0
+@export var score : int = 0
+@export var lives : int = 5
 @onready var score_text : Label = get_node("../CanvasLayer/ScoreText")
+@onready var lives_text : Label = get_node("../CanvasLayer/Lives")
 
 #Load Arrow tscn
 const Arrow = preload("../Objects/Arrow.tscn")
@@ -123,6 +125,8 @@ func _physics_process(delta):
 
 #GAMEOVER FUNCTION
 func game_over ():
+	#PENDING FIX FUNCTIoN NAME (NOT GAMEOVER) DIE LIVES
+	update_lives(1)
 	get_tree().reload_current_scene()
 
 #QUIT GAME FUNCTION
@@ -133,6 +137,12 @@ func game_quit ():
 func add_score (amount):
 	score += amount
 	score_text.text = str("Score: ", score)
+	
+#UPDATE LIVES FUNCTION
+func update_lives (amount):
+	lives -= amount
+	print(lives)
+	lives_text.text = str("Lives: ", lives)
 	
 	
 #SHOOT ARROW FUNCTION
