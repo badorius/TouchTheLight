@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://d07i3cdmomp8e"]
+[gd_scene load_steps=22 format=3 uid="uid://d07i3cdmomp8e"]
 
 [ext_resource type="Texture2D" uid="uid://ccpnn3i3xafue" path="res://Assets/Tileset/Level1.png" id="1_5gl51"]
 [ext_resource type="Texture2D" uid="uid://dgrf5yy23k4ym" path="res://Assets/Background/FortOfIllusion/tileset.png" id="2_febr0"]
@@ -1035,6 +1035,15 @@ texture = ExtResource("2_febr0")
 [sub_resource type="TileSet" id="TileSet_ludbe"]
 sources/0 = SubResource("TileSetAtlasSource_x2343")
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_mdf3p"]
+color = Color(0, 0.282353, 0.290196, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_7n1cb"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mtuvj"]
+texture = SubResource("CanvasTexture_7n1cb")
+modulate_color = Color(1, 0.0588235, 1, 1)
+
 [node name="Level1" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -1147,6 +1156,33 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "Gamepad/ keys: cursors, space, z, x"
 
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+modulate = Color(0.764706, 0.0313726, 0, 0.368627)
+clip_contents = true
+offset_left = 32.0
+offset_top = 122.0
+offset_right = 36.0
+offset_bottom = 149.0
+scale = Vector2(46.5124, 0.544506)
+theme_override_styles/background = SubResource("StyleBoxLine_mdf3p")
+theme_override_styles/fill = SubResource("StyleBoxTexture_mtuvj")
+show_percentage = false
+
+[node name="ProgressBarLight" type="ProgressBar" parent="CanvasLayer"]
+modulate = Color(0.145098, 1, 1, 1)
+clip_contents = true
+offset_left = 33.0
+offset_top = 167.0
+offset_right = 37.0
+offset_bottom = 194.0
+scale = Vector2(46.5124, 0.544506)
+theme_override_styles/background = SubResource("StyleBoxLine_mdf3p")
+theme_override_styles/fill = SubResource("StyleBoxTexture_mtuvj")
+max_value = 10000.0
+step = 1.0
+exp_edit = true
+show_percentage = false
+
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0, 0, 0, 1)
 
@@ -1246,5 +1282,5 @@ scale = Vector2(0.999736, 0.887341)
 position = Vector2(5057, -127)
 
 [node name="Player" parent="." instance=ExtResource("14_nbcgr")]
-position = Vector2(423, -15)
+position = Vector2(417, 28)
 scale = Vector2(1, 1)
