@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://cf4d021lelowr"]
+[gd_scene load_steps=51 format=3 uid="uid://cf4d021lelowr"]
 
 [ext_resource type="Script" path="res://Scrpits/Player.gd" id="1_f0k0l"]
 [ext_resource type="Texture2D" uid="uid://cnvl248iy658b" path="res://Assets/Player/RedHood/red hood itch free Copy-Sheet.png" id="2_phcmd"]
@@ -160,7 +160,6 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_kmii4"]
 resource_name = "SlideDown"
 length = 0.5
-loop_mode = 1
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -285,11 +284,17 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_flcjr"]
 switch_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gumam"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_48t3i"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_nqriw"]
 states/Atack1/node = SubResource("AnimationNodeAnimation_u42ap")
 states/Atack1/position = Vector2(347, 54)
 states/BowShooting/node = SubResource("AnimationNodeAnimation_2y2qo")
-states/BowShooting/position = Vector2(176, 54)
+states/BowShooting/position = Vector2(8, 59)
 states/End/position = Vector2(927, 200)
 states/Hurt/node = SubResource("AnimationNodeAnimation_r4qcs")
 states/Hurt/position = Vector2(503, 209)
@@ -299,11 +304,11 @@ states/Jump/node = SubResource("AnimationNodeAnimation_s7gsv")
 states/Jump/position = Vector2(295, 427)
 states/SlideDown/node = SubResource("AnimationNodeAnimation_a185w")
 states/SlideDown/position = Vector2(475, 427)
-states/Start/position = Vector2(76, 200)
+states/Start/position = Vector2(-145, 200)
 states/WalkRight/node = SubResource("AnimationNodeAnimation_kph6w")
 states/WalkRight/position = Vector2(116, 427)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_txkri"), "Idle", "Hurt", SubResource("AnimationNodeStateMachineTransition_ljdhm"), "Hurt", "Idle", SubResource("AnimationNodeStateMachineTransition_opp2q"), "Idle", "BowShooting", SubResource("AnimationNodeStateMachineTransition_gkfjh"), "BowShooting", "Idle", SubResource("AnimationNodeStateMachineTransition_10sck"), "Idle", "Atack1", SubResource("AnimationNodeStateMachineTransition_cwamc"), "Atack1", "Idle", SubResource("AnimationNodeStateMachineTransition_fv22o"), "Idle", "WalkRight", SubResource("AnimationNodeStateMachineTransition_6gxby"), "WalkRight", "Idle", SubResource("AnimationNodeStateMachineTransition_ylxy5"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_4hyks"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_pjqr6"), "SlideDown", "Idle", SubResource("AnimationNodeStateMachineTransition_78v02"), "Idle", "SlideDown", SubResource("AnimationNodeStateMachineTransition_o41a2"), "Hurt", "End", SubResource("AnimationNodeStateMachineTransition_flcjr")]
-graph_offset = Vector2(-281, 30)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_txkri"), "Idle", "Hurt", SubResource("AnimationNodeStateMachineTransition_ljdhm"), "Hurt", "Idle", SubResource("AnimationNodeStateMachineTransition_opp2q"), "Idle", "BowShooting", SubResource("AnimationNodeStateMachineTransition_gkfjh"), "BowShooting", "Idle", SubResource("AnimationNodeStateMachineTransition_10sck"), "Idle", "Atack1", SubResource("AnimationNodeStateMachineTransition_cwamc"), "Atack1", "Idle", SubResource("AnimationNodeStateMachineTransition_fv22o"), "Idle", "WalkRight", SubResource("AnimationNodeStateMachineTransition_6gxby"), "WalkRight", "Idle", SubResource("AnimationNodeStateMachineTransition_ylxy5"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_4hyks"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_pjqr6"), "SlideDown", "Idle", SubResource("AnimationNodeStateMachineTransition_78v02"), "Idle", "SlideDown", SubResource("AnimationNodeStateMachineTransition_o41a2"), "Hurt", "End", SubResource("AnimationNodeStateMachineTransition_flcjr"), "BowShooting", "WalkRight", SubResource("AnimationNodeStateMachineTransition_gumam"), "WalkRight", "BowShooting", SubResource("AnimationNodeStateMachineTransition_48t3i")]
+graph_offset = Vector2(-206, -40)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 position = Vector2(-42, 52)
@@ -373,3 +378,7 @@ libraries = {
 }
 tree_root = SubResource("AnimationNodeStateMachine_nqriw")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(0, 14)
+rotation = -1.57644

@@ -60,7 +60,6 @@ func _process(delta):
 		"Attack":
 			set_attack()
 
-	
 	#CHECK DISTANCE TO CHESE OR ATACK
 	if global_position.distance_to(player.global_position) < DISTANCE_THRESHOLD or state == "Hurt":
 		state = "ChasePlayer"
@@ -88,6 +87,8 @@ func set_attack():
 		get_node( "Sprite2D" ).set_flip_h( false )
 	else:
 		get_node( "Sprite2D" ).set_flip_h( true )
+	if player.attacking == true:
+		hurt(10)
 	state_machine.travel('Attack')
 	if global_position.distance_to(player.global_position) > DISTANCE_THRESHOLD:
 		set_iddle()
@@ -102,7 +103,7 @@ func set_chaseplayer():
 	else:
 		get_node( "Sprite2D" ).set_flip_h( true )
 		state_machine.travel('Run')	
-		velocity = direction * SPEED
+		velocity = direction  * SPEED
 
 		
 func set_jump():
