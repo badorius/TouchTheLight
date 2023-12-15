@@ -87,8 +87,6 @@ func set_attack():
 		get_node( "Sprite2D" ).set_flip_h( false )
 	else:
 		get_node( "Sprite2D" ).set_flip_h( true )
-	if player.attacking == true:
-		hurt(10)
 	state_machine.travel('Attack')
 	if global_position.distance_to(player.global_position) > DISTANCE_THRESHOLD:
 		set_iddle()

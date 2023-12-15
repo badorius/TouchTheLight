@@ -32,8 +32,6 @@ func _physics_process(delta):
 	
 func _on_body_entered(body):
 		if body.is_in_group("Player"):
-			if body.attacking == true:
-				hurt(100)
 			body.hurt(5)
 			
 func hurt(damage):

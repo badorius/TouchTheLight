@@ -6,7 +6,6 @@ const JUMP_VELOCITY = -350.0
 @export var live : int = 100
 var state_machine
 @export var attack_power : int  = 10
-@export var attacking = false
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -86,12 +85,9 @@ func _physics_process(delta):
 		bowing(arrow_direction)
 			
 	# Sword Atack
-	if Input.is_action_pressed("ui_fire2") and not Input.is_action_just_released("ui_fire2"):
+	if Input.is_action_just_pressed("ui_fire2"):
 		atack1()
-		attacking = true
-	else:
-		attacking = false
-		
+
 	# Slide Down
 	if Input.is_action_pressed("ui_down"):
 		slide(direction)
@@ -134,7 +130,17 @@ func bowing(arrow_direction):
 		main.add_child(A)
 
 func atack1():
-	state_machine.travel('Atack1')
+	var random_atack = randi() % 3
+	match random_atack:
+		0:
+			state_machine.travel('Atack1')
+			attack_power = 10
+		1:
+			state_machine.travel('Atack2')
+			attack_power = 20
+		2:
+			state_machine.travel('Atack3')
+			attack_power = 30
 	arrow_sound.play()
 		
 func jump():
@@ -200,5 +206,16 @@ func explode():
 	pass
 
 
+func _on_area_2d_body_entered(body):
+	if body.is_in_group("enemies"):
+		body.hurt(attack_power)
+		print("Attack")
+
+
+func _on_area_2d_area_entered(area):
+	if area.is_in_group("enemies"):
+		area.hurt(attack_power)
+		print("Attack")
+		
 
 

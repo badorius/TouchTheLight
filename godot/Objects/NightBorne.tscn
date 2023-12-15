@@ -174,7 +174,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vo174"]
-size = Vector2(80.4557, 20.6877)
+size = Vector2(80.4557, 20.1545)
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_kad1h"]
 color = Color(0, 0.282353, 0.290196, 1)
