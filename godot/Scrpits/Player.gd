@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-
 const SPEED = 300.0
 const JUMP_VELOCITY = -350.0
 @export var live : int = 100
@@ -17,8 +16,10 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var progress_bar_light : ProgressBar = get_node("../CanvasLayer/ProgressBarLight")
 @onready var lives_text : Label = get_node("../CanvasLayer/Lives")
 
+
 #Load Arrow tscn
 const Arrow = preload("../Objects/Arrow.tscn")
+const DamageIndicator = preload("../Objects/damage_indicator.tscn")
 @export var arrow_direction : int = 1
 
 # Light vaule default
@@ -42,6 +43,7 @@ func _ready():
 	state_machine.travel('Idle')
 	$ProgressBar.value = live
 	progress_bar.value = live
+
 	# Utiliza get_node para acceder al nodo "Warrior" y luego al nodo "PointLight2D" dentro de él
 	player_light = $Warrior/PointLight2D
 	# Establecer la escala de la luz al valor base al iniciar
@@ -56,17 +58,17 @@ func _ready():
 	
 	
 func _physics_process(delta):
-	
 	var direction = Input.get_axis("ui_left", "ui_right")
-	
 	# Get the input direction and handle the movement/deceleration and orientation.
 	if direction:
 		walk(direction)
 		arrow_direction = direction
 		if direction == -1:
 			get_node( "Warrior" ).set_flip_h( false )
+			$Warrior/Area2D.position.x = -34
 		if direction == 1:
 			get_node( "Warrior" ).set_flip_h( true )
+			$Warrior/Area2D.position.x = 0
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		state_machine.travel('Idle')
@@ -149,7 +151,7 @@ func jump():
 	state_machine.travel('Jump')
 	
 func iddle():
-	state_machine.travel('Jump')
+	state_machine.travel('Idle')
 
 #GAMEOVER FUNCTION
 func game_over ():
@@ -193,11 +195,20 @@ func do_hurt():
 	#player.hurt(attack_power)
 
 func hurt(damage):
+		state_machine.travel('Hurt')
 		live -= damage
 		hurt_sound.play()
 		$ProgressBar.value = live
 		progress_bar.value = live
-		state_machine.travel("Hurt")
+		
+		#FIX Random size
+		var offset_position = randi() % 20
+		var main = get_tree().current_scene
+		var D = DamageIndicator.instantiate()
+		var color = "white"
+		D.global_position = Vector2(global_position.x - offset_position, (global_position.y/10) - offset_position)
+		D.show_damage(damage, color)
+		main.add_child(D)
 
 		if live <= 0:
 			game_over()
@@ -209,13 +220,13 @@ func explode():
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("enemies"):
 		body.hurt(attack_power)
-		print("Attack")
+
 
 
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("enemies"):
 		area.hurt(attack_power)
-		print("Attack")
+
 		
 
 

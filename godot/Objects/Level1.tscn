@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d07i3cdmomp8e"]
+[gd_scene load_steps=23 format=3 uid="uid://d07i3cdmomp8e"]
 
 [ext_resource type="Texture2D" uid="uid://ccpnn3i3xafue" path="res://Assets/Tileset/Level1.png" id="1_5gl51"]
 [ext_resource type="Texture2D" uid="uid://dgrf5yy23k4ym" path="res://Assets/Background/FortOfIllusion/tileset.png" id="2_febr0"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cv0au4lfbk7us" path="res://Assets/Background/FortOfIllusion/Props/closed-door.png" id="8_sc6ho"]
 [ext_resource type="PackedScene" uid="uid://dqwoh4qxgemn" path="res://Objects/parallax_background.tscn" id="9_421e3"]
 [ext_resource type="AudioStream" uid="uid://cu2fsnbyykeub" path="res://Music/BGMUSIC/Ingrid.mp3" id="10_agg0j"]
+[ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/progress_bar.tscn" id="10_us0pg"]
 [ext_resource type="PackedScene" uid="uid://phnoalyvfkxs" path="res://Objects/SmallTorch.tscn" id="11_jn1qr"]
 [ext_resource type="PackedScene" uid="uid://bis136hblwi22" path="res://Objects/skeleton.tscn" id="12_gavhj"]
 [ext_resource type="PackedScene" uid="uid://ccixy0n1vgwcc" path="res://Objects/NightBorne.tscn" id="13_7axb4"]
@@ -1156,17 +1157,12 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "Gamepad/ keys: cursors, space, z, x"
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
-modulate = Color(0.764706, 0.0313726, 0, 0.368627)
-clip_contents = true
-offset_left = 32.0
-offset_top = 122.0
-offset_right = 36.0
-offset_bottom = 149.0
-scale = Vector2(46.5124, 0.544506)
-theme_override_styles/background = SubResource("StyleBoxLine_mdf3p")
-theme_override_styles/fill = SubResource("StyleBoxTexture_mtuvj")
-show_percentage = false
+[node name="ProgressBar" parent="CanvasLayer" instance=ExtResource("10_us0pg")]
+offset_left = 34.0
+offset_top = 124.0
+offset_right = 38.0
+offset_bottom = 151.0
+scale = Vector2(43.7519, 0.709099)
 
 [node name="ProgressBarLight" type="ProgressBar" parent="CanvasLayer"]
 modulate = Color(0.145098, 1, 1, 1)

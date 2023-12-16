@@ -6,12 +6,15 @@ var speed = 100
 var walk_count_max = 90
 var count = walk_count_max
 @export var ArrowDamage_sound : AudioStreamPlayer2D
+const DamageIndicator = preload("../Objects/damage_indicator.tscn")
+@export var attack_power = randi() % 10
 
 func _ready():
 	ArrowDamage_sound = $ArrowDamage
 
 func _process(delta):
 	$ProgressBar.value = live
+
 
 func _physics_process(delta):
 	if direction == 1:
@@ -31,15 +34,28 @@ func _physics_process(delta):
 	$AnimationPlayer.play("Walk")
 	
 func _on_body_entered(body):
+		attack_power = randi() % 10
 		if body.is_in_group("Player"):
-			body.hurt(5)
+			body.hurt(attack_power)
+
 			
 func hurt(damage):
 		ArrowDamage_sound.play()
 		live -= damage
 		$ProgressBar.value = live
+		
+		#FIX Random size
+		var offset_position = randi() % 20
+		var main = get_tree().current_scene
+		var D = DamageIndicator.instantiate()
+		var color = "yellow"
+		D.global_position = Vector2(global_position.x - offset_position, (global_position.y/10) - offset_position)
+		D.show_damage(damage, color)
+		main.add_child(D)
+		
 		if live <= 0:
 			death()
+			
 		
 func explode():
 	pass

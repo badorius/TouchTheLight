@@ -13,7 +13,9 @@ var target_position : Vector2
 @export var ArrowDamage_sound : AudioStreamPlayer2D
 @onready var player : CharacterBody2D = get_node("../Player")
 @export var score_value : int = 100
-@export var attack_power = 10
+@export var attack_power = randi() % 30
+const DamageIndicator = preload("../Objects/damage_indicator.tscn")
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -137,9 +139,21 @@ func hurt(damage):
 	live -= damage
 	$ProgressBar.value = live
 	state = "Hurt"
+	
+	#FIX Random size
+	var offset_position = randi() % 20
+	var main = get_tree().current_scene
+	var D = DamageIndicator.instantiate()
+	var color = "yellow"
+	D.global_position = Vector2(global_position.x - offset_position, (global_position.y/10) - offset_position)
+	D.show_damage(damage, color)
+	main.add_child(D)
+
 
 func do_hurt():
+	attack_power = randi() % 30
 	player.hurt(attack_power)
+
 		
 func explode():
 	pass

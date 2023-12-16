@@ -1,7 +1,8 @@
-[gd_scene load_steps=95 format=3 uid="uid://ccixy0n1vgwcc"]
+[gd_scene load_steps=93 format=3 uid="uid://ccixy0n1vgwcc"]
 
 [ext_resource type="Texture2D" uid="uid://cvhor6531eet2" path="res://Assets/Enemys/NightBorne/NightBorne.png" id="1_52vbf"]
 [ext_resource type="Script" path="res://Scrpits/NightBorne.gd" id="1_xauhk"]
+[ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/progress_bar.tscn" id="3_1f2qv"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vo1ju"]
 blend_mode = 1
@@ -175,15 +176,6 @@ _data = {
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vo174"]
 size = Vector2(80.4557, 20.1545)
-
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_kad1h"]
-color = Color(0, 0.282353, 0.290196, 1)
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_02yfd"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fexim"]
-texture = SubResource("CanvasTexture_02yfd")
-modulate_color = Color(1, 0.0588235, 1, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sfndr"]
 atlas = ExtResource("1_52vbf")
@@ -696,18 +688,7 @@ shape = SubResource("RectangleShape2D_vo174")
 
 [node name="ArrowDamage" type="AudioStreamPlayer2D" parent="."]
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
-modulate = Color(0.721569, 0.172549, 0, 1)
-clip_contents = true
-offset_left = -18.0
-offset_top = -16.0
-offset_right = -14.0
-offset_bottom = 11.0
-scale = Vector2(10.3119, 0.149427)
-theme_override_styles/background = SubResource("StyleBoxLine_kad1h")
-theme_override_styles/fill = SubResource("StyleBoxTexture_fexim")
-rounded = true
-show_percentage = false
+[node name="ProgressBar" parent="." instance=ExtResource("3_1f2qv")]
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 position = Vector2(0, 25)
