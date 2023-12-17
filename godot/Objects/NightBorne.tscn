@@ -1,8 +1,9 @@
-[gd_scene load_steps=93 format=3 uid="uid://ccixy0n1vgwcc"]
+[gd_scene load_steps=94 format=3 uid="uid://ccixy0n1vgwcc"]
 
 [ext_resource type="Texture2D" uid="uid://cvhor6531eet2" path="res://Assets/Enemys/NightBorne/NightBorne.png" id="1_52vbf"]
 [ext_resource type="Script" path="res://Scrpits/NightBorne.gd" id="1_xauhk"]
 [ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/progress_bar.tscn" id="3_1f2qv"]
+[ext_resource type="AudioStream" uid="uid://dfpqvm4laxcko" path="res://SoundFX/Minifantasy_Dungeon_SFX/11_human_damage_1.wav" id="3_hbxd6"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vo1ju"]
 blend_mode = 1
@@ -687,6 +688,7 @@ scale = Vector2(0.596601, 2.81336)
 shape = SubResource("RectangleShape2D_vo174")
 
 [node name="ArrowDamage" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_hbxd6")
 
 [node name="ProgressBar" parent="." instance=ExtResource("3_1f2qv")]
 

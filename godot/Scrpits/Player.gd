@@ -4,6 +4,7 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -350.0
 @export var live : int = 100
 var state_machine
+@export var state : String = "Idle"
 @export var attack_power : int  = 10
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -34,6 +35,7 @@ var jump_sound : AudioStreamPlayer2D
 var arrow_sound : AudioStreamPlayer2D 
 var dash_sound : AudioStreamPlayer2D
 var hurt_sound : AudioStreamPlayer2D
+var sword_sound : AudioStreamPlayer2D
 
 
 
@@ -55,44 +57,57 @@ func _ready():
 	arrow_sound = $arrow
 	dash_sound = $dash
 	hurt_sound = $Hurt
-	
+	sword_sound = $sword
 	
 func _physics_process(delta):
 	var direction = Input.get_axis("ui_left", "ui_right")
 	# Get the input direction and handle the movement/deceleration and orientation.
 	if direction:
-		walk(direction)
 		arrow_direction = direction
+		
+	if direction and state != "Hurt":
+		state = "WalkRight"
+		walk(direction)
 		if direction == -1:
 			get_node( "Warrior" ).set_flip_h( false )
 			$Warrior/Area2D.position.x = -34
 		if direction == 1:
 			get_node( "Warrior" ).set_flip_h( true )
 			$Warrior/Area2D.position.x = 0
+			
+		# Slide Down
+		if Input.is_action_pressed("ui_down"):
+			slide(direction)
+		else:
+			walk(direction)
+			
+			
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-		state_machine.travel('Idle')
+		if state != "Hurt":
+			state = "Idle"
+			iddle()
 
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
+		state = "Jump"
 		state_machine.travel('Jump')
 	
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		state = "Jump"
 		jump()
 
 	# Fire BOW
 	if Input.is_action_just_pressed("ui_fire1"):
+		state = "BowShooting"
 		bowing(arrow_direction)
 			
 	# Sword Atack
 	if Input.is_action_just_pressed("ui_fire2"):
+		state = "Atack1"
 		atack1()
-
-	# Slide Down
-	if Input.is_action_pressed("ui_down"):
-		slide(direction)
 
 	move_and_slide()
 	
@@ -114,8 +129,11 @@ func walk(direction):
 		
 #Func slide
 func slide(direction):
+	velocity.x = direction * SPEED
 	state_machine.travel('SlideDown')
 	dash_sound.play()
+
+
 
 #FUNC BOWING
 func bowing(arrow_direction):
@@ -136,14 +154,14 @@ func atack1():
 	match random_atack:
 		0:
 			state_machine.travel('Atack1')
-			attack_power = 10
+			attack_power = 30 * player_light.scale.x
 		1:
-			state_machine.travel('Atack2')
-			attack_power = 20
+			state_machine.travel('Atack2') 
+			attack_power = 40 * player_light.scale.x
 		2:
-			state_machine.travel('Atack3')
-			attack_power = 30
-	arrow_sound.play()
+			state_machine.travel('Atack3') 
+			attack_power = 50 * player_light.scale.x
+	sword_sound.play()
 		
 func jump():
 	jump_sound.play()
@@ -195,6 +213,7 @@ func do_hurt():
 	#player.hurt(attack_power)
 
 func hurt(damage):
+		state = "Hurt"
 		state_machine.travel('Hurt')
 		live -= damage
 		hurt_sound.play()
