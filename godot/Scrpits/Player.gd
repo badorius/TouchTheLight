@@ -179,7 +179,7 @@ func game_over ():
 
 #QUIT GAME FUNCTION
 func game_quit ():
-	get_tree().quit(0)
+		get_tree().change_scene_to_file("res://Objects/menu.tscn")
 	
 #ADD SCORE FUNCTION
 func add_score (amount):
