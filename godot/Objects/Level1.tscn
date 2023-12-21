@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://ccpnn3i3xafue" path="res://Assets/Tileset/Level1.png" id="1_5gl51"]
 [ext_resource type="Texture2D" uid="uid://dgrf5yy23k4ym" path="res://Assets/Background/FortOfIllusion/tileset.png" id="2_febr0"]
 [ext_resource type="Texture2D" uid="uid://20vn6oum3pec" path="res://Assets/Background/FortOfIllusion/Props/flag.png" id="3_rf7e8"]
-[ext_resource type="Texture2D" uid="uid://c2lh8osc4708t" path="res://Assets/Background/FortOfIllusion/Props/door.png" id="4_j3xh3"]
+[ext_resource type="PackedScene" uid="uid://dw70rl8nl7gtl" path="res://Objects/door.tscn" id="4_hrixh"]
 [ext_resource type="Texture2D" uid="uid://cq10uemhidn4r" path="res://Assets/Background/FortOfIllusion/Props/window.png" id="5_a85hf"]
 [ext_resource type="Texture2D" uid="uid://he5d867iqidx" path="res://Assets/Background/FortOfIllusion/Props/banner.png" id="6_dxffb"]
 [ext_resource type="Texture2D" uid="uid://d2lfy54xgs6q2" path="res://Assets/Background/FortOfIllusion/front.png" id="7_702jy"]
@@ -1070,10 +1070,6 @@ texture = ExtResource("3_rf7e8")
 position = Vector2(5348, -221)
 texture = ExtResource("3_rf7e8")
 
-[node name="Door" type="Sprite2D" parent="BGCasttle"]
-position = Vector2(5286, -119)
-texture = ExtResource("4_j3xh3")
-
 [node name="Flag3" type="Sprite2D" parent="BGCasttle"]
 position = Vector2(4965, -224)
 texture = ExtResource("3_rf7e8")
@@ -1117,6 +1113,9 @@ texture = ExtResource("7_702jy")
 [node name="Window7" type="Sprite2D" parent="BGCasttle"]
 position = Vector2(5480, -199)
 texture = ExtResource("5_a85hf")
+
+[node name="Door" parent="BGCasttle" instance=ExtResource("4_hrixh")]
+position = Vector2(5279, -119)
 
 [node name="Closed-door" type="Sprite2D" parent="BGCasttle"]
 position = Vector2(4649, -119)
@@ -1182,6 +1181,7 @@ exp_edit = true
 show_percentage = false
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
@@ -1206,9 +1206,6 @@ position = Vector2(3882, 11)
 [node name="NightBorne2" parent="." instance=ExtResource("13_7axb4")]
 position = Vector2(31, 16)
 scale = Vector2(0.999736, 0.887341)
-
-[node name="NightBorne3" parent="." instance=ExtResource("13_7axb4")]
-position = Vector2(5057, -127)
 
 [node name="Player" parent="." instance=ExtResource("14_nbcgr")]
 position = Vector2(417, 28)

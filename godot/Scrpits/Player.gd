@@ -241,11 +241,13 @@ func _on_area_2d_body_entered(body):
 		body.hurt(attack_power)
 
 
-
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("enemies"):
 		area.hurt(attack_power)
 
+	if area.is_in_group("door"):
+		print("Door entered")
+		get_tree().change_scene_to_file("res://Objects/Level1Boss.tscn")
 		
 
 
