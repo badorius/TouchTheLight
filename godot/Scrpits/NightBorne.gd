@@ -14,6 +14,7 @@ var target_position : Vector2
 @onready var player : CharacterBody2D = get_node("../Player")
 @export var score_value : int = 100
 @export var attack_power = randi() % 30
+@export var is_over_player : bool = false
 const DamageIndicator = preload("../Objects/damage_indicator.tscn")
 
 
@@ -62,15 +63,30 @@ func _process(delta):
 		"Attack":
 			set_attack()
 
-	#CHECK DISTANCE TO CHESE OR ATACK
-	if global_position.distance_to(player.global_position) < DISTANCE_THRESHOLD or state == "Hurt":
-		state = "ChasePlayer"
-		if global_position.distance_to(player.global_position) < DISTANCE_ATACK:
-			state = "Attack"
-	if state == "ChasePlayer":
-			$PointLight2D.enabled = true
+
+	#CHECK IS NOT OVER PLAYER 
+	if abs(global_position.x - player.global_position.x) < DISTANCE_ATACK - 10:
+		is_over_player = true
+		set_walkingleft()
 	else:
-			$PointLight2D.enabled = false
+		is_over_player = false
+
+		
+	#CHECK DISTANCE TO CHESE OR ATACK
+	if not is_over_player:
+		if global_position.distance_to(player.global_position) < DISTANCE_THRESHOLD or state == "Hurt":
+			state = "ChasePlayer"
+			if global_position.distance_to(player.global_position) < DISTANCE_ATACK:
+				state = "Attack"
+		if state == "ChasePlayer":
+				$PointLight2D.enabled = true
+		else:
+				$PointLight2D.enabled = false
+				
+			
+
+
+		
 			
 func _physics_process(delta):
 
