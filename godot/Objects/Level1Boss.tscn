@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://cu2fsnbyykeub" path="res://Music/BGMUSIC/Ingrid.mp3" id="11_jh1j8"]
 [ext_resource type="PackedScene" uid="uid://cf4d021lelowr" path="res://Objects/Player.tscn" id="12_h80aw"]
 [ext_resource type="PackedScene" uid="uid://phnoalyvfkxs" path="res://Objects/SmallTorch.tscn" id="12_kjq2l"]
-[ext_resource type="PackedScene" uid="uid://ccixy0n1vgwcc" path="res://Objects/NightBorne.tscn" id="13_puho6"]
+[ext_resource type="PackedScene" uid="uid://cue57mbnsjp20" path="res://Objects/Ogre.tscn" id="13_3pmh3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uwy2i"]
 texture = ExtResource("1_rsxci")
@@ -1305,7 +1305,6 @@ exp_edit = true
 show_percentage = false
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
@@ -1328,5 +1327,14 @@ position = Vector2(1082, 40)
 [node name="SmallTorch3" parent="." instance=ExtResource("12_kjq2l")]
 position = Vector2(1587, 37)
 
-[node name="NightBorne" parent="." instance=ExtResource("13_puho6")]
-position = Vector2(1215, 12)
+[node name="Ogre" parent="." instance=ExtResource("13_3pmh3")]
+position = Vector2(1191, -21)
+
+[node name="SmallTorch4" parent="." instance=ExtResource("12_kjq2l")]
+position = Vector2(239, 40)
+
+[node name="SmallTorch5" parent="." instance=ExtResource("12_kjq2l")]
+position = Vector2(880, 40)
+
+[node name="SmallTorch6" parent="." instance=ExtResource("12_kjq2l")]
+position = Vector2(1394, 40)
