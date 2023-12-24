@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bis136hblwi22"]
+[gd_scene load_steps=13 format=3 uid="uid://bis136hblwi22"]
 
 [ext_resource type="Script" path="res://Scrpits/skeleton.gd" id="1_7rtku"]
 [ext_resource type="Texture2D" uid="uid://5eaqqfu1k2k8" path="res://Assets/Enemys/Skeleton/Walk.png" id="1_wrqrp"]
+[ext_resource type="Texture2D" uid="uid://c1tugbr6svat2" path="res://Assets/Enemys/Skeleton/Death.png" id="3_barde"]
 [ext_resource type="AudioStream" uid="uid://dfpqvm4laxcko" path="res://SoundFX/Minifantasy_Dungeon_SFX/11_human_damage_1.wav" id="3_oc76x"]
 [ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/progress_bar.tscn" id="4_vy2cq"]
+[ext_resource type="Texture2D" uid="uid://2xkbsneaotay" path="res://Assets/Enemys/Skeleton/Take Hit.png" id="4_x2ltl"]
 
 [sub_resource type="Animation" id="Animation_i45ad"]
 length = 0.001
@@ -18,6 +20,30 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Death:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hit:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_hcf08"]
@@ -37,8 +63,67 @@ tracks/0/keys = {
 "values": [0, 1, 2, 3]
 }
 
+[sub_resource type="Animation" id="Animation_mfm8o"]
+resource_name = "Death"
+length = 0.42
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Death:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_fv2po"]
+resource_name = "Hit"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hit:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ccbmn"]
 _data = {
+"Death": SubResource("Animation_mfm8o"),
+"Hit": SubResource("Animation_fv2po"),
 "RESET": SubResource("Animation_i45ad"),
 "Walk": SubResource("Animation_hcf08")
 }
@@ -52,6 +137,16 @@ script = ExtResource("1_7rtku")
 
 [node name="Walk" type="Sprite2D" parent="."]
 texture = ExtResource("1_wrqrp")
+hframes = 4
+
+[node name="Death" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_barde")
+hframes = 4
+
+[node name="Hit" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("4_x2ltl")
 hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -73,5 +168,7 @@ offset_left = -16.9791
 offset_top = -34.7017
 offset_right = -12.9791
 offset_bottom = -7.7017
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

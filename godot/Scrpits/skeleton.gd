@@ -40,6 +40,7 @@ func _on_body_entered(body):
 
 			
 func hurt(damage):
+		$AnimationPlayer.play("Hit")
 		ArrowDamage_sound.play()
 		live -= damage
 		$ProgressBar.value = live
@@ -61,6 +62,7 @@ func explode():
 	pass
 	
 func death():
-	queue_free()
+	$AnimationPlayer.play("Death")
+	
 	
 
