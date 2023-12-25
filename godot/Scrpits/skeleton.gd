@@ -1,16 +1,18 @@
-extends Area2D
+extends CharacterBody2D
 
 var speed = 100
 @export var direction : int = -1
 @export var live : int = 100
 var walk_count_max = 90
 var count = walk_count_max
+var state_machine
 @export var ArrowDamage_sound : AudioStreamPlayer2D
 const DamageIndicator = preload("../Objects/damage_indicator.tscn")
 @export var attack_power = randi() % 10
 
 func _ready():
 	ArrowDamage_sound = $ArrowDamage
+	state_machine = $AnimationTree.get('parameters/playback')
 
 func _process(delta):
 	$ProgressBar.value = live
@@ -31,7 +33,8 @@ func _physics_process(delta):
 	if count == walk_count_max:
 		direction = -1
 		
-	$AnimationPlayer.play("Walk")
+	state_machine.travel('Walk')	
+
 	
 func _on_body_entered(body):
 		attack_power = randi() % 10
@@ -40,7 +43,7 @@ func _on_body_entered(body):
 
 			
 func hurt(damage):
-		$AnimationPlayer.play("Hit")
+		state_machine.travel('Hit')	
 		ArrowDamage_sound.play()
 		live -= damage
 		$ProgressBar.value = live
@@ -62,7 +65,7 @@ func explode():
 	pass
 	
 func death():
-	$AnimationPlayer.play("Death")
+	state_machine.travel('Death')	
 	
 	
 

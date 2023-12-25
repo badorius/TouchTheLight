@@ -652,7 +652,7 @@ states/Run/node = SubResource("AnimationNodeAnimation_7fui2")
 states/Run/position = Vector2(274, 583)
 states/Start/position = Vector2(5, 306)
 transitions = ["Start", "Iddle", SubResource("AnimationNodeStateMachineTransition_ic34r"), "Iddle", "Run", SubResource("AnimationNodeStateMachineTransition_dpwdg"), "Run", "Iddle", SubResource("AnimationNodeStateMachineTransition_lqt1d"), "Iddle", "Attack", SubResource("AnimationNodeStateMachineTransition_gxqpt"), "Attack", "Iddle", SubResource("AnimationNodeStateMachineTransition_75uc5"), "Death", "End", SubResource("AnimationNodeStateMachineTransition_lfgwf"), "Iddle", "Hurt", SubResource("AnimationNodeStateMachineTransition_hsp2u"), "Hurt", "Iddle", SubResource("AnimationNodeStateMachineTransition_4hy7u"), "Attack", "Death", SubResource("AnimationNodeStateMachineTransition_dq2po"), "Hurt", "Death", SubResource("AnimationNodeStateMachineTransition_herk8"), "Run", "Death", SubResource("AnimationNodeStateMachineTransition_5slqp"), "Run", "Hurt", SubResource("AnimationNodeStateMachineTransition_mdibu"), "Hurt", "Run", SubResource("AnimationNodeStateMachineTransition_yv1u8")]
-graph_offset = Vector2(-169.312, 139.138)
+graph_offset = Vector2(-240.312, 278.138)
 
 [node name="NightBorne" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_xauhk")
