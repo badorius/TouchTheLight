@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -350.0
+@export var push_force = 80.0
+
 @export var live : int = 100
 var state_machine
 @export var state : String = "Idle"
@@ -110,6 +112,10 @@ func _physics_process(delta):
 		atack1()
 
 	move_and_slide()
+	
+	#
+	# after calling move_and_slide()
+
 	
 	#Decrease light
 	decrease_light_scale(Vector2(decrease_value))
