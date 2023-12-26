@@ -3,12 +3,14 @@ extends Area2D
 var speed = 750
 @export var direction : int = 1
 @export var damage : int = 10
-
+var state_machine
 #Sounds
 
 
 func _ready():
-	$AnimationImpact.play("Arrow_Fire")
+	state_machine = $AnimationTree.get('parameters/playback')
+	state_machine.travel('Arrow_Fire')
+	
 	if direction == 1:
 		get_node( "RetroImpactEffectPack3C" ).set_flip_h( false )
 	if direction == -1:
@@ -29,9 +31,9 @@ func explode():
 
 func _on_area_entered(area):
 	#FIX ##### Neds to wait before queue_free
-	$AnimationImpact.play("Arrow_Explode")
+	state_machine.travel('Arrow_Explode')
 	if area.is_in_group("enemies"):
-		$AnimationImpact.play("Arrow_Explode")
+		state_machine.travel('Arrow_Explode')
 		area.live -= 1
 		if area.live <= 0:
 			area.death()
@@ -43,16 +45,15 @@ func _on_area_entered(area):
 			
 
 func _on_body_entered(body):
-	#FIX ##### Neds to wait before queue_free
-	$AnimationImpact.play("Arrow_Explode")
 	if body.is_in_group("enemies"):
-		$AnimationImpact.play("Arrow_Explode")
 		body.live -= 1
 		if body.live <= 0:
+			state_machine.travel('Arrow_Explode')
 			#body.death()
 			#body.queue_free()
 			queue_free()
 		else:
+			state_machine.travel('Arrow_Explode')
 			queue_free()
 			body.hurt(damage)
 	

@@ -162,7 +162,7 @@ func hurt(damage):
 	var main = get_tree().current_scene
 	var D = DamageIndicator.instantiate()
 	var color = "yellow"
-	D.global_position = Vector2(global_position.x - offset_position, (global_position.y/10) - offset_position)
+	D.global_position = Vector2(global_position.x - offset_position, (global_position.y) - offset_position)
 	D.show_damage(damage, color)
 	main.add_child(D)
 

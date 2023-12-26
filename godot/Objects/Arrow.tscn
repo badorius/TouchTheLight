@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bdudh83agh1xi"]
+[gd_scene load_steps=21 format=3 uid="uid://bdudh83agh1xi"]
 
 [ext_resource type="Texture2D" uid="uid://byphetjtyt6i8" path="res://Assets/weapons/arrow/arrow.png" id="1_r7oiu"]
 [ext_resource type="Script" path="res://Scrpits/Arrow.gd" id="1_vcaab"]
@@ -56,6 +56,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2)]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_45wca"]
 resource_name = "Arrow_Fire"
@@ -106,6 +120,27 @@ _data = {
 "RESET": SubResource("Animation_782hk")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8qlnu"]
+animation = &"Arrow_Explode"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y670f"]
+animation = &"Arrow_Fire"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sunsf"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_036yo"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xrabp"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_k0xtr"]
+states/Arrow_Explode/node = SubResource("AnimationNodeAnimation_8qlnu")
+states/Arrow_Explode/position = Vector2(711, 99)
+states/Arrow_Fire/node = SubResource("AnimationNodeAnimation_y670f")
+states/Arrow_Fire/position = Vector2(433, 97)
+transitions = ["Start", "Arrow_Fire", SubResource("AnimationNodeStateMachineTransition_sunsf"), "Arrow_Fire", "Arrow_Explode", SubResource("AnimationNodeStateMachineTransition_036yo"), "Arrow_Explode", "End", SubResource("AnimationNodeStateMachineTransition_xrabp")]
+
 [node name="Arrow" type="Area2D" groups=["arrow"]]
 script = ExtResource("1_vcaab")
 
@@ -135,12 +170,18 @@ libraries = {
 }
 
 [node name="RetroImpactEffectPack3C" type="Sprite2D" parent="."]
-position = Vector2(-20, -1.33333)
-scale = Vector2(3, 3.059)
+position = Vector2(-17, 0)
 texture = ExtResource("3_4eptg")
-hframes = 5
-vframes = 24
-frame = 5
+hframes = 6
+vframes = 23
+frame = 6
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_og2ca")
+}
+tree_root = SubResource("AnimationNodeStateMachine_k0xtr")
+anim_player = NodePath("../AnimationImpact")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
