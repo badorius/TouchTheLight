@@ -53,7 +53,6 @@ func _physics_process(delta):
 			set_iddle()
 		
 
-
 func walk(delta):
 	flip_sprite_direction(direction)
 	if direction == 1:

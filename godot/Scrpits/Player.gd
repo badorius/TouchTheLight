@@ -10,6 +10,9 @@ var state_machine
 @export var attack_power : int  = 10
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+#Var for double jump
+var can_doublejump = true 
+
 
 #Socre vars
 @export var score : int = 0
@@ -99,7 +102,14 @@ func _physics_process(delta):
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		state = "Jump"
+		can_doublejump = true
 		jump()
+	elif Input.is_action_just_pressed("ui_accept") and !is_on_floor() and can_doublejump:
+		state = "Jump"
+		can_doublejump = false
+		print("DoubleJump")
+		jump()
+
 
 	# Fire BOW
 	if Input.is_action_just_pressed("ui_fire1"):

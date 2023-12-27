@@ -115,11 +115,11 @@ func set_chaseplayer():
 	if direction.x > 0:
 		get_node( "Sprite2D" ).set_flip_h( false )
 		state_machine.travel('Run')
-		velocity = direction * SPEED
+		velocity.x = direction.x * SPEED
 	else:
 		get_node( "Sprite2D" ).set_flip_h( true )
 		state_machine.travel('Run')	
-		velocity = direction  * SPEED
+		velocity.x = direction.x * SPEED
 
 		
 func set_jump():
