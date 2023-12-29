@@ -215,7 +215,7 @@ func add_score (amount):
 func update_lives (amount):
 	lives -= amount
 	print(lives)
-	lives_text.text = str("Lives: ", lives)
+	lives_text.text = str("X ", lives)
 	
 # Función para incrementar la escala de la luz
 func increment_light_scale(increment_amount: Vector2):
