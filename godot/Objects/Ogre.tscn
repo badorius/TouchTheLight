@@ -342,7 +342,7 @@ states/Run/node = SubResource("AnimationNodeAnimation_7fui2")
 states/Run/position = Vector2(0, 297)
 states/Start/position = Vector2(-167, 297)
 transitions = ["Run", "Hurt", SubResource("AnimationNodeStateMachineTransition_mdibu"), "Hurt", "Run", SubResource("AnimationNodeStateMachineTransition_yv1u8"), "Attack", "Hurt", SubResource("AnimationNodeStateMachineTransition_fvafe"), "Hurt", "Attack", SubResource("AnimationNodeStateMachineTransition_fm07h"), "Attack", "Run", SubResource("AnimationNodeStateMachineTransition_am152"), "Run", "Attack", SubResource("AnimationNodeStateMachineTransition_p2tto"), "Start", "Run", SubResource("AnimationNodeStateMachineTransition_jg66l"), "Run", "Death", SubResource("AnimationNodeStateMachineTransition_em6ke"), "Attack", "Death", SubResource("AnimationNodeStateMachineTransition_0bwpm"), "Hurt", "Death", SubResource("AnimationNodeStateMachineTransition_3jd43"), "Death", "End", SubResource("AnimationNodeStateMachineTransition_t6t5u")]
-graph_offset = Vector2(-217.312, 65.138)
+graph_offset = Vector2(-303.312, 65.138)
 
 [node name="Ogre" type="CharacterBody2D" groups=["enemies"]]
 script = ExtResource("1_82kp1")

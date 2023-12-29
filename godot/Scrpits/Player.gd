@@ -34,7 +34,7 @@ var base_light : Vector2 = Vector2(0.5, 0.5)
 @export var max_light : Vector2 = Vector2(2.0, 2.0)
 # Referencia al PointLight2D
 @export var player_light : PointLight2D
-@export var player_light_iddle : PointLight2D
+
 
 #Sounds
 var jump_sound : AudioStreamPlayer2D
@@ -55,10 +55,8 @@ func _ready():
 
 	# Utiliza get_node para acceder al nodo "Warrior" y luego al nodo "PointLight2D" dentro de él
 	player_light = $Warrior/PointLight2D
-	player_light_iddle = $WarriorIddle/PointLight2D
 	# Establecer la escala de la luz al valor base al iniciar
 	player_light.scale = base_light
-	player_light_iddle.scale = base_light
 	progress_bar_light.value = 0
 
 	#SONIDOS
@@ -70,8 +68,7 @@ func _ready():
 	
 func _physics_process(delta):
 	
-	player_light_iddle.scale = player_light.scale
-	
+
 	var direction = Input.get_axis("ui_left", "ui_right")
 	# Get the input direction and handle the movement/deceleration and orientation.
 	if direction:
@@ -82,11 +79,9 @@ func _physics_process(delta):
 		walk(direction)
 		if direction == -1:
 			get_node( "Warrior" ).set_flip_h( false )
-			get_node("WarriorIddle").set_flip_h( true )
 			$Warrior/Area2D.position.x = -34
 		if direction == 1:
 			get_node( "Warrior" ).set_flip_h( true )
-			get_node("WarriorIddle").set_flip_h( false )
 			$Warrior/Area2D.position.x = 0
 			
 		# Slide Down
@@ -262,9 +257,14 @@ func explode():
 	pass
 
 
+
+
+
+
 func _on_area_2d_body_entered(body):
-	if body.is_in_group("enemies"):
-		body.hurt(attack_power)
+		print("Atack")
+		if body.is_in_group("enemies"):
+			body.hurt(attack_power)
 
 
 func _on_area_2d_area_entered(area):
