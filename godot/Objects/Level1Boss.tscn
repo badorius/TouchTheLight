@@ -1299,8 +1299,6 @@ offset_bottom = 194.0
 scale = Vector2(46.5124, 0.544506)
 theme_override_styles/background = SubResource("StyleBoxLine_mdf3p")
 theme_override_styles/fill = SubResource("StyleBoxTexture_mtuvj")
-max_value = 10000.0
-step = 1.0
 exp_edit = true
 show_percentage = false
 

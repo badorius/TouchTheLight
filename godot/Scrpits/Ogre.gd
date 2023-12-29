@@ -15,6 +15,7 @@ var target_position : Vector2
 @export var score_value : int = 100
 @export var attack_power = randi() % 30
 @export var is_over_player : bool = false
+@export var level_completed : bool = false
 const DamageIndicator = preload("../Objects/damage_indicator.tscn")
 
 
@@ -22,6 +23,8 @@ const DamageIndicator = preload("../Objects/damage_indicator.tscn")
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
+	$Sprite2D.visible = true
+	$Explode.visible = false
 	ArrowDamage_sound = $ArrowDamage
 	state_machine = $AnimationTree.get('parameters/playback')
 	#var player = get_parent().get_node("Player")
@@ -29,7 +32,7 @@ func _ready():
 
 
 func _physics_process(delta):
-	$ProgressBar.value = live
+	$ProgressBar.value = live/10
 	if live <= 0:
 		state = "Death"
 		death()
@@ -41,7 +44,8 @@ func _physics_process(delta):
 	else:
 		is_over_player = false
 		
-	state = "ChasePlayer"
+	if state != "Death":
+		state = "ChasePlayer"
 	
 	
 	if abs(global_position.distance_to(player.global_position)) <= DISTANCE_THRESHOLD:
@@ -76,10 +80,15 @@ func set_iddle():
 
 func set_attack():
 	var direction = (player.global_position - global_position).normalized()
+	
+
+	#Animation Attack and SET POSITION AREA ATACK
 	if direction.x > 0:
 		get_node( "Sprite2D" ).set_flip_h( false )
+		$Sprite2D/Area2D.position.x = 0
 	else:
 		get_node( "Sprite2D" ).set_flip_h( true )
+		$Sprite2D/Area2D.position.x = -99
 	state_machine.travel('Attack')
 
 
@@ -97,7 +106,7 @@ func set_chaseplayer():
 		
 		
 func set_scapeplayer():
-	#SPEED = 100.0
+	SPEED = 200.0
 	var direction = (player.global_position - global_position).normalized()
 	if direction.x > 0:
 		get_node( "Sprite2D" ).set_flip_h( false )
@@ -108,7 +117,7 @@ func set_scapeplayer():
 		state_machine.travel('Run')	
 		velocity.x = +abs(direction.x) * SPEED
 		
-	#SPEED = 100.0
+	SPEED = 100.0
 
 
 func set_jump():
@@ -151,14 +160,22 @@ func hurt(damage):
 func do_hurt():
 	attack_power = randi() % 30
 	player.hurt(attack_power)
+	
 
 
 func explode():
 	pass
 		
 func death():
+	$Sprite2D.visible = false
+	$Explode.visible = true
 	state_machine.travel('Death')
 	player.add_score(score_value)
-	queue_free()
+	level_completed = true
+	#ADD ANIMATION TRESURE LIGHT AND NEXT LEVEL
+	#get_tree().change_scene_to_file("res://Objects/Level2.tscn")
 
 
+func _on_area_2d_body_entered(body):
+	if body.is_in_group("Player"):
+		body.hurt(attack_power)

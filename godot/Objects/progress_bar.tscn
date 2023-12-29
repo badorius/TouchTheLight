@@ -20,4 +20,5 @@ scale = Vector2(10.3119, 0.149427)
 theme_override_styles/background = SubResource("StyleBoxLine_kad1h")
 theme_override_styles/fill = SubResource("StyleBoxTexture_fexim")
 rounded = true
+allow_greater = true
 show_percentage = false

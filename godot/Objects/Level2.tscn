@@ -1,26 +1,25 @@
-[gd_scene load_steps=26 format=3 uid="uid://d07i3cdmomp8e"]
+[gd_scene load_steps=25 format=3 uid="uid://c8k7sq4ubkne7"]
 
-[ext_resource type="Texture2D" uid="uid://ccpnn3i3xafue" path="res://Assets/Tileset/Level1.png" id="1_5gl51"]
-[ext_resource type="Texture2D" uid="uid://dgrf5yy23k4ym" path="res://Assets/Background/FortOfIllusion/tileset.png" id="2_febr0"]
-[ext_resource type="Texture2D" uid="uid://20vn6oum3pec" path="res://Assets/Background/FortOfIllusion/Props/flag.png" id="3_rf7e8"]
-[ext_resource type="PackedScene" uid="uid://dw70rl8nl7gtl" path="res://Objects/door.tscn" id="4_hrixh"]
-[ext_resource type="Texture2D" uid="uid://cq10uemhidn4r" path="res://Assets/Background/FortOfIllusion/Props/window.png" id="5_a85hf"]
-[ext_resource type="Texture2D" uid="uid://he5d867iqidx" path="res://Assets/Background/FortOfIllusion/Props/banner.png" id="6_dxffb"]
-[ext_resource type="Texture2D" uid="uid://d2lfy54xgs6q2" path="res://Assets/Background/FortOfIllusion/front.png" id="7_702jy"]
-[ext_resource type="Texture2D" uid="uid://cv0au4lfbk7us" path="res://Assets/Background/FortOfIllusion/Props/closed-door.png" id="8_sc6ho"]
-[ext_resource type="PackedScene" uid="uid://dqwoh4qxgemn" path="res://Objects/parallax_background.tscn" id="9_421e3"]
-[ext_resource type="PackedScene" uid="uid://bkny06l7l1uby" path="res://Objects/parallax_background_lvl1.tscn" id="10_7grp6"]
-[ext_resource type="AudioStream" uid="uid://cu2fsnbyykeub" path="res://Music/BGMUSIC/Ingrid.mp3" id="10_agg0j"]
-[ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/progress_bar.tscn" id="10_us0pg"]
-[ext_resource type="PackedScene" uid="uid://phnoalyvfkxs" path="res://Objects/SmallTorch.tscn" id="11_jn1qr"]
-[ext_resource type="PackedScene" uid="uid://bis136hblwi22" path="res://Objects/skeleton.tscn" id="12_gavhj"]
-[ext_resource type="Texture2D" uid="uid://cidyuesoe1v0t" path="res://Assets/Player/RedHood/idle sheet-Sheet.png" id="12_glgki"]
-[ext_resource type="PackedScene" uid="uid://ccixy0n1vgwcc" path="res://Objects/NightBorne.tscn" id="13_7axb4"]
-[ext_resource type="PackedScene" uid="uid://cf4d021lelowr" path="res://Objects/Player.tscn" id="14_nbcgr"]
-[ext_resource type="PackedScene" uid="uid://de2d43ynvsgip" path="res://Objects/FlayingEye.tscn" id="16_ptn12"]
+[ext_resource type="Texture2D" uid="uid://ccpnn3i3xafue" path="res://Assets/Tileset/Level1.png" id="1_yand1"]
+[ext_resource type="Texture2D" uid="uid://dgrf5yy23k4ym" path="res://Assets/Background/FortOfIllusion/tileset.png" id="2_86hjs"]
+[ext_resource type="Texture2D" uid="uid://20vn6oum3pec" path="res://Assets/Background/FortOfIllusion/Props/flag.png" id="3_2d4qp"]
+[ext_resource type="Texture2D" uid="uid://cq10uemhidn4r" path="res://Assets/Background/FortOfIllusion/Props/window.png" id="4_oshc0"]
+[ext_resource type="Texture2D" uid="uid://he5d867iqidx" path="res://Assets/Background/FortOfIllusion/Props/banner.png" id="5_bwgtg"]
+[ext_resource type="Texture2D" uid="uid://d2lfy54xgs6q2" path="res://Assets/Background/FortOfIllusion/front.png" id="6_g4pg0"]
+[ext_resource type="PackedScene" uid="uid://dw70rl8nl7gtl" path="res://Objects/door.tscn" id="7_lu3tu"]
+[ext_resource type="Texture2D" uid="uid://cv0au4lfbk7us" path="res://Assets/Background/FortOfIllusion/Props/closed-door.png" id="8_rp8cl"]
+[ext_resource type="PackedScene" uid="uid://dqwoh4qxgemn" path="res://Objects/parallax_background.tscn" id="9_ee7dk"]
+[ext_resource type="PackedScene" uid="uid://bkny06l7l1uby" path="res://Objects/parallax_background_lvl1.tscn" id="10_ouq1f"]
+[ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/progress_bar.tscn" id="11_tdnfv"]
+[ext_resource type="AudioStream" uid="uid://cu2fsnbyykeub" path="res://Music/BGMUSIC/Ingrid.mp3" id="12_bd2fh"]
+[ext_resource type="PackedScene" uid="uid://bis136hblwi22" path="res://Objects/skeleton.tscn" id="13_i7ojg"]
+[ext_resource type="PackedScene" uid="uid://ccixy0n1vgwcc" path="res://Objects/NightBorne.tscn" id="14_vw4sk"]
+[ext_resource type="PackedScene" uid="uid://cf4d021lelowr" path="res://Objects/Player.tscn" id="15_wxkrw"]
+[ext_resource type="PackedScene" uid="uid://phnoalyvfkxs" path="res://Objects/SmallTorch.tscn" id="16_vuhg8"]
+[ext_resource type="PackedScene" uid="uid://de2d43ynvsgip" path="res://Objects/FlayingEye.tscn" id="17_smd4b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uwy2i"]
-texture = ExtResource("1_5gl51")
+texture = ExtResource("1_yand1")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -980,7 +979,7 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_uwy2i")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_x2343"]
-texture = ExtResource("2_febr0")
+texture = ExtResource("2_86hjs")
 6:0/0 = 0
 7:0/0 = 0
 0:1/0 = 0
@@ -1068,67 +1067,67 @@ position = Vector2(40, 186)
 
 [node name="Flag" type="Sprite2D" parent="BGCasttle"]
 position = Vector2(4579, -221)
-texture = ExtResource("3_rf7e8")
+texture = ExtResource("3_2d4qp")
 
 [node name="Flag2" type="Sprite2D" parent="BGCasttle"]
 position = Vector2(5348, -221)
-texture = ExtResource("3_rf7e8")
+texture = ExtResource("3_2d4qp")
 
 [node name="Flag3" type="Sprite2D" parent="BGCasttle"]
 position = Vector2(4965, -224)
-texture = ExtResource("3_rf7e8")
+texture = ExtResource("3_2d4qp")
 
 [node name="Window" type="Sprite2D" parent="BGCasttle"]
 position = Vector2(4753, -127)
-texture = ExtResource("5_a85hf")
+texture = ExtResource("4_oshc0")
 
 [node name="Window2" type="Sprite2D" parent="BGCasttle"]
 position = Vector2(4911, -128)
-texture = ExtResource("5_a85hf")
+texture = ExtResource("4_oshc0")
 
 [node name="Window3" type="Sprite2D" parent="BGCasttle"]
 position = Vector2(4977, -128)
-texture = ExtResource("5_a85hf")
+texture = ExtResource("4_oshc0")
 
 [node name="Window4" type="Sprite2D" parent="BGCasttle"]
 position = Vector2(5153, -127)
-texture = ExtResource("5_a85hf")
+texture = ExtResource("4_oshc0")
 
 [node name="Window5" type="Sprite2D" parent="BGCasttle"]
 position = Vector2(5217, -128)
-texture = ExtResource("5_a85hf")
+texture = ExtResource("4_oshc0")
 
 [node name="Window6" type="Sprite2D" parent="BGCasttle"]
 position = Vector2(5344, -128)
-texture = ExtResource("5_a85hf")
+texture = ExtResource("4_oshc0")
 
 [node name="Banner" type="Sprite2D" parent="BGCasttle"]
 position = Vector2(4831, -125)
-texture = ExtResource("6_dxffb")
+texture = ExtResource("5_bwgtg")
 
 [node name="Banner2" type="Sprite2D" parent="BGCasttle"]
 position = Vector2(5070, -126)
-texture = ExtResource("6_dxffb")
+texture = ExtResource("5_bwgtg")
 
 [node name="Front" type="Sprite2D" parent="BGCasttle"]
 position = Vector2(5483, -239)
-texture = ExtResource("7_702jy")
+texture = ExtResource("6_g4pg0")
 
 [node name="Window7" type="Sprite2D" parent="BGCasttle"]
 position = Vector2(5480, -199)
-texture = ExtResource("5_a85hf")
+texture = ExtResource("4_oshc0")
 
-[node name="Door" parent="BGCasttle" instance=ExtResource("4_hrixh")]
+[node name="Door" parent="BGCasttle" instance=ExtResource("7_lu3tu")]
 position = Vector2(5279, -119)
 
 [node name="Closed-door" type="Sprite2D" parent="BGCasttle"]
 position = Vector2(4649, -119)
-texture = ExtResource("8_sc6ho")
+texture = ExtResource("8_rp8cl")
 
-[node name="ParallaxBackground" parent="." instance=ExtResource("9_421e3")]
+[node name="ParallaxBackground" parent="." instance=ExtResource("9_ee7dk")]
 visible = false
 
-[node name="ParallaxBackground2" parent="." instance=ExtResource("10_7grp6")]
+[node name="ParallaxBackground2" parent="." instance=ExtResource("10_ouq1f")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -1165,7 +1164,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "Gamepad/ keys: cursors, space, z, x"
 
-[node name="ProgressBar" parent="CanvasLayer" instance=ExtResource("10_us0pg")]
+[node name="ProgressBar" parent="CanvasLayer" instance=ExtResource("11_tdnfv")]
 offset_left = 34.0
 offset_top = 124.0
 offset_right = 38.0
@@ -1187,41 +1186,6 @@ step = 1.0
 exp_edit = true
 show_percentage = false
 
-[node name="WarriorIddle" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(80, 1076)
-scale = Vector2(4, 4)
-texture = ExtResource("12_glgki")
-flip_h = true
-hframes = 18
-
-[node name="WarriorIddle2" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(158, 1076)
-scale = Vector2(4, 4)
-texture = ExtResource("12_glgki")
-flip_h = true
-hframes = 18
-
-[node name="WarriorIddle3" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(235, 1077)
-scale = Vector2(4, 4)
-texture = ExtResource("12_glgki")
-flip_h = true
-hframes = 18
-
-[node name="WarriorIddle4" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(313, 1074)
-scale = Vector2(4, 4)
-texture = ExtResource("12_glgki")
-flip_h = true
-hframes = 18
-
-[node name="WarriorIddle5" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(397, 1073)
-scale = Vector2(4, 4)
-texture = ExtResource("12_glgki")
-flip_h = true
-hframes = 18
-
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 position = Vector2(0, -16)
 color = Color(0, 0, 0, 1)
@@ -1232,208 +1196,208 @@ color = Color(0, 0.435294, 0.960784, 0.498039)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(40, 186)
-stream = ExtResource("10_agg0j")
+stream = ExtResource("12_bd2fh")
 autoplay = true
 
-[node name="Skeleton" parent="." instance=ExtResource("12_gavhj")]
+[node name="Skeleton" parent="." instance=ExtResource("13_i7ojg")]
 position = Vector2(1493, 222)
 
-[node name="Skeleton2" parent="." instance=ExtResource("12_gavhj")]
+[node name="Skeleton2" parent="." instance=ExtResource("13_i7ojg")]
 position = Vector2(2133, 222)
 
-[node name="Skeleton3" parent="." instance=ExtResource("12_gavhj")]
+[node name="Skeleton3" parent="." instance=ExtResource("13_i7ojg")]
 position = Vector2(2546, 221)
 
-[node name="NightBorne" parent="." instance=ExtResource("13_7axb4")]
+[node name="NightBorne" parent="." instance=ExtResource("14_vw4sk")]
 position = Vector2(3922, 197)
 
-[node name="NightBorne2" parent="." instance=ExtResource("13_7axb4")]
+[node name="NightBorne2" parent="." instance=ExtResource("14_vw4sk")]
 position = Vector2(1890, 203)
 scale = Vector2(0.999736, 0.887341)
 
-[node name="Player" parent="." instance=ExtResource("14_nbcgr")]
+[node name="Player" parent="." instance=ExtResource("15_wxkrw")]
 position = Vector2(-198, 214)
 scale = Vector2(1, 1)
 
 [node name="SmallTorchs" type="Node2D" parent="."]
 position = Vector2(40, 186)
 
-[node name="SmallTorch24" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch24" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(3210, -1625)
 
-[node name="SmallTorch25" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch25" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(3311, -1625)
 
-[node name="SmallTorch26" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch26" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(3161, -1609)
 
-[node name="SmallTorch27" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch27" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(2990, -1609)
 
-[node name="SmallTorch28" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch28" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(2941, -1593)
 
-[node name="SmallTorch29" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch29" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(2807, -1593)
 
-[node name="SmallTorch30" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch30" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(2764, -1577)
 
-[node name="SmallTorch31" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch31" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(2647, -1577)
 
-[node name="SmallTorch32" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch32" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(2588, -1561)
 
-[node name="SmallTorch33" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch33" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(2519, -1545)
 
-[node name="SmallTorch34" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch34" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(2408, -1513)
 
-[node name="SmallTorch35" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch35" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(2319, -1513)
 
-[node name="SmallTorch36" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch36" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(2247, -1497)
 
-[node name="SmallTorch37" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch37" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(2163, -1481)
 
-[node name="SmallTorch38" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch38" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(2011, -1481)
 
-[node name="SmallTorch39" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch39" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(1914, -1433)
 
-[node name="SmallTorch40" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch40" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(2010, -1385)
 
-[node name="SmallTorch41" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch41" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(1913, -1321)
 
-[node name="SmallTorch42" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch42" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(2008, -1273)
 
-[node name="SmallTorch43" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch43" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(1914, -1225)
 
-[node name="SmallTorch44" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch44" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(2010, -1177)
 
-[node name="SmallTorch45" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch45" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(1914, -1129)
 
-[node name="SmallTorch46" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch46" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(2009, -1097)
 
-[node name="SmallTorch47" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch47" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(1914, -1049)
 
-[node name="SmallTorch48" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch48" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(2009, -1001)
 
-[node name="SmallTorch49" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch49" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(1913, -953)
 
-[node name="SmallTorch50" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch50" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(2010, -905)
 
-[node name="SmallTorch51" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch51" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(1914, -857)
 
-[node name="SmallTorch52" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch52" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(2009, -793)
 
-[node name="SmallTorch53" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch53" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(2105, -729)
 
-[node name="SmallTorch2" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch2" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(1358, 39)
 
-[node name="SmallTorch3" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch3" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(-176, 39)
 
-[node name="SmallTorch4" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch4" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(-246, -73)
 
-[node name="SmallTorch5" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch5" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(215, 39)
 
-[node name="SmallTorch6" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch6" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(1573, -169)
 
-[node name="SmallTorch7" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch7" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(1447, -169)
 
-[node name="SmallTorch8" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch8" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(607, 36)
 
-[node name="SmallTorch9" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch9" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(829, 39)
 
-[node name="SmallTorch10" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch10" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(2905, -9)
 
-[node name="SmallTorch11" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch11" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(3130, 39)
 
-[node name="SmallTorch12" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch12" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(3530, 39)
 
-[node name="SmallTorch13" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch13" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(3866, 38)
 
-[node name="SmallTorch14" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch14" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(4041, -25)
 
-[node name="SmallTorch15" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch15" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(4154, -58)
 
-[node name="SmallTorch16" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch16" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(4266, -89)
 
-[node name="SmallTorch17" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch17" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(4377, -121)
 
-[node name="SmallTorch18" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch18" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(4489, -121)
 
-[node name="SmallTorch19" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch19" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(4763, -100)
 
-[node name="SmallTorch20" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch20" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(4988, -101)
 
-[node name="SmallTorch21" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch21" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(5228, -100)
 
-[node name="SmallTorch22" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch22" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(5420, -101)
 
-[node name="SmallTorch23" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch23" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(4619, -99)
 
-[node name="SmallTorch" parent="SmallTorchs" instance=ExtResource("11_jn1qr")]
+[node name="SmallTorch" parent="SmallTorchs" instance=ExtResource("16_vuhg8")]
 position = Vector2(1051, 23)
 
-[node name="FlayingEye2" parent="." instance=ExtResource("16_ptn12")]
+[node name="FlayingEye2" parent="." instance=ExtResource("17_smd4b")]
 position = Vector2(2276, -327)
 
-[node name="FlayingEye3" parent="." instance=ExtResource("16_ptn12")]
+[node name="FlayingEye3" parent="." instance=ExtResource("17_smd4b")]
 position = Vector2(1698, -792)
 
-[node name="FlayingEye4" parent="." instance=ExtResource("16_ptn12")]
+[node name="FlayingEye4" parent="." instance=ExtResource("17_smd4b")]
 position = Vector2(2210, -940)
 
-[node name="FlayingEye5" parent="." instance=ExtResource("16_ptn12")]
+[node name="FlayingEye5" parent="." instance=ExtResource("17_smd4b")]
 position = Vector2(2068, -1455)
 
-[node name="NightBorne4" parent="." instance=ExtResource("13_7axb4")]
+[node name="NightBorne4" parent="." instance=ExtResource("14_vw4sk")]
 position = Vector2(3065, -1450)
 
-[node name="FlayingEye6" parent="." instance=ExtResource("16_ptn12")]
+[node name="FlayingEye6" parent="." instance=ExtResource("17_smd4b")]
 position = Vector2(979, -25)
 
-[node name="Skeleton4" parent="." instance=ExtResource("12_gavhj")]
+[node name="Skeleton4" parent="." instance=ExtResource("13_i7ojg")]
 position = Vector2(3349, 222)
