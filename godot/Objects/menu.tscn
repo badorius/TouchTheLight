@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://ci8d6cyv3od72"]
+[gd_scene load_steps=45 format=3 uid="uid://ci8d6cyv3od72"]
 
 [ext_resource type="Script" path="res://Scrpits/menu.gd" id="1_pb8s7"]
 [ext_resource type="AudioStream" uid="uid://cbvpffgrq2nyi" path="res://Music/BGMUSIC/Menu.mp3" id="2_3plrk"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cl6agsvjtw4pi" path="res://Assets/Enemys/FlayingEye/flying-eye-demon.png" id="4_uom0f"]
 [ext_resource type="PackedScene" uid="uid://phnoalyvfkxs" path="res://Objects/SmallTorch.tscn" id="5_bqg2e"]
 [ext_resource type="Texture2D" uid="uid://cvhor6531eet2" path="res://Assets/Enemys/NightBorne/NightBorne.png" id="5_nqjbf"]
+[ext_resource type="FontFile" uid="uid://uacc8gr3cirm" path="res://Assets/Fonts/G7MakaimuraTtf-xoZm.ttf" id="10_bjeat"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_or55l"]
 radius = 6.0
@@ -755,20 +756,24 @@ scale = Vector2(2.4176, 2.01792)
 
 [node name="StartButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("10_bjeat")
 text = "Start"
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("10_bjeat")
 text = "Options
 "
 
 [node name="QuitButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("10_bjeat")
 text = "Quit
 "
 
 [node name="CreditsButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("10_bjeat")
 text = "Thanks
 "
 

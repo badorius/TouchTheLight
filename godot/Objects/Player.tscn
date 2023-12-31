@@ -18,12 +18,12 @@ particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = true
 
-[sub_resource type="Gradient" id="Gradient_b134t"]
+[sub_resource type="Gradient" id="Gradient_bu2s0"]
 offsets = PackedFloat32Array(0, 0.645161)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_fwqmo"]
-gradient = SubResource("Gradient_b134t")
+gradient = SubResource("Gradient_bu2s0")
 width = 256
 height = 256
 fill = 1
@@ -33,12 +33,12 @@ fill_from = Vector2(0.513761, 0.490826)
 blend_mode = 1
 light_mode = 2
 
-[sub_resource type="Gradient" id="Gradient_xndk5"]
+[sub_resource type="Gradient" id="Gradient_osvsf"]
 offsets = PackedFloat32Array(0, 0.567742)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_52isb"]
-gradient = SubResource("Gradient_xndk5")
+gradient = SubResource("Gradient_osvsf")
 width = 256
 height = 256
 fill = 1
