@@ -55,6 +55,8 @@ func _ready():
 
 	# Utiliza get_node para acceder al nodo "Warrior" y luego al nodo "PointLight2D" dentro de él
 	player_light = $Warrior/PointLight2D
+	#Set default sword collision disabled
+	$Warrior/Area2D/CollisionShape2D.disabled = true
 	# Establecer la escala de la luz al valor base al iniciar
 	player_light.scale = base_light
 	progress_bar_light.value = 0
@@ -80,9 +82,11 @@ func _physics_process(delta):
 		if direction == -1:
 			get_node( "Warrior" ).set_flip_h( false )
 			$Warrior/Area2D.position.x = -34
+
 		if direction == 1:
 			get_node( "Warrior" ).set_flip_h( true )
 			$Warrior/Area2D.position.x = 0
+
 			
 		# Slide Down
 		if Input.is_action_pressed("ui_down"):
@@ -111,7 +115,6 @@ func _physics_process(delta):
 	elif Input.is_action_just_pressed("ui_accept") and !is_on_floor() and can_doublejump:
 		state = "Jump"
 		can_doublejump = false
-		print("DoubleJump")
 		jump()
 
 
@@ -164,7 +167,10 @@ func bowing(arrow_direction):
 		var main = get_tree().current_scene
 		var A = Arrow.instantiate()
 		A.global_position = global_position
-		A.position.x = global_position.x + 35
+		if arrow_direction == 1:
+			A.position.x = global_position.x + 15
+		else:
+			A.position.x = global_position.x - 45
 		A.position.y = global_position.y + 15
 		A.direction = arrow_direction
 		main.add_child(A)
@@ -209,7 +215,6 @@ func add_score (amount):
 #UPDATE LIVES FUNCTION
 func update_lives (amount):
 	lives -= amount
-	print(lives)
 	lives_text.text = str("X ", lives)
 	
 # Función para incrementar la escala de la luz
@@ -262,8 +267,7 @@ func explode():
 
 
 func _on_area_2d_body_entered(body):
-		print("Atack")
-		if body.is_in_group("enemies"):
+		if body.is_in_group("enemies") or state == "Atack1":
 			body.hurt(attack_power)
 
 
