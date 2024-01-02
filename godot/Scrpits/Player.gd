@@ -4,7 +4,7 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -350.0
 @export var push_force = 80.0
 
-@export var live : int = 100
+@export var live : int = 213
 var state_machine
 @export var state : String = "Idle"
 @export var attack_power : int  = 10
@@ -17,11 +17,13 @@ var can_doublejump = true
 #Socre vars
 @export var score : int = 0
 @export var lives : int = 5
-@onready var score_text : Label = get_node("../CanvasLayer/ScoreText")
-@onready var progress_bar : ProgressBar = get_node("../CanvasLayer/ProgressBar")
-@onready var progress_bar_light : ProgressBar = get_node("../CanvasLayer/ProgressBarLight")
-@onready var lives_text : Label = get_node("../CanvasLayer/Lives")
+@onready var score_text : Label = get_node("../HUD/ScoreText")
+@onready var progress_bar : ProgressBar = get_node("../HUD/ProgressBar")
+@onready var progress_bar_light : ProgressBar = get_node("../HUD/ProgressBarLight")
+@onready var lives_text : Label = get_node("../HUD/Lives")
 
+@onready var live_sphere : Sprite2D = get_node("../HUD/Live/Main_Button_Fill") 
+@onready var mana_sphere : Sprite2D = get_node("../HUD/Mana/Main_Button_Fill") 
 
 #Load Arrow tscn
 const Arrow = preload("../Objects/Arrow.tscn")
@@ -68,8 +70,15 @@ func _ready():
 	hurt_sound = $Hurt
 	sword_sound = $sword
 	
-func _physics_process(delta):
+	#SET SPHERES EMPTY FULL
+	#mana_sphere.region_rect.grow_individual(0,0,0,0)
+	#live_sphere.region_rect.grow_individual(0,0,0,0)
+	mana_sphere.region_rect = mana_sphere.region_rect.grow_individual(0,0,live,live)
+	live_sphere.region_rect = live_sphere.region_rect.grow_individual(0,0,live,live)
+	mana_sphere.region_rect = mana_sphere.region_rect.grow_side(1,-live)
 	
+func _physics_process(delta):
+
 
 	var direction = Input.get_axis("ui_left", "ui_right")
 	# Get the input direction and handle the movement/deceleration and orientation.
@@ -142,7 +151,7 @@ func _physics_process(delta):
 		game_quit()
 	
 	#PLAYER DOWN GAMEOVER
-	if global_position.y > 250:
+	if global_position.y > 500:
 		game_over()
 
 
@@ -221,6 +230,10 @@ func update_lives (amount):
 func increment_light_scale(increment_amount: Vector2):
 	if player_light.scale < max_light:
 		player_light.scale += increment_amount
+		
+		mana_sphere.region_rect = mana_sphere.region_rect.grow_side(1, 35)
+		print(player_light.scale.x)
+		print(mana_sphere.region_rect)
 	if progress_bar_light.value < 10000:
 		progress_bar_light.value += increment_amount.x * 10000
 		
@@ -228,6 +241,7 @@ func increment_light_scale(increment_amount: Vector2):
 func decrease_light_scale(decrease_amount: Vector2):
 	if player_light.scale >= base_light:
 		player_light.scale -= decrease_amount
+		mana_sphere.region_rect = mana_sphere.region_rect.grow_side(1, -0.1)
 	else:
 		progress_bar_light.value = 0
 	#if progress_bar_light.value >= 1:
@@ -245,6 +259,9 @@ func hurt(damage):
 		hurt_sound.play()
 		$ProgressBar.value = live
 		progress_bar.value = live
+		live_sphere.region_rect = live_sphere.region_rect.grow_side(1,-damage)
+		#PENDING FIX CENTER BLOOD SPHERE
+		#live_sphere.region_rect.position = live_sphere.region_rect.get_center()
 		
 		#FIX Random size
 		var offset_position = randi() % 20
@@ -276,7 +293,6 @@ func _on_area_2d_area_entered(area):
 		area.hurt(attack_power)
 
 	if area.is_in_group("door"):
-		print("Door entered")
 		get_tree().change_scene_to_file("res://Objects/Level1Boss.tscn")
 		
 

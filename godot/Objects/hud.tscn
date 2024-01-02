@@ -1,0 +1,244 @@
+[gd_scene load_steps=19 format=3 uid="uid://bgi84ioegb3g6"]
+
+[ext_resource type="FontFile" uid="uid://uacc8gr3cirm" path="res://Assets/Fonts/G7MakaimuraTtf-xoZm.ttf" id="1_t36q3"]
+[ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/progress_bar.tscn" id="2_w0elc"]
+[ext_resource type="Texture2D" uid="uid://damqmrf6wvbm6" path="res://Assets/UI/Foozle_UI_0001_RPG_Set_1/Panel_1.png" id="3_pk3by"]
+[ext_resource type="Texture2D" uid="uid://cidyuesoe1v0t" path="res://Assets/Player/RedHood/idle sheet-Sheet.png" id="4_1xapc"]
+[ext_resource type="Texture2D" uid="uid://dn4tolc3fhcvg" path="res://Assets/UI/Foozle_UI_0001_RPG_Set_1/Main_Button_Overlay.png" id="5_ubf2d"]
+[ext_resource type="Texture2D" uid="uid://i3kdn8yxp6h8" path="res://Assets/UI/Foozle_UI_0001_RPG_Set_1/Main_Button_Fill.png" id="6_3dpyf"]
+[ext_resource type="Texture2D" uid="uid://bdbe37fj23nff" path="res://Assets/UI/Foozle_UI_0001_RPG_Set_1/Main_Button_BG.png" id="7_abdec"]
+[ext_resource type="Texture2D" uid="uid://chduphnl5fbc8" path="res://Assets/UI/Foozle_UI_0001_RPG_Set_1/Main_Button_Overlay_Dark.png" id="8_7h6g4"]
+[ext_resource type="Texture2D" uid="uid://dpwb7kggo8cka" path="res://Assets/UI/Foozle_UI_0001_RPG_Set_1/Main_Button_Overlay_Light.png" id="9_jv36h"]
+[ext_resource type="Texture2D" uid="uid://dkx24vmvl8y54" path="res://Assets/UI/Foozle_UI_0001_RPG_Set_1/Main_Button_Fill_Mana.png" id="10_wym1h"]
+[ext_resource type="Texture2D" uid="uid://v2chneqgnbq1" path="res://Assets/UI/Foozle_UI_0001_RPG_Set_1/Main_Button_Overlay_Dark_Mana.png" id="11_0mnna"]
+[ext_resource type="Texture2D" uid="uid://bqg4shmap26e2" path="res://Assets/UI/Foozle_UI_0001_RPG_Set_1/Main_Button_Overlay_Light_Mana.png" id="12_uq3s0"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_mdf3p"]
+color = Color(0, 0.282353, 0.290196, 1)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_sgb7d"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mtuvj"]
+texture = SubResource("CanvasTexture_sgb7d")
+modulate_color = Color(1, 0.0588235, 1, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ohk4v"]
+lightmap_size_hint = Vector2i(17, 9)
+
+[sub_resource type="ImageTexture" id="ImageTexture_60ix2"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_q62i4"]
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="ScoreText" type="Label" parent="."]
+offset_left = 24.0
+offset_top = 9.0
+offset_right = 92.0
+offset_bottom = 38.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_t36q3")
+theme_override_font_sizes/font_size = 20
+text = "Player 1 Score: 0"
+
+[node name="Instructions" type="Label" parent="."]
+offset_left = 1255.0
+offset_top = 16.0
+offset_right = 1905.0
+offset_bottom = 47.0
+theme_override_colors/font_color = Color(0.819608, 0.984314, 0.682353, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_t36q3")
+theme_override_font_sizes/font_size = 20
+text = "Gamepad/ keys: cursors, space, z, x"
+
+[node name="ProgressBar" parent="." instance=ExtResource("2_w0elc")]
+visible = false
+offset_left = 34.0
+offset_top = 124.0
+offset_right = 38.0
+offset_bottom = 151.0
+scale = Vector2(43.7519, 0.709099)
+
+[node name="ProgressBarLight" type="ProgressBar" parent="."]
+visible = false
+modulate = Color(0.145098, 1, 1, 1)
+clip_contents = true
+offset_left = 33.0
+offset_top = 167.0
+offset_right = 37.0
+offset_bottom = 194.0
+scale = Vector2(46.5124, 0.544506)
+theme_override_styles/background = SubResource("StyleBoxLine_mdf3p")
+theme_override_styles/fill = SubResource("StyleBoxTexture_mtuvj")
+max_value = 10000.0
+step = 1.0
+exp_edit = true
+show_percentage = false
+
+[node name="BoxContainer" type="BoxContainer" parent="."]
+offset_left = 436.0
+offset_top = 520.0
+offset_right = 476.0
+offset_bottom = 560.0
+scale = Vector2(0.5, 0.5)
+
+[node name="LivesDecorMarc" type="Sprite2D" parent="BoxContainer"]
+position = Vector2(953, 942)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_pk3by")
+flip_h = true
+
+[node name="IconLives" type="Sprite2D" parent="BoxContainer"]
+position = Vector2(824, 938)
+scale = Vector2(4, 4)
+texture = ExtResource("4_1xapc")
+flip_h = true
+hframes = 18
+
+[node name="IconLives2" type="Sprite2D" parent="BoxContainer"]
+position = Vector2(912, 939)
+scale = Vector2(4, 4)
+texture = ExtResource("4_1xapc")
+flip_h = true
+hframes = 18
+
+[node name="IconLives3" type="Sprite2D" parent="BoxContainer"]
+position = Vector2(997, 939)
+scale = Vector2(4, 4)
+texture = ExtResource("4_1xapc")
+flip_h = true
+hframes = 18
+
+[node name="Lives" type="Label" parent="."]
+visible = false
+offset_left = 441.0
+offset_top = 737.0
+offset_right = 517.0
+offset_bottom = 768.0
+scale = Vector2(2.82678, 2.82678)
+theme_override_colors/font_color = Color(0.788235, 0, 0.486275, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "LIVES"
+
+[node name="ManaOLD" type="Node2D" parent="."]
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="ManaOLD"]
+visible = false
+modulate = Color(0.0313726, 0.996078, 1, 1)
+position = Vector2(1796.25, 968.25)
+scale = Vector2(200, 200)
+mesh = SubResource("SphereMesh_ohk4v")
+texture = SubResource("ImageTexture_60ix2")
+
+[node name="MeshInstance2DHIDE" type="MeshInstance2D" parent="ManaOLD"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+position = Vector2(1799, 763)
+scale = Vector2(200, 200)
+mesh = SubResource("QuadMesh_q62i4")
+texture = SubResource("ImageTexture_60ix2")
+
+[node name="MainButtonOverlay" type="Sprite2D" parent="ManaOLD"]
+visible = false
+position = Vector2(1796.25, 968.25)
+texture = ExtResource("5_ubf2d")
+
+[node name="Live" type="Node2D" parent="."]
+position = Vector2(91, -115)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Live"]
+visible = false
+position = Vector2(102, 964)
+scale = Vector2(200, 200)
+mesh = SubResource("SphereMesh_ohk4v")
+texture = ExtResource("6_3dpyf")
+
+[node name="MainButtonBG" type="MeshInstance2D" parent="Live"]
+visible = false
+position = Vector2(102, 964)
+scale = Vector2(200, 200)
+mesh = SubResource("SphereMesh_ohk4v")
+texture = ExtResource("6_3dpyf")
+
+[node name="MeshInstance2DHIDE" type="MeshInstance2D" parent="Live"]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(102, 884)
+scale = Vector2(200, 200)
+mesh = SubResource("QuadMesh_q62i4")
+texture = SubResource("ImageTexture_60ix2")
+
+[node name="Main_Button_BG" type="Sprite2D" parent="Live"]
+position = Vector2(102, 1019)
+texture = ExtResource("7_abdec")
+
+[node name="Main_Button_Fill" type="Sprite2D" parent="Live"]
+position = Vector2(102, 964)
+texture = ExtResource("6_3dpyf")
+region_enabled = true
+
+[node name="Mian_Button_Overlay" type="Sprite2D" parent="Live"]
+position = Vector2(102, 964)
+texture = ExtResource("5_ubf2d")
+
+[node name="Main_Button_Overlay_Dark" type="Sprite2D" parent="Live"]
+position = Vector2(102, 964)
+texture = ExtResource("8_7h6g4")
+
+[node name="Mian_Button_Overlay_Light" type="Sprite2D" parent="Live"]
+position = Vector2(102, 964)
+texture = ExtResource("9_jv36h")
+
+[node name="Mana" type="Node2D" parent="."]
+position = Vector2(1621, -123)
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Mana"]
+visible = false
+position = Vector2(102, 964)
+scale = Vector2(200, 200)
+mesh = SubResource("SphereMesh_ohk4v")
+texture = ExtResource("6_3dpyf")
+
+[node name="MainButtonBG" type="MeshInstance2D" parent="Mana"]
+visible = false
+position = Vector2(102, 964)
+scale = Vector2(200, 200)
+mesh = SubResource("SphereMesh_ohk4v")
+texture = ExtResource("6_3dpyf")
+
+[node name="MeshInstance2DHIDE" type="MeshInstance2D" parent="Mana"]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(102, 884)
+scale = Vector2(200, 200)
+mesh = SubResource("QuadMesh_q62i4")
+texture = SubResource("ImageTexture_60ix2")
+
+[node name="Main_Button_BG" type="Sprite2D" parent="Mana"]
+position = Vector2(102, 1019)
+texture = ExtResource("7_abdec")
+
+[node name="Main_Button_Fill" type="Sprite2D" parent="Mana"]
+modulate = Color(0, 0.596078, 1, 1)
+position = Vector2(102, 964)
+texture = ExtResource("10_wym1h")
+region_enabled = true
+
+[node name="Mian_Button_Overlay" type="Sprite2D" parent="Mana"]
+position = Vector2(102, 964)
+texture = ExtResource("5_ubf2d")
+
+[node name="Main_Button_Overlay_Dark" type="Sprite2D" parent="Mana"]
+modulate = Color(0.278431, 1, 1, 0.184314)
+position = Vector2(102, 964)
+texture = ExtResource("11_0mnna")
+
+[node name="Mian_Button_Overlay_Light" type="Sprite2D" parent="Mana"]
+modulate = Color(0.176471, 0.207843, 1, 0.137255)
+position = Vector2(102, 964)
+texture = ExtResource("12_uq3s0")

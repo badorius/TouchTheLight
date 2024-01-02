@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://d07i3cdmomp8e"]
+[gd_scene load_steps=33 format=3 uid="uid://d07i3cdmomp8e"]
 
 [ext_resource type="Texture2D" uid="uid://ccpnn3i3xafue" path="res://Assets/Tileset/Level1.png" id="1_5gl51"]
 [ext_resource type="Texture2D" uid="uid://dqljktroyridq" path="res://Assets/Background/HauntedForest/Props/tree.png" id="1_gkfah"]
@@ -17,16 +17,12 @@
 [ext_resource type="PackedScene" uid="uid://dqwoh4qxgemn" path="res://Objects/parallax_background.tscn" id="9_421e3"]
 [ext_resource type="PackedScene" uid="uid://bkny06l7l1uby" path="res://Objects/parallax_background_lvl1.tscn" id="10_7grp6"]
 [ext_resource type="AudioStream" uid="uid://cu2fsnbyykeub" path="res://Music/BGMUSIC/Ingrid.mp3" id="10_agg0j"]
-[ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/progress_bar.tscn" id="10_us0pg"]
 [ext_resource type="PackedScene" uid="uid://phnoalyvfkxs" path="res://Objects/SmallTorch.tscn" id="11_jn1qr"]
 [ext_resource type="PackedScene" uid="uid://bis136hblwi22" path="res://Objects/skeleton.tscn" id="12_gavhj"]
-[ext_resource type="Texture2D" uid="uid://cidyuesoe1v0t" path="res://Assets/Player/RedHood/idle sheet-Sheet.png" id="12_glgki"]
 [ext_resource type="PackedScene" uid="uid://ccixy0n1vgwcc" path="res://Objects/NightBorne.tscn" id="13_7axb4"]
 [ext_resource type="PackedScene" uid="uid://cf4d021lelowr" path="res://Objects/Player.tscn" id="14_nbcgr"]
 [ext_resource type="PackedScene" uid="uid://de2d43ynvsgip" path="res://Objects/FlayingEye.tscn" id="16_ptn12"]
-[ext_resource type="FontFile" uid="uid://uacc8gr3cirm" path="res://Assets/Fonts/G7MakaimuraTtf-xoZm.ttf" id="17_hgl4t"]
-[ext_resource type="Texture2D" uid="uid://damqmrf6wvbm6" path="res://Assets/UI/Foozle_UI_0001_RPG_Set_1/Panel_1.png" id="18_63kc1"]
-[ext_resource type="Texture2D" uid="uid://dn4tolc3fhcvg" path="res://Assets/UI/Foozle_UI_0001_RPG_Set_1/Main_Button_Overlay.png" id="19_k30vf"]
+[ext_resource type="PackedScene" uid="uid://bgi84ioegb3g6" path="res://Objects/hud.tscn" id="18_gh1o4"]
 [ext_resource type="Texture2D" uid="uid://deaw5e7ljld6i" path="res://Assets/Background/HauntedForest/Props/tree-2.png" id="22_yjjfu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uwy2i"]
@@ -1852,19 +1848,6 @@ texture = ExtResource("2_febr0")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_x2343")
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_mdf3p"]
-color = Color(0, 0.282353, 0.290196, 1)
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_sgb7d"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mtuvj"]
-texture = SubResource("CanvasTexture_sgb7d")
-modulate_color = Color(1, 0.0588235, 1, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_ohk4v"]
-
-[sub_resource type="ImageTexture" id="ImageTexture_60ix2"]
-
 [node name="Level1" type="Node2D"]
 position = Vector2(18, 2)
 
@@ -1983,129 +1966,7 @@ visible = false
 
 [node name="ParallaxBackground2" parent="." instance=ExtResource("10_7grp6")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="ScoreText" type="Label" parent="CanvasLayer"]
-offset_left = 24.0
-offset_top = 9.0
-offset_right = 92.0
-offset_bottom = 38.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("17_hgl4t")
-theme_override_font_sizes/font_size = 20
-text = "Player 1 Score: 0"
-
-[node name="Instructions" type="Label" parent="CanvasLayer"]
-offset_left = 1255.0
-offset_top = 16.0
-offset_right = 1905.0
-offset_bottom = 47.0
-theme_override_colors/font_color = Color(0.819608, 0.984314, 0.682353, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("17_hgl4t")
-theme_override_font_sizes/font_size = 20
-text = "Gamepad/ keys: cursors, space, z, x"
-
-[node name="ProgressBar" parent="CanvasLayer" instance=ExtResource("10_us0pg")]
-visible = false
-offset_left = 34.0
-offset_top = 124.0
-offset_right = 38.0
-offset_bottom = 151.0
-scale = Vector2(43.7519, 0.709099)
-
-[node name="ProgressBarLight" type="ProgressBar" parent="CanvasLayer"]
-visible = false
-modulate = Color(0.145098, 1, 1, 1)
-clip_contents = true
-offset_left = 33.0
-offset_top = 167.0
-offset_right = 37.0
-offset_bottom = 194.0
-scale = Vector2(46.5124, 0.544506)
-theme_override_styles/background = SubResource("StyleBoxLine_mdf3p")
-theme_override_styles/fill = SubResource("StyleBoxTexture_mtuvj")
-max_value = 10000.0
-step = 1.0
-exp_edit = true
-show_percentage = false
-
-[node name="BoxContainer" type="BoxContainer" parent="CanvasLayer"]
-offset_left = 436.0
-offset_top = 520.0
-offset_right = 476.0
-offset_bottom = 560.0
-scale = Vector2(0.5, 0.5)
-
-[node name="LivesDecorMarc" type="Sprite2D" parent="CanvasLayer/BoxContainer"]
-position = Vector2(953, 942)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("18_63kc1")
-flip_h = true
-
-[node name="IconLives" type="Sprite2D" parent="CanvasLayer/BoxContainer"]
-position = Vector2(824, 938)
-scale = Vector2(4, 4)
-texture = ExtResource("12_glgki")
-flip_h = true
-hframes = 18
-
-[node name="IconLives2" type="Sprite2D" parent="CanvasLayer/BoxContainer"]
-position = Vector2(912, 939)
-scale = Vector2(4, 4)
-texture = ExtResource("12_glgki")
-flip_h = true
-hframes = 18
-
-[node name="IconLives3" type="Sprite2D" parent="CanvasLayer/BoxContainer"]
-position = Vector2(997, 939)
-scale = Vector2(4, 4)
-texture = ExtResource("12_glgki")
-flip_h = true
-hframes = 18
-
-[node name="Lives" type="Label" parent="CanvasLayer"]
-visible = false
-offset_left = 441.0
-offset_top = 737.0
-offset_right = 517.0
-offset_bottom = 768.0
-scale = Vector2(2.82678, 2.82678)
-theme_override_colors/font_color = Color(0.788235, 0, 0.486275, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
-text = "LIVES"
-
-[node name="Mana" type="Node2D" parent="CanvasLayer"]
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="CanvasLayer/Mana"]
-modulate = Color(0.0313726, 0.996078, 1, 1)
-position = Vector2(1796.25, 968.25)
-scale = Vector2(100, 100)
-mesh = SubResource("SphereMesh_ohk4v")
-texture = SubResource("ImageTexture_60ix2")
-
-[node name="MainButtonOverlay" type="Sprite2D" parent="CanvasLayer/Mana"]
-position = Vector2(1796.25, 968.25)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("19_k30vf")
-
-[node name="Live" type="Node2D" parent="CanvasLayer"]
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="CanvasLayer/Live"]
-modulate = Color(0.603922, 1, 0.266667, 0.360784)
-position = Vector2(102, 964)
-scale = Vector2(100, 100)
-mesh = SubResource("SphereMesh_ohk4v")
-texture = SubResource("ImageTexture_60ix2")
-
-[node name="MainButtonOverlay" type="Sprite2D" parent="CanvasLayer/Live"]
-position = Vector2(102, 964)
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("19_k30vf")
+[node name="HUD" parent="." instance=ExtResource("18_gh1o4")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 visible = false
@@ -2239,3 +2100,6 @@ position = Vector2(6209, 97)
 [node name="Player" parent="." instance=ExtResource("14_nbcgr")]
 position = Vector2(-174, 22)
 scale = Vector2(1, 1)
+
+[node name="NightBorne3" parent="." instance=ExtResource("13_7axb4")]
+position = Vector2(-72, 196)
