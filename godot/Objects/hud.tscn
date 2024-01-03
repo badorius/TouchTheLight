@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bgi84ioegb3g6"]
+[gd_scene load_steps=17 format=3 uid="uid://bgi84ioegb3g6"]
 
 [ext_resource type="FontFile" uid="uid://uacc8gr3cirm" path="res://Assets/Fonts/G7MakaimuraTtf-xoZm.ttf" id="1_t36q3"]
 [ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/progress_bar.tscn" id="2_w0elc"]
@@ -22,12 +22,8 @@ color = Color(0, 0.282353, 0.290196, 1)
 texture = SubResource("CanvasTexture_sgb7d")
 modulate_color = Color(1, 0.0588235, 1, 1)
 
-[sub_resource type="SphereMesh" id="SphereMesh_ohk4v"]
-lightmap_size_hint = Vector2i(17, 9)
-
-[sub_resource type="ImageTexture" id="ImageTexture_60ix2"]
-
-[sub_resource type="QuadMesh" id="QuadMesh_q62i4"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_necfw"]
+texture = ExtResource("6_3dpyf")
 
 [node name="HUD" type="CanvasLayer"]
 
@@ -125,62 +121,42 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 20
 text = "LIVES"
 
-[node name="ManaOLD" type="Node2D" parent="."]
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="ManaOLD"]
-visible = false
-modulate = Color(0.0313726, 0.996078, 1, 1)
-position = Vector2(1796.25, 968.25)
-scale = Vector2(200, 200)
-mesh = SubResource("SphereMesh_ohk4v")
-texture = SubResource("ImageTexture_60ix2")
-
-[node name="MeshInstance2DHIDE" type="MeshInstance2D" parent="ManaOLD"]
-visible = false
-modulate = Color(0, 0, 0, 1)
-position = Vector2(1799, 763)
-scale = Vector2(200, 200)
-mesh = SubResource("QuadMesh_q62i4")
-texture = SubResource("ImageTexture_60ix2")
-
-[node name="MainButtonOverlay" type="Sprite2D" parent="ManaOLD"]
-visible = false
-position = Vector2(1796.25, 968.25)
-texture = ExtResource("5_ubf2d")
-
 [node name="Live" type="Node2D" parent="."]
 position = Vector2(91, -115)
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Live"]
-visible = false
-position = Vector2(102, 964)
-scale = Vector2(200, 200)
-mesh = SubResource("SphereMesh_ohk4v")
-texture = ExtResource("6_3dpyf")
-
-[node name="MainButtonBG" type="MeshInstance2D" parent="Live"]
-visible = false
-position = Vector2(102, 964)
-scale = Vector2(200, 200)
-mesh = SubResource("SphereMesh_ohk4v")
-texture = ExtResource("6_3dpyf")
-
-[node name="MeshInstance2DHIDE" type="MeshInstance2D" parent="Live"]
-visible = false
-self_modulate = Color(1, 1, 1, 0)
-position = Vector2(102, 884)
-scale = Vector2(200, 200)
-mesh = SubResource("QuadMesh_q62i4")
-texture = SubResource("ImageTexture_60ix2")
 
 [node name="Main_Button_BG" type="Sprite2D" parent="Live"]
 position = Vector2(102, 1019)
 texture = ExtResource("7_abdec")
 
+[node name="Control" type="Control" parent="Live"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ProgressBarLive" type="ProgressBar" parent="Live/Control"]
+layout_mode = 0
+offset_left = 102.0
+offset_top = 964.0
+offset_right = 315.0
+offset_bottom = 1177.0
+size_flags_vertical = 1
+theme_override_styles/fill = SubResource("StyleBoxTexture_necfw")
+max_value = 213.0
+step = 1.0
+value = 213.0
+fill_mode = 2
+show_percentage = false
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Live/Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="Main_Button_Fill" type="Sprite2D" parent="Live"]
+visible = false
 position = Vector2(102, 964)
 texture = ExtResource("6_3dpyf")
-region_enabled = true
 
 [node name="Mian_Button_Overlay" type="Sprite2D" parent="Live"]
 position = Vector2(102, 964)
@@ -196,28 +172,6 @@ texture = ExtResource("9_jv36h")
 
 [node name="Mana" type="Node2D" parent="."]
 position = Vector2(1621, -123)
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="Mana"]
-visible = false
-position = Vector2(102, 964)
-scale = Vector2(200, 200)
-mesh = SubResource("SphereMesh_ohk4v")
-texture = ExtResource("6_3dpyf")
-
-[node name="MainButtonBG" type="MeshInstance2D" parent="Mana"]
-visible = false
-position = Vector2(102, 964)
-scale = Vector2(200, 200)
-mesh = SubResource("SphereMesh_ohk4v")
-texture = ExtResource("6_3dpyf")
-
-[node name="MeshInstance2DHIDE" type="MeshInstance2D" parent="Mana"]
-visible = false
-self_modulate = Color(1, 1, 1, 0)
-position = Vector2(102, 884)
-scale = Vector2(200, 200)
-mesh = SubResource("QuadMesh_q62i4")
-texture = SubResource("ImageTexture_60ix2")
 
 [node name="Main_Button_BG" type="Sprite2D" parent="Mana"]
 position = Vector2(102, 1019)

@@ -16,13 +16,14 @@ var can_doublejump = true
 
 #Socre vars
 @export var score : int = 0
-@export var lives : int = 5
+@export var lives : int = 3
 @onready var score_text : Label = get_node("../HUD/ScoreText")
 @onready var progress_bar : ProgressBar = get_node("../HUD/ProgressBar")
 @onready var progress_bar_light : ProgressBar = get_node("../HUD/ProgressBarLight")
 @onready var lives_text : Label = get_node("../HUD/Lives")
 
-@onready var live_sphere : Sprite2D = get_node("../HUD/Live/Main_Button_Fill") 
+
+@onready var live_sphere : ProgressBar = get_node("../HUD/Live/ProgressBarLive") 
 @onready var mana_sphere : Sprite2D = get_node("../HUD/Mana/Main_Button_Fill") 
 
 #Load Arrow tscn
@@ -54,6 +55,8 @@ func _ready():
 	state_machine.travel('Idle')
 	$ProgressBar.value = live
 	progress_bar.value = live
+	live_sphere.value = live
+
 
 	# Utiliza get_node para acceder al nodo "Warrior" y luego al nodo "PointLight2D" dentro de él
 	player_light = $Warrior/PointLight2D
@@ -74,12 +77,10 @@ func _ready():
 	#mana_sphere.region_rect.grow_individual(0,0,0,0)
 	#live_sphere.region_rect.grow_individual(0,0,0,0)
 	mana_sphere.region_rect = mana_sphere.region_rect.grow_individual(0,0,live,live)
-	live_sphere.region_rect = live_sphere.region_rect.grow_individual(0,0,live,live)
+	#live_sphere.region_rect = live_sphere.region_rect.grow_individual(0,0,live,live)
 	mana_sphere.region_rect = mana_sphere.region_rect.grow_side(1,-live)
 	
 func _physics_process(delta):
-
-
 	var direction = Input.get_axis("ui_left", "ui_right")
 	# Get the input direction and handle the movement/deceleration and orientation.
 	if direction:
@@ -259,7 +260,7 @@ func hurt(damage):
 		hurt_sound.play()
 		$ProgressBar.value = live
 		progress_bar.value = live
-		live_sphere.region_rect = live_sphere.region_rect.grow_side(1,-damage)
+		live_sphere.value = live
 		#PENDING FIX CENTER BLOOD SPHERE
 		#live_sphere.region_rect.position = live_sphere.region_rect.get_center()
 		
