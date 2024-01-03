@@ -22,9 +22,8 @@ var can_doublejump = true
 @onready var progress_bar_light : ProgressBar = get_node("../HUD/ProgressBarLight")
 @onready var lives_text : Label = get_node("../HUD/Lives")
 
-
-@onready var live_sphere : ProgressBar = get_node("../HUD/Live/ProgressBarLive") 
-@onready var mana_sphere : Sprite2D = get_node("../HUD/Mana/Main_Button_Fill") 
+@onready var live_sphere : TextureProgressBar = get_node("../HUD/Live/Control/ProgressBarLive") 
+@onready var mana_sphere : TextureProgressBar = get_node("../HUD/Mana/Control/ProgressBarMana") 
 
 #Load Arrow tscn
 const Arrow = preload("../Objects/Arrow.tscn")
@@ -73,12 +72,6 @@ func _ready():
 	hurt_sound = $Hurt
 	sword_sound = $sword
 	
-	#SET SPHERES EMPTY FULL
-	#mana_sphere.region_rect.grow_individual(0,0,0,0)
-	#live_sphere.region_rect.grow_individual(0,0,0,0)
-	mana_sphere.region_rect = mana_sphere.region_rect.grow_individual(0,0,live,live)
-	#live_sphere.region_rect = live_sphere.region_rect.grow_individual(0,0,live,live)
-	mana_sphere.region_rect = mana_sphere.region_rect.grow_side(1,-live)
 	
 func _physics_process(delta):
 	var direction = Input.get_axis("ui_left", "ui_right")
@@ -229,24 +222,24 @@ func update_lives (amount):
 	
 # Función para incrementar la escala de la luz
 func increment_light_scale(increment_amount: Vector2):
-	if player_light.scale < max_light:
-		player_light.scale += increment_amount
+	if mana_sphere.value < 213:
+		if player_light.scale < max_light:
+			player_light.scale += increment_amount
+			mana_sphere.value += player_light.scale.x * 30
 		
-		mana_sphere.region_rect = mana_sphere.region_rect.grow_side(1, 35)
-		print(player_light.scale.x)
-		print(mana_sphere.region_rect)
-	if progress_bar_light.value < 10000:
-		progress_bar_light.value += increment_amount.x * 10000
+		if progress_bar_light.value < 10000:
+			progress_bar_light.value += increment_amount.x * 10000
 		
 
 func decrease_light_scale(decrease_amount: Vector2):
-	if player_light.scale >= base_light:
-		player_light.scale -= decrease_amount
-		mana_sphere.region_rect = mana_sphere.region_rect.grow_side(1, -0.1)
-	else:
-		progress_bar_light.value = 0
-	#if progress_bar_light.value >= 1:
-		#progress_bar_light.value -= decrease_amount.x * 100
+	if mana_sphere.value >= 0:
+		if player_light.scale >= base_light:
+			player_light.scale -= decrease_amount
+			mana_sphere.value -= decrease_amount.x * 80
+		else:
+			progress_bar_light.value = 0
+		#if progress_bar_light.value >= 1:
+			#progress_bar_light.value -= decrease_amount.x * 100
 		
 func do_hurt():
 	pass

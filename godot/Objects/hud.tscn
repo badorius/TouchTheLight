@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bgi84ioegb3g6"]
+[gd_scene load_steps=13 format=3 uid="uid://bgi84ioegb3g6"]
 
 [ext_resource type="FontFile" uid="uid://uacc8gr3cirm" path="res://Assets/Fonts/G7MakaimuraTtf-xoZm.ttf" id="1_t36q3"]
 [ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/progress_bar.tscn" id="2_w0elc"]
@@ -7,11 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://dn4tolc3fhcvg" path="res://Assets/UI/Foozle_UI_0001_RPG_Set_1/Main_Button_Overlay.png" id="5_ubf2d"]
 [ext_resource type="Texture2D" uid="uid://i3kdn8yxp6h8" path="res://Assets/UI/Foozle_UI_0001_RPG_Set_1/Main_Button_Fill.png" id="6_3dpyf"]
 [ext_resource type="Texture2D" uid="uid://bdbe37fj23nff" path="res://Assets/UI/Foozle_UI_0001_RPG_Set_1/Main_Button_BG.png" id="7_abdec"]
-[ext_resource type="Texture2D" uid="uid://chduphnl5fbc8" path="res://Assets/UI/Foozle_UI_0001_RPG_Set_1/Main_Button_Overlay_Dark.png" id="8_7h6g4"]
 [ext_resource type="Texture2D" uid="uid://dpwb7kggo8cka" path="res://Assets/UI/Foozle_UI_0001_RPG_Set_1/Main_Button_Overlay_Light.png" id="9_jv36h"]
 [ext_resource type="Texture2D" uid="uid://dkx24vmvl8y54" path="res://Assets/UI/Foozle_UI_0001_RPG_Set_1/Main_Button_Fill_Mana.png" id="10_wym1h"]
-[ext_resource type="Texture2D" uid="uid://v2chneqgnbq1" path="res://Assets/UI/Foozle_UI_0001_RPG_Set_1/Main_Button_Overlay_Dark_Mana.png" id="11_0mnna"]
-[ext_resource type="Texture2D" uid="uid://bqg4shmap26e2" path="res://Assets/UI/Foozle_UI_0001_RPG_Set_1/Main_Button_Overlay_Light_Mana.png" id="12_uq3s0"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_mdf3p"]
 color = Color(0, 0.282353, 0.290196, 1)
@@ -21,9 +18,6 @@ color = Color(0, 0.282353, 0.290196, 1)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mtuvj"]
 texture = SubResource("CanvasTexture_sgb7d")
 modulate_color = Color(1, 0.0588235, 1, 1)
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_necfw"]
-texture = ExtResource("6_3dpyf")
 
 [node name="HUD" type="CanvasLayer"]
 
@@ -75,11 +69,11 @@ exp_edit = true
 show_percentage = false
 
 [node name="BoxContainer" type="BoxContainer" parent="."]
-offset_left = 436.0
-offset_top = 520.0
-offset_right = 476.0
-offset_bottom = 560.0
-scale = Vector2(0.5, 0.5)
+offset_left = 182.0
+offset_top = 178.0
+offset_right = 222.0
+offset_bottom = 218.0
+scale = Vector2(0.826383, 0.826383)
 
 [node name="LivesDecorMarc" type="Sprite2D" parent="BoxContainer"]
 position = Vector2(953, 942)
@@ -131,68 +125,44 @@ texture = ExtResource("7_abdec")
 [node name="Control" type="Control" parent="Live"]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 276.0
+offset_top = 857.0
+offset_right = 276.0
+offset_bottom = 857.0
 
-[node name="ProgressBarLive" type="ProgressBar" parent="Live/Control"]
+[node name="ProgressBarLive" type="TextureProgressBar" parent="Live/Control"]
 layout_mode = 0
-offset_left = 102.0
-offset_top = 964.0
-offset_right = 315.0
-offset_bottom = 1177.0
-size_flags_vertical = 1
-theme_override_styles/fill = SubResource("StyleBoxTexture_necfw")
+offset_left = -283.0
+offset_right = 98.0
+offset_bottom = 324.0
 max_value = 213.0
-step = 1.0
 value = 213.0
-fill_mode = 2
-show_percentage = false
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="Live/Control"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Main_Button_Fill" type="Sprite2D" parent="Live"]
-visible = false
-position = Vector2(102, 964)
-texture = ExtResource("6_3dpyf")
-
-[node name="Mian_Button_Overlay" type="Sprite2D" parent="Live"]
-position = Vector2(102, 964)
-texture = ExtResource("5_ubf2d")
-
-[node name="Main_Button_Overlay_Dark" type="Sprite2D" parent="Live"]
-position = Vector2(102, 964)
-texture = ExtResource("8_7h6g4")
-
-[node name="Mian_Button_Overlay_Light" type="Sprite2D" parent="Live"]
-position = Vector2(102, 964)
-texture = ExtResource("9_jv36h")
+fill_mode = 3
+texture_over = ExtResource("9_jv36h")
+texture_progress = ExtResource("6_3dpyf")
 
 [node name="Mana" type="Node2D" parent="."]
-position = Vector2(1621, -123)
+position = Vector2(1627, -123)
 
 [node name="Main_Button_BG" type="Sprite2D" parent="Mana"]
 position = Vector2(102, 1019)
 texture = ExtResource("7_abdec")
 
-[node name="Main_Button_Fill" type="Sprite2D" parent="Mana"]
-modulate = Color(0, 0.596078, 1, 1)
-position = Vector2(102, 964)
-texture = ExtResource("10_wym1h")
-region_enabled = true
+[node name="Control" type="Control" parent="Mana"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 276.0
+offset_top = 857.0
+offset_right = 276.0
+offset_bottom = 857.0
 
-[node name="Mian_Button_Overlay" type="Sprite2D" parent="Mana"]
-position = Vector2(102, 964)
-texture = ExtResource("5_ubf2d")
-
-[node name="Main_Button_Overlay_Dark" type="Sprite2D" parent="Mana"]
-modulate = Color(0.278431, 1, 1, 0.184314)
-position = Vector2(102, 964)
-texture = ExtResource("11_0mnna")
-
-[node name="Mian_Button_Overlay_Light" type="Sprite2D" parent="Mana"]
-modulate = Color(0.176471, 0.207843, 1, 0.137255)
-position = Vector2(102, 964)
-texture = ExtResource("12_uq3s0")
+[node name="ProgressBarMana" type="TextureProgressBar" parent="Mana/Control"]
+modulate = Color(0.505882, 1, 1, 1)
+layout_mode = 0
+offset_left = -283.0
+offset_right = 98.0
+offset_bottom = 324.0
+max_value = 213.0
+fill_mode = 3
+texture_over = ExtResource("5_ubf2d")
+texture_progress = ExtResource("10_wym1h")
