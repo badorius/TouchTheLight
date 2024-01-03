@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bgi84ioegb3g6"]
+[gd_scene load_steps=14 format=3 uid="uid://bgi84ioegb3g6"]
 
 [ext_resource type="FontFile" uid="uid://uacc8gr3cirm" path="res://Assets/Fonts/G7MakaimuraTtf-xoZm.ttf" id="1_t36q3"]
 [ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/progress_bar.tscn" id="2_w0elc"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://i3kdn8yxp6h8" path="res://Assets/UI/Foozle_UI_0001_RPG_Set_1/Main_Button_Fill.png" id="6_3dpyf"]
 [ext_resource type="Texture2D" uid="uid://bdbe37fj23nff" path="res://Assets/UI/Foozle_UI_0001_RPG_Set_1/Main_Button_BG.png" id="7_abdec"]
 [ext_resource type="Texture2D" uid="uid://dpwb7kggo8cka" path="res://Assets/UI/Foozle_UI_0001_RPG_Set_1/Main_Button_Overlay_Light.png" id="9_jv36h"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://joystick/virtual_joystick.tscn" id="10_118px"]
 [ext_resource type="Texture2D" uid="uid://dkx24vmvl8y54" path="res://Assets/UI/Foozle_UI_0001_RPG_Set_1/Main_Button_Fill_Mana.png" id="10_wym1h"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_mdf3p"]
@@ -166,3 +167,11 @@ max_value = 213.0
 fill_mode = 3
 texture_over = ExtResource("5_ubf2d")
 texture_progress = ExtResource("10_wym1h")
+
+[node name="Virtual Joystick" parent="." instance=ExtResource("10_118px")]
+modulate = Color(0.568627, 0.113725, 0.054902, 0.294118)
+offset_left = 42.0
+offset_top = -379.0
+offset_right = 342.0
+offset_bottom = -79.0
+visibility_mode = 1
