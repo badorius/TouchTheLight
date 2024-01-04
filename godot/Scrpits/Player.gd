@@ -4,7 +4,8 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -350.0
 @export var push_force = 80.0
 
-@export var live : int = 213
+var max_live : int = 213
+@export var live : int = max_live
 var state_machine
 @export var state : String = "Idle"
 @export var attack_power : int  = 10
@@ -24,6 +25,7 @@ var can_doublejump = true
 
 @onready var live_sphere : TextureProgressBar = get_node("../HUD/Live/Control/ProgressBarLive") 
 @onready var mana_sphere : TextureProgressBar = get_node("../HUD/Mana/Control/ProgressBarMana") 
+@onready var HUD : CanvasLayer = get_node("../HUD") 
 
 #Load Arrow tscn
 const Arrow = preload("../Objects/Arrow.tscn")
@@ -36,6 +38,8 @@ var base_light : Vector2 = Vector2(0.5, 0.5)
 @export var max_light : Vector2 = Vector2(2.0, 2.0)
 # Referencia al PointLight2D
 @export var player_light : PointLight2D
+#  CHECKPOINT POSITION
+@export var checkpoint_position : Vector2
 
 
 #Sounds
@@ -146,7 +150,7 @@ func _physics_process(delta):
 	
 	#PLAYER DOWN GAMEOVER
 	if global_position.y > 500:
-		game_over()
+		update_lives(1)
 
 
 func walk(direction):
@@ -203,8 +207,7 @@ func iddle():
 #GAMEOVER FUNCTION
 func game_over ():
 	#PENDING FIX FUNCTIoN NAME (NOT GAMEOVER) DIE LIVES
-	update_lives(1)
-	get_tree().reload_current_scene()
+	get_tree().change_scene_to_file("res://Objects/menu.tscn")
 
 #QUIT GAME FUNCTION
 func game_quit ():
@@ -217,8 +220,15 @@ func add_score (amount):
 	
 #UPDATE LIVES FUNCTION
 func update_lives (amount):
-	lives -= amount
-	lives_text.text = str("X ", lives)
+	if lives == 0:
+		game_over()
+	else:
+		live = max_live
+		live_sphere.value = live
+		mana_sphere.value = 0
+		lives -= amount
+		HUD.update_lives(amount)
+		position = checkpoint_position
 	
 # Función para incrementar la escala de la luz
 func increment_light_scale(increment_amount: Vector2):
@@ -267,7 +277,7 @@ func hurt(damage):
 		main.add_child(D)
 
 		if live <= 0:
-			game_over()
+			update_lives(1)
 		
 func explode():
 	pass

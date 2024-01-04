@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://bgi84ioegb3g6"]
+[gd_scene load_steps=15 format=3 uid="uid://bgi84ioegb3g6"]
 
+[ext_resource type="Script" path="res://Scrpits/hud.gd" id="1_ouvyj"]
 [ext_resource type="FontFile" uid="uid://uacc8gr3cirm" path="res://Assets/Fonts/G7MakaimuraTtf-xoZm.ttf" id="1_t36q3"]
 [ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/progress_bar.tscn" id="2_w0elc"]
 [ext_resource type="Texture2D" uid="uid://damqmrf6wvbm6" path="res://Assets/UI/Foozle_UI_0001_RPG_Set_1/Panel_1.png" id="3_pk3by"]
@@ -21,6 +22,7 @@ texture = SubResource("CanvasTexture_sgb7d")
 modulate_color = Color(1, 0.0588235, 1, 1)
 
 [node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_ouvyj")
 
 [node name="ScoreText" type="Label" parent="."]
 offset_left = 24.0
@@ -82,7 +84,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("3_pk3by")
 flip_h = true
 
-[node name="IconLives" type="Sprite2D" parent="BoxContainer"]
+[node name="IconLives1" type="Sprite2D" parent="BoxContainer"]
 position = Vector2(824, 938)
 scale = Vector2(4, 4)
 texture = ExtResource("4_1xapc")
