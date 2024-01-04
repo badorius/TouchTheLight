@@ -1,19 +1,18 @@
 extends CanvasLayer
 
 @export var lives : int = 3
+@export var score : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	lives = 3
+	score = 0
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 	
-
-
-
 func update_lives(num):
 	lives -= num
 	print(lives)
@@ -34,4 +33,8 @@ func update_lives(num):
 			$BoxContainer/IconLives1.visible = true
 			$BoxContainer/IconLives2.visible = true
 			$BoxContainer/IconLives3.visible = true
+			
+func update_score(num):
+	score += num
+	$ScoreText.text = str("Score: ", score)
 

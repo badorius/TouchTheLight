@@ -123,20 +123,23 @@ func set_walkingleft():
 		set_iddle()
 			
 func hurt(damage):
-	ArrowDamage_sound.play()
-	#state_machine.travel('Hurt')
-	live -= damage
-	$ProgressBar.value = live
-	state = "Hurt"
-	
-	#FIX Random size
-	var offset_position = randi() % 20
-	var main = get_tree().current_scene
-	var D = DamageIndicator.instantiate()
-	var color = "yellow"
-	D.global_position = Vector2(global_position.x - offset_position, (global_position.y) - offset_position)
-	D.show_damage(damage, color)
-	main.add_child(D)
+	if live <= 0:
+		death()
+	else:
+		ArrowDamage_sound.play()
+		#state_machine.travel('Hurt')
+		live -= damage
+		$ProgressBar.value = live
+		state = "Hurt"
+		
+		#FIX Random size
+		var offset_position = randi() % 20
+		var main = get_tree().current_scene
+		var D = DamageIndicator.instantiate()
+		var color = "yellow"
+		D.global_position = Vector2(global_position.x - offset_position, (global_position.y) - offset_position)
+		D.show_damage(damage, color)
+		main.add_child(D)
 
 
 func do_hurt():

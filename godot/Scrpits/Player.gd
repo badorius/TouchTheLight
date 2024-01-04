@@ -5,7 +5,10 @@ const JUMP_VELOCITY = -350.0
 @export var push_force = 80.0
 
 var max_live : int = 213
+var max_mana : float = 213.0
 @export var live : int = max_live
+@export var mana : float = 0.0
+
 var state_machine
 @export var state : String = "Idle"
 @export var attack_power : int  = 10
@@ -15,17 +18,12 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var can_doublejump = true 
 
 
-#Socre vars
-@export var score : int = 0
-@export var lives : int = 3
-@onready var score_text : Label = get_node("../HUD/ScoreText")
-@onready var progress_bar : ProgressBar = get_node("../HUD/ProgressBar")
-@onready var progress_bar_light : ProgressBar = get_node("../HUD/ProgressBarLight")
-@onready var lives_text : Label = get_node("../HUD/Lives")
-
+#HUD VARS
 @onready var live_sphere : TextureProgressBar = get_node("../HUD/Live/Control/ProgressBarLive") 
 @onready var mana_sphere : TextureProgressBar = get_node("../HUD/Mana/Control/ProgressBarMana") 
 @onready var HUD : CanvasLayer = get_node("../HUD") 
+@export var score : int = 0
+@export var lives : int = 3
 
 #Load Arrow tscn
 const Arrow = preload("../Objects/Arrow.tscn")
@@ -56,8 +54,6 @@ func _ready():
 	
 	state_machine = $AnimationTree.get('parameters/playback')
 	state_machine.travel('Idle')
-	$ProgressBar.value = live
-	progress_bar.value = live
 	live_sphere.value = live
 
 
@@ -67,7 +63,6 @@ func _ready():
 	$Warrior/Area2D/CollisionShape2D.disabled = true
 	# Establecer la escala de la luz al valor base al iniciar
 	player_light.scale = base_light
-	progress_bar_light.value = 0
 
 	#SONIDOS
 	jump_sound = $Jump
@@ -137,12 +132,8 @@ func _physics_process(delta):
 
 	move_and_slide()
 	
-	#
-	# after calling move_and_slide()
-
-	
 	#Decrease light
-	decrease_light_scale(Vector2(decrease_value))
+	decrease_light_scale(0.1)
 	
 	#QUIT GAME
 	if Input.is_action_just_pressed("ui_cancel") and is_on_floor():
@@ -168,9 +159,9 @@ func slide(direction):
 #FUNC BOWING
 func bowing(arrow_direction):
 	state_machine.travel('BowShooting')
-	if progress_bar_light.value > 0:
+	if mana > 0:
 		arrow_sound.play()
-		decrease_light_scale(Vector2(decrease_value)*10)
+		decrease_light_scale(5.0)
 		var main = get_tree().current_scene
 		var A = Arrow.instantiate()
 		A.global_position = global_position
@@ -187,13 +178,13 @@ func atack1():
 	match random_atack:
 		0:
 			state_machine.travel('Atack1')
-			attack_power = 30 * player_light.scale.x
+			attack_power = 30 * ((mana / 100) + 1)
 		1:
 			state_machine.travel('Atack2') 
-			attack_power = 40 * player_light.scale.x
+			attack_power = 40 * ((mana / 100) + 1)
 		2:
 			state_machine.travel('Atack3') 
-			attack_power = 50 * player_light.scale.x
+			attack_power = 50 * ((mana / 100) + 1)
 	sword_sound.play()
 		
 func jump():
@@ -215,8 +206,8 @@ func game_quit ():
 	
 #ADD SCORE FUNCTION
 func add_score (amount):
-	score += amount
-	score_text.text = str("Score: ", score)
+	HUD.update_score(amount)
+
 	
 #UPDATE LIVES FUNCTION
 func update_lives (amount):
@@ -225,31 +216,33 @@ func update_lives (amount):
 	else:
 		live = max_live
 		live_sphere.value = live
-		mana_sphere.value = 0
+		mana_sphere.value = 0.0
 		lives -= amount
 		HUD.update_lives(amount)
 		position = checkpoint_position
 	
 # Función para incrementar la escala de la luz
-func increment_light_scale(increment_amount: Vector2):
-	if mana_sphere.value < 213:
+func increment_light_scale(increment_amount):
+	if mana < 213.0:
+		mana += increment_amount
+		mana_sphere.value += increment_amount
+		mana_sphere.value = mana
+		
 		if player_light.scale < max_light:
-			player_light.scale += increment_amount
-			mana_sphere.value += player_light.scale.x * 30
-		
-		if progress_bar_light.value < 10000:
-			progress_bar_light.value += increment_amount.x * 10000
-		
+			player_light.scale += Vector2(increment_amount/100, increment_amount/100)
 
-func decrease_light_scale(decrease_amount: Vector2):
-	if mana_sphere.value >= 0:
+
+
+func decrease_light_scale(decrease_amount):
+	if mana > 0.0:
+		mana -= decrease_amount
+		mana_sphere.value -= decrease_amount
+		mana_sphere.value = mana
+		
 		if player_light.scale >= base_light:
-			player_light.scale -= decrease_amount
-			mana_sphere.value -= decrease_amount.x * 80
-		else:
-			progress_bar_light.value = 0
-		#if progress_bar_light.value >= 1:
-			#progress_bar_light.value -= decrease_amount.x * 100
+			player_light.scale -= Vector2(decrease_amount/100, decrease_amount/100)
+
+
 		
 func do_hurt():
 	pass
@@ -261,8 +254,6 @@ func hurt(damage):
 		state_machine.travel('Hurt')
 		live -= damage
 		hurt_sound.play()
-		$ProgressBar.value = live
-		progress_bar.value = live
 		live_sphere.value = live
 		#PENDING FIX CENTER BLOOD SPHERE
 		#live_sphere.region_rect.position = live_sphere.region_rect.get_center()
@@ -288,8 +279,8 @@ func explode():
 
 
 func _on_area_2d_body_entered(body):
-		if body.is_in_group("enemies") or state == "Atack1":
-			body.hurt(attack_power)
+	if body.is_in_group("enemies"):
+		body.hurt(attack_power)
 
 
 func _on_area_2d_area_entered(area):
