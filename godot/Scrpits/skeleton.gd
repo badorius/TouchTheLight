@@ -8,19 +8,17 @@ var count = walk_count_max
 var state_machine
 @export var timer : float = 0
 @export var ArrowDamage_sound : AudioStreamPlayer2D
+@onready var player : CharacterBody2D = get_node("../Player")
 const DamageIndicator = preload("../Objects/damage_indicator.tscn")
 @export var attack_power = randi() % 10
 @export var state = "Iddle"
+@export var score_value : int = 10
 
 func _ready():
 	ArrowDamage_sound = $ArrowDamage
 	state_machine = $AnimationTree.get('parameters/playback')
 	changeSprite2D(state)
 	$ProgressBar.value = live
-	if live <= 0:
-		death()
-		state = "Death"
-		timer = 0
 	
 			
 func _process(delta):
@@ -135,6 +133,7 @@ func death():
 	state = "Death"
 	changeSprite2D(state)
 	state_machine.travel('Death')
+	player.add_score(score_value)
 	
 	
 func flip_sprite_direction(direction):

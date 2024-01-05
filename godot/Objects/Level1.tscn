@@ -2124,3 +2124,6 @@ position = Vector2(6209, 97)
 [node name="Player" parent="." instance=ExtResource("14_nbcgr")]
 position = Vector2(-174, 22)
 scale = Vector2(1, 1)
+
+[node name="NightBorne8" parent="." instance=ExtResource("13_7axb4")]
+position = Vector2(251, 197)

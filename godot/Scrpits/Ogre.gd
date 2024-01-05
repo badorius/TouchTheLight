@@ -11,13 +11,14 @@ var target_position : Vector2
 @export var timer : float = 0
 @export var live : int = 1000
 @export var ArrowDamage_sound : AudioStreamPlayer2D
+@export var StartAttack_sound : AudioStreamPlayer2D
+@export var HitAttack_sound : AudioStreamPlayer2D
 @onready var player : CharacterBody2D = get_node("../Player")
 @export var score_value : int = 100
-@export var attack_power = randi() % 30
 @export var is_over_player : bool = false
 @export var level_completed : bool = false
 const DamageIndicator = preload("../Objects/damage_indicator.tscn")
-
+const FlayingEye = preload("../Objects/FlayingEye.tscn")
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -26,6 +27,8 @@ func _ready():
 	$Sprite2D.visible = true
 	$Explode.visible = false
 	ArrowDamage_sound = $ArrowDamage
+	StartAttack_sound = $StartAttack
+	HitAttack_sound = $HitAttack
 	state_machine = $AnimationTree.get('parameters/playback')
 	#var player = get_parent().get_node("Player")
 
@@ -48,8 +51,8 @@ func _physics_process(delta):
 		state = "ChasePlayer"
 	
 	
-	if abs(global_position.distance_to(player.global_position)) <= DISTANCE_THRESHOLD:
-		set_jump()
+	#if abs(global_position.distance_to(player.global_position)) <= DISTANCE_THRESHOLD:
+	#	set_jump()
 		
 	if abs(global_position.distance_to(player.global_position)) <= DISTANCE_ATACK:
 		state = "Attack"
@@ -86,10 +89,15 @@ func set_attack():
 	if direction.x > 0:
 		get_node( "Sprite2D" ).set_flip_h( false )
 		$Sprite2D/Area2D.position.x = 0
+		$ImpactEffect.position.x = 100
 	else:
 		get_node( "Sprite2D" ).set_flip_h( true )
 		$Sprite2D/Area2D.position.x = -99
+		$ImpactEffect.position.x = -100
+	velocity.x = 0
 	state_machine.travel('Attack')
+	
+
 
 
 		
@@ -140,10 +148,17 @@ func set_jump():
 
 			
 func hurt(damage):
-	ArrowDamage_sound.play()
-	state_machine.travel('Hurt')
 	live -= damage
+	ArrowDamage_sound.play()
 	$ProgressBar.value = live
+	if live <= 0:
+		state = "Death"
+		death()
+	else:
+		state_machine.travel('Hurt')
+		state = "Hurt"
+
+
 
 
 	
@@ -158,10 +173,21 @@ func hurt(damage):
 	
 
 func do_hurt():
-	attack_power = randi() % 30
+	var attack_power = randi() % 100
 	player.hurt(attack_power)
 	
 
+func drop_enemy():
+	# Instatnce new enmies and Drop enemies
+	var main = get_tree().current_scene
+	var F = FlayingEye.instantiate()
+	F.global_position = global_position
+	#if direction == 1:
+	#	F.position.x = global_position.x + 15
+	#else:
+	#	F.position.x = global_position.x - 45
+	#F.position.y = global_position.y + 15
+	main.add_child(F)
 
 func explode():
 	pass
@@ -178,4 +204,5 @@ func death():
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("Player"):
+		var attack_power = randi() % 100
 		body.hurt(attack_power)

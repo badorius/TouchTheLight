@@ -12,9 +12,10 @@ var target_position : Vector2
 @export var live : int = 200
 @export var ArrowDamage_sound : AudioStreamPlayer2D
 @onready var player : CharacterBody2D = get_node("../Player")
-@export var score_value : int = 100
+@export var score_value : int = 50
 @export var attack_power = randi() % 30
 const DamageIndicator = preload("../Objects/damage_indicator.tscn")
+var startrun : bool = false
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -26,53 +27,53 @@ func _ready():
 	#var player = get_parent().get_node("Player")
 
 func _process(delta):
-	$ProgressBar.value = live
-	ArrowDamage_sound = $ArrowDamage
-	if live <= 0:
-		death()
-		state = "Death"
-		timer = 0
-		
-	timer += delta	
-	if timer > 3.0:
-		var random_choice = randi() % 3
-		match random_choice:
-			0:
-				state = "WalkingLeft"
-				timer = 0
-			1:
-				state = "WalkingRight"
-			2:
-				state = "Iddle"
-				timer = 0
-
-	match state:
-		"Iddle":
-			set_iddle()
-		"WalkingLeft":
-			set_walkingleft()
-		"WalkingRight":
-			set_walkingright()
-		"ChasePlayer":
-			set_chaseplayer()
-		"Attack":
-			set_attack()
-
-	#CHECK DISTANCE TO CHESE OR ATACK
-	if global_position.distance_to(player.global_position) < DISTANCE_THRESHOLD or state == "Hurt":
-		state = "ChasePlayer"
-		if global_position.distance_to(player.global_position) < DISTANCE_ATACK:
-			state = "Attack"
-	if state == "ChasePlayer":
-			$PointLight2D.enabled = true
-	else:
-			$PointLight2D.enabled = false
+		if global_position.distance_to(player.global_position) < DISTANCE_THRESHOLD * 5 or state == "Hurt":
+			startrun = true
 			
 func _physics_process(delta):
-	pass
-	# Add the gravity.
-	#if not is_on_floor():
-	#	velocity.y += gravity * delta
+	if startrun:
+		$ProgressBar.value = live
+		ArrowDamage_sound = $ArrowDamage
+		if live <= 0:
+			death()
+			state = "Death"
+			timer = 0
+			
+		timer += delta	
+		if timer > 3.0:
+			var random_choice = randi() % 3
+			match random_choice:
+				0:
+					state = "WalkingLeft"
+					timer = 0
+				1:
+					state = "WalkingRight"
+				2:
+					state = "Iddle"
+					timer = 0
+
+		match state:
+			"Iddle":
+				set_iddle()
+			"WalkingLeft":
+				set_walkingleft()
+			"WalkingRight":
+				set_walkingright()
+			"ChasePlayer":
+				set_chaseplayer()
+			"Attack":
+				set_attack()
+
+		#CHECK DISTANCE TO CHESE OR ATACK
+		if global_position.distance_to(player.global_position) < DISTANCE_THRESHOLD or state == "Hurt":
+			state = "ChasePlayer"
+			if global_position.distance_to(player.global_position) < DISTANCE_ATACK:
+				state = "Attack"
+		if state == "ChasePlayer":
+				$PointLight2D.enabled = true
+		else:
+				$PointLight2D.enabled = false
+
 	move_and_slide()
 	
 				
