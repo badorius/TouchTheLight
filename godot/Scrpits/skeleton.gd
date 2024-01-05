@@ -10,7 +10,6 @@ var state_machine
 @export var ArrowDamage_sound : AudioStreamPlayer2D
 @onready var player : CharacterBody2D = get_node("../Player")
 const DamageIndicator = preload("../Objects/damage_indicator.tscn")
-@export var attack_power = randi() % 10
 @export var state = "Iddle"
 @export var score_value : int = 10
 
@@ -152,8 +151,10 @@ func flip_sprite_direction(direction):
 
 
 func _on_area_2d_body_entered(body):
-	attack_power = randi() % 10
+	var attack_power = randi() % 10
 	if body.is_in_group("Player"):
 		state = "Shield"
 		punch_shield()
 		body.hurt(attack_power)
+
+

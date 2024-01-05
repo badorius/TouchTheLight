@@ -109,37 +109,13 @@ tracks/4/keys = {
 "update": 1,
 "values": [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 }
-tracks/5/type = "value"
+tracks/5/type = "method"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("StartAttack:playing")
+tracks/5/path = NodePath(".")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("HitAttack:playing")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0.86),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/7/type = "method"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath(".")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(0.86),
 "transitions": PackedFloat32Array(1),
 "values": [{
@@ -147,6 +123,36 @@ tracks/7/keys = {
 "method": &"drop_enemy"
 }]
 }
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("StartAttack")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("6_h8kdp")
+}],
+"times": PackedFloat32Array(0.37)
+}
+tracks/6/use_blend = true
+tracks/7/type = "audio"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("HitAttack")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("7_ds00c")
+}],
+"times": PackedFloat32Array(0.86)
+}
+tracks/7/use_blend = true
 
 [sub_resource type="Animation" id="Animation_7luyj"]
 resource_name = "Run"
@@ -349,30 +355,6 @@ tracks/6/keys = {
 "update": 1,
 "values": [11]
 }
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("StartAttack:playing")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("HitAttack:playing")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="Animation" id="Animation_hmhc3"]
 resource_name = "Run"
@@ -512,10 +494,8 @@ shape = SubResource("RectangleShape2D_vo174")
 stream = ExtResource("3_qxc35")
 
 [node name="StartAttack" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_h8kdp")
 
 [node name="HitAttack" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_ds00c")
 
 [node name="ProgressBar" parent="." instance=ExtResource("4_0of2f")]
 offset_left = -39.0
