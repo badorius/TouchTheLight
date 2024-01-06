@@ -1,7 +1,8 @@
-[gd_scene load_steps=33 format=3 uid="uid://d07i3cdmomp8e"]
+[gd_scene load_steps=34 format=3 uid="uid://d07i3cdmomp8e"]
 
 [ext_resource type="Texture2D" uid="uid://ccpnn3i3xafue" path="res://Assets/Tileset/Level1.png" id="1_5gl51"]
 [ext_resource type="Texture2D" uid="uid://dqljktroyridq" path="res://Assets/Background/HauntedForest/Props/tree.png" id="1_gkfah"]
+[ext_resource type="PackedScene" uid="uid://dxll0eoj3r4ef" path="res://Objects/MainCamera.tscn" id="1_i7soj"]
 [ext_resource type="PackedScene" uid="uid://ckg70tmgkprf8" path="res://Objects/platform_level_1h.tscn" id="2_bmhaf"]
 [ext_resource type="Texture2D" uid="uid://dgrf5yy23k4ym" path="res://Assets/Background/FortOfIllusion/tileset.png" id="2_febr0"]
 [ext_resource type="Texture2D" uid="uid://c8w35too74aty" path="res://Assets/Background/HauntedForest/water-tileset.png" id="2_sf1pl"]
@@ -1851,6 +1852,8 @@ sources/0 = SubResource("TileSetAtlasSource_x2343")
 [node name="Level1" type="Node2D"]
 position = Vector2(18, 2)
 
+[node name="Camera2D" parent="." instance=ExtResource("1_i7soj")]
+
 [node name="Trees" type="Node2D" parent="."]
 
 [node name="Tree" type="Sprite2D" parent="Trees"]
@@ -1969,7 +1972,6 @@ visible = false
 [node name="HUD" parent="." instance=ExtResource("18_gh1o4")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 position = Vector2(0, -16)
 color = Color(0, 0, 0, 1)
 
