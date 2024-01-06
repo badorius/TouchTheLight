@@ -352,8 +352,9 @@ texture_progress = ExtResource("10_wym1h")
 
 [node name="Virtual Joystick" parent="." instance=ExtResource("10_118px")]
 modulate = Color(0.568627, 0.113725, 0.054902, 0.294118)
-offset_left = 42.0
-offset_top = -379.0
-offset_right = 342.0
-offset_bottom = -79.0
+offset_left = -32.0
+offset_top = -456.0
+offset_right = 268.0
+offset_bottom = -156.0
+scale = Vector2(1.5, 1.5)
 visibility_mode = 1
