@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://d07i3cdmomp8e"]
+[gd_scene load_steps=37 format=3 uid="uid://d07i3cdmomp8e"]
 
 [ext_resource type="Texture2D" uid="uid://ccpnn3i3xafue" path="res://Assets/Tileset/Level1.png" id="1_5gl51"]
 [ext_resource type="Texture2D" uid="uid://dqljktroyridq" path="res://Assets/Background/HauntedForest/Props/tree.png" id="1_gkfah"]
@@ -25,6 +25,9 @@
 [ext_resource type="PackedScene" uid="uid://de2d43ynvsgip" path="res://Objects/FlayingEye.tscn" id="16_ptn12"]
 [ext_resource type="PackedScene" uid="uid://bgi84ioegb3g6" path="res://Objects/hud.tscn" id="18_gh1o4"]
 [ext_resource type="Texture2D" uid="uid://deaw5e7ljld6i" path="res://Assets/Background/HauntedForest/Props/tree-2.png" id="22_yjjfu"]
+[ext_resource type="PackedScene" uid="uid://clms4vxi7fjov" path="res://Objects/ArrowItemDrop.tscn" id="26_6v6i8"]
+[ext_resource type="PackedScene" uid="uid://y1d0hktabdah" path="res://Objects/BootsItemDrop.tscn" id="27_dxknq"]
+[ext_resource type="PackedScene" uid="uid://rwpof47pjb7g" path="res://Objects/CoatItemDrop.tscn" id="28_kq33f"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uwy2i"]
 texture = ExtResource("1_5gl51")
@@ -1972,6 +1975,7 @@ visible = false
 [node name="HUD" parent="." instance=ExtResource("18_gh1o4")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 position = Vector2(0, -16)
 color = Color(0, 0, 0, 1)
 
@@ -2123,9 +2127,38 @@ position = Vector2(5874, 89)
 [node name="FlayingEye6" parent="." instance=ExtResource("16_ptn12")]
 position = Vector2(6209, 97)
 
+[node name="DropItems" type="Node2D" parent="."]
+
+[node name="ArrowItemDrop" parent="DropItems" instance=ExtResource("26_6v6i8")]
+position = Vector2(-239, 123)
+
+[node name="BootsItemDrop" parent="DropItems" instance=ExtResource("27_dxknq")]
+position = Vector2(-213, 124)
+
+[node name="BootsItemDrop2" parent="DropItems" instance=ExtResource("27_dxknq")]
+position = Vector2(170, 236)
+
+[node name="BootsItemDrop3" parent="DropItems" instance=ExtResource("27_dxknq")]
+position = Vector2(1151, 237)
+
+[node name="BootsItemDrop4" parent="DropItems" instance=ExtResource("27_dxknq")]
+position = Vector2(1651, 236)
+
+[node name="BootsItemDrop5" parent="DropItems" instance=ExtResource("27_dxknq")]
+position = Vector2(2093, 237)
+
+[node name="BootsItemDrop6" parent="DropItems" instance=ExtResource("27_dxknq")]
+position = Vector2(2173, 124)
+
+[node name="ArrowItemDrop2" parent="DropItems" instance=ExtResource("26_6v6i8")]
+position = Vector2(2507, 122)
+
+[node name="BootsItemDrop7" parent="DropItems" instance=ExtResource("27_dxknq")]
+position = Vector2(2881, 124)
+
+[node name="CoatItemDrop" parent="DropItems" instance=ExtResource("28_kq33f")]
+position = Vector2(37, 233)
+
 [node name="Player" parent="." instance=ExtResource("14_nbcgr")]
 position = Vector2(-174, 22)
 scale = Vector2(1, 1)
-
-[node name="NightBorne8" parent="." instance=ExtResource("13_7axb4")]
-position = Vector2(251, 197)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://cf4d021lelowr"]
+[gd_scene load_steps=63 format=3 uid="uid://cf4d021lelowr"]
 
 [ext_resource type="Script" path="res://Scrpits/Player.gd" id="1_f0k0l"]
 [ext_resource type="Texture2D" uid="uid://cnvl248iy658b" path="res://Assets/Player/RedHood/red hood itch free Copy-Sheet.png" id="2_phcmd"]
@@ -44,6 +44,8 @@ fill_from = Vector2(0.490826, 0.477064)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ybt7b"]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mq8xk"]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k62l2"]
 radius = 6.0
 height = 32.0
@@ -67,7 +69,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Warrior/Area2D/CollisionShape2D:disabled")
+tracks/1/path = NodePath("Warrior/Area2DSword/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -96,7 +98,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Warrior/Area2D/CollisionShape2D:disabled")
+tracks/1/path = NodePath("Warrior/Area2DSword/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -125,7 +127,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Warrior/Area2D/CollisionShape2D:disabled")
+tracks/1/path = NodePath("Warrior/Area2DSword/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -291,7 +293,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Warrior/Area2D/CollisionShape2D:disabled")
+tracks/5/path = NodePath("Warrior/Area2DSword/CollisionShape2D:disabled")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -523,11 +525,18 @@ material = SubResource("CanvasItemMaterial_pahb3")
 position = Vector2(2.84782, -11.411)
 texture = SubResource("GradientTexture2D_52isb")
 
-[node name="Area2D" type="Area2D" parent="Warrior"]
+[node name="Area2DSword" type="Area2D" parent="Warrior"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Warrior/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Warrior/Area2DSword"]
 position = Vector2(16, 14)
 shape = SubResource("RectangleShape2D_ybt7b")
+
+[node name="Area2DBody" type="Area2D" parent="Warrior"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Warrior/Area2DBody"]
+position = Vector2(0, 14)
+scale = Vector2(0.661233, 0.953084)
+shape = SubResource("CapsuleShape2D_mq8xk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -562,5 +571,6 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_nqriw")
 anim_player = NodePath("../AnimationPlayer")
 
-[connection signal="area_entered" from="Warrior/Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="body_entered" from="Warrior/Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="Warrior/Area2DSword" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Warrior/Area2DSword" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Warrior/Area2DBody" to="." method="_on_area_2d_body_body_entered"]

@@ -1,0 +1,210 @@
+[gd_scene load_steps=20 format=3 uid="uid://doxwwx4uh8vcx"]
+
+[ext_resource type="Script" path="res://Scrpits/Magic1.gd" id="1_eehyy"]
+[ext_resource type="Texture2D" uid="uid://cs1i5ght724md" path="res://Assets/Impact/Retro Impact Effect Pack 3 C.png" id="2_sc6aa"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7pdie"]
+blend_mode = 1
+light_mode = 2
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Gradient" id="Gradient_q2y52"]
+offsets = PackedFloat32Array(0, 0.645161)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2wgaa"]
+gradient = SubResource("Gradient_q2y52")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.513761, 0.490826)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jf025"]
+blend_mode = 1
+light_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_lt4wh"]
+offsets = PackedFloat32Array(0, 0.567742)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2qj11"]
+gradient = SubResource("Gradient_lt4wh")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.490826, 0.477064)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_56qty"]
+radius = 2.63158
+height = 5.26316
+
+[sub_resource type="Animation" id="Animation_lhp2a"]
+resource_name = "Arrow_Explode"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RetroImpactEffectPack3C:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.9),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Magic1:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_45wca"]
+resource_name = "Arrow_Fire"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RetroImpactEffectPack3C:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_782hk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RetroImpactEffectPack3C:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RetroImpactEffectPack3C:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Magic1:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_og2ca"]
+_data = {
+"Arrow_Explode": SubResource("Animation_lhp2a"),
+"Arrow_Fire": SubResource("Animation_45wca"),
+"RESET": SubResource("Animation_782hk")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8qlnu"]
+animation = &"Arrow_Explode"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y670f"]
+animation = &"Arrow_Fire"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sunsf"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_036yo"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xrabp"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_k0xtr"]
+states/Arrow_Explode/node = SubResource("AnimationNodeAnimation_8qlnu")
+states/Arrow_Explode/position = Vector2(711, 99)
+states/Arrow_Fire/node = SubResource("AnimationNodeAnimation_y670f")
+states/Arrow_Fire/position = Vector2(433, 97)
+transitions = ["Start", "Arrow_Fire", SubResource("AnimationNodeStateMachineTransition_sunsf"), "Arrow_Fire", "Arrow_Explode", SubResource("AnimationNodeStateMachineTransition_036yo"), "Arrow_Explode", "End", SubResource("AnimationNodeStateMachineTransition_xrabp")]
+
+[node name="Magic1" type="Area2D" groups=["arrow"]]
+script = ExtResource("1_eehyy")
+
+[node name="Magic1" type="Sprite2D" parent="."]
+visible = false
+
+[node name="PointLight2D" type="PointLight2D" parent="Magic1"]
+material = SubResource("CanvasItemMaterial_7pdie")
+position = Vector2(-1, 1)
+scale = Vector2(0.2, 0.2)
+texture = SubResource("GradientTexture2D_2wgaa")
+
+[node name="Alo" type="Sprite2D" parent="Magic1/PointLight2D"]
+modulate = Color(0, 0.247059, 0.741176, 0.8)
+material = SubResource("CanvasItemMaterial_jf025")
+position = Vector2(2.84782, -11.411)
+texture = SubResource("GradientTexture2D_2qj11")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(7, 0)
+scale = Vector2(1.17122, 0.96)
+shape = SubResource("CapsuleShape2D_56qty")
+
+[node name="RetroImpactEffectPack3C" type="Sprite2D" parent="."]
+position = Vector2(-7, 0)
+texture = ExtResource("2_sc6aa")
+hframes = 6
+vframes = 23
+frame = 6
+
+[node name="AnimationImpact" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_og2ca")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_og2ca")
+}
+tree_root = SubResource("AnimationNodeStateMachine_k0xtr")
+anim_player = NodePath("../AnimationImpact")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

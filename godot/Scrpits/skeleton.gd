@@ -13,6 +13,10 @@ const DamageIndicator = preload("../Objects/damage_indicator.tscn")
 @export var state = "Iddle"
 @export var score_value : int = 10
 
+const BootsItemDrop = preload("../Objects/BootsItemDrop.tscn")
+const ArrowItemDrop = preload("../Objects/ArrowItemDrop.tscn")
+const CoatItemDrop = preload("../Objects/CoatItemDrop.tscn")
+
 func _ready():
 	ArrowDamage_sound = $ArrowDamage
 	state_machine = $AnimationTree.get('parameters/playback')
@@ -25,23 +29,24 @@ func _process(delta):
 
 
 func _physics_process(delta):
-	timer += delta	
-	if timer > 1.0:
-		var random_choice = randi() % 2
-		match random_choice:
-			0:
-				state = "Walk"
-				timer = 0
+	if state != "Death":
+		timer += delta	
+		if timer > 1.0:
+			var random_choice = randi() % 2
+			match random_choice:
+				0:
+					state = "Walk"
+					timer = 0
 
-			1:
-				state = "Iddle"
-				timer = 0
+				1:
+					state = "Iddle"
+					timer = 0
 
 	match state:
 		"Walk":	
 			walk(delta)
-		"Death":
-			death()
+		#"Death":
+		#	death()
 		"Shield":
 			$Shield.visible = true
 		"Hit":
@@ -81,7 +86,7 @@ func punch_shield():
 	state_machine.travel('Shield')
 			
 func hurt(damage):
-		if live <= 0:
+		if live <= 0 and state != "Death":
 			death()
 		
 		else:
@@ -133,6 +138,7 @@ func death():
 	changeSprite2D(state)
 	state_machine.travel('Death')
 	player.add_score(score_value)
+	drop_item()
 	
 	
 func flip_sprite_direction(direction):
@@ -149,6 +155,44 @@ func flip_sprite_direction(direction):
 		get_node( "Hit" ).set_flip_h( true )
 		get_node( "Iddle" ).set_flip_h( true )
 
+
+
+func drop_item():
+		var main = get_tree().current_scene
+		var rnd = randi() % 4
+		match rnd:
+			0:
+				var A = BootsItemDrop.instantiate()
+				A.global_position = global_position
+				if direction == 1:
+					A.position.x = global_position.x + 15
+				else:
+					A.position.x = global_position.x - 45
+				A.position.y = global_position.y + 15
+				main.add_child(A)
+			1:
+				var A = ArrowItemDrop.instantiate()
+				A.global_position = global_position
+				if direction == 1:
+					A.position.x = global_position.x + 15
+				else:
+					A.position.x = global_position.x - 45
+				A.position.y = global_position.y + 15
+				main.add_child(A)
+			2:
+				var A = CoatItemDrop.instantiate()
+				A.global_position = global_position
+				if direction == 1:
+					A.position.x = global_position.x + 15
+				else:
+					A.position.x = global_position.x - 45
+				A.position.y = global_position.y + 15
+				main.add_child(A)
+			3:
+				pass
+			4:
+				pass
+				
 
 func _on_area_2d_body_entered(body):
 	var attack_power = randi() % 10

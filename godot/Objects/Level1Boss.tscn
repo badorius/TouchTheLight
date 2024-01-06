@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://bvnrpr7hr4em0"]
+[gd_scene load_steps=18 format=3 uid="uid://bvnrpr7hr4em0"]
 
+[ext_resource type="PackedScene" uid="uid://dxll0eoj3r4ef" path="res://Objects/MainCamera.tscn" id="1_6dogm"]
 [ext_resource type="Texture2D" uid="uid://ccpnn3i3xafue" path="res://Assets/Tileset/Level1.png" id="1_rsxci"]
 [ext_resource type="Texture2D" uid="uid://dgrf5yy23k4ym" path="res://Assets/Background/FortOfIllusion/tileset.png" id="2_efvc0"]
 [ext_resource type="Texture2D" uid="uid://20vn6oum3pec" path="res://Assets/Background/FortOfIllusion/Props/flag.png" id="3_d3eo7"]
@@ -1166,6 +1167,8 @@ sources/1 = SubResource("TileSetAtlasSource_tyim1")
 
 [node name="Level1Boss" type="Node2D"]
 position = Vector2(18, 2)
+
+[node name="Camera2D" parent="." instance=ExtResource("1_6dogm")]
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(-10, -165)

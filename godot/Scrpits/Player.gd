@@ -1,6 +1,9 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
+const MINSPEED = 100
+@export var SPEED = MINSPEED
+const MAXSPEED = 300
+
 const JUMP_VELOCITY = -350.0
 @export var push_force = 80.0
 
@@ -8,6 +11,8 @@ var max_live : int = 213
 var max_mana : float = 213.0
 @export var live : int = max_live
 @export var mana : float = 0.0
+@export var arrows : int = 0
+@export var coat : int = 0
 
 var state_machine
 @export var state : String = "Idle"
@@ -16,6 +21,7 @@ var state_machine
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 #Var for double jump
 var can_doublejump = true 
+@export var direction = Input.get_axis("ui_left", "ui_right")
 
 
 #HUD VARS
@@ -60,7 +66,7 @@ func _ready():
 	# Utiliza get_node para acceder al nodo "Warrior" y luego al nodo "PointLight2D" dentro de él
 	player_light = $Warrior/PointLight2D
 	#Set default sword collision disabled
-	$Warrior/Area2D/CollisionShape2D.disabled = true
+	$Warrior/Area2DSword/CollisionShape2D.disabled = true
 	# Establecer la escala de la luz al valor base al iniciar
 	player_light.scale = base_light
 
@@ -73,7 +79,7 @@ func _ready():
 	
 	
 func _physics_process(delta):
-	var direction = Input.get_axis("ui_left", "ui_right")
+	direction = Input.get_axis("ui_left", "ui_right")
 	# Get the input direction and handle the movement/deceleration and orientation.
 	if direction:
 		arrow_direction = direction
@@ -83,11 +89,11 @@ func _physics_process(delta):
 		walk(direction)
 		if direction == -1:
 			get_node( "Warrior" ).set_flip_h( false )
-			$Warrior/Area2D.position.x = -34
+			$Warrior/Area2DSword.position.x = -34
 
 		if direction == 1:
 			get_node( "Warrior" ).set_flip_h( true )
-			$Warrior/Area2D.position.x = 0
+			$Warrior/Area2DSword.position.x = 0
 
 			
 		# Slide Down
@@ -114,9 +120,10 @@ func _physics_process(delta):
 		state = "Jump"
 		can_doublejump = true
 		jump()
-	elif Input.is_action_just_pressed("ui_accept") and !is_on_floor() and can_doublejump:
+	elif Input.is_action_just_pressed("ui_accept") and !is_on_floor() and can_doublejump and coat > 0:
 		state = "Jump"
 		can_doublejump = false
+		update_coat(-1)
 		jump()
 
 
@@ -159,7 +166,60 @@ func slide(direction):
 #FUNC BOWING
 func bowing(arrow_direction):
 	state_machine.travel('BowShooting')
+	if arrows > 0:
+		update_arrows(-1)
+		arrow_sound.play()
+		var main = get_tree().current_scene
+		var A = Arrow.instantiate()
+		A.global_position = global_position
+		if arrow_direction == 1:
+			A.position.x = global_position.x + 15
+		else:
+			A.position.x = global_position.x - 45
+		A.position.y = global_position.y + 15
+		A.direction = arrow_direction
+		main.add_child(A)
+		
+		
+#FUNC BOWING
+func magic1(arrow_direction):
+	state_machine.travel('BowShooting')
 	if mana > 0:
+		update_magic1()
+		arrow_sound.play()
+		decrease_light_scale(5.0)
+		var main = get_tree().current_scene
+		var A = Arrow.instantiate()
+		A.global_position = global_position
+		if arrow_direction == 1:
+			A.position.x = global_position.x + 15
+		else:
+			A.position.x = global_position.x - 45
+		A.position.y = global_position.y + 15
+		A.direction = arrow_direction
+		main.add_child(A)
+
+func magic2(arrow_direction):
+	state_machine.travel('BowShooting')
+	if mana > 0:
+		update_magic2()
+		arrow_sound.play()
+		decrease_light_scale(5.0)
+		var main = get_tree().current_scene
+		var A = Arrow.instantiate()
+		A.global_position = global_position
+		if arrow_direction == 1:
+			A.position.x = global_position.x + 15
+		else:
+			A.position.x = global_position.x - 45
+		A.position.y = global_position.y + 15
+		A.direction = arrow_direction
+		main.add_child(A)
+
+func magic3(arrow_direction):
+	state_machine.travel('BowShooting')
+	if mana > 0:
+		update_magic3()
 		arrow_sound.play()
 		decrease_light_scale(5.0)
 		var main = get_tree().current_scene
@@ -191,7 +251,8 @@ func jump():
 	jump_sound.play()
 	velocity.y = JUMP_VELOCITY
 	state_machine.travel('Jump')
-	
+
+		
 func iddle():
 	state_machine.travel('Idle')
 
@@ -207,7 +268,28 @@ func game_quit ():
 #ADD SCORE FUNCTION
 func add_score (amount):
 	HUD.update_score(amount)
+	
+func update_arrows (amount):
+	arrows += amount
+	HUD.update_arrows(amount)
+	
+func update_boots (amount):
+	if SPEED < MAXSPEED:
+		SPEED += amount
+		HUD.update_boots(amount)
+		
+func update_coat (amount):
+	coat += amount
+	HUD.update_coat(amount)
 
+func update_magic1 ():
+	HUD.update_magic1(int(mana))
+
+func update_magic2 ():
+	HUD.update_magic2(int(mana))
+
+func update_magic3 ():
+	HUD.update_magic3(int(mana))
 	
 #UPDATE LIVES FUNCTION
 func update_lives (amount):
@@ -231,6 +313,10 @@ func increment_light_scale(increment_amount):
 		if player_light.scale < max_light:
 			player_light.scale += Vector2(increment_amount/100, increment_amount/100)
 
+	if mana > 0:
+		update_magic1()
+		update_magic2()
+		update_magic3()
 
 
 func decrease_light_scale(decrease_amount):
@@ -242,7 +328,10 @@ func decrease_light_scale(decrease_amount):
 		if player_light.scale >= base_light:
 			player_light.scale -= Vector2(decrease_amount/100, decrease_amount/100)
 
-
+	if mana > 0:
+		update_magic1()
+		update_magic2()
+		update_magic3()
 		
 func do_hurt():
 	pass
@@ -269,6 +358,18 @@ func hurt(damage):
 
 		if live <= 0:
 			update_lives(1)
+
+#PENDING FIX GOOD BOUNCE EFECT SEE BOUNCE GODOT
+func bounce():
+	if direction < 0:
+		global_position.x += 3
+		hurt(1)
+		print("Bounce right")
+		
+	else:
+		global_position.x -= 3
+		hurt(1)
+		print("Bounce left")
 		
 func explode():
 	pass
@@ -287,4 +388,6 @@ func _on_area_2d_area_entered(area):
 		get_tree().change_scene_to_file("res://Objects/Level1Boss.tscn")
 		
 
-
+func _on_area_2d_body_body_entered(body):
+	if body.is_in_group("enemies"):
+		bounce()

@@ -1,0 +1,91 @@
+[gd_scene load_steps=14 format=3 uid="uid://clms4vxi7fjov"]
+
+[ext_resource type="Script" path="res://Scrpits/ArrowItemDrop.gd" id="1_dkmy6"]
+[ext_resource type="Texture2D" uid="uid://wwpar4rnrsfk" path="res://Assets/Icons/Quiver_0.png" id="2_foj1y"]
+[ext_resource type="AudioStream" uid="uid://dhc3kia3e06e8" path="res://SoundFX/Minifantasy_Dungeon_SFX/LightCatch.mp3" id="3_2cg17"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cu7ks"]
+blend_mode = 1
+light_mode = 2
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Gradient" id="Gradient_whf75"]
+offsets = PackedFloat32Array(0, 0.645161)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nxopm"]
+gradient = SubResource("Gradient_whf75")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.513761, 0.490826)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_41qik"]
+blend_mode = 1
+light_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_n7ywo"]
+offsets = PackedFloat32Array(0, 0.567742)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vpl58"]
+gradient = SubResource("Gradient_n7ywo")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.490826, 0.477064)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2ukha"]
+radius = 4.0
+
+[sub_resource type="Animation" id="Animation_p0lt4"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_eo2u1"]
+resource_name = "wait"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pvgiw"]
+_data = {
+"RESET": SubResource("Animation_p0lt4"),
+"wait": SubResource("Animation_eo2u1")
+}
+
+[node name="ArrowItemDrop" type="Area2D" groups=["Torch"]]
+position = Vector2(43, 2)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_dkmy6")
+
+[node name="ArrowItemDrop" type="Sprite2D" parent="."]
+position = Vector2(-44, -4)
+texture = ExtResource("2_foj1y")
+
+[node name="PointLight2D" type="PointLight2D" parent="ArrowItemDrop"]
+material = SubResource("CanvasItemMaterial_cu7ks")
+position = Vector2(1, -3)
+scale = Vector2(0.3, 0.3)
+texture = SubResource("GradientTexture2D_nxopm")
+
+[node name="Alo" type="Sprite2D" parent="ArrowItemDrop/PointLight2D"]
+modulate = Color(0, 0.247059, 0.741176, 0.8)
+material = SubResource("CanvasItemMaterial_41qik")
+position = Vector2(2.84782, -11.411)
+texture = SubResource("GradientTexture2D_vpl58")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-43, -22)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_2ukha")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pvgiw")
+}
+
+[node name="LightCatch" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_2cg17")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
