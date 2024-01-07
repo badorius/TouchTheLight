@@ -49,10 +49,10 @@ theme_override_font_sizes/font_size = 20
 text = "Player 1 Score: 0"
 
 [node name="Instructions" type="Label" parent="."]
-offset_left = 1255.0
-offset_top = 16.0
-offset_right = 1905.0
-offset_bottom = 47.0
+offset_left = 1152.0
+offset_top = 24.0
+offset_right = 1852.0
+offset_bottom = 55.0
 theme_override_colors/font_color = Color(0.819608, 0.984314, 0.682353, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
