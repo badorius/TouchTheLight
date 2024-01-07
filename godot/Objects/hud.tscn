@@ -358,3 +358,17 @@ offset_right = 268.0
 offset_bottom = -156.0
 scale = Vector2(1.5, 1.5)
 visibility_mode = 1
+action_up = "ui_accept"
+
+[node name="Virtual Joystick2" parent="." instance=ExtResource("10_118px")]
+modulate = Color(0.0862745, 0.305882, 0.584314, 0.294118)
+offset_left = 1501.0
+offset_top = -463.0
+offset_right = 1801.0
+offset_bottom = -163.0
+scale = Vector2(1.5, 1.5)
+visibility_mode = 1
+action_left = "ui_fire1"
+action_right = "ui_fire2"
+action_up = "ui_fire1"
+action_down = "ui_fire2"
