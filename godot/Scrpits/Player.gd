@@ -3,9 +3,10 @@ extends CharacterBody2D
 const MINSPEED = 100
 @export var SPEED = MINSPEED
 const MAXSPEED = 300
-
+var bounce_strenght = 0.7
 const JUMP_VELOCITY = -350.0
 @export var push_force = 80.0
+
 
 var max_live : int = 213
 var max_mana : float = 213.0
@@ -136,9 +137,8 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_fire2"):
 		state = "Atack1"
 		atack1()
-
+			
 	move_and_slide()
-	
 	#Decrease light
 	decrease_light_scale(0.1)
 	
@@ -181,7 +181,7 @@ func bowing(arrow_direction):
 		main.add_child(A)
 		
 		
-#FUNC BOWING
+#FUNC MAGIC
 func magic1(arrow_direction):
 	state_machine.travel('BowShooting')
 	if mana > 0:
@@ -362,12 +362,10 @@ func hurt(damage):
 #PENDING FIX GOOD BOUNCE EFECT SEE BOUNCE GODOT
 func bounce():
 	if direction < 0:
-		global_position.x += 3
 		hurt(1)
 		print("Bounce right")
 		
 	else:
-		global_position.x -= 3
 		hurt(1)
 		print("Bounce left")
 		
