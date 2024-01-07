@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=3 uid="uid://cf4d021lelowr"]
+[gd_scene load_steps=68 format=3 uid="uid://cf4d021lelowr"]
 
 [ext_resource type="Script" path="res://Scrpits/Player.gd" id="1_f0k0l"]
 [ext_resource type="Texture2D" uid="uid://cnvl248iy658b" path="res://Assets/Player/RedHood/red hood itch free Copy-Sheet.png" id="2_phcmd"]
@@ -156,7 +156,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_hmk2s"]
 resource_name = "Hurt"
-length = 0.25
+length = 0.4
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -165,7 +165,7 @@ tracks/0/path = NodePath("Warrior:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.03, 0.06, 0.09, 0.12, 0.15, 0.18),
+"times": PackedFloat32Array(0, 0.06, 0.12, 0.18, 0.24, 0.3, 0.36),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector2i(0, 10), Vector2i(1, 10), Vector2i(2, 10), Vector2i(3, 10), Vector2i(4, 10), Vector2i(5, 10), Vector2i(6, 10)]
@@ -377,6 +377,35 @@ tracks/1/keys = {
 [sub_resource type="Animation" id="Animation_uhi3d"]
 resource_name = "new_animation"
 
+[sub_resource type="Animation" id="Animation_8uyjn"]
+resource_name = "Hurt"
+length = 0.25
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Warrior:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.03, 0.06, 0.09, 0.12, 0.15, 0.18),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 10), Vector2i(1, 10), Vector2i(2, 10), Vector2i(3, 10), Vector2i(4, 10), Vector2i(5, 10), Vector2i(6, 10)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:state")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.24),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["Idle", "Idle"]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gp6am"]
 _data = {
 "Atack1": SubResource("Animation_aiyqu"),
@@ -384,6 +413,7 @@ _data = {
 "Atack3": SubResource("Animation_dkk7b"),
 "BowShooting": SubResource("Animation_py5bb"),
 "Hurt": SubResource("Animation_hmk2s"),
+"HurtCollide": SubResource("Animation_8uyjn"),
 "Idle": SubResource("Animation_g5qhi"),
 "Jump": SubResource("Animation_fn0cp"),
 "RESET": SubResource("Animation_ftjm6"),
@@ -406,6 +436,9 @@ animation = &"BowShooting"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r4qcs"]
 animation = &"Hurt"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ixxhn"]
+animation = &"HurtCollide"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p857f"]
 animation = &"Idle"
@@ -478,6 +511,13 @@ switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aokv5"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_himpm"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o7pwk"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_67xbj"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_nqriw"]
 states/Atack1/node = SubResource("AnimationNodeAnimation_u42ap")
 states/Atack1/position = Vector2(116, -4)
@@ -490,6 +530,8 @@ states/BowShooting/position = Vector2(8, 59)
 states/End/position = Vector2(927, 200)
 states/Hurt/node = SubResource("AnimationNodeAnimation_r4qcs")
 states/Hurt/position = Vector2(895, 476)
+states/HurtCollide/node = SubResource("AnimationNodeAnimation_ixxhn")
+states/HurtCollide/position = Vector2(764.748, 218.73)
 states/Idle/node = SubResource("AnimationNodeAnimation_p857f")
 states/Idle/position = Vector2(241, 200)
 states/Jump/node = SubResource("AnimationNodeAnimation_s7gsv")
@@ -499,8 +541,8 @@ states/SlideDown/position = Vector2(475, 427)
 states/Start/position = Vector2(-145, 200)
 states/WalkRight/node = SubResource("AnimationNodeAnimation_kph6w")
 states/WalkRight/position = Vector2(91, 484)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_txkri"), "Idle", "Hurt", SubResource("AnimationNodeStateMachineTransition_ljdhm"), "Hurt", "Idle", SubResource("AnimationNodeStateMachineTransition_opp2q"), "Idle", "BowShooting", SubResource("AnimationNodeStateMachineTransition_gkfjh"), "BowShooting", "Idle", SubResource("AnimationNodeStateMachineTransition_10sck"), "Idle", "Atack1", SubResource("AnimationNodeStateMachineTransition_cwamc"), "Atack1", "Idle", SubResource("AnimationNodeStateMachineTransition_fv22o"), "Idle", "WalkRight", SubResource("AnimationNodeStateMachineTransition_6gxby"), "WalkRight", "Idle", SubResource("AnimationNodeStateMachineTransition_ylxy5"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_4hyks"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_pjqr6"), "SlideDown", "Idle", SubResource("AnimationNodeStateMachineTransition_78v02"), "Idle", "SlideDown", SubResource("AnimationNodeStateMachineTransition_o41a2"), "Hurt", "End", SubResource("AnimationNodeStateMachineTransition_flcjr"), "BowShooting", "WalkRight", SubResource("AnimationNodeStateMachineTransition_gumam"), "WalkRight", "BowShooting", SubResource("AnimationNodeStateMachineTransition_48t3i"), "Idle", "Atack2", SubResource("AnimationNodeStateMachineTransition_a20mk"), "Atack2", "Idle", SubResource("AnimationNodeStateMachineTransition_nl1iy"), "Atack3", "Idle", SubResource("AnimationNodeStateMachineTransition_531vj"), "Idle", "Atack3", SubResource("AnimationNodeStateMachineTransition_f487j"), "Hurt", "WalkRight", SubResource("AnimationNodeStateMachineTransition_seru0"), "WalkRight", "Hurt", SubResource("AnimationNodeStateMachineTransition_hak1x"), "SlideDown", "WalkRight", SubResource("AnimationNodeStateMachineTransition_qolep"), "WalkRight", "SlideDown", SubResource("AnimationNodeStateMachineTransition_aokv5")]
-graph_offset = Vector2(-406, 107.73)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_txkri"), "Idle", "Hurt", SubResource("AnimationNodeStateMachineTransition_ljdhm"), "Hurt", "Idle", SubResource("AnimationNodeStateMachineTransition_opp2q"), "Idle", "BowShooting", SubResource("AnimationNodeStateMachineTransition_gkfjh"), "BowShooting", "Idle", SubResource("AnimationNodeStateMachineTransition_10sck"), "Idle", "Atack1", SubResource("AnimationNodeStateMachineTransition_cwamc"), "Atack1", "Idle", SubResource("AnimationNodeStateMachineTransition_fv22o"), "Idle", "WalkRight", SubResource("AnimationNodeStateMachineTransition_6gxby"), "WalkRight", "Idle", SubResource("AnimationNodeStateMachineTransition_ylxy5"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_4hyks"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_pjqr6"), "SlideDown", "Idle", SubResource("AnimationNodeStateMachineTransition_78v02"), "Idle", "SlideDown", SubResource("AnimationNodeStateMachineTransition_o41a2"), "Hurt", "End", SubResource("AnimationNodeStateMachineTransition_flcjr"), "BowShooting", "WalkRight", SubResource("AnimationNodeStateMachineTransition_gumam"), "WalkRight", "BowShooting", SubResource("AnimationNodeStateMachineTransition_48t3i"), "Idle", "Atack2", SubResource("AnimationNodeStateMachineTransition_a20mk"), "Atack2", "Idle", SubResource("AnimationNodeStateMachineTransition_nl1iy"), "Atack3", "Idle", SubResource("AnimationNodeStateMachineTransition_531vj"), "Idle", "Atack3", SubResource("AnimationNodeStateMachineTransition_f487j"), "Hurt", "WalkRight", SubResource("AnimationNodeStateMachineTransition_seru0"), "WalkRight", "Hurt", SubResource("AnimationNodeStateMachineTransition_hak1x"), "SlideDown", "WalkRight", SubResource("AnimationNodeStateMachineTransition_qolep"), "WalkRight", "SlideDown", SubResource("AnimationNodeStateMachineTransition_aokv5"), "Idle", "HurtCollide", SubResource("AnimationNodeStateMachineTransition_himpm"), "HurtCollide", "Idle", SubResource("AnimationNodeStateMachineTransition_o7pwk"), "HurtCollide", "End", SubResource("AnimationNodeStateMachineTransition_67xbj")]
+graph_offset = Vector2(-217.252, 11.73)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 position = Vector2(-42, 52)

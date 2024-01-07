@@ -32,8 +32,14 @@ var can_doublejump = true
 @export var score : int = 0
 @export var lives : int = 3
 
-#Load Arrow tscn
+# CAMERA VAR TO CONTROL CAM FUNCTIONS AND EFECTS
+@onready var MainCam : Camera2D = get_node("../Camera2D") 
+
+#Load Arrow and magic tscn
 const Arrow = preload("../Objects/Arrow.tscn")
+const Magic1 = preload("../Objects/Magic1.tscn")
+const Magic2 = preload("../Objects/Magic2.tscn")
+const Magic3 = preload("../Objects/Magic3.tscn")
 const DamageIndicator = preload("../Objects/damage_indicator.tscn")
 @export var arrow_direction : int = 1
 
@@ -137,6 +143,12 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_fire2"):
 		state = "Atack1"
 		atack1()
+		
+	# Magic Atack
+	if Input.is_action_just_pressed("ui_fire3"):
+		state = "Magic1"
+		magic1(arrow_direction)
+		
 			
 	move_and_slide()
 	#Decrease light
@@ -189,7 +201,7 @@ func magic1(arrow_direction):
 		arrow_sound.play()
 		decrease_light_scale(5.0)
 		var main = get_tree().current_scene
-		var A = Arrow.instantiate()
+		var A = Magic1.instantiate()
 		A.global_position = global_position
 		if arrow_direction == 1:
 			A.position.x = global_position.x + 15
@@ -206,7 +218,7 @@ func magic2(arrow_direction):
 		arrow_sound.play()
 		decrease_light_scale(5.0)
 		var main = get_tree().current_scene
-		var A = Arrow.instantiate()
+		var A = Magic2.instantiate()
 		A.global_position = global_position
 		if arrow_direction == 1:
 			A.position.x = global_position.x + 15
@@ -223,7 +235,7 @@ func magic3(arrow_direction):
 		arrow_sound.play()
 		decrease_light_scale(5.0)
 		var main = get_tree().current_scene
-		var A = Arrow.instantiate()
+		var A = Magic3.instantiate()
 		A.global_position = global_position
 		if arrow_direction == 1:
 			A.position.x = global_position.x + 15
@@ -338,14 +350,12 @@ func do_hurt():
 	#player.hurt(attack_power)
 
 func hurt(damage):
-		#$Camera2D.shake_window()
+		#MainCam.shake_window()
 		state = "Hurt"
 		state_machine.travel('Hurt')
 		live -= damage
 		hurt_sound.play()
 		live_sphere.value = live
-		#PENDING FIX CENTER BLOOD SPHERE
-		#live_sphere.region_rect.position = live_sphere.region_rect.get_center()
 		
 		#FIX Random size
 		var offset_position = randi() % 20
@@ -361,12 +371,19 @@ func hurt(damage):
 
 #PENDING FIX GOOD BOUNCE EFECT SEE BOUNCE GODOT
 func bounce():
+	state = "Hurt"
+	state_machine.travel('HurtCollide')
+
+	
 	if direction < 0:
 		hurt(1)
+		var bounce_force = Vector2(-1000 * direction, -100)
+		velocity += bounce_force
 		print("Bounce right")
-		
 	else:
 		hurt(1)
+		var bounce_force = Vector2(-1000 * direction, -100)
+		velocity += bounce_force
 		print("Bounce left")
 		
 func explode():
@@ -389,3 +406,4 @@ func _on_area_2d_area_entered(area):
 func _on_area_2d_body_body_entered(body):
 	if body.is_in_group("enemies"):
 		bounce()
+
