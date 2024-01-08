@@ -64,7 +64,7 @@ var sword_sound : AudioStreamPlayer2D
 
 func _ready():
 	state = "Iddle"
-	
+	$Warrior/Area2DSword/HitSword.visible = false
 	state_machine = $AnimationTree.get('parameters/playback')
 	state_machine.travel('Idle')
 	live_sphere.value = live
@@ -148,6 +148,16 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_fire3"):
 		state = "Magic1"
 		magic1(arrow_direction)
+		
+	# Magic Atack
+	if Input.is_action_just_pressed("ui_fire4"):
+		state = "Magic2"
+		magic2(arrow_direction)
+		
+	# Magic Atack
+	if Input.is_action_just_pressed("ui_fire5"):
+		state = "Magic3"
+		magic3(arrow_direction)
 		
 			
 	move_and_slide()
@@ -258,6 +268,7 @@ func atack1():
 			state_machine.travel('Atack3') 
 			attack_power = 50 * ((mana / 100) + 1)
 	sword_sound.play()
+
 		
 func jump():
 	jump_sound.play()
@@ -373,16 +384,14 @@ func hurt(damage):
 func bounce():
 	state = "Hurt"
 	state_machine.travel('HurtCollide')
-
-	
 	if direction < 0:
 		hurt(1)
-		var bounce_force = Vector2(-1000 * direction, -100)
+		var bounce_force = Vector2(-1000 * direction, -150)
 		velocity += bounce_force
 		print("Bounce right")
 	else:
 		hurt(1)
-		var bounce_force = Vector2(-1000 * direction, -100)
+		var bounce_force = Vector2(-1000 * direction, -150)
 		velocity += bounce_force
 		print("Bounce left")
 		
@@ -393,10 +402,12 @@ func explode():
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("enemies"):
 		body.hurt(attack_power)
+		$AnimationPlayer.play("HitSword")
 
 
 func _on_area_2d_area_entered(area):
 	if area.is_in_group("enemies"):
+		
 		area.hurt(attack_power)
 
 	if area.is_in_group("door"):

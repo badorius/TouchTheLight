@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://2l0u7o8p4h47"]
 
 [ext_resource type="Script" path="res://Scrpits/Magic2.gd" id="1_wf3h5"]
-[ext_resource type="Texture2D" uid="uid://cs1i5ght724md" path="res://Assets/Impact/Retro Impact Effect Pack 3 C.png" id="2_siqs7"]
+[ext_resource type="Texture2D" uid="uid://bn13n070mbfkt" path="res://Assets/Impact/Retro Impact Effect Pack 3 A.png" id="2_5cilt"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7pdie"]
 blend_mode = 1
@@ -188,7 +188,7 @@ shape = SubResource("CapsuleShape2D_56qty")
 
 [node name="RetroImpactEffectPack3C" type="Sprite2D" parent="."]
 position = Vector2(-7, 0)
-texture = ExtResource("2_siqs7")
+texture = ExtResource("2_5cilt")
 hframes = 6
 vframes = 23
 frame = 6

@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=3 uid="uid://di4fxwgpax1sw"]
 
-[ext_resource type="Script" path="res://Scrpits/Magic1.gd" id="1_fwk5m"]
-[ext_resource type="Texture2D" uid="uid://cs1i5ght724md" path="res://Assets/Impact/Retro Impact Effect Pack 3 C.png" id="2_sc6aa"]
+[ext_resource type="Script" path="res://Scrpits/Magic3.gd" id="1_mehif"]
+[ext_resource type="Texture2D" uid="uid://dtd8glnk8joof" path="res://Assets/Impact/Retro Impact Effect Pack 3 D.png" id="2_kbnqs"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7pdie"]
 blend_mode = 1
@@ -164,7 +164,7 @@ states/Arrow_Fire/position = Vector2(433, 97)
 transitions = ["Start", "Arrow_Fire", SubResource("AnimationNodeStateMachineTransition_sunsf"), "Arrow_Fire", "Arrow_Explode", SubResource("AnimationNodeStateMachineTransition_036yo"), "Arrow_Explode", "End", SubResource("AnimationNodeStateMachineTransition_xrabp")]
 
 [node name="Magic3" type="Area2D" groups=["arrow"]]
-script = ExtResource("1_fwk5m")
+script = ExtResource("1_mehif")
 
 [node name="Magic3" type="Sprite2D" parent="."]
 visible = false
@@ -188,7 +188,7 @@ shape = SubResource("CapsuleShape2D_56qty")
 
 [node name="RetroImpactEffectPack3C" type="Sprite2D" parent="."]
 position = Vector2(-7, 0)
-texture = ExtResource("2_sc6aa")
+texture = ExtResource("2_kbnqs")
 hframes = 6
 vframes = 23
 frame = 6
