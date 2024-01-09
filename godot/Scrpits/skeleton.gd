@@ -17,6 +17,8 @@ const BootsItemDrop = preload("../Objects/BootsItemDrop.tscn")
 const ArrowItemDrop = preload("../Objects/ArrowItemDrop.tscn")
 const CoatItemDrop = preload("../Objects/CoatItemDrop.tscn")
 
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 func _ready():
 	ArrowDamage_sound = $ArrowDamage
 	state_machine = $AnimationTree.get('parameters/playback')
@@ -29,6 +31,11 @@ func _process(delta):
 
 
 func _physics_process(delta):
+	
+	# Add the gravity.
+	if not is_on_floor():
+		velocity.y += gravity * delta
+		
 	if state != "Death":
 		timer += delta	
 		if timer > 1.0:
@@ -54,6 +61,7 @@ func _physics_process(delta):
 		"Iddle":
 			set_iddle()
 		
+	move_and_slide()
 
 func walk(delta):
 	flip_sprite_direction(direction)

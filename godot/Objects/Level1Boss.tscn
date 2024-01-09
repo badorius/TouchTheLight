@@ -1254,10 +1254,6 @@ color = Color(0, 0.435294, 0.960784, 0.498039)
 stream = ExtResource("11_jh1j8")
 autoplay = true
 
-[node name="Player" parent="." instance=ExtResource("12_h80aw")]
-position = Vector2(417, 28)
-scale = Vector2(1, 1)
-
 [node name="SmallTorch" parent="." instance=ExtResource("12_kjq2l")]
 position = Vector2(563, 39)
 
@@ -1278,3 +1274,7 @@ position = Vector2(880, 40)
 
 [node name="SmallTorch6" parent="." instance=ExtResource("12_kjq2l")]
 position = Vector2(1394, 40)
+
+[node name="Player" parent="." instance=ExtResource("12_h80aw")]
+position = Vector2(417, 28)
+scale = Vector2(1, 1)

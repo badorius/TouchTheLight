@@ -2,7 +2,7 @@ extends Area2D
 
 @export var speed = 750
 @export var direction : int = 1
-@export var damage : int = 100
+@export var damage : int = 20
 @export var state : String = "run"
 var state_machine
 
@@ -15,18 +15,18 @@ func _ready():
 	state_machine = $AnimationTree.get('parameters/playback')
 	state_machine.travel('Arrow_Fire')
 	if direction == 1:
-		get_node( "RetroImpactEffectPack3C" ).set_flip_h( false )
-	if direction == -1:
 		get_node( "RetroImpactEffectPack3C" ).set_flip_h( true )
+	if direction == -1:
+		get_node( "RetroImpactEffectPack3C" ).set_flip_h( false )
 
 func _physics_process(delta):
 	if state == "run":
 		if direction == 1:
 			position += transform.x * speed * delta
-			get_node( "Magic3" ).set_flip_h( false )
+			get_node( "Magic3" ).set_flip_h( true )
 		if direction == -1:
 			position -= transform.x * speed * delta
-			get_node( "Magic3" ).set_flip_h( true )
+			get_node( "Magic3" ).set_flip_h( false )
 
 
 func explode():

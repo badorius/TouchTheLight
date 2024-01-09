@@ -18,7 +18,11 @@ var target_position : Vector2
 @export var is_over_player : bool = false
 @export var level_completed : bool = false
 const DamageIndicator = preload("../Objects/damage_indicator.tscn")
+
 const FlayingEye = preload("../Objects/FlayingEye.tscn")
+const Rock = preload("../Objects/Rock.tscn")
+const Skeleton = preload("../Objects/skeleton.tscn")
+const NightBorne = preload("../Objects/NightBorne.tscn")
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -157,10 +161,6 @@ func hurt(damage):
 	else:
 		state_machine.travel('Hurt')
 		state = "Hurt"
-
-
-
-
 	
 	#FIX Random size
 	var offset_position = randi() % 20
@@ -178,16 +178,45 @@ func do_hurt():
 	
 
 func drop_enemy():
-	# Instatnce new enmies and Drop enemies
 	var main = get_tree().current_scene
-	var F = FlayingEye.instantiate()
-	F.global_position = global_position
-	#if direction == 1:
-	#	F.position.x = global_position.x + 15
-	#else:
-	#	F.position.x = global_position.x - 45
-	#F.position.y = global_position.y + 15
-	main.add_child(F)
+	#Random enemy
+	var EnemyRnd = randi() % 4
+	
+	var offset_position = randi() % 50
+	var direction = (player.global_position - global_position).normalized()
+	# Instatnce new enmies and Drop enemies
+	
+	match EnemyRnd:
+		0:
+			var EnemyDrop = Rock.instantiate()
+			if direction.x > 1:
+				EnemyDrop.global_position = Vector2(global_position.x*2  - offset_position , (global_position.y) - offset_position * 5)
+			else:
+				EnemyDrop.global_position = Vector2(global_position.x/2  - offset_position , (global_position.y) - offset_position * 5)
+			main.add_child(EnemyDrop)
+		1:
+			var EnemyDrop = Skeleton.instantiate()
+			if direction.x > 1:
+				EnemyDrop.global_position = Vector2(global_position.x*2  - offset_position , (global_position.y) - offset_position * 5)
+			else:
+				EnemyDrop.global_position = Vector2(global_position.x/2  - offset_position , (global_position.y) - offset_position * 5)
+			main.add_child(EnemyDrop)
+		2:
+			var EnemyDrop = NightBorne.instantiate()
+			if direction.x > 1:
+				EnemyDrop.global_position = Vector2(global_position.x*2  - offset_position , (global_position.y) - offset_position * 5)
+			else:
+				EnemyDrop.global_position = Vector2(global_position.x/2  - offset_position , (global_position.y) - offset_position * 5)
+			main.add_child(EnemyDrop)	
+		3:
+			var EnemyDrop = FlayingEye.instantiate()
+			if direction.x > 1:
+				EnemyDrop.global_position = Vector2(global_position.x*2  - offset_position , (global_position.y) - offset_position * 5)
+			else:
+				EnemyDrop.global_position = Vector2(global_position.x/2  - offset_position , (global_position.y) - offset_position * 5)
+			main.add_child(EnemyDrop)
+
+
 
 func explode():
 	pass
