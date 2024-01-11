@@ -5,6 +5,7 @@ extends CanvasLayer
 @export var arrows : int = 0
 @export var boots : int = 0
 @export var coat : int = 0
+@onready var player : CharacterBody2D = get_node("../Player")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -91,3 +92,21 @@ func update_magic3 (mana):
 		$skills/Magic3Decor/magic3.visible = true
 	else:
 		$skills/Magic3Decor/magic3.visible = false
+
+
+
+
+func _on_buton_sword_pressed():
+	pass
+	
+func _on_buton_arrows_pressed():
+	pass # Replace with function body.
+	
+func _on_buton_magic_1_pressed():
+	pass # Replace with function body.
+
+func _on_buton_magic_2_pressed():
+	pass # Replace with function body.
+
+func _on_buton_magic_3_pressed():
+	pass # Replace with function body.

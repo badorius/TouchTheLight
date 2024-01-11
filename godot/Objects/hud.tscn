@@ -138,6 +138,14 @@ scale = Vector2(1.02543, 1.02543)
 texture = ExtResource("7_7fiyl")
 flip_h = true
 
+[node name="ButonSword" type="Button" parent="skills/SwordDecor/sword"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -23.2337
+offset_top = -23.2336
+offset_right = -15.2337
+offset_bottom = -15.2336
+scale = Vector2(5.92657, 6.21394)
+
 [node name="ArrowsDecor" type="Sprite2D" parent="skills"]
 position = Vector2(453.167, 946.292)
 scale = Vector2(2.438, 2.438)
@@ -149,6 +157,14 @@ position = Vector2(3.05176e-05, -1.98538)
 scale = Vector2(1.02543, 1.02543)
 texture = ExtResource("8_0ay83")
 flip_h = true
+
+[node name="ButonArrows" type="Button" parent="skills/ArrowsDecor/arrows"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -23.2337
+offset_top = -23.2336
+offset_right = -15.2337
+offset_bottom = -15.2336
+scale = Vector2(5.92657, 6.21394)
 
 [node name="LabelArrows" type="Label" parent="skills/ArrowsDecor"]
 offset_left = 1.24588
@@ -173,6 +189,14 @@ visible = false
 scale = Vector2(1.02543, 1.02543)
 texture = ExtResource("9_jroh7")
 flip_h = true
+
+[node name="ButonMagic1" type="Button" parent="skills/Magic1Decor/magic1"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -23.2337
+offset_top = -23.2336
+offset_right = -15.2337
+offset_bottom = -15.2336
+scale = Vector2(5.92657, 6.21394)
 
 [node name="LabelMagic1" type="Label" parent="skills/Magic1Decor"]
 offset_left = 5.21661
@@ -199,6 +223,14 @@ scale = Vector2(1.02543, 1.02543)
 texture = ExtResource("15_dd81a")
 flip_h = true
 
+[node name="ButonMagic2" type="Button" parent="skills/Magic2Decor/magic2"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -23.2337
+offset_top = -23.2336
+offset_right = -15.2337
+offset_bottom = -15.2336
+scale = Vector2(5.92657, 6.21394)
+
 [node name="LabelMagic2" type="Label" parent="skills/Magic2Decor"]
 offset_left = 9.18741
 offset_top = -19.8539
@@ -222,6 +254,14 @@ visible = false
 scale = Vector2(1.02543, 1.02543)
 texture = ExtResource("16_xo67i")
 flip_h = true
+
+[node name="ButonMagic3" type="Button" parent="skills/Magic3Decor/magic3"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -23.2337
+offset_top = -23.2336
+offset_right = -15.2337
+offset_bottom = -15.2336
+scale = Vector2(5.92657, 6.21394)
 
 [node name="LabelMagic3" type="Label" parent="skills/Magic3Decor"]
 offset_left = 7.94154
@@ -372,3 +412,9 @@ action_left = "ui_fire1"
 action_right = "ui_fire2"
 action_up = "ui_fire3"
 action_down = "ui_fire4"
+
+[connection signal="pressed" from="skills/SwordDecor/sword/ButonSword" to="." method="_on_buton_sword_pressed"]
+[connection signal="pressed" from="skills/ArrowsDecor/arrows/ButonArrows" to="." method="_on_buton_arrows_pressed"]
+[connection signal="pressed" from="skills/Magic1Decor/magic1/ButonMagic1" to="." method="_on_buton_magic_1_pressed"]
+[connection signal="pressed" from="skills/Magic2Decor/magic2/ButonMagic2" to="." method="_on_buton_magic_2_pressed"]
+[connection signal="pressed" from="skills/Magic3Decor/magic3/ButonMagic3" to="." method="_on_buton_magic_3_pressed"]
