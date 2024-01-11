@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var SPEED = 50.0
+@export var speed = 50.0
 #var AttackCount = 3
 const DISTANCE_THRESHOLD = 75  # Distancia mínima para separarte del jugador
 const DISTANCE_ATACK = 115
@@ -17,6 +17,9 @@ var target_position : Vector2
 @export var score_value : int = 100
 @export var is_over_player : bool = false
 @export var level_completed : bool = false
+@export var Toxic : bool = false
+var FreqToxic : float = 10.0
+var FreqCounter : float = 0
 const DamageIndicator = preload("../Objects/damage_indicator.tscn")
 
 const FlayingEye = preload("../Objects/FlayingEye.tscn")
@@ -43,6 +46,13 @@ func _physics_process(delta):
 	if live <= 0:
 		state = "Death"
 		death()
+		
+	if Toxic == true:
+		if FreqCounter < FreqToxic:
+			FreqCounter += 0.1
+		else:
+			FreqCounter = 0
+			hurt(5)
 		
 	#CHECK IS NOT OVER PLAYER 
 	if abs(global_position.x - player.global_position.x) < DISTANCE_ATACK - 50:
@@ -110,26 +120,26 @@ func set_chaseplayer():
 	if direction.x > 0:
 		get_node( "Sprite2D" ).set_flip_h( false )
 		state_machine.travel('Run')
-		velocity.x = direction.x * SPEED
+		velocity.x = direction.x * speed
 	else:
 		get_node( "Sprite2D" ).set_flip_h( true )
 		state_machine.travel('Run')	
-		velocity.x = direction.x  * SPEED
+		velocity.x = direction.x  * speed
 		
 		
 func set_scapeplayer():
-	SPEED = 200.0
+	#speed = 200.0
 	var direction = (player.global_position - global_position).normalized()
 	if direction.x > 0:
 		get_node( "Sprite2D" ).set_flip_h( false )
 		state_machine.travel('Run')
-		velocity.x = -abs(direction.x) * SPEED
+		velocity.x = -abs(direction.x) * speed
 	else:
 		get_node( "Sprite2D" ).set_flip_h( true )
 		state_machine.travel('Run')	
-		velocity.x = +abs(direction.x) * SPEED
+		velocity.x = +abs(direction.x) * speed
 		
-	SPEED = 100.0
+	#speed = 100.0
 
 
 func set_jump():
@@ -140,11 +150,11 @@ func set_jump():
 		if direction.x > 0:
 			get_node( "Sprite2D" ).set_flip_h( false )
 			state_machine.travel('Run')
-			velocity.x = -abs(direction.x) * SPEED
+			velocity.x = -abs(direction.x) * speed
 		else:
 			get_node( "Sprite2D" ).set_flip_h( true )
 			state_machine.travel('Run')	
-			velocity.x = abs(direction.x) * SPEED
+			velocity.x = abs(direction.x) * speed
 			state = "Jump"
 
 	else:
@@ -180,7 +190,7 @@ func do_hurt():
 func drop_enemy():
 	var main = get_tree().current_scene
 	#Random enemy
-	var EnemyRnd = randi() % 4
+	var EnemyRnd = randi() % 2
 	
 	var offset_position = randi() % 50
 	var direction = (player.global_position - global_position).normalized()
@@ -235,3 +245,9 @@ func _on_area_2d_body_entered(body):
 	if body.is_in_group("Player"):
 		var attack_power = randi() % 100
 		body.hurt(attack_power)
+		
+func decrease_speed(value):
+	speed -= value
+
+func toxic():
+	Toxic = true

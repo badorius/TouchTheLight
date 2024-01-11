@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 100
+@export var speed = 100
 @export var direction : int = -1
 @export var live : int = 100
 var walk_count_max = 90
@@ -12,6 +12,9 @@ var state_machine
 const DamageIndicator = preload("../Objects/damage_indicator.tscn")
 @export var state = "Iddle"
 @export var score_value : int = 10
+@export var Toxic : bool = false
+var FreqToxic : float = 10.0
+var FreqCounter : float = 0
 
 const BootsItemDrop = preload("../Objects/BootsItemDrop.tscn")
 const ArrowItemDrop = preload("../Objects/ArrowItemDrop.tscn")
@@ -31,10 +34,19 @@ func _process(delta):
 
 
 func _physics_process(delta):
-	
+	if live <= 0 and state != "Death":
+		death()
+		
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
+		
+	if Toxic == true:
+		if FreqCounter < FreqToxic:
+			FreqCounter += 0.1
+		else:
+			FreqCounter = 0
+			hurt(5)
 		
 	if state != "Death":
 		timer += delta	
@@ -208,5 +220,11 @@ func _on_area_2d_body_entered(body):
 		state = "Shield"
 		punch_shield()
 		body.hurt(attack_power)
+		
+func decrease_speed(value):
+	speed -= value
+	
+func toxic():
+	Toxic = true
 
 

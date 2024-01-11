@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const MINSPEED = 100
+const MINSPEED = 150
 @export var SPEED = MINSPEED
 const MAXSPEED = 300
 var bounce_strenght = 0.7
@@ -90,6 +90,7 @@ func _physics_process(delta):
 	# Get the input direction and handle the movement/deceleration and orientation.
 	if direction:
 		arrow_direction = direction
+
 		
 	if direction and state != "Hurt":
 		state = "WalkRight"
@@ -111,8 +112,8 @@ func _physics_process(delta):
 			
 			
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
 		if state != "Hurt":
+			velocity.x = move_toward(velocity.x, 0, SPEED)
 			state = "Idle"
 			iddle()
 
@@ -377,23 +378,24 @@ func hurt(damage):
 		D.show_damage(damage, color)
 		main.add_child(D)
 
+		
 		if live <= 0:
 			update_lives(1)
 
 #PENDING FIX GOOD BOUNCE EFECT SEE BOUNCE GODOT
 func bounce():
-	state = "Hurt"
-	state_machine.travel('HurtCollide')
+	state = "Bounce"
+	#state_machine.travel('HurtCollide')
 	if direction < 0:
-		hurt(1)
-		var bounce_force = Vector2(-1000 * direction, -150)
+		#hurt(1)
+		var bounce_force = Vector2(-800 * arrow_direction, JUMP_VELOCITY)
 		velocity += bounce_force
-		print("Bounce right")
+		print("Bounce right", bounce_force, arrow_direction)
 	else:
-		hurt(1)
-		var bounce_force = Vector2(-1000 * direction, -150)
+		#hurt(1)
+		var bounce_force = Vector2(-800 * arrow_direction, JUMP_VELOCITY)
 		velocity += bounce_force
-		print("Bounce left")
+		print("Bounce left", bounce_force, arrow_direction)
 		
 func explode():
 	pass
@@ -416,5 +418,5 @@ func _on_area_2d_area_entered(area):
 
 func _on_area_2d_body_body_entered(body):
 	if body.is_in_group("enemies"):
-		bounce()
+		hurt(10)
 

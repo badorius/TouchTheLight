@@ -2,7 +2,7 @@ extends Area2D
 
 @export var speed = 750
 @export var direction : int = 1
-@export var damage : int = 20
+@export var damage : int = 5
 @export var state : String = "run"
 var state_machine
 
@@ -56,6 +56,7 @@ func _on_body_entered(body):
 	state_machine.travel('Arrow_Explode')
 	if body.is_in_group("enemies"):
 		body.live -= 1
+		body.decrease_speed(20)
 		if body.live <= 0:
 			state_machine.travel('Arrow_Explode')
 			body.death()
@@ -67,5 +68,7 @@ func _on_body_entered(body):
 			body.hurt(damage)
 	else:
 		state_machine.travel('Arrow_Explode')
+		
+
 		
 

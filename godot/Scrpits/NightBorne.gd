@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 200.0
+@export var speed = 200.0
 var AttackCount = 3
 const DISTANCE_THRESHOLD = 100  # Distancia mínima para perseguir al jugador
 const DISTANCE_ATACK = 40
@@ -17,7 +17,9 @@ var target_position : Vector2
 @export var is_over_player : bool = false
 const DamageIndicator = preload("../Objects/damage_indicator.tscn")
 var startrun : bool = false
-
+@export var Toxic : bool = false
+var FreqToxic : float = 10.0
+var FreqCounter : float = 0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -38,6 +40,13 @@ func _process(delta):
 func _physics_process(delta):
 	if startrun:
 		$ProgressBar.value = live
+			
+	if Toxic == true:
+		if FreqCounter < FreqToxic:
+			FreqCounter += 0.1
+		else:
+			FreqCounter = 0
+			hurt(5)
 			
 		timer += delta	
 		if timer > 3.0:
@@ -115,11 +124,11 @@ func set_chaseplayer():
 	if direction.x > 0:
 		get_node( "Sprite2D" ).set_flip_h( false )
 		state_machine.travel('Run')
-		velocity.x = direction.x * SPEED
+		velocity.x = direction.x * speed
 	else:
 		get_node( "Sprite2D" ).set_flip_h( true )
 		state_machine.travel('Run')	
-		velocity.x = direction.x * SPEED
+		velocity.x = direction.x * speed
 
 		
 func set_jump():
@@ -131,7 +140,7 @@ func set_jump():
 		
 func set_walkingright():
 	target_position = global_position + Vector2(randf_range(50, 150), 0)
-	velocity.x = SPEED
+	velocity.x = speed
 	get_node( "Sprite2D" ).set_flip_h( false )
 	state_machine.travel('Run')	
 
@@ -141,7 +150,7 @@ func set_walkingright():
 		
 func set_walkingleft():
 	target_position = global_position + Vector2(randf_range(-50, -150), 0)
-	velocity.x = -SPEED
+	velocity.x = -speed
 	get_node( "Sprite2D" ).set_flip_h( true )
 	state_machine.travel('Run')	
 	set_jump()
@@ -188,3 +197,8 @@ func death():
 	player.add_score(score_value)
 
 
+func decrease_speed(value):
+	speed -= value
+
+func toxic():
+	Toxic = true

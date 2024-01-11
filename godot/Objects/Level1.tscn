@@ -2162,3 +2162,6 @@ position = Vector2(37, 233)
 [node name="Player" parent="." instance=ExtResource("14_nbcgr")]
 position = Vector2(-174, 22)
 scale = Vector2(1, 1)
+
+[node name="BootsItemDrop" parent="." instance=ExtResource("27_dxknq")]
+position = Vector2(-128, 233)
