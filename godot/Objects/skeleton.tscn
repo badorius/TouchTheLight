@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://c1tugbr6svat2" path="res://Assets/Enemys/Skeleton/Death.png" id="3_barde"]
 [ext_resource type="AudioStream" uid="uid://dfpqvm4laxcko" path="res://SoundFX/Minifantasy_Dungeon_SFX/11_human_damage_1.wav" id="3_oc76x"]
 [ext_resource type="Texture2D" uid="uid://dxf5gqgfwqlfd" path="res://Assets/Enemys/Skeleton/Shield.png" id="4_23acc"]
-[ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/progress_bar.tscn" id="4_vy2cq"]
 [ext_resource type="Texture2D" uid="uid://2xkbsneaotay" path="res://Assets/Enemys/Skeleton/Take Hit.png" id="4_x2ltl"]
 [ext_resource type="Texture2D" uid="uid://bjdje5liqbe35" path="res://Assets/Enemys/Skeleton/Idle.png" id="6_r51lx"]
+[ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/progress_bar3.tscn" id="8_oag3n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5uiod"]
 size = Vector2(35.9558, 51.4928)
@@ -289,17 +289,15 @@ shape = SubResource("RectangleShape2D_cikv1")
 [node name="ArrowDamage" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_oc76x")
 
-[node name="ProgressBar" parent="." instance=ExtResource("4_vy2cq")]
-offset_left = -16.9791
-offset_top = -34.7017
-offset_right = -12.9791
-offset_bottom = -7.7017
-
 [node name="AnimationTree" type="AnimationTree" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_ccbmn")
 }
 tree_root = SubResource("AnimationNodeStateMachine_n346a")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="ProgressBar" parent="." instance=ExtResource("8_oag3n")]
+position = Vector2(-19.9754, -36.9405)
+scale = Vector2(0.564602, 0.620531)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -618,9 +618,10 @@ scale = Vector2(0.5, 0.5)
 texture = SubResource("GradientTexture2D_fwqmo")
 
 [node name="Alo" type="Sprite2D" parent="Warrior/PointLight2D"]
-modulate = Color(0, 0.247059, 0.741176, 0.8)
+modulate = Color(0.172549, 1, 1, 0.0627451)
 material = SubResource("CanvasItemMaterial_pahb3")
 position = Vector2(2.84782, -11.411)
+scale = Vector2(0.5, 0.5)
 texture = SubResource("GradientTexture2D_52isb")
 
 [node name="Area2DSword" type="Area2D" parent="Warrior"]

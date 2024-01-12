@@ -8,13 +8,14 @@ var count = walk_count_max
 var state_machine
 @export var timer : float = 0
 @export var ArrowDamage_sound : AudioStreamPlayer2D
-@onready var player : CharacterBody2D = get_node("../Player")
-const DamageIndicator = preload("../Objects/damage_indicator.tscn")
+@onready var player : CharacterBody2D = get_node("../../Player")
+const DamageIndicator = preload("res://Objects/damage_indicator.tscn")
 @export var state = "Iddle"
 @export var score_value : int = 10
 @export var Toxic : bool = false
 var FreqToxic : float = 10.0
 var FreqCounter : float = 0
+@onready var ProgressBar3 : TextureProgressBar = get_node("ProgressBar/Control/TextureProgressBar") 
 
 const BootsItemDrop = preload("../Objects/BootsItemDrop.tscn")
 const ArrowItemDrop = preload("../Objects/ArrowItemDrop.tscn")
@@ -26,11 +27,11 @@ func _ready():
 	ArrowDamage_sound = $ArrowDamage
 	state_machine = $AnimationTree.get('parameters/playback')
 	changeSprite2D(state)
-	$ProgressBar.value = live
+	ProgressBar3.value = live
 	
 			
 func _process(delta):
-	$ProgressBar.value = live
+	ProgressBar3.value = live
 
 
 func _physics_process(delta):
@@ -116,7 +117,7 @@ func hurt(damage):
 			state_machine.travel('Hit')	
 			ArrowDamage_sound.play()
 			live -= damage
-			$ProgressBar.value = live
+			ProgressBar3.value = live
 			
 			#FIX Random size
 			var offset_position = randi() % 20

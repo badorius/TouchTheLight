@@ -97,7 +97,7 @@ func update_magic3 (mana):
 
 
 func _on_buton_sword_pressed():
-	pass
+	player.atack1()
 	
 func _on_buton_arrows_pressed():
 	pass # Replace with function body.

@@ -101,6 +101,8 @@ position = Vector2(43, 2)
 script = ExtResource("1_nncw6")
 
 [node name="SmallTourch" type="Sprite2D" parent="."]
+light_mask = 3
+visibility_layer = 3
 position = Vector2(-44, -4)
 texture = ExtResource("1_kal34")
 hframes = 4
@@ -109,12 +111,15 @@ hframes = 4
 material = SubResource("CanvasItemMaterial_cu7ks")
 position = Vector2(1, -17)
 scale = Vector2(0.3, 0.3)
+color = Color(0, 0, 0, 1)
+blend_mode = 1
 texture = SubResource("GradientTexture2D_nxopm")
 
 [node name="Alo" type="Sprite2D" parent="SmallTourch/PointLight2D"]
-modulate = Color(0, 0.247059, 0.741176, 0.8)
+modulate = Color(0, 0.247059, 0.741176, 0.764706)
 material = SubResource("CanvasItemMaterial_41qik")
 position = Vector2(2.84782, -11.411)
+scale = Vector2(1.16484, 1.16277)
 texture = SubResource("GradientTexture2D_vpl58")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -1244,7 +1244,6 @@ texture = ExtResource("8_3gtfp")
 [node name="HUD" parent="." instance=ExtResource("9_jdbpf")]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0, 0, 0, 1)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
@@ -1254,26 +1253,30 @@ color = Color(0, 0.435294, 0.960784, 0.498039)
 stream = ExtResource("11_jh1j8")
 autoplay = true
 
-[node name="SmallTorch" parent="." instance=ExtResource("12_kjq2l")]
+[node name="Torchs" type="Node2D" parent="."]
+
+[node name="SmallTorch" parent="Torchs" instance=ExtResource("12_kjq2l")]
 position = Vector2(563, 39)
 
-[node name="SmallTorch2" parent="." instance=ExtResource("12_kjq2l")]
+[node name="SmallTorch2" parent="Torchs" instance=ExtResource("12_kjq2l")]
 position = Vector2(1082, 40)
 
-[node name="SmallTorch3" parent="." instance=ExtResource("12_kjq2l")]
+[node name="SmallTorch3" parent="Torchs" instance=ExtResource("12_kjq2l")]
 position = Vector2(1587, 37)
 
-[node name="Ogre" parent="." instance=ExtResource("13_3pmh3")]
-position = Vector2(1191, -21)
-
-[node name="SmallTorch4" parent="." instance=ExtResource("12_kjq2l")]
+[node name="SmallTorch4" parent="Torchs" instance=ExtResource("12_kjq2l")]
 position = Vector2(239, 40)
 
-[node name="SmallTorch5" parent="." instance=ExtResource("12_kjq2l")]
+[node name="SmallTorch5" parent="Torchs" instance=ExtResource("12_kjq2l")]
 position = Vector2(880, 40)
 
-[node name="SmallTorch6" parent="." instance=ExtResource("12_kjq2l")]
+[node name="SmallTorch6" parent="Torchs" instance=ExtResource("12_kjq2l")]
 position = Vector2(1394, 40)
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Ogre" parent="Enemies" instance=ExtResource("13_3pmh3")]
+position = Vector2(1191, -21)
 
 [node name="Player" parent="." instance=ExtResource("12_h80aw")]
 position = Vector2(417, 28)

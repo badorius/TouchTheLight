@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cv0au4lfbk7us" path="res://Assets/Background/FortOfIllusion/Props/closed-door.png" id="8_rp8cl"]
 [ext_resource type="PackedScene" uid="uid://dqwoh4qxgemn" path="res://Objects/parallax_background.tscn" id="9_ee7dk"]
 [ext_resource type="PackedScene" uid="uid://bkny06l7l1uby" path="res://Objects/parallax_background_lvl1.tscn" id="10_ouq1f"]
-[ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/progress_bar.tscn" id="11_tdnfv"]
+[ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/progress_bar3.tscn" id="11_tdnfv"]
 [ext_resource type="AudioStream" uid="uid://cu2fsnbyykeub" path="res://Music/BGMUSIC/Ingrid.mp3" id="12_bd2fh"]
 [ext_resource type="PackedScene" uid="uid://bis136hblwi22" path="res://Objects/skeleton.tscn" id="13_i7ojg"]
 [ext_resource type="PackedScene" uid="uid://ccixy0n1vgwcc" path="res://Objects/NightBorne.tscn" id="14_vw4sk"]

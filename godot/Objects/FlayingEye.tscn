@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scrpits/FlayingEye.gd" id="1_itj55"]
 [ext_resource type="Texture2D" uid="uid://cl6agsvjtw4pi" path="res://Assets/Enemys/FlayingEye/flying-eye-demon.png" id="2_b5mah"]
-[ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/progress_bar.tscn" id="3_1frtc"]
 [ext_resource type="AudioStream" uid="uid://dfpqvm4laxcko" path="res://SoundFX/Minifantasy_Dungeon_SFX/11_human_damage_1.wav" id="3_bfc2n"]
+[ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/progress_bar3.tscn" id="4_1lusg"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vo1ju"]
 blend_mode = 1
@@ -237,13 +237,13 @@ shape = SubResource("CapsuleShape2D_nljga")
 [node name="ArrowDamage" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_bfc2n")
 
-[node name="ProgressBar" parent="." instance=ExtResource("3_1frtc")]
-offset_top = -41.0
-offset_bottom = -14.0
-
 [node name="AnimationTree" type="AnimationTree" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_xc5pc")
 }
 tree_root = SubResource("AnimationNodeStateMachine_oje4e")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="ProgressBar" parent="." instance=ExtResource("4_1lusg")]
+position = Vector2(-25.9334, -44.1828)
+scale = Vector2(0.692642, 0.769481)

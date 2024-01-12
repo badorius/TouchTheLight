@@ -11,7 +11,7 @@ var target_position : Vector2
 @export var timer : float = 0
 @export var live : int = 200
 @export var ArrowDamage_sound : AudioStreamPlayer2D
-@onready var player : CharacterBody2D = get_node("../Player")
+@onready var player : CharacterBody2D = get_node("../../Player")
 @export var score_value : int = 50
 @export var attack_power = randi() % 30
 const DamageIndicator = preload("../Objects/damage_indicator.tscn")
@@ -21,6 +21,8 @@ var FreqToxic : float = 10.0
 var FreqCounter : float = 0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+@onready var ProgressBar3 : TextureProgressBar = get_node("ProgressBar/Control/TextureProgressBar") 
+
 
 func _ready():
 	ArrowDamage_sound = $ArrowDamage
@@ -32,22 +34,23 @@ func _process(delta):
 			startrun = true
 			
 func _physics_process(delta):
-	if startrun:
-		$ProgressBar.value = live
-		ArrowDamage_sound = $ArrowDamage
-		if live <= 0:
-			death()
-			state = "Death"
-			timer = 0
-			
+	
 	if Toxic == true:
 		if FreqCounter < FreqToxic:
 			FreqCounter += 0.1
 		else:
 			FreqCounter = 0
 			hurt(5)
-			
-		timer += delta	
+	
+	if startrun:
+		ProgressBar3.value = live
+		ArrowDamage_sound = $ArrowDamage
+		if live <= 0:
+			death()
+			state = "Death"
+			timer = 0
+		timer += delta
+		
 		if timer > 3.0:
 			var random_choice = randi() % 3
 			match random_choice:
@@ -138,7 +141,7 @@ func hurt(damage):
 		ArrowDamage_sound.play()
 		#state_machine.travel('Hurt')
 		live -= damage
-		$ProgressBar.value = live
+		ProgressBar3.value = live
 		state = "Hurt"
 		
 		#FIX Random size

@@ -13,7 +13,8 @@ var target_position : Vector2
 @export var ArrowDamage_sound : AudioStreamPlayer2D
 @export var StartAttack_sound : AudioStreamPlayer2D
 @export var HitAttack_sound : AudioStreamPlayer2D
-@onready var player : CharacterBody2D = get_node("../Player")
+@onready var player : CharacterBody2D = get_node("../../Player")
+@onready var player_path : NodePath = player.get_path()
 @export var score_value : int = 100
 @export var is_over_player : bool = false
 @export var level_completed : bool = false
@@ -21,7 +22,7 @@ var target_position : Vector2
 var FreqToxic : float = 10.0
 var FreqCounter : float = 0
 const DamageIndicator = preload("../Objects/damage_indicator.tscn")
-
+@onready var ProgressBar3 : TextureProgressBar = get_node("ProgressBar/Control/TextureProgressBar") 
 const FlayingEye = preload("../Objects/FlayingEye.tscn")
 const Rock = preload("../Objects/Rock.tscn")
 const Skeleton = preload("../Objects/skeleton.tscn")
@@ -42,7 +43,7 @@ func _ready():
 
 
 func _physics_process(delta):
-	$ProgressBar.value = live/10
+	ProgressBar3.value = live/10
 	if live <= 0:
 		state = "Death"
 		death()
@@ -164,7 +165,7 @@ func set_jump():
 func hurt(damage):
 	live -= damage
 	ArrowDamage_sound.play()
-	$ProgressBar.value = live
+	ProgressBar3.value = live
 	if live <= 0:
 		state = "Death"
 		death()
@@ -190,7 +191,7 @@ func do_hurt():
 func drop_enemy():
 	var main = get_tree().current_scene
 	#Random enemy
-	var EnemyRnd = randi() % 2
+	var EnemyRnd = randi() % 1
 	
 	var offset_position = randi() % 50
 	var direction = (player.global_position - global_position).normalized()

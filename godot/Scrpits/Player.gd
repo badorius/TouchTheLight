@@ -1,8 +1,8 @@
 extends CharacterBody2D
 
-const MINSPEED = 150
+const MINSPEED = 100
 @export var SPEED = MINSPEED
-const MAXSPEED = 300
+const MAXSPEED = 250
 var bounce_strenght = 0.7
 const JUMP_VELOCITY = -350.0
 @export var push_force = 80.0
@@ -136,14 +136,14 @@ func _physics_process(delta):
 
 
 	# Fire BOW
+		# Sword Atack
 	if Input.is_action_just_pressed("ui_fire1"):
-		state = "BowShooting"
-		bowing(arrow_direction)
-			
-	# Sword Atack
-	if Input.is_action_just_pressed("ui_fire2"):
 		state = "Atack1"
 		atack1()
+	
+	if Input.is_action_just_pressed("ui_fire2"):
+		state = "BowShooting"
+		bowing(arrow_direction)
 		
 	# Magic Atack
 	if Input.is_action_just_pressed("ui_fire3"):
@@ -227,7 +227,7 @@ func magic2(arrow_direction):
 	if mana > 0:
 		update_magic2()
 		arrow_sound.play()
-		decrease_light_scale(10.0)
+		decrease_light_scale(50.0)
 		var main = get_tree().current_scene
 		var A = Magic2.instantiate()
 		A.global_position = global_position

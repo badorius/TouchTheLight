@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvlwbq6jwj25q"]
+[gd_scene load_steps=4 format=3 uid="uid://c0kg4d3jgrpbx"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_kad1h"]
 color = Color(0, 0.282353, 0.290196, 1)
@@ -12,10 +12,10 @@ modulate_color = Color(1, 0.0588235, 1, 1)
 [node name="ProgressBar" type="ProgressBar"]
 modulate = Color(0.721569, 0.172549, 0, 1)
 clip_contents = true
-offset_left = -18.0
-offset_top = -16.0
-offset_right = -14.0
-offset_bottom = 11.0
+offset_left = 263.0
+offset_top = 311.0
+offset_right = 267.0
+offset_bottom = 338.0
 scale = Vector2(10.3119, 0.149427)
 theme_override_styles/background = SubResource("StyleBoxLine_kad1h")
 theme_override_styles/fill = SubResource("StyleBoxTexture_fexim")
