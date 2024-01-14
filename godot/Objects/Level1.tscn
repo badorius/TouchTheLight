@@ -1,6 +1,7 @@
-[gd_scene load_steps=37 format=3 uid="uid://d07i3cdmomp8e"]
+[gd_scene load_steps=38 format=3 uid="uid://d07i3cdmomp8e"]
 
 [ext_resource type="Texture2D" uid="uid://ccpnn3i3xafue" path="res://Assets/Tileset/Level1.png" id="1_5gl51"]
+[ext_resource type="Script" path="res://Scrpits/Level1.gd" id="1_6dyan"]
 [ext_resource type="Texture2D" uid="uid://dqljktroyridq" path="res://Assets/Background/HauntedForest/Props/tree.png" id="1_gkfah"]
 [ext_resource type="PackedScene" uid="uid://dxll0eoj3r4ef" path="res://Objects/MainCamera.tscn" id="1_i7soj"]
 [ext_resource type="PackedScene" uid="uid://ckg70tmgkprf8" path="res://Objects/platform_level_1h.tscn" id="2_bmhaf"]
@@ -1854,6 +1855,7 @@ sources/0 = SubResource("TileSetAtlasSource_x2343")
 
 [node name="Level1" type="Node2D"]
 position = Vector2(18, 2)
+script = ExtResource("1_6dyan")
 
 [node name="Camera2D" parent="." instance=ExtResource("1_i7soj")]
 
