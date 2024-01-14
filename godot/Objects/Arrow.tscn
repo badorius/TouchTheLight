@@ -1,8 +1,9 @@
-[gd_scene load_steps=21 format=3 uid="uid://bdudh83agh1xi"]
+[gd_scene load_steps=22 format=3 uid="uid://bdudh83agh1xi"]
 
 [ext_resource type="Texture2D" uid="uid://byphetjtyt6i8" path="res://Assets/weapons/arrow/arrow.png" id="1_r7oiu"]
 [ext_resource type="Script" path="res://Scrpits/Arrow.gd" id="1_vcaab"]
 [ext_resource type="Texture2D" uid="uid://cs1i5ght724md" path="res://Assets/Impact/Retro Impact Effect Pack 3 C.png" id="3_4eptg"]
+[ext_resource type="AudioStream" uid="uid://dfpqvm4laxcko" path="res://SoundFX/Minifantasy_Dungeon_SFX/11_human_damage_1.wav" id="4_seerq"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7pdie"]
 blend_mode = 1
@@ -44,6 +45,8 @@ height = 5.26316
 
 [sub_resource type="Animation" id="Animation_lhp2a"]
 resource_name = "Arrow_Explode"
+length = 0.4
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -51,7 +54,7 @@ tracks/0/path = NodePath("RetroImpactEffectPack3C:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2)]
@@ -63,7 +66,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.9),
+"times": PackedFloat32Array(0.4),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -81,6 +84,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.05),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_45wca"]
@@ -131,6 +146,18 @@ tracks/2/path = NodePath("Arrow:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AudioStreamPlayer2D:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -206,6 +233,9 @@ libraries = {
 }
 tree_root = SubResource("AnimationNodeStateMachine_k0xtr")
 anim_player = NodePath("../AnimationImpact")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_seerq")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]

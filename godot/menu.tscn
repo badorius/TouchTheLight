@@ -1,7 +1,7 @@
 [gd_scene load_steps=44 format=3 uid="uid://ci8d6cyv3od72"]
 
 [ext_resource type="Script" path="res://Scrpits/menu.gd" id="1_pb8s7"]
-[ext_resource type="AudioStream" uid="uid://cbvpffgrq2nyi" path="res://Music/BGMUSIC/Menu.mp3" id="2_3plrk"]
+[ext_resource type="AudioStream" uid="uid://cbvpffgrq2nyi" path="res://Music/BGMUSIC/Level1.mp3" id="2_3plrk"]
 [ext_resource type="AudioStream" uid="uid://dhc3kia3e06e8" path="res://SoundFX/Minifantasy_Dungeon_SFX/LightCatch.mp3" id="2_81uct"]
 [ext_resource type="Texture2D" uid="uid://cnvl248iy658b" path="res://Assets/Player/RedHood/red hood itch free Copy-Sheet.png" id="2_qjriq"]
 [ext_resource type="Texture2D" uid="uid://wrp5houa810c" path="res://Assets/Background/The Dawn/Reference-Image.png" id="3_j27ob"]

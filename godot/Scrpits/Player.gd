@@ -275,7 +275,7 @@ func atack1():
 		2:
 			state_machine.travel('Atack3') 
 			attack_power = 50 * ((mana / 100) + 1)
-	sword_sound.play()
+
 
 		
 func jump():

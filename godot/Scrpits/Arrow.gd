@@ -11,6 +11,7 @@ var state_machine
 
 func _ready():
 	$Arrow.visible = true
+	#$RetroImpactEffectPack3C.visible = false
 	state = "run"
 	state_machine = $AnimationTree.get('parameters/playback')
 	state_machine.travel('Arrow_Fire')

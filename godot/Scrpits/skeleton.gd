@@ -16,10 +16,12 @@ const DamageIndicator = preload("res://Objects/damage_indicator.tscn")
 var FreqToxic : float = 10.0
 var FreqCounter : float = 0
 @onready var ProgressBar3 : TextureProgressBar = get_node("ProgressBar/Control/TextureProgressBar") 
+@onready var Explode : AnimationPlayer = get_node("EnemyExplode/AnimationPlayer")
 
 const BootsItemDrop = preload("../Objects/BootsItemDrop.tscn")
 const ArrowItemDrop = preload("../Objects/ArrowItemDrop.tscn")
 const CoatItemDrop = preload("../Objects/CoatItemDrop.tscn")
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -138,6 +140,8 @@ func changeSprite2D(state):
 	$Shield.visible = false
 	$Hit.visible = false
 	$Iddle.visible = false
+	$EnemyExplode.visible = false
+	
 	
 	match state:
 		"Walk":	
@@ -152,12 +156,13 @@ func changeSprite2D(state):
 			$Iddle.visible = true
 		
 func explode():
-	pass
+	Explode.play("Explode")
 	
 func death():
 	state = "Death"
 	changeSprite2D(state)
 	state_machine.travel('Death')
+	explode()
 	player.add_score(score_value)
 	drop_item()
 	

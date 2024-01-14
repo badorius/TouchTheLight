@@ -22,7 +22,9 @@ var target_position : Vector2
 var FreqToxic : float = 10.0
 var FreqCounter : float = 0
 const DamageIndicator = preload("../Objects/damage_indicator.tscn")
-@onready var ProgressBar3 : TextureProgressBar = get_node("ProgressBar/Control/TextureProgressBar") 
+@onready var ProgressBar3 : TextureProgressBar = get_node("ProgressBar/Control/TextureProgressBar")
+@onready var Explode : AnimationPlayer = get_node("EnemyExplode/AnimationPlayer")
+ 
 const FlayingEye = preload("../Objects/FlayingEye.tscn")
 const Rock = preload("../Objects/Rock.tscn")
 const Skeleton = preload("../Objects/skeleton.tscn")
@@ -39,7 +41,7 @@ func _ready():
 	HitAttack_sound = $HitAttack
 	state_machine = $AnimationTree.get('parameters/playback')
 	#var player = get_parent().get_node("Player")
-
+	$EnemyExplode.visible = false
 
 
 func _physics_process(delta):
@@ -48,50 +50,51 @@ func _physics_process(delta):
 		state = "Death"
 		death()
 		
-	if Toxic == true:
-		if FreqCounter < FreqToxic:
-			FreqCounter += 0.1
+	else:
+		if Toxic == true:
+			if FreqCounter < FreqToxic:
+				FreqCounter += 0.1
+			else:
+				FreqCounter = 0
+				hurt(5)
+			
+		#CHECK IS NOT OVER PLAYER 
+		if abs(global_position.x - player.global_position.x) < DISTANCE_ATACK - 50:
+			is_over_player = true
+			set_scapeplayer()
 		else:
-			FreqCounter = 0
-			hurt(5)
-		
-	#CHECK IS NOT OVER PLAYER 
-	if abs(global_position.x - player.global_position.x) < DISTANCE_ATACK - 50:
-		is_over_player = true
-		set_scapeplayer()
-	else:
-		is_over_player = false
-		
-	if state != "Death":
-		state = "ChasePlayer"
-	
-	
-	#if abs(global_position.distance_to(player.global_position)) <= DISTANCE_THRESHOLD:
-	#	set_jump()
-		
-	if abs(global_position.distance_to(player.global_position)) <= DISTANCE_ATACK:
-		state = "Attack"
+			is_over_player = false
+			
+		if state != "Death":
+			state = "ChasePlayer"
 		
 		
-	if state == "ChasePlayer":
-			$PointLight2D.enabled = true
-	else:
-			$PointLight2D.enabled = false
-				
-				
-	match state:
-		"Iddle":
-			set_iddle()
-		"ChasePlayer":
-			set_chaseplayer()
-		"Attack":
-			set_attack()
-	
-	
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
-	move_and_slide()
+		#if abs(global_position.distance_to(player.global_position)) <= DISTANCE_THRESHOLD:
+		#	set_jump()
+			
+		if abs(global_position.distance_to(player.global_position)) <= DISTANCE_ATACK:
+			state = "Attack"
+			
+			
+		if state == "ChasePlayer":
+				$PointLight2D.enabled = true
+		else:
+				$PointLight2D.enabled = false
+					
+					
+		match state:
+			"Iddle":
+				set_iddle()
+			"ChasePlayer":
+				set_chaseplayer()
+			"Attack":
+				set_attack()
+		
+		
+		# Add the gravity.
+		if not is_on_floor():
+			velocity.y += gravity * delta
+		move_and_slide()
 	
 func set_iddle():
 	state_machine.travel('Iddle')
@@ -168,7 +171,6 @@ func hurt(damage):
 	ProgressBar3.value = live
 	if live <= 0:
 		state = "Death"
-		death()
 	else:
 		state_machine.travel('Hurt')
 		state = "Hurt"
@@ -230,12 +232,13 @@ func drop_enemy():
 
 
 func explode():
-	pass
+	Explode.play("Explode")
 		
 func death():
 	$Sprite2D.visible = false
 	$Explode.visible = true
 	state_machine.travel('Death')
+	explode()
 	player.add_score(score_value)
 	level_completed = true
 	#ADD ANIMATION TRESURE LIGHT AND NEXT LEVEL

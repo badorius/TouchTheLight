@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://d07i3cdmomp8e"]
+[gd_scene load_steps=37 format=3 uid="uid://d07i3cdmomp8e"]
 
 [ext_resource type="Texture2D" uid="uid://ccpnn3i3xafue" path="res://Assets/Tileset/Level1.png" id="1_5gl51"]
 [ext_resource type="Texture2D" uid="uid://dqljktroyridq" path="res://Assets/Background/HauntedForest/Props/tree.png" id="1_gkfah"]
@@ -16,17 +16,18 @@
 [ext_resource type="Texture2D" uid="uid://bosmcxp23w4ul" path="res://Assets/Background/HauntedForest/Props/pillars.png" id="7_ymveq"]
 [ext_resource type="Texture2D" uid="uid://cv0au4lfbk7us" path="res://Assets/Background/FortOfIllusion/Props/closed-door.png" id="8_sc6ho"]
 [ext_resource type="PackedScene" uid="uid://bkny06l7l1uby" path="res://Objects/parallax_background_lvl1.tscn" id="10_7grp6"]
-[ext_resource type="AudioStream" uid="uid://cu2fsnbyykeub" path="res://Music/BGMUSIC/Ingrid.mp3" id="10_agg0j"]
 [ext_resource type="PackedScene" uid="uid://phnoalyvfkxs" path="res://Objects/SmallTorch.tscn" id="11_jn1qr"]
 [ext_resource type="PackedScene" uid="uid://bis136hblwi22" path="res://Objects/skeleton.tscn" id="12_gavhj"]
 [ext_resource type="PackedScene" uid="uid://ccixy0n1vgwcc" path="res://Objects/NightBorne.tscn" id="13_7axb4"]
 [ext_resource type="PackedScene" uid="uid://cf4d021lelowr" path="res://Objects/Player.tscn" id="14_nbcgr"]
 [ext_resource type="PackedScene" uid="uid://de2d43ynvsgip" path="res://Objects/FlayingEye.tscn" id="16_ptn12"]
 [ext_resource type="PackedScene" uid="uid://bgi84ioegb3g6" path="res://Objects/hud.tscn" id="18_gh1o4"]
+[ext_resource type="AudioStream" uid="uid://cbvpffgrq2nyi" path="res://Music/BGMUSIC/Level1.mp3" id="19_0wrw4"]
 [ext_resource type="Texture2D" uid="uid://deaw5e7ljld6i" path="res://Assets/Background/HauntedForest/Props/tree-2.png" id="22_yjjfu"]
 [ext_resource type="PackedScene" uid="uid://clms4vxi7fjov" path="res://Objects/ArrowItemDrop.tscn" id="26_6v6i8"]
 [ext_resource type="PackedScene" uid="uid://y1d0hktabdah" path="res://Objects/BootsItemDrop.tscn" id="27_dxknq"]
 [ext_resource type="PackedScene" uid="uid://rwpof47pjb7g" path="res://Objects/CoatItemDrop.tscn" id="28_kq33f"]
+[ext_resource type="PackedScene" uid="uid://cpfdvkc5prymv" path="res://Objects/Mage1.tscn" id="28_kwl0j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uwy2i"]
 texture = ExtResource("1_5gl51")
@@ -1976,11 +1977,12 @@ color = Color(0, 0, 0, 1)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 position = Vector2(40, 186)
-color = Color(0.654902, 0.792157, 1, 1)
+color = Color(0.858824, 0.992157, 0.960784, 1)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(40, 186)
-stream = ExtResource("10_agg0j")
+stream = ExtResource("19_0wrw4")
+volume_db = -10.0
 autoplay = true
 
 [node name="Enemies" type="Node2D" parent="."]
@@ -2032,19 +2034,34 @@ position = Vector2(10631, 210)
 position = Vector2(11416, 212)
 
 [node name="FlayingEye2" parent="Enemies" instance=ExtResource("16_ptn12")]
-position = Vector2(5507, 106)
+position = Vector2(9823, -24)
 
 [node name="FlayingEye3" parent="Enemies" instance=ExtResource("16_ptn12")]
 position = Vector2(3876, 107)
 
 [node name="FlayingEye4" parent="Enemies" instance=ExtResource("16_ptn12")]
-position = Vector2(5173, 105)
+position = Vector2(7681, -57)
 
 [node name="FlayingEye5" parent="Enemies" instance=ExtResource("16_ptn12")]
-position = Vector2(5874, 89)
+position = Vector2(12328, 1)
 
-[node name="FlayingEye6" parent="Enemies" instance=ExtResource("16_ptn12")]
-position = Vector2(6209, 97)
+[node name="Mage1" parent="Enemies" instance=ExtResource("28_kwl0j")]
+position = Vector2(5416, 128)
+
+[node name="Mage2" parent="Enemies" instance=ExtResource("28_kwl0j")]
+position = Vector2(5643, 117)
+
+[node name="Mage3" parent="Enemies" instance=ExtResource("28_kwl0j")]
+position = Vector2(5856, 113)
+
+[node name="Mage4" parent="Enemies" instance=ExtResource("28_kwl0j")]
+position = Vector2(6101, 120)
+
+[node name="Mage5" parent="Enemies" instance=ExtResource("28_kwl0j")]
+position = Vector2(6327, 117)
+
+[node name="Mage6" parent="Enemies" instance=ExtResource("28_kwl0j")]
+position = Vector2(6542, 110)
 
 [node name="SmallTorchs" type="Node2D" parent="."]
 position = Vector2(40, 186)

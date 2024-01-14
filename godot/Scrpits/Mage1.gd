@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed = 200.0
+@export var speed = 100.0
 var AttackCount = 3
 const DISTANCE_THRESHOLD = 100  # Distancia mínima para perseguir al jugador
 const DISTANCE_ATACK = 40
@@ -19,10 +19,15 @@ var startrun : bool = false
 @export var Toxic : bool = false
 var FreqToxic : float = 10.0
 var FreqCounter : float = 0
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var ProgressBar3 : TextureProgressBar = get_node("ProgressBar/Control/TextureProgressBar") 
 @onready var Explode : AnimationPlayer = get_node("EnemyExplode/AnimationPlayer")
+
+var bob_height : float = 100.0
+var bob_speed : float = 5.0
+@onready var start_y : float = global_position.y
+var t : float = 0.0
+
+
 
 func _ready():
 	ArrowDamage_sound = $ArrowDamage
@@ -33,6 +38,10 @@ func _ready():
 func _process(delta):
 		if global_position.distance_to(player.global_position) < DISTANCE_THRESHOLD * 5 or state == "Hurt":
 			startrun = true
+			
+		if live <= 0:
+			state = "Death"
+			death()
 			
 func _physics_process(delta):
 	
@@ -49,92 +58,23 @@ func _physics_process(delta):
 		if live <= 0:
 			death()
 			state = "Death"
-			timer = 0
-		timer += delta
+
+		get_node( "Sprite2D" ).set_flip_h( false )
+		state_machine.travel('Run')	
+		velocity.x = -speed
+			# increase 't' over time.
+		t += delta
 		
-		if timer > 3.0:
-			var random_choice = randi() % 3
-			match random_choice:
-				0:
-					state = "WalkingLeft"
-					timer = 0
-				1:
-					state = "WalkingRight"
-				2:
-					state = "Iddle"
-					timer = 0
+		# creloopate a sin wave that bobs up and down.
+		var d = (sin(t * bob_speed) + 1) / 2
+		
+		# apply that to  Y position.
+		global_position.y = start_y + (d * bob_height)
 
-		match state:
-			"Iddle":
-				set_iddle()
-			"WalkingLeft":
-				set_walkingleft()
-			"WalkingRight":
-				set_walkingright()
-			"ChasePlayer":
-				set_chaseplayer()
-			"Attack":
-				set_attack()
-
-		#CHECK DISTANCE TO CHESE OR ATACK
-		if global_position.distance_to(player.global_position) < DISTANCE_THRESHOLD or state == "Hurt":
-			state = "ChasePlayer"
-			if global_position.distance_to(player.global_position) < DISTANCE_ATACK:
-				state = "Attack"
-		if state == "ChasePlayer":
-				$PointLight2D.enabled = true
-		else:
-				$PointLight2D.enabled = false
 
 	move_and_slide()
 	
-				
-func set_iddle():
-	state_machine.travel('Iddle')
 
-func set_attack():
-	var direction = (player.global_position - global_position).normalized()
-	if direction.x > 0:
-		get_node( "Sprite2D" ).set_flip_h( false )
-	else:
-		get_node( "Sprite2D" ).set_flip_h( true )
-	#state_machine.travel('Attack')
-	if global_position.distance_to(player.global_position) > DISTANCE_THRESHOLD:
-		set_iddle()
-
-		
-func set_chaseplayer():
-	var direction = (player.global_position - global_position).normalized()
-	if direction.x > 0:
-		get_node( "Sprite2D" ).set_flip_h( false )
-		state_machine.travel('Run')
-		velocity = direction * speed
-	else:
-		get_node( "Sprite2D" ).set_flip_h( true )
-		state_machine.travel('Run')	
-		velocity = direction  * speed
-
-		
-func set_walkingright():
-	target_position = global_position + Vector2(randf_range(50, 150), 0)
-	velocity.x = speed
-	get_node( "Sprite2D" ).set_flip_h( false )
-	state_machine.travel('Run')	
-
-	
-	if global_position.x > target_position.x or timer > 3.0:
-		set_iddle()
-		
-func set_walkingleft():
-	target_position = global_position + Vector2(randf_range(-50, -150), 0)
-	velocity.x = -speed
-	get_node( "Sprite2D" ).set_flip_h( true )
-	state_machine.travel('Run')	
-
-	
-	if global_position.x < target_position.x or timer > 3.0:
-		set_iddle()
-			
 func hurt(damage):
 	if live <= 0:
 		death()
