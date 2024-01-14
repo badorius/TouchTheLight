@@ -13,7 +13,7 @@ particles_anim_v_frames = 1
 particles_anim_loop = true
 
 [sub_resource type="Gradient" id="Gradient_whf75"]
-offsets = PackedFloat32Array(0, 0.645161)
+offsets = PackedFloat32Array(0, 0.53)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_nxopm"]
@@ -21,7 +21,7 @@ gradient = SubResource("Gradient_whf75")
 width = 256
 height = 256
 fill = 1
-fill_from = Vector2(0.513761, 0.490826)
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_41qik"]
 blend_mode = 1
@@ -36,7 +36,7 @@ gradient = SubResource("Gradient_n7ywo")
 width = 256
 height = 256
 fill = 1
-fill_from = Vector2(0.490826, 0.477064)
+fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2ukha"]
 radius = 4.0
@@ -116,7 +116,7 @@ blend_mode = 1
 texture = SubResource("GradientTexture2D_nxopm")
 
 [node name="Alo" type="Sprite2D" parent="SmallTourch/PointLight2D"]
-modulate = Color(0, 0.247059, 0.741176, 0.764706)
+modulate = Color(0, 0.247059, 0.741176, 0.392157)
 material = SubResource("CanvasItemMaterial_41qik")
 position = Vector2(2.84782, -11.411)
 scale = Vector2(1.16484, 1.16277)
