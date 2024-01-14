@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bgi84ioegb3g6"]
+[gd_scene load_steps=29 format=3 uid="uid://bgi84ioegb3g6"]
 
 [ext_resource type="Script" path="res://Scrpits/hud.gd" id="1_ouvyj"]
 [ext_resource type="FontFile" uid="uid://uacc8gr3cirm" path="res://Assets/Fonts/G7MakaimuraTtf-xoZm.ttf" id="1_t36q3"]
@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://buv78jq5axbjv" path="res://Assets/Icons/Armor_58.png" id="11_k60nv"]
 [ext_resource type="Texture2D" uid="uid://oxup8fdeu2eu" path="res://Assets/Icons/Skill_30.png" id="15_dd81a"]
 [ext_resource type="Texture2D" uid="uid://c5kfqjcso7cvv" path="res://Assets/Icons/Skill_9.png" id="16_xo67i"]
+[ext_resource type="Texture2D" uid="uid://cri5e427y8r78" path="res://Assets/Background/GameOver/game_over.png" id="25_42ks8"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_mdf3p"]
 color = Color(0, 0.282353, 0.290196, 1)
@@ -409,8 +410,38 @@ action_right = "ui_fire2"
 action_up = "ui_fire3"
 action_down = "ui_fire4"
 
+[node name="GameOver" type="Sprite2D" parent="."]
+position = Vector2(960, 424)
+texture = ExtResource("25_42ks8")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_left = 808.0
+offset_top = 704.0
+offset_right = 928.0
+offset_bottom = 840.0
+scale = Vector2(2.4176, 2.01792)
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_t36q3")
+text = "Start"
+
+[node name="SettingsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_t36q3")
+text = "Options
+"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_t36q3")
+text = "Quit
+"
+
 [connection signal="pressed" from="skills/SwordDecor/sword/ButonSword" to="." method="_on_buton_sword_pressed"]
 [connection signal="pressed" from="skills/ArrowsDecor/arrows/ButonArrows" to="." method="_on_buton_arrows_pressed"]
 [connection signal="pressed" from="skills/Magic1Decor/magic1/ButonMagic1" to="." method="_on_buton_magic_1_pressed"]
 [connection signal="pressed" from="skills/Magic2Decor/magic2/ButonMagic2" to="." method="_on_buton_magic_2_pressed"]
 [connection signal="pressed" from="skills/Magic3Decor/magic3/ButonMagic3" to="." method="_on_buton_magic_3_pressed"]
+[connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

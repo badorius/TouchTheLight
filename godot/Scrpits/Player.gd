@@ -86,6 +86,7 @@ func _ready():
 	
 	
 func _physics_process(delta):
+		
 	direction = Input.get_axis("ui_left", "ui_right")
 	# Get the input direction and handle the movement/deceleration and orientation.
 	if direction:
@@ -162,6 +163,12 @@ func _physics_process(delta):
 		
 			
 	move_and_slide()
+	# Add pushforce to rigibody #after calling move_and_slide()
+	for i in get_slide_collision_count():
+		var c = get_slide_collision(i)
+		if c.get_collider() is RigidBody2D:
+			c.get_collider().apply_central_impulse(-c.get_normal() * push_force)
+			
 	#Decrease light
 	decrease_light_scale(0.01)
 	
@@ -283,7 +290,8 @@ func iddle():
 #GAMEOVER FUNCTION
 func game_over ():
 	#PENDING FIX FUNCTIoN NAME (NOT GAMEOVER) DIE LIVES
-	get_tree().change_scene_to_file("res://Objects/menu.tscn")
+	HUD.gameover()
+	#get_tree().change_scene_to_file("res://Objects/menu.tscn")
 
 #QUIT GAME FUNCTION
 func game_quit ():

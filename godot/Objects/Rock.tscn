@@ -6,8 +6,6 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_m1rxo"]
 
 [node name="Rock" type="RigidBody2D" groups=["Rock"]]
-scale = Vector2(2, 2)
-linear_damp = 3.0
 script = ExtResource("1_7j4ej")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

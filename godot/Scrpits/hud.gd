@@ -13,7 +13,8 @@ func _ready():
 	score = 0
 	arrows = 0
 	coat = 0
-
+	$GameOver.visible = false
+	$VBoxContainer.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -93,8 +94,15 @@ func update_magic3 (mana):
 	else:
 		$skills/Magic3Decor/magic3.visible = false
 
-
-
+func gameover():
+	$GameOver.visible = true
+	$VBoxContainer.visible = true
+		
+func _on_start_button_pressed():
+	get_tree().change_scene_to_file("res://Objects/Level1.tscn")
+	
+func _on_quit_button_pressed():
+	get_tree().change_scene_to_file("res://Objects/menu.tscn")
 
 func _on_buton_sword_pressed():
 	player.atack1()
