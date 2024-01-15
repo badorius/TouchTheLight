@@ -80,6 +80,7 @@ func set_iddle():
 	state_machine.travel('Iddle')
 
 func set_attack():
+	#FIX ATTACK COULD MOVE PLAYER FROM SIDE TO SIDE IN ORDER TO MAKE FUNY
 	velocity.x = 0
 	state = "Attack"
 	var direction = (player.global_position - global_position).normalized()
