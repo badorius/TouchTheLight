@@ -49,7 +49,7 @@ size = Vector2(31, 36.5)
 
 [sub_resource type="Animation" id="Animation_m8lgk"]
 resource_name = "Attack"
-length = 1.5
+length = 1.6
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -63,74 +63,66 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2), Vector2i(5, 2), Vector2i(6, 2), Vector2i(7, 2)]
 }
-tracks/1/type = "method"
+tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath(".")
+tracks/1/path = NodePath("Sprite2D/Area2D/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"values": []
+"times": PackedFloat32Array(0, 0.86, 1.49),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D/Area2D/CollisionShape2D:disabled")
+tracks/2/path = NodePath("ImpactEffect:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.86, 1.49),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [true, false, true]
+"values": [false, true, false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("ImpactEffect:visible")
+tracks/3/path = NodePath("ImpactEffect:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.86, 1.49),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("ImpactEffect:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
 "times": PackedFloat32Array(0.86, 0.89, 0.92, 0.95, 0.98, 1.01, 1.04, 1.07, 1.1, 1.13, 1.16, 1.19),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
 }
-tracks/5/type = "method"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath(".")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0.86),
-"transitions": PackedFloat32Array(1),
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.86, 1.54),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
 "method": &"drop_enemy"
+}, {
+"args": [],
+"method": &"unset_attack"
 }]
 }
-tracks/6/type = "audio"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("StartAttack")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
+tracks/5/type = "audio"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("StartAttack")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -138,14 +130,14 @@ tracks/6/keys = {
 }],
 "times": PackedFloat32Array(0.37)
 }
-tracks/6/use_blend = true
-tracks/7/type = "audio"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("HitAttack")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
+tracks/5/use_blend = true
+tracks/6/type = "audio"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HitAttack")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
 "clips": [{
 "end_offset": 0.0,
 "start_offset": 0.0,
@@ -153,7 +145,7 @@ tracks/7/keys = {
 }],
 "times": PackedFloat32Array(0.86)
 }
-tracks/7/use_blend = true
+tracks/6/use_blend = true
 
 [sub_resource type="Animation" id="Animation_7luyj"]
 resource_name = "Run"
@@ -439,7 +431,7 @@ states/Attack/position = Vector2(274, 31)
 states/Death/node = SubResource("AnimationNodeAnimation_muuws")
 states/Death/position = Vector2(630.688, 188.138)
 states/Hurt/node = SubResource("AnimationNodeAnimation_tp3qg")
-states/Hurt/position = Vector2(434, 188.138)
+states/Hurt/position = Vector2(499, 297)
 states/Run/node = SubResource("AnimationNodeAnimation_7fui2")
 states/Run/position = Vector2(0, 297)
 states/Start/position = Vector2(-167, 297)

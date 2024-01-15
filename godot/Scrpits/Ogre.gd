@@ -2,8 +2,9 @@ extends CharacterBody2D
 
 @export var speed = 50.0
 #var AttackCount = 3
-const DISTANCE_THRESHOLD = 75  # Distancia mínima para separarte del jugador
-const DISTANCE_ATACK = 115
+const DISTANCE_THRESHOLD = 100  # Distancia mínima para separarte del jugador
+const MAX_DISTANCE_ATACK = 115
+const MIN_DISTANCE_ATACK = 100
 const JUMP_VELOCITY = -350.0
 var state_machine
 @export var state : String = "Iddle"
@@ -58,38 +59,17 @@ func _physics_process(delta):
 				FreqCounter = 0
 				hurt(5)
 			
-		#CHECK IS NOT OVER PLAYER 
-		if abs(global_position.x - player.global_position.x) < DISTANCE_ATACK - 50:
-			is_over_player = true
-			set_scapeplayer()
-		else:
-			is_over_player = false
 			
 		if state != "Death":
-			state = "ChasePlayer"
-		
-		
-		#if abs(global_position.distance_to(player.global_position)) <= DISTANCE_THRESHOLD:
-		#	set_jump()
-			
-		if abs(global_position.distance_to(player.global_position)) <= DISTANCE_ATACK:
-			state = "Attack"
-			
-			
-		if state == "ChasePlayer":
-				$PointLight2D.enabled = true
-		else:
-				$PointLight2D.enabled = false
+			if state != "Attack":
+				if abs(global_position.distance_to(player.global_position)) <= DISTANCE_THRESHOLD:
+					set_scapeplayer()
+				else:
+					set_chaseplayer()
 					
-					
-		match state:
-			"Iddle":
-				set_iddle()
-			"ChasePlayer":
-				set_chaseplayer()
-			"Attack":
+			if abs(global_position.distance_to(player.global_position)) <= MAX_DISTANCE_ATACK and abs(global_position.distance_to(player.global_position)) >= MIN_DISTANCE_ATACK:
 				set_attack()
-		
+
 		
 		# Add the gravity.
 		if not is_on_floor():
@@ -100,9 +80,9 @@ func set_iddle():
 	state_machine.travel('Iddle')
 
 func set_attack():
+	velocity.x = 0
+	state = "Attack"
 	var direction = (player.global_position - global_position).normalized()
-	
-
 	#Animation Attack and SET POSITION AREA ATACK
 	if direction.x > 0:
 		get_node( "Sprite2D" ).set_flip_h( false )
@@ -112,13 +92,11 @@ func set_attack():
 		get_node( "Sprite2D" ).set_flip_h( true )
 		$Sprite2D/Area2D.position.x = -99
 		$ImpactEffect.position.x = -100
-	velocity.x = 0
 	state_machine.travel('Attack')
 	
+func unset_attack():
+	state = "no"
 
-
-
-		
 func set_chaseplayer():
 	var direction = (player.global_position - global_position).normalized()
 	if direction.x > 0:
@@ -132,7 +110,7 @@ func set_chaseplayer():
 		
 		
 func set_scapeplayer():
-	#speed = 200.0
+	speed = player.SPEED + 50
 	var direction = (player.global_position - global_position).normalized()
 	if direction.x > 0:
 		get_node( "Sprite2D" ).set_flip_h( false )
@@ -142,38 +120,14 @@ func set_scapeplayer():
 		get_node( "Sprite2D" ).set_flip_h( true )
 		state_machine.travel('Run')	
 		velocity.x = +abs(direction.x) * speed
+	speed = 50
+	
 		
-	#speed = 100.0
-
-
-func set_jump():
-	if is_on_floor():
-
-		velocity.y = JUMP_VELOCITY
-		var direction = (player.global_position - global_position).normalized()
-		if direction.x > 0:
-			get_node( "Sprite2D" ).set_flip_h( false )
-			state_machine.travel('Run')
-			velocity.x = -abs(direction.x) * speed
-		else:
-			get_node( "Sprite2D" ).set_flip_h( true )
-			state_machine.travel('Run')	
-			velocity.x = abs(direction.x) * speed
-			state = "Jump"
-
-	else:
-		set_iddle()
-
-			
 func hurt(damage):
 	live -= damage
 	ArrowDamage_sound.play()
 	ProgressBar3.value = live
-	if live <= 0:
-		state = "Death"
-	else:
-		state_machine.travel('Hurt')
-		state = "Hurt"
+	state_machine.travel('Hurt')
 	
 	#FIX Random size
 	var offset_position = randi() % 20
