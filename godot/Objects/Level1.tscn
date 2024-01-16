@@ -2007,8 +2007,41 @@ position = Vector2(2133, 222)
 [node name="Skeleton3" parent="Enemies" instance=ExtResource("12_gavhj")]
 position = Vector2(2546, 221)
 
+[node name="Skeleton8" parent="Enemies" instance=ExtResource("12_gavhj")]
+position = Vector2(2900, 221)
+
+[node name="Skeleton10" parent="Enemies" instance=ExtResource("12_gavhj")]
+position = Vector2(2726, 109)
+
+[node name="Skeleton11" parent="Enemies" instance=ExtResource("12_gavhj")]
+position = Vector2(2333, 109)
+
 [node name="Skeleton4" parent="Enemies" instance=ExtResource("12_gavhj")]
 position = Vector2(3349, 222)
+
+[node name="Skeleton12" parent="Enemies" instance=ExtResource("12_gavhj")]
+position = Vector2(3557, 218)
+
+[node name="Skeleton13" parent="Enemies" instance=ExtResource("12_gavhj")]
+position = Vector2(7016, 231)
+
+[node name="Skeleton14" parent="Enemies" instance=ExtResource("12_gavhj")]
+position = Vector2(7842, 233)
+
+[node name="Skeleton15" parent="Enemies" instance=ExtResource("12_gavhj")]
+position = Vector2(8787, 235)
+
+[node name="Skeleton16" parent="Enemies" instance=ExtResource("12_gavhj")]
+position = Vector2(9317, 233)
+
+[node name="Skeleton17" parent="Enemies" instance=ExtResource("12_gavhj")]
+position = Vector2(10209, 235)
+
+[node name="Skeleton18" parent="Enemies" instance=ExtResource("12_gavhj")]
+position = Vector2(11514, 239)
+
+[node name="Skeleton19" parent="Enemies" instance=ExtResource("12_gavhj")]
+position = Vector2(12112, 235)
 
 [node name="Skeleton9" parent="Enemies" instance=ExtResource("12_gavhj")]
 position = Vector2(3754, 221)
