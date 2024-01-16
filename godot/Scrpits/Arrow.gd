@@ -14,12 +14,13 @@ func _ready():
 	#$RetroImpactEffectPack3C.visible = false
 	state = "run"
 	state_machine = $AnimationTree.get('parameters/playback')
-	state_machine.travel('Arrow_Fire')
+
 	if direction == 1:
 		get_node( "RetroImpactEffectPack3C" ).set_flip_h( false )
 	if direction == -1:
 		get_node( "RetroImpactEffectPack3C" ).set_flip_h( true )
-
+	state_machine.travel('Arrow_Fire')
+	
 func _physics_process(delta):
 	if state == "run":
 		if direction == 1:

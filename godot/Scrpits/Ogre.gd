@@ -11,6 +11,7 @@ var state_machine
 var target_position : Vector2
 @export var timer : float = 0
 @export var live : int = 1000
+@export var arrow_direction : int
 @export var ArrowDamage_sound : AudioStreamPlayer2D
 @export var StartAttack_sound : AudioStreamPlayer2D
 @export var HitAttack_sound : AudioStreamPlayer2D
@@ -30,12 +31,14 @@ const FlayingEye = preload("../Objects/FlayingEye.tscn")
 const Rock = preload("../Objects/Rock.tscn")
 const Skeleton = preload("../Objects/skeleton.tscn")
 const NightBorne = preload("../Objects/NightBorne.tscn")
+const IceArea = preload("../Objects/ice_area.tscn")
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 func _ready():
 	$Sprite2D.visible = true
+	
 	$Explode.visible = false
 	ArrowDamage_sound = $ArrowDamage
 	StartAttack_sound = $StartAttack
@@ -86,14 +89,29 @@ func set_attack():
 	var direction = (player.global_position - global_position).normalized()
 	#Animation Attack and SET POSITION AREA ATACK
 	if direction.x > 0:
+		arrow_direction = 1
 		get_node( "Sprite2D" ).set_flip_h( false )
 		$Sprite2D/Area2D.position.x = 0
 		$ImpactEffect.position.x = 100
 	else:
+		arrow_direction = - 1
 		get_node( "Sprite2D" ).set_flip_h( true )
 		$Sprite2D/Area2D.position.x = -99
 		$ImpactEffect.position.x = -100
 	state_machine.travel('Attack')
+	
+func icerun():
+	var main = get_tree().current_scene
+	var A = IceArea.instantiate()
+	A.global_position = global_position
+	if arrow_direction == 1:
+		A.position.x = global_position.x + 30
+	else:
+		A.position.x = global_position.x - 90
+	A.position.y = global_position.y + 50
+	A.direction = arrow_direction
+	main.add_child(A)
+	print(arrow_direction)
 	
 func unset_attack():
 	state = "no"
