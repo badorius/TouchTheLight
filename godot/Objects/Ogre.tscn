@@ -402,8 +402,9 @@ _data = {
 "Run": SubResource("Animation_hmhc3")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vo174"]
-size = Vector2(174.321, 38.0328)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s11iq"]
+radius = 6.65844
+height = 23.1087
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w5nm8"]
 animation = &"Attack"
@@ -453,6 +454,7 @@ transitions = ["Run", "Hurt", SubResource("AnimationNodeStateMachineTransition_m
 graph_offset = Vector2(-296.312, -0.862)
 
 [node name="Ogre" type="CharacterBody2D" groups=["enemies"]]
+position = Vector2(102, 136)
 script = ExtResource("1_82kp1")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -503,10 +505,9 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(4.00002, 27.5)
-rotation = -3.14159
-scale = Vector2(0.596601, 2.81336)
-shape = SubResource("RectangleShape2D_vo174")
+position = Vector2(2, 25)
+scale = Vector2(5.1063, 4.3063)
+shape = SubResource("CapsuleShape2D_s11iq")
 
 [node name="ArrowDamage" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_qxc35")

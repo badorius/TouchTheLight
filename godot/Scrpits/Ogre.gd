@@ -32,7 +32,7 @@ const Rock = preload("../Objects/Rock.tscn")
 const Skeleton = preload("../Objects/skeleton.tscn")
 const NightBorne = preload("../Objects/NightBorne.tscn")
 const IceArea = preload("../Objects/ice_area.tscn")
-
+const FireArea = preload("../Objects/fire_area.tscn")
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
@@ -102,7 +102,10 @@ func set_attack():
 	
 func icerun():
 	var main = get_tree().current_scene
-	var A = IceArea.instantiate()
+	#ICE OBJECT
+	#var A = IceArea.instantiate()
+	#FIRE OBJECT
+	var A = FireArea.instantiate()
 	A.global_position = global_position
 	if arrow_direction == 1:
 		A.position.x = global_position.x + 30
@@ -168,7 +171,7 @@ func drop_enemy():
 	#Random enemy
 	var EnemyRnd = randi() % 1
 	
-	var offset_position = randi() % 50
+	var offset_position = randi() % 300
 	var direction = (player.global_position - global_position).normalized()
 	# Instatnce new enmies and Drop enemies
 	
@@ -176,12 +179,13 @@ func drop_enemy():
 		0:
 			var EnemyDrop = Rock.instantiate()
 			if direction.x > 1:
-				EnemyDrop.global_position = Vector2(global_position.x*2  - offset_position , (global_position.y) - offset_position * 5)
+				EnemyDrop.global_position = Vector2(global_position.x  + offset_position , (global_position.y) - offset_position * 5)
 			else:
-				EnemyDrop.global_position = Vector2(global_position.x/2  - offset_position , (global_position.y) - offset_position * 5)
+				EnemyDrop.global_position = Vector2(global_position.x - 100  - offset_position , (global_position.y) - offset_position * 5)
 			main.add_child(EnemyDrop)
 		1:
 			var EnemyDrop = Skeleton.instantiate()
+
 			if direction.x > 1:
 				EnemyDrop.global_position = Vector2(global_position.x*2  - offset_position , (global_position.y) - offset_position * 5)
 			else:

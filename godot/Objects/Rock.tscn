@@ -4,8 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://cmjk7tkfxt68t" path="res://Assets/Objects/rocks/rocks.png" id="1_k17ps"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m1rxo"]
+radius = 9.5
 
 [node name="Rock" type="RigidBody2D" groups=["Rock"]]
+gravity_scale = 0.5
 script = ExtResource("1_7j4ej")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -13,10 +15,11 @@ scale = Vector2(2, 2)
 texture = ExtResource("1_k17ps")
 hframes = 3
 vframes = 2
+frame = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 1)
-scale = Vector2(1.4, 1.4)
+position = Vector2(4, -4)
+scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_m1rxo")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

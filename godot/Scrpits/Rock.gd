@@ -14,5 +14,6 @@ func _process(delta):
 
 
 func _on_body_entered(body):
-	apply_central_force(Vector2(100,100))
+	apply_force(Vector2(100,100))
+	#apply_central_force(Vector2(100,100))
 
