@@ -2,7 +2,7 @@ extends Area2D
 
 @export var speed = 750
 @export var direction : int = 1
-@export var damage : int = 10
+@export var damage : int = 100
 @export var state : String = "run"
 var state_machine
 

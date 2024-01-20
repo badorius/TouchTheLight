@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://d07i3cdmomp8e"]
+[gd_scene load_steps=39 format=3 uid="uid://d07i3cdmomp8e"]
 
 [ext_resource type="Texture2D" uid="uid://ccpnn3i3xafue" path="res://Assets/Tileset/Level1.png" id="1_5gl51"]
 [ext_resource type="Script" path="res://Scrpits/Level1.gd" id="1_6dyan"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://bgi84ioegb3g6" path="res://Objects/hud.tscn" id="18_gh1o4"]
 [ext_resource type="AudioStream" uid="uid://cbvpffgrq2nyi" path="res://Music/BGMUSIC/Level1.mp3" id="19_0wrw4"]
 [ext_resource type="Texture2D" uid="uid://deaw5e7ljld6i" path="res://Assets/Background/HauntedForest/Props/tree-2.png" id="22_yjjfu"]
+[ext_resource type="PackedScene" uid="uid://dh1dxnpdevukl" path="res://Objects/Crow.tscn" id="25_yi138"]
 [ext_resource type="PackedScene" uid="uid://clms4vxi7fjov" path="res://Objects/ArrowItemDrop.tscn" id="26_6v6i8"]
 [ext_resource type="PackedScene" uid="uid://y1d0hktabdah" path="res://Objects/BootsItemDrop.tscn" id="27_dxknq"]
 [ext_resource type="PackedScene" uid="uid://rwpof47pjb7g" path="res://Objects/CoatItemDrop.tscn" id="28_kq33f"]
@@ -2097,6 +2098,54 @@ position = Vector2(6327, 117)
 
 [node name="Mage6" parent="Enemies" instance=ExtResource("28_kwl0j")]
 position = Vector2(6542, 110)
+
+[node name="Crow" parent="Enemies" instance=ExtResource("25_yi138")]
+position = Vector2(4761, 82)
+
+[node name="Crow2" parent="Enemies" instance=ExtResource("25_yi138")]
+position = Vector2(4907, 46)
+
+[node name="Crow3" parent="Enemies" instance=ExtResource("25_yi138")]
+position = Vector2(6746, 63)
+
+[node name="Crow4" parent="Enemies" instance=ExtResource("25_yi138")]
+position = Vector2(6548, 53)
+
+[node name="Crow5" parent="Enemies" instance=ExtResource("25_yi138")]
+position = Vector2(7054, 127)
+
+[node name="Crow6" parent="Enemies" instance=ExtResource("25_yi138")]
+position = Vector2(7210, 94)
+
+[node name="Crow7" parent="Enemies" instance=ExtResource("25_yi138")]
+position = Vector2(8372, 84)
+
+[node name="Crow8" parent="Enemies" instance=ExtResource("25_yi138")]
+position = Vector2(8525, 48)
+
+[node name="Crow9" parent="Enemies" instance=ExtResource("25_yi138")]
+position = Vector2(9088, 104)
+
+[node name="Crow10" parent="Enemies" instance=ExtResource("25_yi138")]
+position = Vector2(9260, 97)
+
+[node name="Crow11" parent="Enemies" instance=ExtResource("25_yi138")]
+position = Vector2(10412, 132)
+
+[node name="Crow12" parent="Enemies" instance=ExtResource("25_yi138")]
+position = Vector2(10564, 96)
+
+[node name="Crow13" parent="Enemies" instance=ExtResource("25_yi138")]
+position = Vector2(11018, 57)
+
+[node name="Crow14" parent="Enemies" instance=ExtResource("25_yi138")]
+position = Vector2(11189, 48)
+
+[node name="Crow15" parent="Enemies" instance=ExtResource("25_yi138")]
+position = Vector2(11715, 129)
+
+[node name="Crow16" parent="Enemies" instance=ExtResource("25_yi138")]
+position = Vector2(11874, 97)
 
 [node name="SmallTorchs" type="Node2D" parent="."]
 position = Vector2(40, 186)

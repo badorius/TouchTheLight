@@ -16,7 +16,6 @@ var target_position : Vector2
 @export var StartAttack_sound : AudioStreamPlayer2D
 @export var HitAttack_sound : AudioStreamPlayer2D
 @onready var player : CharacterBody2D = get_node("../../Player")
-@onready var player_path : NodePath = player.get_path()
 @export var score_value : int = 100
 @export var is_over_player : bool = false
 @export var level_completed : bool = false
@@ -26,6 +25,8 @@ var FreqCounter : float = 0
 const DamageIndicator = preload("../Objects/damage_indicator.tscn")
 @onready var ProgressBar3 : TextureProgressBar = get_node("ProgressBar/Control/TextureProgressBar")
 @onready var Explode : AnimationPlayer = get_node("EnemyExplode/AnimationPlayer")
+
+@onready var Camera : Camera2D = get_node("../../Camera2D")
  
 const FlayingEye = preload("../Objects/FlayingEye.tscn")
 const Rock = preload("../Objects/Rock.tscn")
@@ -226,6 +227,7 @@ func _on_area_2d_body_entered(body):
 	if body.is_in_group("Player"):
 		var attack_power = randi() % 100
 		body.hurt(attack_power)
+		Camera.shake_window()
 		
 func decrease_speed(value):
 	speed -= value
