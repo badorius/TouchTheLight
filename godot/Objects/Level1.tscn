@@ -2147,6 +2147,9 @@ position = Vector2(11715, 129)
 [node name="Crow16" parent="Enemies" instance=ExtResource("25_yi138")]
 position = Vector2(11874, 97)
 
+[node name="Crow17" parent="Enemies" instance=ExtResource("25_yi138")]
+position = Vector2(340, 130)
+
 [node name="SmallTorchs" type="Node2D" parent="."]
 position = Vector2(40, 186)
 

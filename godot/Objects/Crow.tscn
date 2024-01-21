@@ -231,6 +231,20 @@ tracks/0/keys = {
 "update": 1,
 "values": [3, 4, 5, 4, 5, 4, 5, 4, 5]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"set_chaseplayer"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xc5pc"]
 _data = {
@@ -265,7 +279,6 @@ animation = &"StartFly"
 switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_njifs"]
-switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ro7n3"]
 switch_mode = 2
@@ -328,7 +341,6 @@ tree_root = SubResource("AnimationNodeStateMachine_oje4e")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="ProgressBar" parent="." instance=ExtResource("4_w2hj0")]
-visible = false
 position = Vector2(-25.9334, -44.1828)
 scale = Vector2(0.692642, 0.769481)
 

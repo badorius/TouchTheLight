@@ -9,13 +9,12 @@ var state_machine
 @export var state : String = "Iddle"
 var target_position : Vector2
 @export var timer : float = 0
-@export var live : int = 200
+@export var live : int = 50
 @export var ArrowDamage_sound : AudioStreamPlayer2D
 @onready var player : CharacterBody2D = get_node("../../Player")
 @export var score_value : int = 50
 @export var attack_power = randi() % 30
 const DamageIndicator = preload("../Objects/damage_indicator.tscn")
-var startrun : bool = false
 @export var Toxic : bool = false
 var FreqToxic : float = 10.0
 var FreqCounter : float = 0
@@ -29,13 +28,12 @@ func _ready():
 	state_machine = $AnimationTree.get('parameters/playback')
 	#var player = get_parent().get_node("Player")
 	$EnemyExplode.visible = false
+	set_iddle()
 	
 func _process(delta):
-		if global_position.distance_to(player.global_position) < DISTANCE_THRESHOLD * 5 or state == "Hurt":
-			startrun = true
+	pass
 			
 func _physics_process(delta):
-	
 	if Toxic == true:
 		if FreqCounter < FreqToxic:
 			FreqCounter += 0.1
@@ -43,65 +41,34 @@ func _physics_process(delta):
 			FreqCounter = 0
 			hurt(5)
 	
-	if startrun:
-		ProgressBar3.value = live
-		ArrowDamage_sound = $ArrowDamage
-		if live <= 0:
-			death()
-			state = "Death"
-			timer = 0
-		timer += delta
-		
-		if timer > 3.0:
-			var random_choice = randi() % 3
-			match random_choice:
-				0:
-					state = "WalkingLeft"
-					timer = 0
-				1:
-					state = "WalkingRight"
-				2:
-					state = "Iddle"
-					timer = 0
+	ProgressBar3.value = live
+	ArrowDamage_sound = $ArrowDamage
+	if live <= 0:
+		death()
+		state = "Death"
 
-		match state:
-			"Iddle":
-				set_iddle()
-			"WalkingLeft":
-				set_walkingleft()
-			"WalkingRight":
-				set_walkingright()
-			"ChasePlayer":
-				set_chaseplayer()
-			"Attack":
-				set_attack()
 
 		#CHECK DISTANCE TO CHESE OR ATACK
-		if global_position.distance_to(player.global_position) < DISTANCE_THRESHOLD or state == "Hurt":
-			state = "ChasePlayer"
-			if global_position.distance_to(player.global_position) < DISTANCE_ATACK:
-				state = "Attack"
-		if state == "ChasePlayer":
-				$PointLight2D.enabled = true
-		else:
-				$PointLight2D.enabled = false
+	if global_position.distance_to(player.global_position) < DISTANCE_THRESHOLD or state == "Hurt":
+		set_startfly()
+
 
 	move_and_slide()
 	
 				
 func set_iddle():
 	state_machine.travel('Iddle')
-
-func set_attack():
+	velocity = global_position 
+	
+func set_startfly():
 	var direction = (player.global_position - global_position).normalized()
 	if direction.x > 0:
 		get_node( "Sprite2D" ).set_flip_h( true )
+		state_machine.travel('StartFly')
 	else:
 		get_node( "Sprite2D" ).set_flip_h( false )
-	#state_machine.travel('Attack')
-	if global_position.distance_to(player.global_position) > DISTANCE_THRESHOLD:
-		set_iddle()
-
+		state_machine.travel('StartFly')
+	velocity = global_position
 		
 func set_chaseplayer():
 	var direction = (player.global_position - global_position).normalized()
@@ -114,27 +81,6 @@ func set_chaseplayer():
 		state_machine.travel('Run')	
 		velocity = direction  * speed
 
-		
-func set_walkingright():
-	target_position = global_position + Vector2(randf_range(50, 150), 0)
-	velocity.x = speed
-	get_node( "Sprite2D" ).set_flip_h( true )
-	state_machine.travel('Run')	
-
-	
-	if global_position.x > target_position.x or timer > 3.0:
-		set_iddle()
-		
-func set_walkingleft():
-	target_position = global_position + Vector2(randf_range(-50, -150), 0)
-	velocity.x = -speed
-	get_node( "Sprite2D" ).set_flip_h( false )
-	state_machine.travel('Run')	
-
-	
-	if global_position.x < target_position.x or timer > 3.0:
-		set_iddle()
-			
 func hurt(damage):
 	if live <= 0:
 		death()
