@@ -1,0 +1,207 @@
+[gd_scene load_steps=18 format=3 uid="uid://cseirvljks3fe"]
+
+[ext_resource type="Script" path="res://Scrpits/DeathLamp.gd" id="1_bcvh0"]
+[ext_resource type="Texture2D" uid="uid://cee7nuslemuep" path="res://Assets/Enemys/DeathLamp/death-lamp-rise.png" id="2_qkfph"]
+[ext_resource type="Texture2D" uid="uid://b14kynn8s8o2j" path="res://Assets/Enemys/DeathLamp/death-lamp-walk.png" id="3_tnkhb"]
+[ext_resource type="PackedScene" uid="uid://d34essgm7nkpw" path="res://Objects/EnemyExplode.tscn" id="4_yuejh"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y7f6c"]
+radius = 7.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xw5de"]
+radius = 7.0
+
+[sub_resource type="Animation" id="Animation_pqdky"]
+resource_name = "Rise"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../DeathLampRise:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../DeathLampRise:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"ready"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_hixcx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../DeathLampRise:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../DeathLampWalk:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_yvoel"]
+resource_name = "Walk"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../DeathLampWalk:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../DeathLampWalk:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_ff3d5"]
+resource_name = "Death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../EnemyExplode:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pcvus"]
+_data = {
+"Death": SubResource("Animation_ff3d5"),
+"RESET": SubResource("Animation_hixcx"),
+"Rise": SubResource("Animation_pqdky"),
+"Walk": SubResource("Animation_yvoel")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qvw7e"]
+animation = &"Rise"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dr386"]
+animation = &"Walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5wivr"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j2dyy"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gd0mk"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_q41s2"]
+states/Rise/node = SubResource("AnimationNodeAnimation_qvw7e")
+states/Rise/position = Vector2(298, 80)
+states/Walk/node = SubResource("AnimationNodeAnimation_dr386")
+states/Walk/position = Vector2(632, 69)
+transitions = ["Start", "Rise", SubResource("AnimationNodeStateMachineTransition_5wivr"), "Rise", "Walk", SubResource("AnimationNodeStateMachineTransition_j2dyy"), "Walk", "End", SubResource("AnimationNodeStateMachineTransition_gd0mk")]
+
+[node name="DeathLamp" type="CharacterBody2D"]
+script = ExtResource("1_bcvh0")
+
+[node name="DeathLamp" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DeathLamp"]
+position = Vector2(0, 9)
+shape = SubResource("CapsuleShape2D_y7f6c")
+
+[node name="DeathLampRise" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_qkfph")
+hframes = 11
+
+[node name="DeathLampWalk" type="Sprite2D" parent="."]
+texture = ExtResource("3_tnkhb")
+hframes = 6
+
+[node name="CollisionShape2D2Walk" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 9)
+shape = SubResource("CapsuleShape2D_xw5de")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../DeathLamp")
+libraries = {
+"": SubResource("AnimationLibrary_pcvus")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../DeathLamp")
+libraries = {
+"": SubResource("AnimationLibrary_pcvus")
+}
+tree_root = SubResource("AnimationNodeStateMachine_q41s2")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="EnemyExplode" parent="." instance=ExtResource("4_yuejh")]
+position = Vector2(0, 4)

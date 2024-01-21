@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed = 200.0
+@export var speed = 100.0
 var AttackCount = 3
 const DISTANCE_THRESHOLD = 100  # Distancia mínima para perseguir al jugador
 const DISTANCE_ATACK = 40
@@ -9,7 +9,7 @@ var state_machine
 @export var state : String = "Iddle"
 var target_position : Vector2
 @export var timer : float = 0
-@export var live : int = 50
+@export var live : int = 10
 @export var ArrowDamage_sound : AudioStreamPlayer2D
 @onready var player : CharacterBody2D = get_node("../../Player")
 @export var score_value : int = 50
@@ -22,6 +22,13 @@ var FreqCounter : float = 0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var ProgressBar3 : TextureProgressBar = get_node("ProgressBar/Control/TextureProgressBar") 
 @onready var Explode : AnimationPlayer = get_node("EnemyExplode/AnimationPlayer")
+
+#Vars to Wave y movement
+var bob_height : float = 100.0
+var bob_speed : float = 5.0
+@onready var start_y : float = global_position.y
+var t : float = 0.0
+
 
 func _ready():
 	ArrowDamage_sound = $ArrowDamage
@@ -40,27 +47,55 @@ func _physics_process(delta):
 		else:
 			FreqCounter = 0
 			hurt(5)
-	
+			
 	ProgressBar3.value = live
 	ArrowDamage_sound = $ArrowDamage
+	
 	if live <= 0:
 		death()
-		state = "Death"
+	else:
+		#CHECK DISTANCE to start CHESE
+		if global_position.distance_to(player.global_position) < DISTANCE_THRESHOLD and state != "ChasePlayer":
+			state = "StartFly"
+			var direction = (player.global_position - global_position).normalized()
+			if direction.x > 0:
+				get_node( "Sprite2D" ).set_flip_h( true )
+				state_machine.travel('StartFly')
+			else:
+				get_node( "Sprite2D" ).set_flip_h( false )
+				state_machine.travel('StartFly')
 
-
-		#CHECK DISTANCE TO CHESE OR ATACK
-	if global_position.distance_to(player.global_position) < DISTANCE_THRESHOLD or state == "Hurt":
-		set_startfly()
-
-
-	move_and_slide()
+			
+		if	state == "ChasePlayer":
+			var direction = (player.global_position - global_position).normalized()
+			if direction.x > 0:
+				get_node( "Sprite2D" ).set_flip_h( true )
+				state_machine.travel('Run')
+				velocity = direction * speed
+			else:
+				get_node( "Sprite2D" ).set_flip_h( false )
+				state_machine.travel('Run')	
+				velocity = direction  * speed
+			
+			
+		#Wave movement	
+		if state == "NONE":
+			# increase 't' over time.
+			t += delta
+			# creloopate a sin wave that bobs up and down.
+			var d = (sin(t * bob_speed) + 1) / 2
+			# apply that to  Y position.
+			global_position.y = start_y + (d * bob_height)
+			
+		move_and_slide()
 	
 				
 func set_iddle():
 	state_machine.travel('Iddle')
-	velocity = global_position 
+
 	
 func set_startfly():
+	state = "StartFlay"
 	var direction = (player.global_position - global_position).normalized()
 	if direction.x > 0:
 		get_node( "Sprite2D" ).set_flip_h( true )
@@ -70,16 +105,9 @@ func set_startfly():
 		state_machine.travel('StartFly')
 	velocity = global_position
 		
+		
 func set_chaseplayer():
-	var direction = (player.global_position - global_position).normalized()
-	if direction.x > 0:
-		get_node( "Sprite2D" ).set_flip_h( true )
-		state_machine.travel('Run')
-		velocity = direction * speed
-	else:
-		get_node( "Sprite2D" ).set_flip_h( false )
-		state_machine.travel('Run')	
-		velocity = direction  * speed
+	state = "ChasePlayer"
 
 func hurt(damage):
 	if live <= 0:
@@ -118,3 +146,12 @@ func decrease_speed(value):
 
 func toxic():
 	Toxic = true
+	
+
+
+
+func _on_area_2d_body_entered(body):
+	var attack_power = randi() % 10
+	if body.is_in_group("Player"):
+		body.hurt(attack_power)
+		live = 0

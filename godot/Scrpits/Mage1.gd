@@ -22,6 +22,7 @@ var FreqCounter : float = 0
 @onready var ProgressBar3 : TextureProgressBar = get_node("ProgressBar/Control/TextureProgressBar") 
 @onready var Explode : AnimationPlayer = get_node("EnemyExplode/AnimationPlayer")
 
+#Vars to Wave y movement
 var bob_height : float = 100.0
 var bob_speed : float = 5.0
 @onready var start_y : float = global_position.y
