@@ -110,16 +110,16 @@ hframes = 4
 [node name="PointLight2D" type="PointLight2D" parent="SmallTourch"]
 material = SubResource("CanvasItemMaterial_cu7ks")
 position = Vector2(1, -17)
-scale = Vector2(0.3, 0.3)
+scale = Vector2(0.5, 0.5)
 color = Color(0, 0, 0, 1)
 blend_mode = 1
 texture = SubResource("GradientTexture2D_nxopm")
 
 [node name="Alo" type="Sprite2D" parent="SmallTourch/PointLight2D"]
-modulate = Color(0, 0.247059, 0.741176, 0.392157)
+modulate = Color(0, 0.247059, 0.741176, 0.294118)
 material = SubResource("CanvasItemMaterial_41qik")
 position = Vector2(2.84782, -11.411)
-scale = Vector2(1.16484, 1.16277)
+scale = Vector2(0.5, 0.5)
 texture = SubResource("GradientTexture2D_vpl58")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

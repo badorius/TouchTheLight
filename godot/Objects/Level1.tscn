@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://d07i3cdmomp8e"]
+[gd_scene load_steps=39 format=3 uid="uid://d07i3cdmomp8e"]
 
 [ext_resource type="Texture2D" uid="uid://ccpnn3i3xafue" path="res://Assets/Tileset/Level1.png" id="1_5gl51"]
 [ext_resource type="Script" path="res://Scrpits/Level1.gd" id="1_6dyan"]
@@ -30,7 +30,6 @@
 [ext_resource type="PackedScene" uid="uid://y1d0hktabdah" path="res://Objects/BootsItemDrop.tscn" id="27_dxknq"]
 [ext_resource type="PackedScene" uid="uid://rwpof47pjb7g" path="res://Objects/CoatItemDrop.tscn" id="28_kq33f"]
 [ext_resource type="PackedScene" uid="uid://cpfdvkc5prymv" path="res://Objects/Mage1.tscn" id="28_kwl0j"]
-[ext_resource type="PackedScene" uid="uid://cseirvljks3fe" path="res://Objects/death_lamp.tscn" id="31_v2s66"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uwy2i"]
 texture = ExtResource("1_5gl51")
@@ -2148,9 +2147,6 @@ position = Vector2(11715, 129)
 [node name="Crow16" parent="Enemies" instance=ExtResource("25_yi138")]
 position = Vector2(11874, 97)
 
-[node name="DeathLamp" parent="Enemies" instance=ExtResource("31_v2s66")]
-position = Vector2(124, 209)
-
 [node name="SmallTorchs" type="Node2D" parent="."]
 position = Vector2(40, 186)
 
@@ -2265,5 +2261,5 @@ position = Vector2(37, 233)
 position = Vector2(-128, 233)
 
 [node name="Player" parent="." instance=ExtResource("14_nbcgr")]
-position = Vector2(-177, 90)
+position = Vector2(-183, 153)
 scale = Vector2(1, 1)

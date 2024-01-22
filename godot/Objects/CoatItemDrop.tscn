@@ -72,6 +72,7 @@ texture = SubResource("GradientTexture2D_nxopm")
 modulate = Color(0, 0.247059, 0.741176, 0.8)
 material = SubResource("CanvasItemMaterial_41qik")
 position = Vector2(2.84782, -11.411)
+scale = Vector2(0.3, 0.3)
 texture = SubResource("GradientTexture2D_vpl58")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

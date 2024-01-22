@@ -2,13 +2,17 @@ extends CharacterBody2D
 
 var speed = 50.0
 var live = 30
-@onready var player : CharacterBody2D = get_node("../../Player")
+@onready var player : CharacterBody2D = get_node("../Player")
 @onready var Explode : AnimationPlayer = get_node("EnemyExplode/AnimationPlayer")
 const DamageIndicator = preload("res://Objects/damage_indicator.tscn")
 @export var ArrowDamage_sound : AudioStreamPlayer2D
 var state : String = "Non"
 var state_machine
 @export var direction : Vector2
+@export var Toxic : bool = false
+var FreqToxic : float = 10.0
+var FreqCounter : float = 0
+@export var score_value : int = 10
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -36,9 +40,17 @@ func _process(delta):
 	pass
 	
 func _physics_process(delta):
-	if live <= 0:
+
+	if Toxic == true:
+		if FreqCounter < FreqToxic:
+			FreqCounter += 0.1
+		else:
+			FreqCounter = 0
+			hurt(5)
+		
+	if live <= 0 and state != "Death":
 		death()
-	else:
+	elif state != "Death":
 		if state == "Ready":
 			state_machine.travel('Walk')
 			if direction.x > 0:
@@ -50,8 +62,11 @@ func ready():
 	state = "Ready"
 		
 func death():
+	state = "Death"
 	state_machine.travel('Death')
+	$DeathLampWalk.visible = false
 	Explode.play("Explode")
+	player.add_score(score_value)
 	
 func hurt(damage):
 		if live <= 0 and state != "Death":
@@ -71,6 +86,11 @@ func hurt(damage):
 			D.show_damage(damage, color)
 			main.add_child(D)
 
+func decrease_speed(value):
+	speed -= value
+	
+func toxic():
+	Toxic = true
 
 func _on_death_lamp_body_entered(body):
 	var attack_power = randi() % 10
