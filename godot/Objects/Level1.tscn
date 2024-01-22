@@ -2149,7 +2149,7 @@ position = Vector2(11715, 129)
 position = Vector2(11874, 97)
 
 [node name="DeathLamp" parent="Enemies" instance=ExtResource("31_v2s66")]
-position = Vector2(122, 220)
+position = Vector2(124, 209)
 
 [node name="SmallTorchs" type="Node2D" parent="."]
 position = Vector2(40, 186)

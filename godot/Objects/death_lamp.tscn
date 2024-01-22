@@ -1,15 +1,106 @@
-[gd_scene load_steps=18 format=3 uid="uid://cseirvljks3fe"]
+[gd_scene load_steps=27 format=3 uid="uid://cseirvljks3fe"]
 
 [ext_resource type="Script" path="res://Scrpits/DeathLamp.gd" id="1_bcvh0"]
 [ext_resource type="Texture2D" uid="uid://cee7nuslemuep" path="res://Assets/Enemys/DeathLamp/death-lamp-rise.png" id="2_qkfph"]
 [ext_resource type="Texture2D" uid="uid://b14kynn8s8o2j" path="res://Assets/Enemys/DeathLamp/death-lamp-walk.png" id="3_tnkhb"]
 [ext_resource type="PackedScene" uid="uid://d34essgm7nkpw" path="res://Objects/EnemyExplode.tscn" id="4_yuejh"]
+[ext_resource type="AudioStream" uid="uid://dfpqvm4laxcko" path="res://SoundFX/Minifantasy_Dungeon_SFX/11_human_damage_1.wav" id="5_5dch1"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_x7jod"]
+blend_mode = 1
+light_mode = 2
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Gradient" id="Gradient_gmaye"]
+offsets = PackedFloat32Array(0, 0.645161)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jcy1i"]
+gradient = SubResource("Gradient_gmaye")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.513761, 0.490826)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3tqd2"]
+blend_mode = 1
+light_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_0x2va"]
+offsets = PackedFloat32Array(0, 0.567742)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jp8qb"]
+gradient = SubResource("Gradient_0x2va")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.490826, 0.477064)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y7f6c"]
 radius = 7.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xw5de"]
 radius = 7.0
+
+[sub_resource type="Animation" id="Animation_ff3d5"]
+resource_name = "Death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../EnemyExplode:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_hixcx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../DeathLampRise:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../DeathLampWalk:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_pqdky"]
 resource_name = "Rise"
@@ -53,33 +144,6 @@ tracks/2/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_hixcx"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../DeathLampRise:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../DeathLampWalk:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="Animation" id="Animation_yvoel"]
 resource_name = "Walk"
 length = 0.6
@@ -109,35 +173,6 @@ tracks/1/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_ff3d5"]
-resource_name = "Death"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../EnemyExplode:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("..")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.6),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"queue_free"
-}]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pcvus"]
 _data = {
 "Death": SubResource("Animation_ff3d5"),
@@ -145,6 +180,9 @@ _data = {
 "Rise": SubResource("Animation_pqdky"),
 "Walk": SubResource("Animation_yvoel")
 }
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t33w4"]
+animation = &"Death"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qvw7e"]
 animation = &"Rise"
@@ -157,17 +195,37 @@ animation = &"Walk"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j2dyy"]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gd0mk"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_waoti"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jh41s"]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_q41s2"]
+states/Death/node = SubResource("AnimationNodeAnimation_t33w4")
+states/Death/position = Vector2(741, 23)
 states/Rise/node = SubResource("AnimationNodeAnimation_qvw7e")
 states/Rise/position = Vector2(298, 80)
 states/Walk/node = SubResource("AnimationNodeAnimation_dr386")
-states/Walk/position = Vector2(632, 69)
-transitions = ["Start", "Rise", SubResource("AnimationNodeStateMachineTransition_5wivr"), "Rise", "Walk", SubResource("AnimationNodeStateMachineTransition_j2dyy"), "Walk", "End", SubResource("AnimationNodeStateMachineTransition_gd0mk")]
+states/Walk/position = Vector2(509, 90)
+transitions = ["Start", "Rise", SubResource("AnimationNodeStateMachineTransition_5wivr"), "Rise", "Walk", SubResource("AnimationNodeStateMachineTransition_j2dyy"), "Walk", "Death", SubResource("AnimationNodeStateMachineTransition_waoti"), "Death", "End", SubResource("AnimationNodeStateMachineTransition_jh41s")]
 
-[node name="DeathLamp" type="CharacterBody2D"]
+[node name="DeathLamp" type="CharacterBody2D" groups=["enemies"]]
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_bcvh0")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+material = SubResource("CanvasItemMaterial_x7jod")
+position = Vector2(0, 22)
+scale = Vector2(0.5, 0.5)
+enabled = false
+texture = SubResource("GradientTexture2D_jcy1i")
+
+[node name="Alo" type="Sprite2D" parent="PointLight2D"]
+modulate = Color(0.580392, 0, 0.282353, 0.294118)
+material = SubResource("CanvasItemMaterial_3tqd2")
+position = Vector2(2.84782, -11.411)
+scale = Vector2(0.5, 0.5)
+texture = SubResource("GradientTexture2D_jp8qb")
 
 [node name="DeathLamp" type="Area2D" parent="."]
 
@@ -185,7 +243,6 @@ texture = ExtResource("3_tnkhb")
 hframes = 6
 
 [node name="CollisionShape2D2Walk" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, 9)
 shape = SubResource("CapsuleShape2D_xw5de")
 
@@ -204,4 +261,10 @@ tree_root = SubResource("AnimationNodeStateMachine_q41s2")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="EnemyExplode" parent="." instance=ExtResource("4_yuejh")]
+visible = false
 position = Vector2(0, 4)
+
+[node name="ArrowDamage" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_5dch1")
+
+[connection signal="body_entered" from="DeathLamp" to="." method="_on_death_lamp_body_entered"]
