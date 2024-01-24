@@ -194,7 +194,7 @@ func drop_item():
 					A.position.x = global_position.x + 15
 				else:
 					A.position.x = global_position.x - 45
-				A.position.y = global_position.y + 15
+				A.position.y = global_position.y + 10
 				main.add_child(A)
 			1:
 				var A = ArrowItemDrop.instantiate()
@@ -203,7 +203,7 @@ func drop_item():
 					A.position.x = global_position.x + 15
 				else:
 					A.position.x = global_position.x - 45
-				A.position.y = global_position.y + 15
+				A.position.y = global_position.y + 10
 				main.add_child(A)
 			2:
 				var A = CoatItemDrop.instantiate()
@@ -212,7 +212,7 @@ func drop_item():
 					A.position.x = global_position.x + 15
 				else:
 					A.position.x = global_position.x - 45
-				A.position.y = global_position.y + 15
+				A.position.y = global_position.y + 10
 				main.add_child(A)
 			3:
 				pass

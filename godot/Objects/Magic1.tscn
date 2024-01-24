@@ -164,6 +164,8 @@ states/Arrow_Fire/position = Vector2(433, 97)
 transitions = ["Start", "Arrow_Fire", SubResource("AnimationNodeStateMachineTransition_sunsf"), "Arrow_Fire", "Arrow_Explode", SubResource("AnimationNodeStateMachineTransition_036yo"), "Arrow_Explode", "End", SubResource("AnimationNodeStateMachineTransition_xrabp")]
 
 [node name="Magic1" type="Area2D" groups=["arrow"]]
+collision_layer = 2
+collision_mask = 13
 script = ExtResource("1_eehyy")
 
 [node name="Magic1" type="Sprite2D" parent="."]

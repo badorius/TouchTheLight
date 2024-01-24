@@ -7,6 +7,8 @@
 radius = 9.5
 
 [node name="Rock" type="RigidBody2D" groups=["Rock"]]
+collision_layer = 8
+collision_mask = 7
 gravity_scale = 0.5
 script = ExtResource("1_7j4ej")
 

@@ -249,6 +249,8 @@ graph_offset = Vector2(193.688, 87.138)
 
 [node name="Mage1" type="CharacterBody2D" groups=["enemies"]]
 scale = Vector2(0.5, 0.5)
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_jd5qh")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]

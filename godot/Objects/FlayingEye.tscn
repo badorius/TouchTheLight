@@ -248,6 +248,8 @@ graph_offset = Vector2(193.688, 87.138)
 
 [node name="FlayingEye" type="CharacterBody2D" groups=["enemies"]]
 scale = Vector2(1.04113, 1.04113)
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_itj55")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -274,6 +276,8 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 0
+visibility_layer = 0
 rotation = -3.14159
 scale = Vector2(2.02915, 1.77055)
 shape = SubResource("CapsuleShape2D_nljga")

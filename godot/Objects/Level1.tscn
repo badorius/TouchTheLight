@@ -1895,6 +1895,7 @@ position = Vector2(11796, 167)
 texture = ExtResource("1_gkfah")
 
 [node name="TileMap" type="TileMap" parent="."]
+light_mask = 0
 position = Vector2(30, 21)
 tile_set = SubResource("TileSet_pox5h")
 format = 2

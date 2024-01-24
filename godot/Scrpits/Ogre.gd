@@ -37,6 +37,8 @@ const FireArea = preload("../Objects/fire_area.tscn")
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+const TreasureChest = preload("../Objects/TreasureChest.tscn")
+
 func _ready():
 	$Sprite2D.visible = true
 	
@@ -209,10 +211,24 @@ func drop_enemy():
 
 
 
+func drop_item():
+		var direction = (player.global_position - global_position).normalized()
+		var main = get_tree().current_scene
+		var A = TreasureChest.instantiate()
+		A.global_position = global_position
+		if direction.x == 1:
+			A.position.x = global_position.x + 15
+		else:
+			A.position.x = global_position.x - 45
+		A.position.y = -450
+		main.add_child(A)
+
+
 func explode():
 	Explode.play("Explode")
 		
 func death():
+	drop_item()
 	$Sprite2D.visible = false
 	$Explode.visible = true
 	state_machine.travel('Death')

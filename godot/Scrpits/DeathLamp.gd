@@ -14,6 +14,10 @@ var FreqToxic : float = 10.0
 var FreqCounter : float = 0
 @export var score_value : int = 10
 
+const BootsItemDrop = preload("../Objects/BootsItemDrop.tscn")
+const ArrowItemDrop = preload("../Objects/ArrowItemDrop.tscn")
+const CoatItemDrop = preload("../Objects/CoatItemDrop.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	ArrowDamage_sound = $ArrowDamage
@@ -67,6 +71,7 @@ func death():
 	$DeathLampWalk.visible = false
 	Explode.play("Explode")
 	player.add_score(score_value)
+	drop_item()
 	
 func hurt(damage):
 		if live <= 0 and state != "Death":
@@ -91,6 +96,43 @@ func decrease_speed(value):
 	
 func toxic():
 	Toxic = true
+	
+func drop_item():
+		var main = get_tree().current_scene
+		var rnd = randi() % 4
+		match rnd:
+			0:
+				var A = BootsItemDrop.instantiate()
+				A.global_position = global_position
+				if direction.x == 1:
+					A.position.x = global_position.x + 15
+				else:
+					A.position.x = global_position.x - 45
+				A.position.y = global_position.y + 15
+				main.add_child(A)
+			1:
+				var A = ArrowItemDrop.instantiate()
+				A.global_position = global_position
+				if direction.x == 1:
+					A.position.x = global_position.x + 15
+				else:
+					A.position.x = global_position.x - 45
+				A.position.y = global_position.y + 15
+				main.add_child(A)
+			2:
+				var A = CoatItemDrop.instantiate()
+				A.global_position = global_position
+				if direction.x == 1:
+					A.position.x = global_position.x + 15
+				else:
+					A.position.x = global_position.x - 45
+				A.position.y = global_position.y + 15
+				main.add_child(A)
+			3:
+				pass
+			4:
+				pass
+				
 
 func _on_death_lamp_body_entered(body):
 	var attack_power = randi() % 10

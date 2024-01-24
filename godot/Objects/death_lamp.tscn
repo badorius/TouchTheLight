@@ -211,6 +211,8 @@ transitions = ["Start", "Rise", SubResource("AnimationNodeStateMachineTransition
 
 [node name="DeathLamp" type="CharacterBody2D" groups=["enemies"]]
 scale = Vector2(1.5, 1.5)
+collision_layer = 4
+collision_mask = 0
 script = ExtResource("1_bcvh0")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -228,6 +230,8 @@ scale = Vector2(0.5, 0.5)
 texture = SubResource("GradientTexture2D_jp8qb")
 
 [node name="DeathLamp" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathLamp"]
 position = Vector2(0, 9)

@@ -680,6 +680,7 @@ transitions = ["Start", "Iddle", SubResource("AnimationNodeStateMachineTransitio
 graph_offset = Vector2(-315.312, -44.3531)
 
 [node name="NightBorne" type="CharacterBody2D" groups=["enemies"]]
+collision_layer = 4
 script = ExtResource("1_xauhk")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]

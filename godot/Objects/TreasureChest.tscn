@@ -1,0 +1,108 @@
+[gd_scene load_steps=16 format=3 uid="uid://bap8a17wxahrg"]
+
+[ext_resource type="Script" path="res://Scrpits/TreasureChest.gd" id="1_lhixw"]
+[ext_resource type="Texture2D" uid="uid://d0jhry38a3cf8" path="res://Assets/Icons/Other_31.png" id="2_rdgcw"]
+[ext_resource type="AudioStream" uid="uid://dhc3kia3e06e8" path="res://SoundFX/Minifantasy_Dungeon_SFX/LightCatch.mp3" id="3_yjjqq"]
+[ext_resource type="PackedScene" uid="uid://cky4vcccjrld1" path="res://Objects/MagicExplode.tscn" id="4_ifd5r"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cu7ks"]
+blend_mode = 1
+light_mode = 2
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Gradient" id="Gradient_whf75"]
+offsets = PackedFloat32Array(0, 0.645161)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_nxopm"]
+gradient = SubResource("Gradient_whf75")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.513761, 0.490826)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_41qik"]
+blend_mode = 1
+light_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_n7ywo"]
+offsets = PackedFloat32Array(0, 0.567742)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vpl58"]
+gradient = SubResource("Gradient_n7ywo")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.490826, 0.477064)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2ukha"]
+radius = 4.0
+
+[sub_resource type="Animation" id="Animation_p0lt4"]
+length = 0.001
+
+[sub_resource type="Animation" id="Animation_eo2u1"]
+resource_name = "wait"
+
+[sub_resource type="Animation" id="Animation_3ut7r"]
+resource_name = "Explode"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pvgiw"]
+_data = {
+"Explode": SubResource("Animation_3ut7r"),
+"RESET": SubResource("Animation_p0lt4"),
+"wait": SubResource("Animation_eo2u1")
+}
+
+[node name="TreasureChest" type="Area2D" groups=["Torch"]]
+position = Vector2(43, 2)
+collision_layer = 16
+collision_mask = 3
+gravity_space_override = 3
+gravity_point = true
+script = ExtResource("1_lhixw")
+
+[node name="TreasureChest" type="Sprite2D" parent="."]
+position = Vector2(-44, -4)
+texture = ExtResource("2_rdgcw")
+
+[node name="PointLight2D" type="PointLight2D" parent="TreasureChest"]
+light_mask = 2
+visibility_layer = 2
+material = SubResource("CanvasItemMaterial_cu7ks")
+position = Vector2(1, -3)
+scale = Vector2(0.3, 0.3)
+enabled = false
+texture = SubResource("GradientTexture2D_nxopm")
+
+[node name="Alo" type="Sprite2D" parent="TreasureChest/PointLight2D"]
+modulate = Color(0, 0.247059, 0.741176, 0.8)
+light_mask = 2
+visibility_layer = 2
+material = SubResource("CanvasItemMaterial_41qik")
+position = Vector2(2.84782, -11.411)
+scale = Vector2(0.3, 0.3)
+texture = SubResource("GradientTexture2D_vpl58")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-43, -22)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("CircleShape2D_2ukha")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pvgiw")
+}
+
+[node name="LightCatch" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_yjjqq")
+
+[node name="MagicExplode" parent="." instance=ExtResource("4_ifd5r")]
+position = Vector2(-46, -3)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
