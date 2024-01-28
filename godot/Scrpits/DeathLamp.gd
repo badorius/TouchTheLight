@@ -21,6 +21,8 @@ const CoatItemDrop = preload("../Objects/CoatItemDrop.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	ArrowDamage_sound = $ArrowDamage
+	
+	$DeathLamp/CollisionShape2D.disabled = true
 	$DeathLampRise.visible = true
 	$DeathLampWalk.visible = false
 	$DeathLamp/CollisionShape2D.disabled = false
@@ -56,6 +58,7 @@ func _physics_process(delta):
 		death()
 	elif state != "Death":
 		if state == "Ready":
+			$DeathLamp/CollisionShape2D.disabled = false
 			state_machine.travel('Walk')
 			if direction.x > 0:
 				position += transform.x * speed * delta
