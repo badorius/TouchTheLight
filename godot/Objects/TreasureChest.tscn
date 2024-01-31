@@ -42,14 +42,14 @@ fill_from = Vector2(0.490826, 0.477064)
 [sub_resource type="CircleShape2D" id="CircleShape2D_2ukha"]
 radius = 4.0
 
+[sub_resource type="Animation" id="Animation_3ut7r"]
+resource_name = "Explode"
+
 [sub_resource type="Animation" id="Animation_p0lt4"]
 length = 0.001
 
 [sub_resource type="Animation" id="Animation_eo2u1"]
 resource_name = "wait"
-
-[sub_resource type="Animation" id="Animation_3ut7r"]
-resource_name = "Explode"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pvgiw"]
 _data = {

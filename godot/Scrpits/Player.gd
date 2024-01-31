@@ -3,7 +3,6 @@ extends CharacterBody2D
 const MINSPEED = 100
 @export var SPEED = MINSPEED
 const MAXSPEED = 250
-var bounce_strenght = 0.7
 const JUMP_VELOCITY = -350.0
 @export var push_force = 80.0
 
@@ -87,11 +86,15 @@ func _ready():
 	
 func _physics_process(delta):
 		
-	direction = Input.get_axis("ui_left", "ui_right")
+	if state != "Hurt":
+		direction = Input.get_axis("ui_left", "ui_right")
+		
 	# Get the input direction and handle the movement/deceleration and orientation.
 	if direction:
 		arrow_direction = direction
 
+	if state == "Hurt":
+		bounce()
 		
 	if direction and state != "Hurt":
 		state = "WalkRight"
@@ -392,18 +395,12 @@ func hurt(damage):
 
 #PENDING FIX GOOD BOUNCE EFECT SEE BOUNCE GODOT
 func bounce():
-	state = "Bounce"
 	#state_machine.travel('HurtCollide')
 	if direction < 0:
-		#hurt(1)
-		var bounce_force = Vector2(-800 * arrow_direction, JUMP_VELOCITY)
-		velocity += bounce_force
-		print("Bounce right", bounce_force, arrow_direction)
+		velocity.x = -JUMP_VELOCITY/2
 	else:
-		#hurt(1)
-		var bounce_force = Vector2(-800 * arrow_direction, JUMP_VELOCITY)
-		velocity += bounce_force
-		print("Bounce left", bounce_force, arrow_direction)
+		velocity.x = JUMP_VELOCITY/2
+
 		
 func explode():
 	pass
