@@ -1,7 +1,8 @@
 extends Control
 
 var direction = 1
-var speed = 3
+var base_speed = 5
+var speed = base_speed
 var mouse_over : AudioStreamPlayer2D
 
 
@@ -28,7 +29,7 @@ func _process(delta):
 			
 			
 	if direction == -1:
-		speed = 5
+		speed = base_speed * 2
 		if $Player.position.x > -1500:
 			get_node( "/root/Menu/Player/Warrior" ).set_flip_h( false )
 			$Player/AnimationPlayer.play("WalkRight")
@@ -49,14 +50,14 @@ func _process(delta):
 			$NightBorne.position.x = 3597
 			$FlayingEye.position.x = 3174
 			direction = 1
-			speed = 3
+			speed = base_speed
 
 
 func _on_start_button_pressed():
 	get_tree().change_scene_to_file("res://Objects/Level1.tscn")
 
 func _on_settings_button_pressed():
-	pass # Replace with function body.
+	get_tree().change_scene_to_file("res://Objects/Thanks.tscn")
 
 func _on_quit_button_pressed():
 	get_tree().quit(0)

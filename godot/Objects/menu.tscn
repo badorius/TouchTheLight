@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://Scrpits/menu.gd" id="1_pb8s7"]
 [ext_resource type="AudioStream" uid="uid://dhc3kia3e06e8" path="res://SoundFX/Minifantasy_Dungeon_SFX/LightCatch.mp3" id="2_81uct"]
 [ext_resource type="Texture2D" uid="uid://cnvl248iy658b" path="res://Assets/Player/RedHood/red hood itch free Copy-Sheet.png" id="2_qjriq"]
-[ext_resource type="AudioStream" uid="uid://cu2fsnbyykeub" path="res://Music/BGMUSIC/MainMenu.mp3" id="3_88cdh"]
 [ext_resource type="Texture2D" uid="uid://wrp5houa810c" path="res://Assets/Background/The Dawn/Reference-Image.png" id="3_j27ob"]
+[ext_resource type="AudioStream" uid="uid://u4wnjs6upjwb" path="res://Music/BGMUSIC/InTheHallOfTheMountainKing.mp3" id="3_r4r43"]
 [ext_resource type="Texture2D" uid="uid://5eaqqfu1k2k8" path="res://Assets/Enemys/Skeleton/Walk.png" id="3_vr0og"]
 [ext_resource type="Texture2D" uid="uid://cl6agsvjtw4pi" path="res://Assets/Enemys/FlayingEye/flying-eye-demon.png" id="4_uom0f"]
 [ext_resource type="PackedScene" uid="uid://phnoalyvfkxs" path="res://Objects/SmallTorch.tscn" id="5_bqg2e"]
@@ -638,7 +638,7 @@ stream = ExtResource("2_81uct")
 color = Color(0.137255, 1, 1, 1)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_88cdh")
+stream = ExtResource("3_r4r43")
 autoplay = true
 
 [node name="Reference-image" type="Sprite2D" parent="."]

@@ -1,8 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://rwpof47pjb7g"]
+[gd_scene load_steps=13 format=3 uid="uid://rwpof47pjb7g"]
 
 [ext_resource type="Script" path="res://Scrpits/CoatItemDrop.gd" id="1_1ra7q"]
 [ext_resource type="Texture2D" uid="uid://bxnymfjkk0eeq" path="res://Assets/Icons/Armor_11.png" id="2_lkym0"]
-[ext_resource type="AudioStream" uid="uid://dhc3kia3e06e8" path="res://SoundFX/Minifantasy_Dungeon_SFX/LightCatch.mp3" id="3_4nxjf"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cu7ks"]
 blend_mode = 1
@@ -94,6 +93,6 @@ libraries = {
 }
 
 [node name="LightCatch" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_4nxjf")
+area_mask = 19
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

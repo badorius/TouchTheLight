@@ -32,6 +32,4 @@ func _on_body_entered(body):
 		LightCatch.play()
 		body.update_coat(10)
 		queue_free()
-
-		
 		
