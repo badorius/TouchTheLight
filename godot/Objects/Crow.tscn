@@ -1,7 +1,8 @@
-[gd_scene load_steps=32 format=3 uid="uid://dh1dxnpdevukl"]
+[gd_scene load_steps=33 format=3 uid="uid://dh1dxnpdevukl"]
 
 [ext_resource type="Script" path="res://Scrpits/Crow.gd" id="1_dqcfn"]
 [ext_resource type="Texture2D" uid="uid://dg1ksifmwm7wx" path="res://Assets/Enemys/Crow/crow-all.png" id="2_34d1s"]
+[ext_resource type="AudioStream" uid="uid://dvwu6sflwmb4f" path="res://SoundFX/Minifantasy_Dungeon_SFX/croworraven1-6749.mp3" id="3_w7ifd"]
 [ext_resource type="AudioStream" uid="uid://dfpqvm4laxcko" path="res://SoundFX/Minifantasy_Dungeon_SFX/11_human_damage_1.wav" id="3_xtsif"]
 [ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/progress_bar3.tscn" id="4_w2hj0"]
 [ext_resource type="PackedScene" uid="uid://d34essgm7nkpw" path="res://Objects/EnemyExplode.tscn" id="5_u1cov"]
@@ -250,6 +251,25 @@ tracks/1/keys = {
 "method": &"set_chaseplayer"
 }]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("crow")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_w7ifd")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_w7ifd")
+}],
+"times": PackedFloat32Array(0.02, 0.96)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xc5pc"]
 _data = {
@@ -360,5 +380,7 @@ position = Vector2(-25.9334, -44.1828)
 scale = Vector2(0.692642, 0.769481)
 
 [node name="EnemyExplode" parent="." instance=ExtResource("5_u1cov")]
+
+[node name="crow" type="AudioStreamPlayer2D" parent="."]
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

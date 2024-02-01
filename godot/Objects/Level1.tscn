@@ -1981,7 +1981,7 @@ color = Color(0, 0, 0, 1)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 position = Vector2(40, 186)
-color = Color(0.858824, 0.992157, 0.960784, 1)
+color = Color(0.670588, 0.886275, 0.984314, 1)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 position = Vector2(40, 186)
