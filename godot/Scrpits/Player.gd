@@ -271,13 +271,13 @@ func atack1():
 	match random_atack:
 		0:
 			state_machine.travel('Atack1')
-			attack_power = 30 * ((mana / 100) + 1)
+			attack_power = 90 * ((mana / 100) + 1)
 		1:
 			state_machine.travel('Atack2') 
-			attack_power = 40 * ((mana / 100) + 1)
+			attack_power = 120 * ((mana / 100) + 1)
 		2:
 			state_machine.travel('Atack3') 
-			attack_power = 50 * ((mana / 100) + 1)
+			attack_power = 150 * ((mana / 100) + 1)
 
 
 		
