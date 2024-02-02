@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scrpits/BootsItemDrop.gd" id="1_tly24"]
 [ext_resource type="Texture2D" uid="uid://buv78jq5axbjv" path="res://Assets/Icons/Armor_58.png" id="2_lps3v"]
-[ext_resource type="AudioStream" uid="uid://dhc3kia3e06e8" path="res://SoundFX/Minifantasy_Dungeon_SFX/LightCatch.mp3" id="3_3ijdw"]
+[ext_resource type="AudioStream" uid="uid://80pj6kwv0dva" path="res://SoundFX/Minifantasy_Dungeon_SFX/08_human_charge_1.wav" id="3_qunk4"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cu7ks"]
 blend_mode = 1
@@ -94,6 +94,6 @@ libraries = {
 }
 
 [node name="LightCatch" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_3ijdw")
+stream = ExtResource("3_qunk4")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

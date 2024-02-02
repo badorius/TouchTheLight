@@ -52,7 +52,7 @@ func _ready():
 
 
 func _physics_process(delta):
-	ProgressBar3.value = live/10
+	ProgressBar3.value = live/10.0
 	if live <= 0:
 		state = "Death"
 		death()

@@ -42,6 +42,8 @@ const Magic3 = preload("../Objects/Magic3.tscn")
 const DamageIndicator = preload("../Objects/damage_indicator.tscn")
 @export var arrow_direction : int = 1
 
+@onready var Explode : AnimationPlayer = get_node("PlayerExplode/AnimationPlayer")
+
 # Light vaule default
 var base_light : Vector2 = Vector2(0.5, 0.5)
 @export var decrease_value : Vector2 = Vector2(0.001, 0.001)
@@ -58,7 +60,7 @@ var arrow_sound : AudioStreamPlayer2D
 var dash_sound : AudioStreamPlayer2D
 var hurt_sound : AudioStreamPlayer2D
 var sword_sound : AudioStreamPlayer2D
-
+var death_sound : AudioStreamPlayer2D
 
 
 func _ready():
@@ -67,6 +69,7 @@ func _ready():
 	state_machine = $AnimationTree.get('parameters/playback')
 	state_machine.travel('Idle')
 	live_sphere.value = live
+	$PlayerExplode.visible = false
 
 
 	# Utiliza get_node para acceder al nodo "Warrior" y luego al nodo "PointLight2D" dentro de él
@@ -82,7 +85,7 @@ func _ready():
 	dash_sound = $dash
 	hurt_sound = $Hurt
 	sword_sound = $sword
-	
+	death_sound = $Death
 	
 func _physics_process(delta):
 		
@@ -336,7 +339,7 @@ func update_lives (amount):
 		mana_sphere.value = 0.0
 		lives -= amount
 		HUD.update_lives(amount)
-		position = checkpoint_position
+
 	
 # Función para incrementar la escala de la luz
 func increment_light_scale(increment_amount):
@@ -391,20 +394,25 @@ func hurt(damage):
 
 		
 		if live <= 0:
+			$AnimationPlayer.play("Death")
+			death_sound.play()
 			update_lives(1)
 
 #PENDING FIX GOOD BOUNCE EFECT SEE BOUNCE GODOT
 func bounce():
 	#state_machine.travel('HurtCollide')
-	if direction < 0:
-		velocity.x = -JUMP_VELOCITY/2
+	if arrow_direction == 1:
+		velocity.x = -100
 	else:
-		velocity.x = JUMP_VELOCITY/2
+		velocity.x = 100
 
 		
 func explode():
-	pass
+	Explode.play("Explode")
 
+func gotocheckpoint():
+	state = "Iddle"
+	position = checkpoint_position
 
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("enemies"):

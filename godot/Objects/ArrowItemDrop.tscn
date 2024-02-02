@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scrpits/ArrowItemDrop.gd" id="1_dkmy6"]
 [ext_resource type="Texture2D" uid="uid://wwpar4rnrsfk" path="res://Assets/Icons/Quiver_0.png" id="2_foj1y"]
-[ext_resource type="AudioStream" uid="uid://dhc3kia3e06e8" path="res://SoundFX/Minifantasy_Dungeon_SFX/LightCatch.mp3" id="3_2cg17"]
+[ext_resource type="AudioStream" uid="uid://80pj6kwv0dva" path="res://SoundFX/Minifantasy_Dungeon_SFX/08_human_charge_1.wav" id="3_7xus1"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cu7ks"]
 blend_mode = 1
@@ -94,6 +94,6 @@ libraries = {
 }
 
 [node name="LightCatch" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_2cg17")
+stream = ExtResource("3_7xus1")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://rwpof47pjb7g"]
+[gd_scene load_steps=14 format=3 uid="uid://rwpof47pjb7g"]
 
 [ext_resource type="Script" path="res://Scrpits/CoatItemDrop.gd" id="1_1ra7q"]
 [ext_resource type="Texture2D" uid="uid://bxnymfjkk0eeq" path="res://Assets/Icons/Armor_11.png" id="2_lkym0"]
+[ext_resource type="AudioStream" uid="uid://80pj6kwv0dva" path="res://SoundFX/Minifantasy_Dungeon_SFX/08_human_charge_1.wav" id="3_lmqcy"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cu7ks"]
 blend_mode = 1
@@ -93,6 +94,7 @@ libraries = {
 }
 
 [node name="LightCatch" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_lmqcy")
 area_mask = 19
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
