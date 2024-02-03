@@ -70,7 +70,7 @@ func _ready():
 	state_machine.travel('Idle')
 	live_sphere.value = live
 	$PlayerExplode.visible = false
-
+	$Warrior.visible = true
 
 	# Utiliza get_node para acceder al nodo "Warrior" y luego al nodo "PointLight2D" dentro de él
 	player_light = $Warrior/PointLight2D
@@ -409,6 +409,7 @@ func bounce():
 		
 func explode():
 	Explode.play("Explode")
+
 
 func gotocheckpoint():
 	state = "Iddle"

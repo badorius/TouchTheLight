@@ -221,7 +221,7 @@ func drop_item():
 				
 
 func _on_area_2d_body_entered(body):
-	var attack_power = randi() % 10
+	var attack_power = randi() % 100
 	if body.is_in_group("Player"):
 		state = "Shield"
 		punch_shield()
