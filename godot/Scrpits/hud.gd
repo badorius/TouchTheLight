@@ -15,12 +15,14 @@ func _ready():
 	coat = 0
 	$GameOver.visible = false
 	$VBoxContainer.visible = false
+	$BloodCloudBloodOverlay.visible = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 	
 func update_lives(num):
+	$AnimationPlayer.play("Death")
 	lives -= num
 	match lives:
 		0:
@@ -46,7 +48,11 @@ func update_score(num):
 	
 	
 func update_arrows(num):
-	arrows += num
+	if num == 0:
+		arrows = 0
+	else:
+		arrows += num
+		
 	if arrows > 0:
 		$skills/ArrowsDecor/arrows.visible = true
 		$skills/ArrowsDecor/LabelArrows.text = str(arrows)
@@ -55,7 +61,11 @@ func update_arrows(num):
 		$skills/ArrowsDecor/LabelArrows.text = str(arrows)
 		
 func update_boots(num):
-	boots += num
+	if num == 0:
+		boots = 0
+	else:
+		boots += num
+
 	if boots > 0:
 		$skills/BootsDecor/boots.visible = true
 		$skills/BootsDecor/LabelBoots.text = str(boots)
@@ -65,7 +75,11 @@ func update_boots(num):
 		
 
 func update_coat(num):
-	coat += num
+	if num == 0:
+		coat = 0
+	else:
+		coat += num
+	
 	if coat > 0:
 		$skills/CoatDecor/coat.visible = true
 		$skills/CoatDecor/LabelCoat.text = str(coat)
@@ -97,7 +111,8 @@ func update_magic3 (mana):
 func gameover():
 	$GameOver.visible = true
 	$VBoxContainer.visible = true
-		
+	$AnimationPlayer.play("Death")
+	
 func _on_start_button_pressed():
 	get_tree().change_scene_to_file("res://Objects/Level1.tscn")
 	

@@ -1,11 +1,46 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfnfppe2hoeni"]
+[gd_scene load_steps=13 format=3 uid="uid://cfnfppe2hoeni"]
 
+[ext_resource type="Script" path="res://Scrpits/PlayerExplode.gd" id="1_5len4"]
 [ext_resource type="Texture2D" uid="uid://cs1i5ght724md" path="res://Assets/Impact/Retro Impact Effect Pack 3 C.png" id="1_dmhte"]
 [ext_resource type="AudioStream" uid="uid://d0k7ju5jvvnme" path="res://SoundFX/Minifantasy_Dungeon_SFX/24_orc_death_spin.wav" id="2_i1cw7"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xnpbm"]
+blend_mode = 1
+light_mode = 2
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Gradient" id="Gradient_bu2s0"]
+offsets = PackedFloat32Array(0, 0.645161)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_814rl"]
+gradient = SubResource("Gradient_bu2s0")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.513761, 0.490826)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hr262"]
+blend_mode = 1
+light_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_osvsf"]
+offsets = PackedFloat32Array(0, 0.567742)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rn5wa"]
+gradient = SubResource("Gradient_osvsf")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.490826, 0.477064)
+
 [sub_resource type="Animation" id="Animation_41blc"]
 resource_name = "Explode"
-length = 1.75
+length = 1.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -29,6 +64,44 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D/PointLight2D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5, 0.5), Vector2(8, 8), Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D/PointLight2D:energy")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.8, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 8.9, 0.0]
 }
 
 [sub_resource type="Animation" id="Animation_pprfm"]
@@ -65,12 +138,30 @@ _data = {
 }
 
 [node name="PlayerExplode" type="Node2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_5len4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_dmhte")
 hframes = 6
 vframes = 24
 frame = 96
+
+[node name="PointLight2D" type="PointLight2D" parent="Sprite2D"]
+light_mask = 512
+visibility_layer = 512
+material = SubResource("CanvasItemMaterial_xnpbm")
+position = Vector2(0, 22)
+scale = Vector2(1e-05, 1e-05)
+energy = 0.0
+texture = SubResource("GradientTexture2D_814rl")
+
+[node name="Alo" type="Sprite2D" parent="Sprite2D/PointLight2D"]
+modulate = Color(0.172549, 1, 1, 0.105882)
+material = SubResource("CanvasItemMaterial_hr262")
+position = Vector2(2.84782, -11.411)
+scale = Vector2(0.5, 0.5)
+texture = SubResource("GradientTexture2D_rn5wa")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

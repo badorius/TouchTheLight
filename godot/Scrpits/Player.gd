@@ -41,8 +41,7 @@ const Magic2 = preload("../Objects/Magic2.tscn")
 const Magic3 = preload("../Objects/Magic3.tscn")
 const DamageIndicator = preload("../Objects/damage_indicator.tscn")
 @export var arrow_direction : int = 1
-
-@onready var Explode : AnimationPlayer = get_node("PlayerExplode/AnimationPlayer")
+const Explode = preload("../Objects/PlayerExplode.tscn")
 
 # Light vaule default
 var base_light : Vector2 = Vector2(0.5, 0.5)
@@ -69,8 +68,8 @@ func _ready():
 	state_machine = $AnimationTree.get('parameters/playback')
 	state_machine.travel('Idle')
 	live_sphere.value = live
-	$PlayerExplode.visible = false
-	$Warrior.visible = true
+	SPEED = MINSPEED
+	$Warrior/PointLight2D.visible = true
 
 	# Utiliza get_node para acceder al nodo "Warrior" y luego al nodo "PointLight2D" dentro de él
 	player_light = $Warrior/PointLight2D
@@ -184,7 +183,10 @@ func _physics_process(delta):
 	
 	#PLAYER DOWN GAMEOVER
 	if global_position.y > 500:
-		update_lives(1)
+		#$AnimationPlayer.play("Death")
+		death_sound.play()
+		reset_skills()
+		gotocheckpoint()
 
 
 func walk(direction):
@@ -308,16 +310,27 @@ func add_score (amount):
 	HUD.update_score(amount)
 	
 func update_arrows (amount):
-	arrows += amount
+	if amount == 0:
+		arrows = 0
+	else:
+		arrows += amount
+		
 	HUD.update_arrows(amount)
 	
 func update_boots (amount):
-	if SPEED < MAXSPEED:
-		SPEED += amount
+	if amount == 0:
+		SPEED = MINSPEED
 		HUD.update_boots(amount)
+	else:
+		if SPEED < MAXSPEED:
+			SPEED += amount
+	HUD.update_boots(amount)
 		
 func update_coat (amount):
-	coat += amount
+	if amount == 0:
+		coat = 0
+	else:
+		coat += amount
 	HUD.update_coat(amount)
 
 func update_magic1 ():
@@ -397,6 +410,7 @@ func hurt(damage):
 			$AnimationPlayer.play("Death")
 			death_sound.play()
 			update_lives(1)
+			reset_skills()
 
 #PENDING FIX GOOD BOUNCE EFECT SEE BOUNCE GODOT
 func bounce():
@@ -406,9 +420,25 @@ func bounce():
 	else:
 		velocity.x = 100
 
+func reset_skills():
+	live = max_live
+	live_sphere.value = live
+	mana = 0
+	mana_sphere.value = mana
+	player_light.scale = base_light
+	HUD.update_magic1(0)
+	HUD.update_magic2(0)
+	HUD.update_magic3(0)
+	update_arrows(0)
+	update_boots(0)
+	update_coat(0)
+	
 		
 func explode():
-	Explode.play("Explode")
+		var main = get_tree().current_scene
+		var A = Explode.instantiate()
+		A.global_position = global_position
+		main.add_child(A)
 
 
 func gotocheckpoint():
@@ -432,5 +462,6 @@ func _on_area_2d_area_entered(area):
 
 func _on_area_2d_body_body_entered(body):
 	if body.is_in_group("enemies"):
+		body.hurt(10)
 		hurt(10)
 

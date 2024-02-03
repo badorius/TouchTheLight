@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var speed = 50.0
-var live = 30
+var live = 10
 @onready var player : CharacterBody2D = get_node("../Player")
 @onready var Explode : AnimationPlayer = get_node("EnemyExplode/AnimationPlayer")
 const DamageIndicator = preload("res://Objects/damage_indicator.tscn")
@@ -13,6 +13,9 @@ var state_machine
 var FreqToxic : float = 10.0
 var FreqCounter : float = 0
 @export var score_value : int = 10
+
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 const BootsItemDrop = preload("../Objects/BootsItemDrop.tscn")
 const ArrowItemDrop = preload("../Objects/ArrowItemDrop.tscn")
@@ -64,6 +67,12 @@ func _physics_process(delta):
 				position += transform.x * speed * delta
 			else:
 				position -= transform.x * speed * delta
+				
+	# Add the gravity PENDING TO FIX
+	if not is_on_floor():
+		velocity.y += gravity * delta
+		print("Not in floor")
+		move_and_slide()
 		
 func ready():
 	state = "Ready"

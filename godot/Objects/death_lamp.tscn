@@ -248,7 +248,6 @@ transitions = ["Start", "Rise", SubResource("AnimationNodeStateMachineTransition
 [node name="DeathLamp" type="CharacterBody2D" groups=["enemies"]]
 scale = Vector2(1.5, 1.5)
 collision_layer = 4
-collision_mask = 0
 script = ExtResource("1_bcvh0")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -285,8 +284,11 @@ texture = ExtResource("3_tnkhb")
 hframes = 6
 
 [node name="CollisionShape2D2Walk" type="CollisionShape2D" parent="."]
+light_mask = 4
+visibility_layer = 3
 position = Vector2(0, 9)
 shape = SubResource("CapsuleShape2D_xw5de")
+disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../DeathLamp")
@@ -303,6 +305,7 @@ tree_root = SubResource("AnimationNodeStateMachine_q41s2")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="EnemyExplode" parent="." instance=ExtResource("4_yuejh")]
+visible = false
 position = Vector2(0, 4)
 
 [node name="ArrowDamage" type="AudioStreamPlayer2D" parent="."]

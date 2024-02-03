@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bgi84ioegb3g6"]
+[gd_scene load_steps=33 format=3 uid="uid://bgi84ioegb3g6"]
 
 [ext_resource type="Script" path="res://Scrpits/hud.gd" id="1_ouvyj"]
 [ext_resource type="FontFile" uid="uid://uacc8gr3cirm" path="res://Assets/Fonts/G7MakaimuraTtf-xoZm.ttf" id="1_t36q3"]
@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://oxup8fdeu2eu" path="res://Assets/Icons/Skill_30.png" id="15_dd81a"]
 [ext_resource type="Texture2D" uid="uid://c5kfqjcso7cvv" path="res://Assets/Icons/Skill_9.png" id="16_xo67i"]
 [ext_resource type="Texture2D" uid="uid://cri5e427y8r78" path="res://Assets/Background/GameOver/game_over.png" id="25_42ks8"]
+[ext_resource type="Texture2D" uid="uid://cu78ite370l6o" path="res://Assets/HUD/BackGround/Blood Cloud Blood Overlay.png" id="26_o2hjc"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_mdf3p"]
 color = Color(0, 0.282353, 0.290196, 1)
@@ -34,6 +35,55 @@ color = Color(0, 0.282353, 0.290196, 1)
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mtuvj"]
 texture = SubResource("CanvasTexture_sgb7d")
 modulate_color = Color(1, 0.0588235, 1, 1)
+
+[sub_resource type="Animation" id="Animation_68csp"]
+resource_name = "Death"
+length = 1.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BloodCloudBloodOverlay:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BloodCloudBloodOverlay:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.9, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_u0qcp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BloodCloudBloodOverlay:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bfn64"]
+_data = {
+"Death": SubResource("Animation_68csp"),
+"RESET": SubResource("Animation_u0qcp")
+}
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_ouvyj")
@@ -437,6 +487,17 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("1_t36q3")
 text = "Quit
 "
+
+[node name="BloodCloudBloodOverlay" type="Sprite2D" parent="."]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(963, 543)
+texture = ExtResource("26_o2hjc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bfn64")
+}
 
 [connection signal="pressed" from="skills/SwordDecor/sword/ButonSword" to="." method="_on_buton_sword_pressed"]
 [connection signal="pressed" from="skills/ArrowsDecor/arrows/ButonArrows" to="." method="_on_buton_arrows_pressed"]
