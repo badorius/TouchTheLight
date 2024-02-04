@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://cf4d021lelowr"]
+[gd_scene load_steps=79 format=3 uid="uid://cf4d021lelowr"]
 
 [ext_resource type="Script" path="res://Scrpits/Player.gd" id="1_f0k0l"]
 [ext_resource type="Texture2D" uid="uid://cnvl248iy658b" path="res://Assets/Player/RedHood/red hood itch free Copy-Sheet.png" id="2_phcmd"]
@@ -10,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://det6tiugqthdj" path="res://SoundFX/Minifantasy_Dungeon_SFX/07_human_atk_sword_2.wav" id="6_1poxq"]
 [ext_resource type="AudioStream" uid="uid://bjlsyjmsj3sum" path="res://SoundFX/Minifantasy_Dungeon_SFX/11_human_damage_3.wav" id="6_10oyl"]
 [ext_resource type="AudioStream" uid="uid://bb1rrtkdfsi2r" path="res://SoundFX/Minifantasy_Dungeon_SFX/07_human_atk_sword_3.wav" id="7_ihtqu"]
+[ext_resource type="PackedScene" uid="uid://c54skse0hk3ef" path="res://Objects/options.tscn" id="11_bkxg2"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tyxwt"]
 blend_mode = 1
@@ -885,6 +886,20 @@ libraries = {
 }
 tree_root = SubResource("AnimationNodeStateMachine_nqriw")
 anim_player = NodePath("../AnimationPlayer")
+
+[node name="Popup" type="Popup" parent="."]
+position = Vector2i(150, 100)
+size = Vector2i(1600, 900)
+borderless = false
+transparent = true
+
+[node name="options" parent="Popup" instance=ExtResource("11_bkxg2")]
+anchors_preset = -1
+offset_left = -500.0
+offset_top = 250.0
+offset_right = -500.0
+offset_bottom = 250.0
+scale = Vector2(0.6, 0.597)
 
 [connection signal="area_entered" from="Warrior/Area2DSword" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Warrior/Area2DSword" to="." method="_on_area_2d_body_entered"]

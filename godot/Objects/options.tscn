@@ -7,45 +7,166 @@
 [sub_resource type="GDScript" id="GDScript_ct2lw"]
 script/source = "extends Control
 
+var current_button : Button
+
+@onready var button_Left : Button = $VBoxButtons/Button_Left
+@onready var button_Right : Button = $VBoxButtons/Button_Right
+@onready var button_Jump : Button = $VBoxButtons/Button_Jump
+@onready var button_Dash : Button = $VBoxButtons/Button_Dash
+@onready var button_SwordAttack : Button = $VBoxButtons/Button_SwordAttack
+@onready var button_BowShooting : Button = $VBoxButtons/Button_BowShooting
+@onready var button_Magic1Ice : Button = $VBoxButtons/Button_Magic1Ice
+@onready var button_Magic2Fire : Button = $VBoxButtons/Button_Magic2Fire
+@onready var button_Magic3Poison : Button = $VBoxButtons/Button_Magic3Poison
+
+@onready var label_Left : Label = $VBoxLabel/Label_Left
+@onready var label_Right : Label = $VBoxLabel/Label_Right
+@onready var label_Jump : Label = $VBoxLabel/Label_Jump
+@onready var label_Dash : Label = $VBoxLabel/Label_Dash
+@onready var label_SwordAttack : Label = $VBoxLabel/Label_SwordAttack
+@onready var label_BowShooting : Label = $VBoxLabel/Label_BowShooting
+@onready var label_Magic1Ice : Label = $VBoxLabel/Label_Magic1ice
+@onready var label_Magic2Fire : Label = $VBoxLabel/Label_Magic2Fire
+@onready var label_Magic3Poison : Label = $VBoxLabel/Label_Magic3Poison
+
+@onready var info_panel : PanelContainer = $PanelContainer
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
+func _ready() -> void:
+	# Connect the buttons pressed signal:
+	button_Left.pressed.connect(_on_button_pressed.bind(button_Left))
+	button_Right.pressed.connect(_on_button_pressed.bind(button_Right))
+	button_Jump.pressed.connect(_on_button_pressed.bind(button_Jump))
+	button_Dash.pressed.connect(_on_button_pressed.bind(button_Dash))
+	button_SwordAttack.pressed.connect(_on_button_pressed.bind(button_SwordAttack))
+	button_BowShooting.pressed.connect(_on_button_pressed.bind(button_BowShooting))
+	button_Magic1Ice.pressed.connect(_on_button_pressed.bind(button_Magic1Ice))
+	button_Magic2Fire.pressed.connect(_on_button_pressed.bind(button_Magic2Fire))
+	button_Magic3Poison.pressed.connect(_on_button_pressed.bind(button_Magic3Poison))
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-func _on_back_pressed():
-		get_tree().change_scene_to_file(\"res://Objects/menu.tscn\")
-		
-
-
-
-func _on_left_pressed():
-	$PopupPanel.visible = true
 	
+	_update_labels() # called to refresh the labels
+	
+	info_panel.hide() # hide the PanelContainer
+	
+# Whenerver a button is pressed, do:
+func _on_button_pressed(button: Button) -> void:
+	current_button = button # assign clicked button to current_button
+	info_panel.position = button.position
+	info_panel.show() # show the panel with the info
+
+func _input(event: InputEvent) -> void:
+	if !current_button: # return if current_button is null
+		return
+		
+	if event is InputEventKey || event is InputEventMouseButton:
+		
+		# This part is for deleting duplicate assignments:
+		# Add all assigned keys to a dictionary
+		var all_ies : Dictionary = {}
+		for ia in InputMap.get_actions():
+			for iae in InputMap.action_get_events(ia):
+				all_ies[iae.as_text()] = ia
+		
+		# check if the new key is already in the dict.
+		# If yes, delete the old one.
+		if all_ies.keys().has(event.as_text()):
+			InputMap.action_erase_events(all_ies[event.as_text()])
+		
+		# This part is where the actual remapping occures:
+		# Erase the event in the Input map
+		InputMap.action_erase_events(current_button.name)
+		# And assign the new event to it
+		InputMap.action_add_event(current_button.name, event)
+		
+		# After a key is assigned, set current_button back to null
+		current_button = null
+		info_panel.hide() # hide the info panel again
+		
+		_update_labels() # refresh the labels
+		
+func _update_labels() -> void:
+	# This is just a quick way to update the labels:
+	var eb1 : Array[InputEvent] = InputMap.action_get_events(\"Button_Left\")
+	if !eb1.is_empty():
+		label_Left.text = eb1[0].as_text()
+	else:
+		label_Left.text = \"\"
+		
+	var eb2 : Array[InputEvent] = InputMap.action_get_events(\"Button_Right\")
+	if !eb2.is_empty():
+		label_Right.text = eb2[0].as_text()
+	else:
+		label_Right.text = \"\"
+		
+	var eb3 : Array[InputEvent] = InputMap.action_get_events(\"Button_Jump\")
+	if !eb3.is_empty():
+		label_Jump.text = eb3[0].as_text()
+	else:
+		label_Jump.text = \"\"
+		
+	var eb4 : Array[InputEvent] = InputMap.action_get_events(\"Button_Dash\")
+	if !eb4.is_empty():
+		label_Dash.text = eb4[0].as_text()
+	else:
+		label_Dash.text = \"\"
+		
+	var eb5 : Array[InputEvent] = InputMap.action_get_events(\"Button_SwordAttack\")
+	if !eb5.is_empty():
+		label_SwordAttack.text = eb5[0].as_text()
+	else:
+		label_SwordAttack.text = \"\"
+		
+	var eb6 : Array[InputEvent] = InputMap.action_get_events(\"Button_BowShooting\")
+	if !eb6.is_empty():
+		label_BowShooting.text = eb6[0].as_text()
+	else:
+		label_BowShooting.text = \"\"
+		
+	var eb7 : Array[InputEvent] = InputMap.action_get_events(\"Button_Magic1Ice\")
+	if !eb7.is_empty():
+		label_Magic1Ice.text = eb7[0].as_text()
+	else:
+		label_Magic1Ice.text = \"\"
+		
+	var eb8 : Array[InputEvent] = InputMap.action_get_events(\"Button_Magic2Fire\")
+	if !eb8.is_empty():
+		label_Magic2Fire.text = eb8[0].as_text()
+	else:
+		label_Magic2Fire.text = \"\"
+
+	var eb9 : Array[InputEvent] = InputMap.action_get_events(\"Button_Magic3Poison\")
+	if !eb9.is_empty():
+		label_Magic3Poison.text = eb9[0].as_text()
+	else:
+		label_Magic3Poison.text = \"\"
+	
+	
+func _on_main_menu_pressed():
+	get_tree().change_scene_to_file(\"res://Objects/menu.tscn\")
 "
 
 [node name="options" type="Control"]
 layout_mode = 3
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 35.0
-offset_top = -190.0
-offset_right = 35.0
-offset_bottom = -190.0
-grow_vertical = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -810.0
+offset_top = 360.0
+offset_right = -810.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.006, 1)
 script = SubResource("GDScript_ct2lw")
 
 [node name="MouseOver" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_1vld1")
 
 [node name="CanvasModulate2" type="CanvasModulate" parent="."]
-visible = false
 color = Color(0.137255, 1, 1, 1)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
@@ -59,111 +180,115 @@ texture = ExtResource("3_58fxq")
 
 [node name="VBoxMenu" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 82.0
-offset_top = 51.0
-offset_right = 152.0
-offset_bottom = 187.0
+offset_left = 26.0
+offset_top = 8.0
+offset_right = 96.0
+offset_bottom = 144.0
 scale = Vector2(3, 2.24)
 
 [node name="Back" type="Button" parent="VBoxMenu"]
+visible = false
 layout_mode = 2
 text = "Back"
 
-[node name="VBoxText" type="VBoxContainer" parent="."]
+[node name="Main Menus" type="Button" parent="VBoxMenu"]
+layout_mode = 2
+text = "Main Menu"
+
+[node name="VBoxLabel" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 460.0
-offset_top = -726.0
-offset_right = 580.0
-offset_bottom = -487.0
+offset_left = 855.0
+offset_top = -728.0
+offset_right = 975.0
+offset_bottom = -489.0
 scale = Vector2(3.80357, 2.84)
 
-[node name="Left" type="Label" parent="VBoxText"]
+[node name="Label_Left" type="Label" parent="VBoxLabel"]
 layout_mode = 2
-text = "Left: 
+text = "←"
+
+[node name="Label_Right" type="Label" parent="VBoxLabel"]
+layout_mode = 2
+text = "→
 "
 
-[node name="Right" type="Label" parent="VBoxText"]
+[node name="Label_Jump" type="Label" parent="VBoxLabel"]
 layout_mode = 2
-text = "Right: 
+text = "↑
 "
 
-[node name="Jump" type="Label" parent="VBoxText"]
+[node name="Label_Dash" type="Label" parent="VBoxLabel"]
 layout_mode = 2
-text = "Jump:
+text = "↓
 "
 
-[node name="Dash" type="Label" parent="VBoxText"]
+[node name="Label_SwordAttack" type="Label" parent="VBoxLabel"]
 layout_mode = 2
-text = "Dash:
+text = "z
 "
 
-[node name="SwordAttack" type="Label" parent="VBoxText"]
+[node name="Label_BowShooting" type="Label" parent="VBoxLabel"]
 layout_mode = 2
-text = "Sword Attack:
+text = "x
 "
 
-[node name="BowShooting" type="Label" parent="VBoxText"]
+[node name="Label_Magic1ice" type="Label" parent="VBoxLabel"]
 layout_mode = 2
-text = "Bow Shooting:
+text = "c
 "
 
-[node name="Magic1ice" type="Label" parent="VBoxText"]
+[node name="Label_Magic2Fire" type="Label" parent="VBoxLabel"]
 layout_mode = 2
-text = "Magic 1 ice:
-"
+text = "v"
 
-[node name="Magic2Fire" type="Label" parent="VBoxText"]
+[node name="Label_Magic3Poison" type="Label" parent="VBoxLabel"]
 layout_mode = 2
-text = "Magic 2 Fire:"
-
-[node name="Magic3Poison" type="Label" parent="VBoxText"]
-layout_mode = 2
-text = "Magic 3 Poison:
-"
+text = "b"
 
 [node name="VBoxButtons" type="VBoxContainer" parent="."]
 layout_mode = 0
-offset_left = 918.0
-offset_top = -739.0
-offset_right = 1041.0
-offset_bottom = -428.0
+offset_left = 426.0
+offset_top = -732.0
+offset_right = 549.0
+offset_bottom = -421.0
 scale = Vector2(3, 2.24)
 
-[node name="Left" type="Button" parent="VBoxButtons"]
+[node name="Button_Left" type="Button" parent="VBoxButtons"]
 layout_mode = 2
-text = "a"
+text = "Left"
 
-[node name="Right" type="Button" parent="VBoxButtons"]
+[node name="Button_Right" type="Button" parent="VBoxButtons"]
 layout_mode = 2
-text = "d"
+text = "Right"
 
-[node name="Jump" type="Button" parent="VBoxButtons"]
+[node name="Button_Jump" type="Button" parent="VBoxButtons"]
 layout_mode = 2
-text = "w"
+text = "Jump
+"
 
-[node name="Dash" type="Button" parent="VBoxButtons"]
+[node name="Button_Dash" type="Button" parent="VBoxButtons"]
 layout_mode = 2
-text = "s"
+text = "Dash"
 
-[node name="SwordAttack" type="Button" parent="VBoxButtons"]
+[node name="Button_SwordAttack" type="Button" parent="VBoxButtons"]
 layout_mode = 2
-text = "y"
+text = "SwordAttack"
 
-[node name="BowShooting" type="Button" parent="VBoxButtons"]
+[node name="Button_BowShooting" type="Button" parent="VBoxButtons"]
 layout_mode = 2
-text = "u"
+text = "BowShooting"
 
-[node name="Magic1Ice" type="Button" parent="VBoxButtons"]
+[node name="Button_Magic1Ice" type="Button" parent="VBoxButtons"]
 layout_mode = 2
-text = "i"
+text = "Magic1Ice"
 
-[node name="Magic2Fire" type="Button" parent="VBoxButtons"]
+[node name="Button_Magic2Fire" type="Button" parent="VBoxButtons"]
 layout_mode = 2
-text = "o"
+text = "Magic2Fire"
 
-[node name="Magic3Position" type="Button" parent="VBoxButtons"]
+[node name="Button_Magic3Poison" type="Button" parent="VBoxButtons"]
 layout_mode = 2
-text = "p"
+text = "Magic3Poison"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -189,5 +314,16 @@ offset_right = 996.0
 offset_bottom = 96.0
 text = "Press key:"
 
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 961.0
+offset_top = -694.0
+offset_right = 1001.0
+offset_bottom = -654.0
+
+[node name="Label" type="Label" parent="PanelContainer"]
+layout_mode = 2
+text = "Press key or mouse button"
+
 [connection signal="pressed" from="VBoxMenu/Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="VBoxButtons/Left" to="." method="_on_left_pressed"]
+[connection signal="pressed" from="VBoxMenu/Main Menus" to="." method="_on_main_menu_pressed"]

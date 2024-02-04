@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://ci8d6cyv3od72"]
+[gd_scene load_steps=46 format=3 uid="uid://ci8d6cyv3od72"]
 
 [ext_resource type="Script" path="res://Scrpits/menu.gd" id="1_pb8s7"]
 [ext_resource type="AudioStream" uid="uid://dhc3kia3e06e8" path="res://SoundFX/Minifantasy_Dungeon_SFX/LightCatch.mp3" id="2_81uct"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://phnoalyvfkxs" path="res://Objects/SmallTorch.tscn" id="5_bqg2e"]
 [ext_resource type="Texture2D" uid="uid://cvhor6531eet2" path="res://Assets/Enemys/NightBorne/NightBorne.png" id="5_nqjbf"]
 [ext_resource type="FontFile" uid="uid://uacc8gr3cirm" path="res://Assets/Fonts/G7MakaimuraTtf-xoZm.ttf" id="10_bjeat"]
+[ext_resource type="PackedScene" uid="uid://c54skse0hk3ef" path="res://Objects/options.tscn" id="11_q2pvk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_or55l"]
 radius = 6.0
@@ -776,6 +777,26 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("10_bjeat")
 text = "Thanks
 "
+
+[node name="PopupPanel" type="PopupPanel" parent="."]
+mode = 4
+initial_position = 2
+size = Vector2i(1600, 900)
+borderless = false
+
+[node name="Popup" type="Popup" parent="."]
+position = Vector2i(150, 100)
+size = Vector2i(1600, 900)
+borderless = false
+transparent = true
+
+[node name="options" parent="Popup" instance=ExtResource("11_q2pvk")]
+anchors_preset = -1
+offset_left = -500.0
+offset_top = 250.0
+offset_right = -500.0
+offset_bottom = 250.0
+scale = Vector2(0.6, 0.597)
 
 [connection signal="mouse_entered" from="VBoxContainer" to="." method="_on_v_box_container_mouse_entered"]
 [connection signal="mouse_entered" from="VBoxContainer/StartButton" to="." method="_on_start_button_mouse_entered"]

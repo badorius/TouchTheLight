@@ -63,6 +63,42 @@ ui_fire5={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"button_index":2,"pressure":0.0,"pressed":false,"script":null)
 ]
 }
+Button_Left={
+"deadzone": 0.5,
+"events": []
+}
+Button_Right={
+"deadzone": 0.5,
+"events": []
+}
+Button_Jump={
+"deadzone": 0.5,
+"events": []
+}
+Button_Dash={
+"deadzone": 0.5,
+"events": []
+}
+Button_SwordAttack={
+"deadzone": 0.5,
+"events": []
+}
+Button_Magic1Ice={
+"deadzone": 0.5,
+"events": []
+}
+Button_Magic2Fire={
+"deadzone": 0.5,
+"events": []
+}
+Button_Magic3Poison={
+"deadzone": 0.5,
+"events": []
+}
+Button_BowShooting={
+"deadzone": 0.5,
+"events": []
+}
 
 [layer_names]
 

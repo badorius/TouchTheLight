@@ -184,6 +184,7 @@ func _physics_process(delta):
 	#PLAYER DOWN GAMEOVER
 	if global_position.y > 500:
 		#$AnimationPlayer.play("Death")
+		update_lives(1)
 		death_sound.play()
 		reset_skills()
 		gotocheckpoint()
@@ -303,7 +304,8 @@ func game_over ():
 
 #QUIT GAME FUNCTION
 func game_quit ():
-		get_tree().change_scene_to_file("res://Objects/menu.tscn")
+		$Popup.visible = true
+		#get_tree().change_scene_to_file("res://Objects/menu.tscn")
 	
 #ADD SCORE FUNCTION
 func add_score (amount):
