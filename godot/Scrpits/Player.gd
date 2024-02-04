@@ -465,3 +465,9 @@ func _on_area_2d_body_body_entered(body):
 		body.hurt(10)
 		hurt(10)
 
+func _input(event):
+	if event is InputEventJoypadMotion:
+		print(
+				"Device: %s. Joypad Axis Index: %s. Strength: %s."
+				% [event.device, event.axis, event.axis_value]
+		)
