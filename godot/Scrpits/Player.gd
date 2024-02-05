@@ -89,7 +89,7 @@ func _ready():
 func _physics_process(delta):
 		
 	if state != "Hurt":
-		direction = Input.get_axis("ui_left", "ui_right")
+		direction = Input.get_axis("Button_Left", "Button_Right")
 		
 	# Get the input direction and handle the movement/deceleration and orientation.
 	if direction:
@@ -111,7 +111,7 @@ func _physics_process(delta):
 
 			
 		# Slide Down
-		if Input.is_action_pressed("ui_down"):
+		if Input.is_action_pressed("Button_Dash"):
 			slide(direction)
 		else:
 			walk(direction)
@@ -130,11 +130,11 @@ func _physics_process(delta):
 		state_machine.travel('Jump')
 	
 	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("Button_Jump") and is_on_floor():
 		state = "Jump"
 		can_doublejump = true
 		jump()
-	elif Input.is_action_just_pressed("ui_accept") and !is_on_floor() and can_doublejump and coat > 0:
+	elif Input.is_action_just_pressed("Button_Jump") and !is_on_floor() and can_doublejump and coat > 0:
 		state = "Jump"
 		can_doublejump = false
 		update_coat(-1)
@@ -143,26 +143,26 @@ func _physics_process(delta):
 
 	# Fire BOW
 		# Sword Atack
-	if Input.is_action_just_pressed("ui_fire1"):
+	if Input.is_action_just_pressed("Button_SwordAttack"):
 		state = "Atack1"
 		atack1()
 	
-	if Input.is_action_just_pressed("ui_fire2"):
+	if Input.is_action_just_pressed("Button_BowShooting"):
 		state = "BowShooting"
 		bowing(arrow_direction)
 		
 	# Magic Atack
-	if Input.is_action_just_pressed("ui_fire3"):
+	if Input.is_action_just_pressed("Button_Magic1Ice"):
 		state = "Magic1"
 		magic1(arrow_direction)
 		
 	# Magic Atack
-	if Input.is_action_just_pressed("ui_fire4"):
+	if Input.is_action_just_pressed("Button_Magic2Fire"):
 		state = "Magic2"
 		magic2(arrow_direction)
 		
 	# Magic Atack
-	if Input.is_action_just_pressed("ui_fire5"):
+	if Input.is_action_just_pressed("Button_Magic3Poison"):
 		state = "Magic3"
 		magic3(arrow_direction)
 		
@@ -179,7 +179,9 @@ func _physics_process(delta):
 	
 	#QUIT GAME
 	if Input.is_action_just_pressed("ui_cancel") and is_on_floor():
-		game_quit()
+		#PENDING FIX PAUSE
+		#get_tree().paused = true
+		game_pause()
 	
 	#PLAYER DOWN GAMEOVER
 	if global_position.y > 500:
@@ -303,7 +305,7 @@ func game_over ():
 	#get_tree().change_scene_to_file("res://Objects/menu.tscn")
 
 #QUIT GAME FUNCTION
-func game_quit ():
+func game_pause ():
 		$Popup.visible = true
 		#get_tree().change_scene_to_file("res://Objects/menu.tscn")
 	
@@ -473,3 +475,9 @@ func _input(event):
 				"Device: %s. Joypad Axis Index: %s. Strength: %s."
 				% [event.device, event.axis, event.axis_value]
 		)
+
+
+func _on_popup_close_requested():
+		get_tree().paused = false
+		print("UnPausen!")
+

@@ -100,16 +100,16 @@ theme_override_font_sizes/font_size = 20
 text = "Player 1 Score: 0"
 
 [node name="Instructions" type="Label" parent="."]
-offset_left = 1088.0
-offset_top = 24.0
-offset_right = 1888.0
-offset_bottom = 55.0
+offset_left = 1470.0
+offset_top = 13.0
+offset_right = 2270.0
+offset_bottom = 44.0
 theme_override_colors/font_color = Color(0.819608, 0.984314, 0.682353, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_t36q3")
 theme_override_font_sizes/font_size = 20
-text = "Gamepad/ keys: cursors, space, z, x, c, v, b"
+text = "ESC: REDEFINE/VIEW KEYS"
 
 [node name="ProgressBar" parent="." instance=ExtResource("2_w0elc")]
 visible = false

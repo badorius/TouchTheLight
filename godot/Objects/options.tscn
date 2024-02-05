@@ -45,6 +45,7 @@ func _ready() -> void:
 	button_Magic2Fire.pressed.connect(_on_button_pressed.bind(button_Magic2Fire))
 	button_Magic3Poison.pressed.connect(_on_button_pressed.bind(button_Magic3Poison))
 
+
 	
 	_update_labels() # called to refresh the labels
 	

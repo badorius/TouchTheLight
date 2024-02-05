@@ -77,3 +77,4 @@ func _on_quit_button_mouse_entered():
 	
 func _on_credits_button_mouse_entered():
 	mouse_over.play()
+	
