@@ -24,8 +24,8 @@ var FreqToxic : float = 10.0
 var FreqCounter : float = 0
 const DamageIndicator = preload("../Objects/damage_indicator.tscn")
 @onready var ProgressBar3 : TextureProgressBar = get_node("ProgressBar/Control/TextureProgressBar")
-@onready var Explode : AnimationPlayer = get_node("EnemyExplode/AnimationPlayer")
-
+const Explode = preload("../Objects/EnemyExplode.tscn")
+var startrun : bool = false
 @onready var Camera : Camera2D = get_node("../../Camera2D")
  
 const FlayingEye = preload("../Objects/FlayingEye.tscn")
@@ -41,46 +41,49 @@ const TreasureChest = preload("../Objects/TreasureChest.tscn")
 
 func _ready():
 	$Sprite2D.visible = true
-	
-	$Explode.visible = false
 	ArrowDamage_sound = $ArrowDamage
 	StartAttack_sound = $StartAttack
 	HitAttack_sound = $HitAttack
 	state_machine = $AnimationTree.get('parameters/playback')
 	#var player = get_parent().get_node("Player")
-	$EnemyExplode.visible = false
 
+
+func _process(delta):
+		if global_position.distance_to(player.global_position) < DISTANCE_THRESHOLD * 5 or state == "Hurt":
+			startrun = true
+			
 
 func _physics_process(delta):
 	ProgressBar3.value = live/10.0
-	if live <= 0:
-		state = "Death"
-		death()
-		
-	else:
-		if Toxic == true:
-			if FreqCounter < FreqToxic:
-				FreqCounter += 0.1
-			else:
-				FreqCounter = 0
-				hurt(5)
+	
+	if startrun and state != "Death":
+		if live <= 0:
+			death()
 			
-			
-		if state != "Death":
-			if state != "Attack":
-				if abs(global_position.distance_to(player.global_position)) <= DISTANCE_THRESHOLD:
-					set_scapeplayer()
+		else:
+			if Toxic == true:
+				if FreqCounter < FreqToxic:
+					FreqCounter += 0.1
 				else:
-					set_chaseplayer()
-					
-			if abs(global_position.distance_to(player.global_position)) <= MAX_DISTANCE_ATACK and abs(global_position.distance_to(player.global_position)) >= MIN_DISTANCE_ATACK:
-				set_attack()
+					FreqCounter = 0
+					hurt(5)
+				
+				
+			if state != "Death":
+				if state != "Attack":
+					if abs(global_position.distance_to(player.global_position)) <= DISTANCE_THRESHOLD:
+						set_scapeplayer()
+					else:
+						set_chaseplayer()
+						
+				if abs(global_position.distance_to(player.global_position)) <= MAX_DISTANCE_ATACK and abs(global_position.distance_to(player.global_position)) >= MIN_DISTANCE_ATACK:
+					set_attack()
 
-		
-		# Add the gravity.
-		if not is_on_floor():
-			velocity.y += gravity * delta
-		move_and_slide()
+			
+			# Add the gravity.
+			if not is_on_floor():
+				velocity.y += gravity * delta
+			move_and_slide()
 	
 func set_iddle():
 	state_machine.travel('Iddle')
@@ -225,12 +228,16 @@ func drop_item():
 
 
 func explode():
-	Explode.play("Explode")
+		var main = get_tree().current_scene
+		var A = Explode.instantiate()
+		A.global_position = global_position
+		main.add_child(A)
 		
 func death():
+	state = "Death"
 	drop_item()
 	$Sprite2D.visible = false
-	$Explode.visible = true
+	velocity = Vector2(0, 0)
 	state_machine.travel('Death')
 	explode()
 	player.add_score(score_value)

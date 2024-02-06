@@ -9,7 +9,7 @@ var state_machine
 @export var state : String = "Iddle"
 var target_position : Vector2
 @export var timer : float = 0
-@export var live : int = 200
+@export var live : int = 50
 @export var ArrowDamage_sound : AudioStreamPlayer2D
 @onready var player : CharacterBody2D = get_node("../../Player")
 @export var score_value : int = 50
@@ -20,7 +20,7 @@ var startrun : bool = false
 var FreqToxic : float = 10.0
 var FreqCounter : float = 0
 @onready var ProgressBar3 : TextureProgressBar = get_node("ProgressBar/Control/TextureProgressBar") 
-@onready var Explode : AnimationPlayer = get_node("EnemyExplode/AnimationPlayer")
+const Explode = preload("../Objects/EnemyExplode.tscn")
 
 #Vars to Wave y movement
 var bob_height : float = 100.0
@@ -33,16 +33,14 @@ var t : float = 0.0
 func _ready():
 	ArrowDamage_sound = $ArrowDamage
 	state_machine = $AnimationTree.get('parameters/playback')
-	#var player = get_parent().get_node("Player")
-	$EnemyExplode.visible = false
+
+
 	
 func _process(delta):
 		if global_position.distance_to(player.global_position) < DISTANCE_THRESHOLD * 5 or state == "Hurt":
 			startrun = true
 			
-		if live <= 0:
-			state = "Death"
-			death()
+
 			
 func _physics_process(delta):
 	
@@ -53,12 +51,12 @@ func _physics_process(delta):
 			FreqCounter = 0
 			hurt(5)
 	
-	if startrun:
+	if startrun and state != "Death":
 		ProgressBar3.value = live
 		ArrowDamage_sound = $ArrowDamage
 		if live <= 0:
 			death()
-			state = "Death"
+
 
 		get_node( "Sprite2D" ).set_flip_h( false )
 		state_machine.travel('Run')	
@@ -102,9 +100,13 @@ func do_hurt():
 
 		
 func explode():
-	Explode.play("Explode")
+		var main = get_tree().current_scene
+		var A = Explode.instantiate()
+		A.global_position = global_position
+		main.add_child(A)
 		
 func death():
+	state = "Death"
 	state_machine.travel('Death')
 	explode()
 

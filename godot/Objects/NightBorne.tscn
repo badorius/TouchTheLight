@@ -1,10 +1,9 @@
-[gd_scene load_steps=95 format=3 uid="uid://ccixy0n1vgwcc"]
+[gd_scene load_steps=94 format=3 uid="uid://ccixy0n1vgwcc"]
 
 [ext_resource type="Texture2D" uid="uid://cvhor6531eet2" path="res://Assets/Enemys/NightBorne/NightBorne.png" id="1_52vbf"]
 [ext_resource type="Script" path="res://Scrpits/NightBorne.gd" id="1_xauhk"]
 [ext_resource type="AudioStream" uid="uid://dfpqvm4laxcko" path="res://SoundFX/Minifantasy_Dungeon_SFX/11_human_damage_1.wav" id="3_hbxd6"]
 [ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/progress_bar3.tscn" id="4_7im1s"]
-[ext_resource type="PackedScene" uid="uid://d34essgm7nkpw" path="res://Objects/EnemyExplode.tscn" id="5_16akg"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vo1ju"]
 blend_mode = 1
@@ -104,22 +103,10 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("EnemyExplode:visible")
+tracks/2/path = NodePath("CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.37),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("CollisionShape2D:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -172,18 +159,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [Vector2i(0, 0)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("EnemyExplode:visible")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_6hwei"]
@@ -751,5 +726,3 @@ anim_player = NodePath("../AnimationPlayer")
 [node name="ProgressBar" parent="." instance=ExtResource("4_7im1s")]
 position = Vector2(-30, -25)
 scale = Vector2(0.76, 1)
-
-[node name="EnemyExplode" parent="." instance=ExtResource("5_16akg")]

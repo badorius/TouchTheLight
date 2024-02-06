@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://d07i3cdmomp8e"]
+[gd_scene load_steps=40 format=3 uid="uid://d07i3cdmomp8e"]
 
 [ext_resource type="Texture2D" uid="uid://ccpnn3i3xafue" path="res://Assets/Tileset/Level1.png" id="1_5gl51"]
 [ext_resource type="Script" path="res://Scrpits/Level1.gd" id="1_6dyan"]
@@ -26,6 +26,7 @@
 [ext_resource type="AudioStream" uid="uid://cbvpffgrq2nyi" path="res://Music/BGMUSIC/Level1.mp3" id="19_0wrw4"]
 [ext_resource type="Texture2D" uid="uid://deaw5e7ljld6i" path="res://Assets/Background/HauntedForest/Props/tree-2.png" id="22_yjjfu"]
 [ext_resource type="PackedScene" uid="uid://dh1dxnpdevukl" path="res://Objects/Crow.tscn" id="25_yi138"]
+[ext_resource type="PackedScene" uid="uid://cue57mbnsjp20" path="res://Objects/Ogre.tscn" id="26_4xsjt"]
 [ext_resource type="PackedScene" uid="uid://clms4vxi7fjov" path="res://Objects/ArrowItemDrop.tscn" id="26_6v6i8"]
 [ext_resource type="PackedScene" uid="uid://y1d0hktabdah" path="res://Objects/BootsItemDrop.tscn" id="27_dxknq"]
 [ext_resource type="PackedScene" uid="uid://rwpof47pjb7g" path="res://Objects/CoatItemDrop.tscn" id="28_kq33f"]
@@ -1995,9 +1996,6 @@ position = Vector2(1493, 222)
 [node name="Skeleton7" parent="Enemies" instance=ExtResource("12_gavhj")]
 position = Vector2(1726, 221)
 
-[node name="Skeleton5" parent="Enemies" instance=ExtResource("12_gavhj")]
-position = Vector2(-23, 222)
-
 [node name="Skeleton6" parent="Enemies" instance=ExtResource("12_gavhj")]
 position = Vector2(756, 221)
 
@@ -2146,6 +2144,12 @@ position = Vector2(11713, 136)
 [node name="Crow16" parent="Enemies" instance=ExtResource("25_yi138")]
 position = Vector2(11872, 104)
 
+[node name="Ogre" parent="Enemies" instance=ExtResource("26_4xsjt")]
+position = Vector2(13657, 31)
+
+[node name="Crow17" parent="Enemies" instance=ExtResource("25_yi138")]
+position = Vector2(69, 183)
+
 [node name="SmallTorchs" type="Node2D" parent="."]
 position = Vector2(40, 186)
 
@@ -2260,5 +2264,5 @@ position = Vector2(37, 233)
 position = Vector2(-128, 233)
 
 [node name="Player" parent="." instance=ExtResource("14_nbcgr")]
-position = Vector2(-183, 153)
+position = Vector2(-224, -273)
 scale = Vector2(1, 1)

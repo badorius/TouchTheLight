@@ -23,22 +23,19 @@ var FreqCounter : float = 0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var ProgressBar3 : TextureProgressBar = get_node("ProgressBar/Control/TextureProgressBar") 
-@onready var Explode : AnimationPlayer = get_node("EnemyExplode/AnimationPlayer")
+const Explode = preload("../Objects/EnemyExplode.tscn")
 
 func _ready():
 	ArrowDamage_sound = $ArrowDamage
 	state_machine = $AnimationTree.get('parameters/playback')
 	#var player = get_parent().get_node("Player")
-	$EnemyExplode.visible = false
+
 
 func _process(delta):
-	if global_position.distance_to(player.global_position) < DISTANCE_THRESHOLD * 5 or state == "Hurt":
-		startrun = true
+		if global_position.distance_to(player.global_position) < DISTANCE_THRESHOLD or state == "Hurt":
+			startrun = true
 		
-	if live <= 0:
-		state = "Death"
-		timer = 0
-		death()
+
 			
 func _physics_process(delta):
 	
@@ -49,7 +46,10 @@ func _physics_process(delta):
 			FreqCounter = 0
 			hurt(5)
 			
-	if startrun:
+	if startrun and state != "Death":
+		if live <= 0:
+			timer = 0
+			death()
 		ProgressBar3.value = live
 		timer += delta	
 		if timer > 3.0:
@@ -169,7 +169,6 @@ func hurt(damage):
 	ProgressBar3.value = live
 	
 	if live <= 0:
-		state = "Death"
 		timer = 0
 		death()
 
@@ -193,9 +192,14 @@ func do_hurt():
 
 		
 func explode():
-	Explode.play("Explode")
+		var main = get_tree().current_scene
+		var A = Explode.instantiate()
+		A.global_position = global_position
+		main.add_child(A)
 		
 func death():
+	state = "Death"
+	velocity = Vector2(0, 0)
 	state_machine.travel('Death')
 	explode()
 	player.add_score(score_value)

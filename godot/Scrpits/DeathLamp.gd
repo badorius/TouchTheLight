@@ -3,7 +3,6 @@ extends CharacterBody2D
 var speed = 50.0
 var live = 10
 @onready var player : CharacterBody2D = get_node("../Player")
-@onready var Explode : AnimationPlayer = get_node("EnemyExplode/AnimationPlayer")
 const DamageIndicator = preload("res://Objects/damage_indicator.tscn")
 @export var ArrowDamage_sound : AudioStreamPlayer2D
 var state : String = "Non"
@@ -20,6 +19,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 const BootsItemDrop = preload("../Objects/BootsItemDrop.tscn")
 const ArrowItemDrop = preload("../Objects/ArrowItemDrop.tscn")
 const CoatItemDrop = preload("../Objects/CoatItemDrop.tscn")
+const Explode = preload("../Objects/EnemyExplode.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,7 +30,6 @@ func _ready():
 	$DeathLampWalk.visible = false
 	$DeathLamp/CollisionShape2D.disabled = false
 	$CollisionShape2D2Walk.disabled = false
-	$EnemyExplode.visible = false
 	
 	state_machine = $AnimationTree.get('parameters/playback')
 	
@@ -76,12 +75,18 @@ func _physics_process(delta):
 		
 func ready():
 	state = "Ready"
-		
+
+func explode():
+		var main = get_tree().current_scene
+		var A = Explode.instantiate()
+		A.global_position = global_position
+		main.add_child(A)
+
 func death():
 	state = "Death"
 	state_machine.travel('Death')
 	$DeathLampWalk.visible = false
-	Explode.play("Explode")
+	explode()
 	player.add_score(score_value)
 	drop_item()
 	
