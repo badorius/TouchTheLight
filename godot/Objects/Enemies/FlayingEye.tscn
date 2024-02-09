@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scrpits/FlayingEye.gd" id="1_itj55"]
 [ext_resource type="Texture2D" uid="uid://cl6agsvjtw4pi" path="res://Assets/Enemys/FlayingEye/flying-eye-demon.png" id="2_b5mah"]
 [ext_resource type="AudioStream" uid="uid://dfpqvm4laxcko" path="res://SoundFX/Minifantasy_Dungeon_SFX/11_human_damage_1.wav" id="3_bfc2n"]
-[ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/progress_bar3.tscn" id="4_1lusg"]
+[ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/HudObjects/progress_bar3.tscn" id="4_1lusg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nbm3q"]
 radius = 15.4072

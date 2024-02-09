@@ -39,9 +39,9 @@ const Arrow = preload("../Objects/Arrow.tscn")
 const Magic1 = preload("../Objects/Magic1.tscn")
 const Magic2 = preload("../Objects/Magic2.tscn")
 const Magic3 = preload("../Objects/Magic3.tscn")
-const DamageIndicator = preload("../Objects/damage_indicator.tscn")
+const DamageIndicator = preload("../Objects/Efects/damage_indicator.tscn")
 @export var arrow_direction : int = 1
-const Explode = preload("../Objects/PlayerExplode.tscn")
+const Explode = preload( "../Objects/Efects/PlayerExplode.tscn")
 
 # Light vaule default
 var base_light : Vector2 = Vector2(0.5, 0.5)

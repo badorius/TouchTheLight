@@ -22,22 +22,22 @@ var target_position : Vector2
 @export var Toxic : bool = false
 var FreqToxic : float = 10.0
 var FreqCounter : float = 0
-const DamageIndicator = preload("../Objects/damage_indicator.tscn")
+const DamageIndicator = preload("../Objects/Efects/damage_indicator.tscn")
 @onready var ProgressBar3 : TextureProgressBar = get_node("ProgressBar/Control/TextureProgressBar")
-const Explode = preload("../Objects/EnemyExplode.tscn")
+const Explode = preload("../Objects/Efects/EnemyExplode.tscn")
 var startrun : bool = false
 @onready var Camera : Camera2D = get_node("../../Camera2D")
  
-const FlayingEye = preload("../Objects/FlayingEye.tscn")
-const Rock = preload("../Objects/Rock.tscn")
-const Skeleton = preload("../Objects/skeleton.tscn")
-const NightBorne = preload("../Objects/NightBorne.tscn")
-const IceArea = preload("../Objects/ice_area.tscn")
-const FireArea = preload("../Objects/fire_area.tscn")
+const FlayingEye = preload("../Objects/Enemies/FlayingEye.tscn")
+const Rock = preload("../Objects/WorldObjects/Rock.tscn")
+const Skeleton = preload("../Objects/Enemies/skeleton.tscn")
+const NightBorne = preload("../Objects/Enemies/NightBorne.tscn")
+const IceArea = preload("../Objects/Efects/ice_area.tscn")
+const FireArea = preload("../Objects/Efects/fire_area.tscn")
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-const TreasureChest = preload("../Objects/TreasureChest.tscn")
+const TreasureChest = preload("../Objects/WorldObjects/TreasureChest.tscn")
 
 func _ready():
 	$Sprite2D.visible = true

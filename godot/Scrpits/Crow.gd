@@ -14,7 +14,7 @@ var target_position : Vector2
 @onready var player : CharacterBody2D = get_node("../../Player")
 @export var score_value : int = 50
 @export var attack_power = randi() % 30
-const DamageIndicator = preload("../Objects/damage_indicator.tscn")
+const DamageIndicator = preload("../Objects/Efects/damage_indicator.tscn")
 @export var Toxic : bool = false
 var startrun : bool = false
 var FreqToxic : float = 10.0
@@ -22,7 +22,7 @@ var FreqCounter : float = 0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var ProgressBar3 : TextureProgressBar = get_node("ProgressBar/Control/TextureProgressBar") 
-const Explode = preload("../Objects/EnemyExplode.tscn")
+const Explode = preload("../Objects/Efects/EnemyExplode.tscn")
 
 #Vars to Wave y movement
 var bob_height : float = 100.0
@@ -34,8 +34,10 @@ var t : float = 0.0
 func _ready():
 	ArrowDamage_sound = $ArrowDamage
 	state_machine = $AnimationTree.get('parameters/playback')
+	$Sprite2D.visible = true
 	#var player = get_parent().get_node("Player")
 	set_iddle()
+
 	
 func _process(delta):
 		if global_position.distance_to(player.global_position) < DISTANCE_THRESHOLD or state == "Hurt":

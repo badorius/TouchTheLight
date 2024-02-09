@@ -3,11 +3,11 @@ extends Node2D
 @onready var bgmusic : AudioStreamPlayer2D = get_node("AudioStreamPlayer2D") 
 # Called when the node enters the scene tree for the first time.
 @onready var player : CharacterBody2D = get_node("Player")
-const FlayingEye = preload("../Objects/FlayingEye.tscn")
-const Rock = preload("../Objects/Rock.tscn")
-const Skeleton = preload("../Objects/skeleton.tscn")
-const NightBorne = preload("../Objects/NightBorne.tscn")
-const DeathLamp = preload("../Objects/death_lamp.tscn")
+const FlayingEye = preload("../Objects/Enemies/FlayingEye.tscn")
+const Rock = preload("../Objects/WorldObjects/Rock.tscn")
+const Skeleton = preload("../Objects/Enemies/skeleton.tscn")
+const NightBorne = preload("../Objects/Enemies/NightBorne.tscn")
+const DeathLamp = preload("../Objects/Enemies/death_lamp.tscn")
 var RangeXEnemiesMin : float = 200.0
 var RangeXEnemiesMax : float = 3200.0
 var RangeYEnemies : float = 209.0

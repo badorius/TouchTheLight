@@ -8,12 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://he5d867iqidx" path="res://Assets/Background/FortOfIllusion/Props/banner.png" id="6_7se4j"]
 [ext_resource type="Texture2D" uid="uid://d2lfy54xgs6q2" path="res://Assets/Background/FortOfIllusion/front.png" id="7_relby"]
 [ext_resource type="Texture2D" uid="uid://cv0au4lfbk7us" path="res://Assets/Background/FortOfIllusion/Props/closed-door.png" id="8_3gtfp"]
-[ext_resource type="PackedScene" uid="uid://bgi84ioegb3g6" path="res://Objects/hud.tscn" id="9_jdbpf"]
-[ext_resource type="PackedScene" uid="uid://dqwoh4qxgemn" path="res://Objects/parallax_background.tscn" id="9_m367q"]
+[ext_resource type="PackedScene" uid="uid://bgi84ioegb3g6" path="res://Objects/HudObjects/hud.tscn" id="9_jdbpf"]
+[ext_resource type="PackedScene" uid="uid://dqwoh4qxgemn" path="res://Objects/ParalaxBG/parallax_background.tscn" id="9_m367q"]
 [ext_resource type="AudioStream" uid="uid://cu2fsnbyykeub" path="res://Music/BGMUSIC/MainMenu.mp3" id="11_jh1j8"]
 [ext_resource type="PackedScene" uid="uid://cf4d021lelowr" path="res://Objects/Player.tscn" id="12_h80aw"]
-[ext_resource type="PackedScene" uid="uid://phnoalyvfkxs" path="res://Objects/SmallTorch.tscn" id="12_kjq2l"]
-[ext_resource type="PackedScene" uid="uid://cue57mbnsjp20" path="res://Objects/Ogre.tscn" id="13_3pmh3"]
+[ext_resource type="PackedScene" uid="uid://phnoalyvfkxs" path="res://Objects/WorldObjects/SmallTorch.tscn" id="12_kjq2l"]
+[ext_resource type="PackedScene" uid="uid://cue57mbnsjp20" path="res://Objects/Enemies/Ogre.tscn" id="13_3pmh3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uwy2i"]
 texture = ExtResource("1_rsxci")

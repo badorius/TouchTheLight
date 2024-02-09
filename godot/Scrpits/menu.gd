@@ -54,7 +54,7 @@ func _process(delta):
 
 
 func _on_start_button_pressed():
-	get_tree().change_scene_to_file("res://Objects/Level1.tscn")
+	get_tree().change_scene_to_file("res://Objects/Levels/Level1.tscn")
 
 func _on_settings_button_pressed():
 	$Popup.visible = true
@@ -64,7 +64,7 @@ func _on_quit_button_pressed():
 	get_tree().quit(0)
 
 func _on_credits_button_pressed():
-	get_tree().change_scene_to_file("res://Objects/Thanks.tscn")
+	get_tree().change_scene_to_file("res://Objects/Levels/Thanks.tscn")
 	
 func _on_start_button_mouse_entered():
 	mouse_over.play()

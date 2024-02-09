@@ -14,13 +14,13 @@ var target_position : Vector2
 @onready var player : CharacterBody2D = get_node("../../Player")
 @export var score_value : int = 50
 @export var attack_power = randi() % 30
-const DamageIndicator = preload("../Objects/damage_indicator.tscn")
+const DamageIndicator = preload("../Objects/Efects/damage_indicator.tscn")
 var startrun : bool = false
 @export var Toxic : bool = false
 var FreqToxic : float = 10.0
 var FreqCounter : float = 0
 @onready var ProgressBar3 : TextureProgressBar = get_node("ProgressBar/Control/TextureProgressBar") 
-const Explode = preload("../Objects/EnemyExplode.tscn")
+const Explode = preload("../Objects/Efects/EnemyExplode.tscn")
 
 #Vars to Wave y movement
 var bob_height : float = 100.0

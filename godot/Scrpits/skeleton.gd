@@ -9,7 +9,7 @@ var state_machine
 @export var timer : float = 0
 @export var ArrowDamage_sound : AudioStreamPlayer2D
 @onready var player : CharacterBody2D = get_node("../../Player")
-const DamageIndicator = preload("res://Objects/damage_indicator.tscn")
+const DamageIndicator = preload("res://Objects/Efects/damage_indicator.tscn")
 @export var state = "Iddle"
 @export var score_value : int = 10
 @export var Toxic : bool = false
@@ -18,7 +18,7 @@ var FreqCounter : float = 0
 @onready var ProgressBar3 : TextureProgressBar = get_node("ProgressBar/Control/TextureProgressBar") 
 #@onready var Explode : AnimationPlayer = get_node("EnemyExplode/AnimationPlayer")
 
-const Explode = preload("../Objects/EnemyExplode.tscn")
+const Explode = preload("../Objects/Efects/EnemyExplode.tscn")
 
 
 

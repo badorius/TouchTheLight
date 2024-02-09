@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scrpits/Ogre.gd" id="1_82kp1"]
 [ext_resource type="Texture2D" uid="uid://dqgfrwceg00rm" path="res://Assets/Enemys/Ogre/ogre-all.png" id="2_ub6u4"]
 [ext_resource type="AudioStream" uid="uid://dfpqvm4laxcko" path="res://SoundFX/Minifantasy_Dungeon_SFX/11_human_damage_1.wav" id="3_qxc35"]
-[ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/progress_bar3.tscn" id="4_0of2f"]
+[ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/HudObjects/progress_bar3.tscn" id="4_0of2f"]
 [ext_resource type="Texture2D" uid="uid://bn13n070mbfkt" path="res://Assets/Impact/Retro Impact Effect Pack 3 A.png" id="4_k0j1a"]
 [ext_resource type="Texture2D" uid="uid://cs1i5ght724md" path="res://Assets/Impact/Retro Impact Effect Pack 3 C.png" id="5_j7b80"]
 [ext_resource type="AudioStream" uid="uid://ci7ln16h8yadw" path="res://SoundFX/Minifantasy_Dungeon_SFX/20_orc_special_atk.wav" id="6_h8kdp"]

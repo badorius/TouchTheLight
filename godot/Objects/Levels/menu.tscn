@@ -7,10 +7,10 @@
 [ext_resource type="AudioStream" uid="uid://u4wnjs6upjwb" path="res://Music/BGMUSIC/InTheHallOfTheMountainKing.mp3" id="3_r4r43"]
 [ext_resource type="Texture2D" uid="uid://5eaqqfu1k2k8" path="res://Assets/Enemys/Skeleton/Walk.png" id="3_vr0og"]
 [ext_resource type="Texture2D" uid="uid://cl6agsvjtw4pi" path="res://Assets/Enemys/FlayingEye/flying-eye-demon.png" id="4_uom0f"]
-[ext_resource type="PackedScene" uid="uid://phnoalyvfkxs" path="res://Objects/SmallTorch.tscn" id="5_bqg2e"]
+[ext_resource type="PackedScene" uid="uid://phnoalyvfkxs" path="res://Objects/WorldObjects/SmallTorch.tscn" id="5_bqg2e"]
 [ext_resource type="Texture2D" uid="uid://cvhor6531eet2" path="res://Assets/Enemys/NightBorne/NightBorne.png" id="5_nqjbf"]
 [ext_resource type="FontFile" uid="uid://uacc8gr3cirm" path="res://Assets/Fonts/G7MakaimuraTtf-xoZm.ttf" id="10_bjeat"]
-[ext_resource type="PackedScene" uid="uid://c54skse0hk3ef" path="res://Objects/options.tscn" id="11_q2pvk"]
+[ext_resource type="PackedScene" uid="uid://c54skse0hk3ef" path="res://Objects/Levels/options.tscn" id="11_q2pvk"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_or55l"]
 radius = 6.0

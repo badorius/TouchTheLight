@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://wrp5houa810c" path="res://Assets/Background/The Dawn/Reference-Image.png" id="3_j27ob"]
 [ext_resource type="Texture2D" uid="uid://5eaqqfu1k2k8" path="res://Assets/Enemys/Skeleton/Walk.png" id="3_vr0og"]
 [ext_resource type="Texture2D" uid="uid://cl6agsvjtw4pi" path="res://Assets/Enemys/FlayingEye/flying-eye-demon.png" id="4_uom0f"]
-[ext_resource type="PackedScene" uid="uid://phnoalyvfkxs" path="res://Objects/SmallTorch.tscn" id="5_bqg2e"]
+[ext_resource type="PackedScene" uid="uid://phnoalyvfkxs" path="res://Objects/WorldObjects/SmallTorch.tscn" id="5_bqg2e"]
 [ext_resource type="Texture2D" uid="uid://cvhor6531eet2" path="res://Assets/Enemys/NightBorne/NightBorne.png" id="5_nqjbf"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_or55l"]

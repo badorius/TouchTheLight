@@ -1,9 +1,9 @@
 [gd_scene load_steps=26 format=3 uid="uid://cseirvljks3fe"]
 
-[ext_resource type="Script" path="res://Scrpits/DeathLamp.gd" id="1_bcvh0"]
-[ext_resource type="Texture2D" uid="uid://cee7nuslemuep" path="res://Assets/Enemys/DeathLamp/death-lamp-rise.png" id="2_qkfph"]
-[ext_resource type="Texture2D" uid="uid://b14kynn8s8o2j" path="res://Assets/Enemys/DeathLamp/death-lamp-walk.png" id="3_tnkhb"]
-[ext_resource type="AudioStream" uid="uid://dfpqvm4laxcko" path="res://SoundFX/Minifantasy_Dungeon_SFX/11_human_damage_1.wav" id="5_5dch1"]
+[ext_resource type="Script" path="res://Scrpits/DeathLamp.gd" id="1_r72vd"]
+[ext_resource type="Texture2D" uid="uid://cee7nuslemuep" path="res://Assets/Enemys/DeathLamp/death-lamp-rise.png" id="2_byf18"]
+[ext_resource type="Texture2D" uid="uid://b14kynn8s8o2j" path="res://Assets/Enemys/DeathLamp/death-lamp-walk.png" id="3_8qomj"]
+[ext_resource type="AudioStream" uid="uid://dfpqvm4laxcko" path="res://SoundFX/Minifantasy_Dungeon_SFX/11_human_damage_1.wav" id="4_khu5s"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_x7jod"]
 blend_mode = 1
@@ -154,18 +154,6 @@ tracks/2/keys = {
 "method": &"ready"
 }]
 }
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("CollisionShape2D:disabled")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
 
 [sub_resource type="Animation" id="Animation_yvoel"]
 resource_name = "Walk"
@@ -234,8 +222,9 @@ transitions = ["Start", "Rise", SubResource("AnimationNodeStateMachineTransition
 
 [node name="DeathLamp" type="CharacterBody2D" groups=["enemies"]]
 scale = Vector2(1.5, 1.5)
+disable_mode = 2
 collision_layer = 4
-script = ExtResource("1_bcvh0")
+script = ExtResource("1_r72vd")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 material = SubResource("CanvasItemMaterial_x7jod")
@@ -256,18 +245,17 @@ collision_layer = 4
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DeathLamp"]
-visible = false
 position = Vector2(0, 9)
 shape = SubResource("CapsuleShape2D_y7f6c")
 disabled = true
 
 [node name="DeathLampRise" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource("2_qkfph")
+texture = ExtResource("2_byf18")
 hframes = 11
 
 [node name="DeathLampWalk" type="Sprite2D" parent="."]
-texture = ExtResource("3_tnkhb")
+texture = ExtResource("3_8qomj")
 hframes = 6
 
 [node name="CollisionShape2D2Walk" type="CollisionShape2D" parent="."]
@@ -292,6 +280,6 @@ tree_root = SubResource("AnimationNodeStateMachine_q41s2")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="ArrowDamage" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("5_5dch1")
+stream = ExtResource("4_khu5s")
 
 [connection signal="body_entered" from="DeathLamp" to="." method="_on_death_lamp_body_entered"]

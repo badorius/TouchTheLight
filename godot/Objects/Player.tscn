@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://det6tiugqthdj" path="res://SoundFX/Minifantasy_Dungeon_SFX/07_human_atk_sword_2.wav" id="6_1poxq"]
 [ext_resource type="AudioStream" uid="uid://bjlsyjmsj3sum" path="res://SoundFX/Minifantasy_Dungeon_SFX/11_human_damage_3.wav" id="6_10oyl"]
 [ext_resource type="AudioStream" uid="uid://bb1rrtkdfsi2r" path="res://SoundFX/Minifantasy_Dungeon_SFX/07_human_atk_sword_3.wav" id="7_ihtqu"]
-[ext_resource type="PackedScene" uid="uid://c54skse0hk3ef" path="res://Objects/options.tscn" id="11_bkxg2"]
+[ext_resource type="PackedScene" uid="uid://c54skse0hk3ef" path="res://Objects/Levels/options.tscn" id="11_bkxg2"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tyxwt"]
 blend_mode = 1

@@ -3,7 +3,7 @@ extends CharacterBody2D
 var speed = 50.0
 var live = 10
 @onready var player : CharacterBody2D = get_node("../Player")
-const DamageIndicator = preload("res://Objects/damage_indicator.tscn")
+const DamageIndicator = preload("res://Objects/Efects/damage_indicator.tscn")
 @export var ArrowDamage_sound : AudioStreamPlayer2D
 var state : String = "Non"
 var state_machine
@@ -16,10 +16,10 @@ var FreqCounter : float = 0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-const BootsItemDrop = preload("../Objects/BootsItemDrop.tscn")
-const ArrowItemDrop = preload("../Objects/ArrowItemDrop.tscn")
-const CoatItemDrop = preload("../Objects/CoatItemDrop.tscn")
-const Explode = preload("../Objects/EnemyExplode.tscn")
+const BootsItemDrop = preload("../Objects/Items/BootsItemDrop.tscn")
+const ArrowItemDrop = preload("../Objects/Items/ArrowItemDrop.tscn")
+const CoatItemDrop = preload("../Objects/Items/CoatItemDrop.tscn")
+const Explode = preload("../Objects/Efects/EnemyExplode.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

@@ -6,17 +6,17 @@
 [ext_resource type="Texture2D" uid="uid://cq10uemhidn4r" path="res://Assets/Background/FortOfIllusion/Props/window.png" id="4_oshc0"]
 [ext_resource type="Texture2D" uid="uid://he5d867iqidx" path="res://Assets/Background/FortOfIllusion/Props/banner.png" id="5_bwgtg"]
 [ext_resource type="Texture2D" uid="uid://d2lfy54xgs6q2" path="res://Assets/Background/FortOfIllusion/front.png" id="6_g4pg0"]
-[ext_resource type="PackedScene" uid="uid://dw70rl8nl7gtl" path="res://Objects/door.tscn" id="7_lu3tu"]
+[ext_resource type="PackedScene" uid="uid://dw70rl8nl7gtl" path="res://Objects/WorldObjects/door.tscn" id="7_lu3tu"]
 [ext_resource type="Texture2D" uid="uid://cv0au4lfbk7us" path="res://Assets/Background/FortOfIllusion/Props/closed-door.png" id="8_rp8cl"]
-[ext_resource type="PackedScene" uid="uid://dqwoh4qxgemn" path="res://Objects/parallax_background.tscn" id="9_ee7dk"]
-[ext_resource type="PackedScene" uid="uid://bkny06l7l1uby" path="res://Objects/parallax_background_lvl1.tscn" id="10_ouq1f"]
-[ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/progress_bar3.tscn" id="11_tdnfv"]
+[ext_resource type="PackedScene" uid="uid://dqwoh4qxgemn" path="res://Objects/ParalaxBG/parallax_background.tscn" id="9_ee7dk"]
+[ext_resource type="PackedScene" uid="uid://bkny06l7l1uby" path="res://Objects/ParalaxBG/parallax_background_lvl1.tscn" id="10_ouq1f"]
+[ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/HudObjects/progress_bar3.tscn" id="11_tdnfv"]
 [ext_resource type="AudioStream" uid="uid://cu2fsnbyykeub" path="res://Music/BGMUSIC/MainMenu.mp3" id="12_bd2fh"]
-[ext_resource type="PackedScene" uid="uid://bis136hblwi22" path="res://Objects/skeleton.tscn" id="13_i7ojg"]
-[ext_resource type="PackedScene" uid="uid://ccixy0n1vgwcc" path="res://Objects/NightBorne.tscn" id="14_vw4sk"]
+[ext_resource type="PackedScene" uid="uid://bis136hblwi22" path="res://Objects/Enemies/skeleton.tscn" id="13_i7ojg"]
+[ext_resource type="PackedScene" uid="uid://ccixy0n1vgwcc" path="res://Objects/Enemies/NightBorne.tscn" id="14_vw4sk"]
 [ext_resource type="PackedScene" uid="uid://cf4d021lelowr" path="res://Objects/Player.tscn" id="15_wxkrw"]
-[ext_resource type="PackedScene" uid="uid://phnoalyvfkxs" path="res://Objects/SmallTorch.tscn" id="16_vuhg8"]
-[ext_resource type="PackedScene" uid="uid://de2d43ynvsgip" path="res://Objects/FlayingEye.tscn" id="17_smd4b"]
+[ext_resource type="PackedScene" uid="uid://phnoalyvfkxs" path="res://Objects/WorldObjects/SmallTorch.tscn" id="16_vuhg8"]
+[ext_resource type="PackedScene" uid="uid://de2d43ynvsgip" path="res://Objects/Enemies/FlayingEye.tscn" id="17_smd4b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uwy2i"]
 texture = ExtResource("1_yand1")
@@ -1165,10 +1165,6 @@ theme_override_font_sizes/font_size = 20
 text = "Gamepad/ keys: cursors, space, z, x"
 
 [node name="ProgressBar" parent="CanvasLayer" instance=ExtResource("11_tdnfv")]
-offset_left = 34.0
-offset_top = 124.0
-offset_right = 38.0
-offset_bottom = 151.0
 scale = Vector2(43.7519, 0.709099)
 
 [node name="ProgressBarLight" type="ProgressBar" parent="CanvasLayer"]

@@ -1,10 +1,14 @@
-[gd_scene load_steps=29 format=3 uid="uid://cpfdvkc5prymv"]
+[gd_scene load_steps=32 format=3 uid="uid://dh1dxnpdevukl"]
 
-[ext_resource type="Script" path="res://Scrpits/Mage1.gd" id="1_jd5qh"]
-[ext_resource type="Texture2D" uid="uid://nirbdaaf5rvr" path="res://Assets/Enemys/Mage1/mage.png" id="2_cu8st"]
-[ext_resource type="AudioStream" uid="uid://b0wl1oftyh2ky" path="res://SoundFX/Minifantasy_Dungeon_SFX/21_orc_damage_3.wav" id="3_m4nwf"]
-[ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/progress_bar3.tscn" id="4_tiiwx"]
-[ext_resource type="PackedScene" uid="uid://d34essgm7nkpw" path="res://Objects/EnemyExplode.tscn" id="5_wgk21"]
+[ext_resource type="Script" path="res://Scrpits/Crow.gd" id="1_dqcfn"]
+[ext_resource type="Texture2D" uid="uid://dg1ksifmwm7wx" path="res://Assets/Enemys/Crow/crow-all.png" id="2_34d1s"]
+[ext_resource type="AudioStream" uid="uid://dvwu6sflwmb4f" path="res://SoundFX/Minifantasy_Dungeon_SFX/croworraven1-6749.mp3" id="3_w7ifd"]
+[ext_resource type="AudioStream" uid="uid://dfpqvm4laxcko" path="res://SoundFX/Minifantasy_Dungeon_SFX/11_human_damage_1.wav" id="3_xtsif"]
+[ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/HudObjects/progress_bar3.tscn" id="4_w2hj0"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nljga"]
+radius = 9.03674
+height = 18.0735
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vo1ju"]
 blend_mode = 1
@@ -51,10 +55,10 @@ tracks/0/path = NodePath("Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.03, 0.06, 0.09, 0.12, 0.15, 0.18, 0.21, 0.24, 0.27, 0.3, 0.33),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.03, 0.06),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2), Vector2i(5, 2), Vector2i(6, 2), Vector2i(7, 2), Vector2i(8, 2), Vector2i(9, 2), Vector2i(10, 2), Vector2i(11, 2)]
+"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2)]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -81,10 +85,10 @@ tracks/0/path = NodePath("Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 1,
-"values": [Vector2i(0, 4), Vector2i(1, 4), Vector2i(2, 4), Vector2i(3, 4), Vector2i(4, 4), Vector2i(5, 4), Vector2i(6, 4)]
+"values": []
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -93,7 +97,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.7),
+"times": PackedFloat32Array(0.6),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -103,7 +107,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("EnemyExplode:visible")
+tracks/2/path = NodePath("CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -112,16 +116,17 @@ tracks/2/keys = {
 "update": 1,
 "values": [true]
 }
-tracks/3/type = "method"
+tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath(".")
+tracks/3/path = NodePath("Sprite2D:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(),
-"transitions": PackedFloat32Array(),
-"values": []
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_8hcg7"]
@@ -134,27 +139,28 @@ tracks/0/path = NodePath("Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
 "update": 1,
-"values": [Vector2i(0, 3), Vector2i(1, 3), Vector2i(2, 3), Vector2i(3, 3), Vector2i(4, 3)]
+"values": []
 }
 
 [sub_resource type="Animation" id="Animation_ksaeq"]
 resource_name = "Iddle"
-length = 0.6
+length = 4.0
 loop_mode = 1
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 1.4, 1.55, 2, 2.5, 3.44, 3.59, 3.74, 3.89),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0)]
+"values": [0, 2, 0, 1, 0, 0, 2, 0, 2]
 }
 
 [sub_resource type="Animation" id="Animation_13ypt"]
@@ -174,20 +180,21 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("EnemyExplode:visible")
+tracks/1/path = NodePath("Sprite2D:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_6hwei"]
 resource_name = "Run"
-length = 0.6
+length = 0.3
 loop_mode = 1
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -195,11 +202,61 @@ tracks/0/path = NodePath("Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.15),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0)]
+"values": [Vector2i(0, 2), Vector2i(1, 2)]
 }
+
+[sub_resource type="Animation" id="Animation_8mq87"]
+resource_name = "StartFly"
+length = 2.0
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.16, 1.32, 1.47, 1.6, 1.71, 1.81, 1.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 4, 5, 4, 5, 4, 5]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.97),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"set_chaseplayer"
+}]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("crow")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_w7ifd")
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_w7ifd")
+}],
+"times": PackedFloat32Array(0.02, 0.96)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xc5pc"]
 _data = {
@@ -208,12 +265,9 @@ _data = {
 "Hurt": SubResource("Animation_8hcg7"),
 "Iddle": SubResource("Animation_ksaeq"),
 "RESET": SubResource("Animation_13ypt"),
-"Run": SubResource("Animation_6hwei")
+"Run": SubResource("Animation_6hwei"),
+"StartFly": SubResource("Animation_8mq87")
 }
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nljga"]
-radius = 4.94756
-height = 26.2152
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nvbf3"]
 animation = &"Death"
@@ -224,38 +278,53 @@ animation = &"Iddle"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7fui2"]
 animation = &"Run"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p202v"]
+animation = &"StartFly"
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ic34r"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dpwdg"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lqt1d"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_abhdj"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_isctg"]
 switch_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_njifs"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ro7n3"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rjsnf"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_oje4e"]
 states/Death/node = SubResource("AnimationNodeAnimation_nvbf3")
 states/Death/position = Vector2(792.688, 175.138)
+states/End/position = Vector2(1221, 297)
 states/Iddle/node = SubResource("AnimationNodeAnimation_kjn71")
-states/Iddle/position = Vector2(274, 277)
+states/Iddle/position = Vector2(213, 297)
 states/Run/node = SubResource("AnimationNodeAnimation_7fui2")
-states/Run/position = Vector2(681, 247)
+states/Run/position = Vector2(570, 413)
 states/Start/position = Vector2(5, 306)
-transitions = ["Start", "Iddle", SubResource("AnimationNodeStateMachineTransition_ic34r"), "Iddle", "Run", SubResource("AnimationNodeStateMachineTransition_dpwdg"), "Run", "Iddle", SubResource("AnimationNodeStateMachineTransition_lqt1d"), "Run", "Death", SubResource("AnimationNodeStateMachineTransition_abhdj"), "Death", "End", SubResource("AnimationNodeStateMachineTransition_isctg")]
-graph_offset = Vector2(193.688, 87.138)
+states/StartFly/node = SubResource("AnimationNodeAnimation_p202v")
+states/StartFly/position = Vector2(362.091, 191)
+transitions = ["Start", "Iddle", SubResource("AnimationNodeStateMachineTransition_ic34r"), "Run", "Death", SubResource("AnimationNodeStateMachineTransition_abhdj"), "Death", "End", SubResource("AnimationNodeStateMachineTransition_isctg"), "Iddle", "StartFly", SubResource("AnimationNodeStateMachineTransition_njifs"), "StartFly", "Run", SubResource("AnimationNodeStateMachineTransition_ro7n3"), "StartFly", "Death", SubResource("AnimationNodeStateMachineTransition_rjsnf")]
+graph_offset = Vector2(-65.909, 77.138)
 
-[node name="Mage1" type="CharacterBody2D" groups=["enemies"]]
-scale = Vector2(0.5, 0.5)
+[node name="Crow" type="CharacterBody2D" groups=["enemies"]]
+collision_layer = 4
+script = ExtResource("1_dqcfn")
+
+[node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 2
-script = ExtResource("1_jd5qh")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-2.27374e-13, -1)
+rotation = -3.14159
+scale = Vector2(1.30915, 1.77055)
+shape = SubResource("CapsuleShape2D_nljga")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 material = SubResource("CanvasItemMaterial_vo1ju")
-position = Vector2(0, 22)
 scale = Vector2(0.5, 0.5)
 enabled = false
 texture = SubResource("GradientTexture2D_ombhn")
@@ -267,9 +336,9 @@ position = Vector2(2.84782, -11.411)
 texture = SubResource("GradientTexture2D_2d6ig")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
-texture = ExtResource("2_cu8st")
-hframes = 6
+texture = ExtResource("2_34d1s")
+hframes = 3
+vframes = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -277,12 +346,14 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.27374e-13, -1)
 rotation = -3.14159
-scale = Vector2(6.21232, 3.95699)
+scale = Vector2(1.30915, 1.77055)
 shape = SubResource("CapsuleShape2D_nljga")
+disabled = true
 
 [node name="ArrowDamage" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_m4nwf")
+stream = ExtResource("3_xtsif")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 libraries = {
@@ -291,8 +362,11 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_oje4e")
 anim_player = NodePath("../AnimationPlayer")
 
-[node name="ProgressBar" parent="." instance=ExtResource("4_tiiwx")]
-position = Vector2(-23.0519, -74.9186)
+[node name="ProgressBar" parent="." instance=ExtResource("4_w2hj0")]
+visible = false
+position = Vector2(-25.9334, -44.1828)
 scale = Vector2(0.692642, 0.769481)
 
-[node name="EnemyExplode" parent="." instance=ExtResource("5_wgk21")]
+[node name="crow" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
