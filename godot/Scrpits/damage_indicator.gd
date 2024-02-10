@@ -10,7 +10,8 @@ func _ready():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	goup()
+	
 
 func show_damage(damage, ColourMode):
 	#get_node("Label").set_text = str(damge)
@@ -39,3 +40,7 @@ func set_colours(ColourMode):
 		colour = Color(255,0,255)
 	elif ColourMode == "joke":
 		colour = Color(150,75,0)
+		
+func goup():
+	position.y -= 0.4
+

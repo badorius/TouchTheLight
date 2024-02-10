@@ -404,7 +404,7 @@ func hurt(damage):
 		var offset_position = randi() % 20
 		var main = get_tree().current_scene
 		var D = DamageIndicator.instantiate()
-		var color = "white"
+		var color = "red"
 		D.global_position = Vector2(global_position.x - offset_position, (global_position.y) - offset_position)
 		D.show_damage(damage, color)
 		main.add_child(D)
@@ -461,7 +461,7 @@ func _on_area_2d_area_entered(area):
 		area.hurt(attack_power)
 
 	if area.is_in_group("door"):
-		get_tree().change_scene_to_file("res://Objects/Level1Boss.tscn")
+		get_tree().change_scene_to_file("res://Objects/Levels/Level1Boss.tscn")
 		
 
 func _on_area_2d_body_body_entered(body):
