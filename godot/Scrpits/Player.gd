@@ -183,7 +183,7 @@ func _physics_process(delta):
 	decrease_light_scale(0.01)
 	
 	#QUIT GAME
-	if Input.is_action_just_pressed("ui_cancel") and is_on_floor():
+	if Input.is_action_just_pressed("ui_cancel"):
 		#PENDING FIX PAUSE
 		#get_tree().paused = true
 		game_pause()
@@ -192,7 +192,6 @@ func _physics_process(delta):
 	if global_position.y > 500:
 		#$AnimationPlayer.play("Death")
 		death()
-		death_sound.play()
 		reset_skills()
 		gotocheckpoint()
 
@@ -313,6 +312,7 @@ func game_over ():
 #QUIT GAME FUNCTION
 func game_pause ():
 		$Popup.visible = true
+		Engine.time_scale = 0
 		#get_tree().change_scene_to_file("res://Objects/menu.tscn")
 	
 #ADD SCORE FUNCTION
@@ -354,6 +354,7 @@ func update_magic3 ():
 	
 #UPDATE LIVES FUNCTION
 func death ():
+	death_sound.play()
 	if lives == 0:
 		game_over()
 	else:
@@ -444,6 +445,7 @@ func reset_skills():
 	update_boots(0)
 	update_coat(0)
 
+
 func drop_item():
 	
 	var boots_num = HUD.get_boots()
@@ -521,4 +523,5 @@ func _input(event):
 func _on_popup_close_requested():
 		get_tree().paused = false
 		print("UnPausen!")
+		Engine.time_scale = 1
 

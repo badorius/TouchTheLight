@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://db31nf1dnf035"]
+
+[ext_resource type="PackedScene" uid="uid://c54skse0hk3ef" path="res://Objects/Levels/options.tscn" id="1_n6vlt"]
+
+[node name="Popup" type="Popup"]
+position = Vector2i(150, 100)
+size = Vector2i(1600, 900)
+borderless = false
+transparent = true
+
+[node name="options" parent="." instance=ExtResource("1_n6vlt")]
+anchors_preset = -1
+offset_left = -500.0
+offset_top = 250.0
+offset_right = -500.0
+offset_bottom = 250.0
+scale = Vector2(0.6, 0.597)

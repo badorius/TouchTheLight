@@ -804,7 +804,6 @@ graph_offset = Vector2(191.052, 96.637)
 scale = Vector2(0.5, 0.5)
 collision_layer = 2
 script = ExtResource("1_f0k0l")
-SPEED = 0
 
 [node name="Warrior" type="Sprite2D" parent="."]
 texture = ExtResource("2_phcmd")

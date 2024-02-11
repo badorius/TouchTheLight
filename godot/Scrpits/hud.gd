@@ -118,6 +118,9 @@ func update_magic3 (mana):
 func gameover():
 	$GameOver.visible = true
 	$VBoxContainer.visible = true
+	$AnimationPlayer.play("GameOver")
+	
+func death():
 	$AnimationPlayer.play("Death")
 	
 	

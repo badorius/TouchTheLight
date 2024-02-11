@@ -146,6 +146,8 @@ func _update_labels() -> void:
 	
 func _on_main_menu_pressed():
 	get_tree().change_scene_to_file(\"res://Objects/Levels/menu.tscn\")
+	
+
 "
 
 [node name="options" type="Control"]

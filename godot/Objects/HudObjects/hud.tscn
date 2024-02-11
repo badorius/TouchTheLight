@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bgi84ioegb3g6"]
+[gd_scene load_steps=35 format=3 uid="uid://bgi84ioegb3g6"]
 
 [ext_resource type="Script" path="res://Scrpits/hud.gd" id="1_ouvyj"]
 [ext_resource type="FontFile" uid="uid://uacc8gr3cirm" path="res://Assets/Fonts/G7MakaimuraTtf-xoZm.ttf" id="1_t36q3"]
@@ -38,6 +38,49 @@ texture = SubResource("CanvasTexture_sgb7d")
 modulate_color = Color(1, 0.0588235, 1, 1)
 
 [sub_resource type="Animation" id="Animation_68csp"]
+resource_name = "Death"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BloodCloudBloodOverlay:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.01),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BloodCloudBloodOverlay:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.98),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_u0qcp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BloodCloudBloodOverlay:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_m7vks"]
 resource_name = "Death"
 length = 5.0
 tracks/0/type = "value"
@@ -80,24 +123,10 @@ tracks/2/keys = {
 }
 tracks/2/use_blend = true
 
-[sub_resource type="Animation" id="Animation_u0qcp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("BloodCloudBloodOverlay:self_modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bfn64"]
 _data = {
 "Death": SubResource("Animation_68csp"),
+"GameOver": SubResource("Animation_m7vks"),
 "RESET": SubResource("Animation_u0qcp")
 }
 
