@@ -1,0 +1,141 @@
+[gd_scene load_steps=10 format=3 uid="uid://d132f0lp7gdbc"]
+
+[ext_resource type="AudioStream" uid="uid://dhc3kia3e06e8" path="res://SoundFX/Minifantasy_Dungeon_SFX/LightCatch.mp3" id="1_slxrw"]
+[ext_resource type="Script" path="res://Scrpits/GameOver.gd" id="1_yuvpk"]
+[ext_resource type="Texture2D" uid="uid://cri5e427y8r78" path="res://Assets/Background/GameOver/game_over.png" id="3_ilc7d"]
+[ext_resource type="FontFile" uid="uid://uacc8gr3cirm" path="res://Assets/Fonts/G7MakaimuraTtf-xoZm.ttf" id="4_1a6dc"]
+[ext_resource type="AudioStream" uid="uid://c5v86gr878sqt" path="res://Music/BGMUSIC/game-over.mp3" id="5_3k6qj"]
+[ext_resource type="Texture2D" uid="uid://cu78ite370l6o" path="res://Assets/HUD/BackGround/Blood Cloud Blood Overlay.png" id="5_wmkfl"]
+
+[sub_resource type="Animation" id="Animation_68csp"]
+resource_name = "Death"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BloodCloudBloodOverlay:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("BloodCloudBloodOverlay:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 4.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GameOverSound")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("5_3k6qj")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="Animation" id="Animation_u0qcp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BloodCloudBloodOverlay:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bfn64"]
+_data = {
+"Death": SubResource("Animation_68csp"),
+"RESET": SubResource("Animation_u0qcp")
+}
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -810.0
+offset_top = 360.0
+offset_right = -810.0
+offset_bottom = 360.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.006, 1)
+script = ExtResource("1_yuvpk")
+
+[node name="MouseOver" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_slxrw")
+
+[node name="CanvasModulate2" type="CanvasModulate" parent="."]
+visible = false
+color = Color(0.137255, 1, 1, 1)
+
+[node name="GameOverSound" type="AudioStreamPlayer2D" parent="."]
+autoplay = true
+
+[node name="GameOver" type="Sprite2D" parent="."]
+position = Vector2(790.258, -427)
+texture = ExtResource("3_ilc7d")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 622.266
+offset_top = 14.0
+offset_right = 742.266
+offset_bottom = 150.0
+scale = Vector2(2.4176, 2.01792)
+
+[node name="StartButton" type="Button" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_1a6dc")
+text = "Start"
+
+[node name="SettingsButton" type="Button" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_1a6dc")
+text = "Options
+"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_1a6dc")
+text = "Quit
+"
+
+[node name="BloodCloudBloodOverlay" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+position = Vector2(812.127, -359)
+texture = ExtResource("5_wmkfl")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_bfn64")
+}
+
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

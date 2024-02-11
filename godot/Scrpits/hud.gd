@@ -23,7 +23,7 @@ func _process(delta):
 	
 func update_lives(num):
 	$AnimationPlayer.play("Death")
-	lives -= num
+	lives += num
 	match lives:
 		0:
 			$BoxContainer/IconLives1.visible = false
@@ -46,7 +46,14 @@ func update_score(num):
 	score += num
 	$ScoreText.text = str("Score: ", score)
 	
-	
+
+func get_boots():
+	return boots/10
+func get_coat():
+	return coat/10
+func get_arrows():
+	return arrows/10
+
 func update_arrows(num):
 	if num == 0:
 		arrows = 0
@@ -113,11 +120,16 @@ func gameover():
 	$VBoxContainer.visible = true
 	$AnimationPlayer.play("Death")
 	
-func _on_start_button_pressed():
-	get_tree().change_scene_to_file("res://Objects/Level1.tscn")
 	
+	
+func _on_settings_button_pressed():
+	get_tree().change_scene_to_file("res://Objects/Levels/options.tscn")
+	
+func _on_start_button_pressed():
+	get_tree().change_scene_to_file("res://Objects/Levels/Level1.tscn")
+
 func _on_quit_button_pressed():
-	get_tree().change_scene_to_file("res://Objects/menu.tscn")
+	get_tree().change_scene_to_file("res://Objects/Levels/menu.tscn")
 
 func _on_buton_sword_pressed():
 	player.atack1()
@@ -133,3 +145,6 @@ func _on_buton_magic_2_pressed():
 
 func _on_buton_magic_3_pressed():
 	pass # Replace with function body.
+
+
+

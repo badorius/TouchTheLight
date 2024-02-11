@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bgi84ioegb3g6"]
+[gd_scene load_steps=34 format=3 uid="uid://bgi84ioegb3g6"]
 
 [ext_resource type="Script" path="res://Scrpits/hud.gd" id="1_ouvyj"]
 [ext_resource type="FontFile" uid="uid://uacc8gr3cirm" path="res://Assets/Fonts/G7MakaimuraTtf-xoZm.ttf" id="1_t36q3"]
@@ -26,6 +26,7 @@
 [ext_resource type="Texture2D" uid="uid://c5kfqjcso7cvv" path="res://Assets/Icons/Skill_9.png" id="16_xo67i"]
 [ext_resource type="Texture2D" uid="uid://cri5e427y8r78" path="res://Assets/Background/GameOver/game_over.png" id="25_42ks8"]
 [ext_resource type="Texture2D" uid="uid://cu78ite370l6o" path="res://Assets/HUD/BackGround/Blood Cloud Blood Overlay.png" id="26_o2hjc"]
+[ext_resource type="AudioStream" uid="uid://c5v86gr878sqt" path="res://Music/BGMUSIC/game-over.mp3" id="27_pw423"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_mdf3p"]
 color = Color(0, 0.282353, 0.290196, 1)
@@ -38,7 +39,7 @@ modulate_color = Color(1, 0.0588235, 1, 1)
 
 [sub_resource type="Animation" id="Animation_68csp"]
 resource_name = "Death"
-length = 1.8
+length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -46,10 +47,10 @@ tracks/0/path = NodePath("BloodCloudBloodOverlay:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.8),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true, false]
+"values": [true]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -58,11 +59,26 @@ tracks/1/path = NodePath("BloodCloudBloodOverlay:self_modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.9, 1.8),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 4.9),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GameOverSound")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("27_pw423")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="Animation" id="Animation_u0qcp"]
 length = 0.001
@@ -472,11 +488,13 @@ offset_bottom = 840.0
 scale = Vector2(2.4176, 2.01792)
 
 [node name="StartButton" type="Button" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_t36q3")
 text = "Start"
 
 [node name="SettingsButton" type="Button" parent="VBoxContainer"]
+visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_t36q3")
 text = "Options
@@ -489,7 +507,6 @@ text = "Quit
 "
 
 [node name="BloodCloudBloodOverlay" type="Sprite2D" parent="."]
-visible = false
 self_modulate = Color(1, 1, 1, 0)
 position = Vector2(963, 543)
 texture = ExtResource("26_o2hjc")
@@ -505,4 +522,5 @@ libraries = {
 [connection signal="pressed" from="skills/Magic2Decor/magic2/ButonMagic2" to="." method="_on_buton_magic_2_pressed"]
 [connection signal="pressed" from="skills/Magic3Decor/magic3/ButonMagic3" to="." method="_on_buton_magic_3_pressed"]
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

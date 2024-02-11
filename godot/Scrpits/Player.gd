@@ -43,6 +43,11 @@ const DamageIndicator = preload("../Objects/Efects/damage_indicator.tscn")
 @export var arrow_direction : int = 1
 const Explode = preload( "../Objects/Efects/PlayerExplode.tscn")
 
+# Load Items
+const BootsItemDrop = preload("../Objects/Items/BootsItemDrop.tscn")
+const ArrowItemDrop = preload("../Objects/Items/ArrowItemDrop.tscn")
+const CoatItemDrop = preload("../Objects/Items/CoatItemDrop.tscn")
+
 # Light vaule default
 var base_light : Vector2 = Vector2(0.5, 0.5)
 @export var decrease_value : Vector2 = Vector2(0.001, 0.001)
@@ -186,7 +191,7 @@ func _physics_process(delta):
 	#PLAYER DOWN GAMEOVER
 	if global_position.y > 500:
 		#$AnimationPlayer.play("Death")
-		update_lives(1)
+		death()
 		death_sound.play()
 		reset_skills()
 		gotocheckpoint()
@@ -301,8 +306,9 @@ func iddle():
 #GAMEOVER FUNCTION
 func game_over ():
 	#PENDING FIX FUNCTIoN NAME (NOT GAMEOVER) DIE LIVES
-	HUD.gameover()
-	#get_tree().change_scene_to_file("res://Objects/menu.tscn")
+	velocity = Vector2(0,0)
+	#HUD.gameover()
+	get_tree().change_scene_to_file("res://Objects/Levels/GameOver.tscn")
 
 #QUIT GAME FUNCTION
 func game_pause ():
@@ -347,15 +353,16 @@ func update_magic3 ():
 	HUD.update_magic3(int(mana))
 	
 #UPDATE LIVES FUNCTION
-func update_lives (amount):
+func death ():
 	if lives == 0:
 		game_over()
 	else:
+		drop_item()
 		live = max_live
 		live_sphere.value = live
 		mana_sphere.value = 0.0
-		lives -= amount
-		HUD.update_lives(amount)
+		lives -= 1
+		HUD.update_lives(-1)
 
 	
 # Función para incrementar la escala de la luz
@@ -413,7 +420,7 @@ func hurt(damage):
 		if live <= 0:
 			$AnimationPlayer.play("Death")
 			death_sound.play()
-			update_lives(1)
+			death()
 			reset_skills()
 
 #PENDING FIX GOOD BOUNCE EFECT SEE BOUNCE GODOT
@@ -436,8 +443,42 @@ func reset_skills():
 	update_arrows(0)
 	update_boots(0)
 	update_coat(0)
+
+func drop_item():
 	
+	var boots_num = HUD.get_boots()
+	var coat_num = HUD.get_coat()
+	var arrows_num = HUD.get_arrows()
+	var rnd_offset = 300
+	var rnd = randi() % rnd_offset
+	var main = get_tree().current_scene
+
+	for i in boots_num:
+		rnd = randi() % rnd_offset
+		var A = BootsItemDrop.instantiate()
+		A.global_position = global_position
+		A.position.x = global_position.x + rnd
+		A.position.y = global_position.y + 15
+		main.add_child(A)
 		
+	for i in coat_num:
+		rnd = randi() % rnd_offset
+		var A = ArrowItemDrop.instantiate()
+		A.global_position = global_position
+		A.position.x = global_position.x - rnd
+		A.position.y = global_position.y + 15
+		main.add_child(A)
+
+	for i in arrows_num:
+		rnd = randi() % rnd_offset
+		var A = CoatItemDrop.instantiate()
+		A.global_position = global_position
+		A.position.x = global_position.x + rnd
+		A.position.y = global_position.y + 15
+		main.add_child(A)
+
+	
+
 func explode():
 		var main = get_tree().current_scene
 		var A = Explode.instantiate()
