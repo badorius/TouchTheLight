@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://d07i3cdmomp8e"]
+[gd_scene load_steps=37 format=3 uid="uid://d07i3cdmomp8e"]
 
 [ext_resource type="Texture2D" uid="uid://ccpnn3i3xafue" path="res://Assets/Tileset/Level1.png" id="1_5gl51"]
 [ext_resource type="Script" path="res://Scrpits/Level1.gd" id="1_6dyan"]
@@ -27,9 +27,6 @@
 [ext_resource type="Texture2D" uid="uid://deaw5e7ljld6i" path="res://Assets/Background/HauntedForest/Props/tree-2.png" id="22_yjjfu"]
 [ext_resource type="PackedScene" uid="uid://dh1dxnpdevukl" path="res://Objects/Enemies/Crow.tscn" id="25_yi138"]
 [ext_resource type="PackedScene" uid="uid://cue57mbnsjp20" path="res://Objects/Enemies/Ogre.tscn" id="26_4xsjt"]
-[ext_resource type="PackedScene" uid="uid://clms4vxi7fjov" path="res://Objects/Items/ArrowItemDrop.tscn" id="26_6v6i8"]
-[ext_resource type="PackedScene" uid="uid://y1d0hktabdah" path="res://Objects/Items/BootsItemDrop.tscn" id="27_dxknq"]
-[ext_resource type="PackedScene" uid="uid://rwpof47pjb7g" path="res://Objects/Items/CoatItemDrop.tscn" id="28_kq33f"]
 [ext_resource type="PackedScene" uid="uid://cpfdvkc5prymv" path="res://Objects/Enemies/Mage1.tscn" id="28_kwl0j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uwy2i"]
@@ -2147,9 +2144,6 @@ position = Vector2(11872, 104)
 [node name="Ogre" parent="Enemies" instance=ExtResource("26_4xsjt")]
 position = Vector2(13657, 31)
 
-[node name="Crow17" parent="Enemies" instance=ExtResource("25_yi138")]
-position = Vector2(69, 183)
-
 [node name="SmallTorchs" type="Node2D" parent="."]
 position = Vector2(40, 186)
 
@@ -2230,39 +2224,6 @@ position = Vector2(12397, -73)
 
 [node name="DropItems" type="Node2D" parent="."]
 
-[node name="ArrowItemDrop" parent="DropItems" instance=ExtResource("26_6v6i8")]
-position = Vector2(-239, 123)
-
-[node name="BootsItemDrop" parent="DropItems" instance=ExtResource("27_dxknq")]
-position = Vector2(-213, 124)
-
-[node name="BootsItemDrop2" parent="DropItems" instance=ExtResource("27_dxknq")]
-position = Vector2(170, 236)
-
-[node name="BootsItemDrop3" parent="DropItems" instance=ExtResource("27_dxknq")]
-position = Vector2(1151, 237)
-
-[node name="BootsItemDrop4" parent="DropItems" instance=ExtResource("27_dxknq")]
-position = Vector2(1651, 236)
-
-[node name="BootsItemDrop5" parent="DropItems" instance=ExtResource("27_dxknq")]
-position = Vector2(2093, 237)
-
-[node name="BootsItemDrop6" parent="DropItems" instance=ExtResource("27_dxknq")]
-position = Vector2(2173, 124)
-
-[node name="ArrowItemDrop2" parent="DropItems" instance=ExtResource("26_6v6i8")]
-position = Vector2(2507, 122)
-
-[node name="BootsItemDrop7" parent="DropItems" instance=ExtResource("27_dxknq")]
-position = Vector2(2881, 124)
-
-[node name="CoatItemDrop" parent="DropItems" instance=ExtResource("28_kq33f")]
-position = Vector2(37, 233)
-
-[node name="BootsItemDrop8" parent="DropItems" instance=ExtResource("27_dxknq")]
-position = Vector2(-128, 233)
-
 [node name="Player" parent="." instance=ExtResource("14_nbcgr")]
-position = Vector2(-224, -273)
+position = Vector2(-179, 160)
 scale = Vector2(1, 1)

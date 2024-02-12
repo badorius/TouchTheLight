@@ -38,8 +38,8 @@ height = 256
 fill = 1
 fill_from = Vector2(0.490826, 0.477064)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_2ukha"]
-radius = 4.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ypi03"]
+size = Vector2(26, 36)
 
 [sub_resource type="Animation" id="Animation_p0lt4"]
 length = 0.001
@@ -54,22 +54,19 @@ _data = {
 }
 
 [node name="BootsItemDrop" type="Area2D" groups=["Torch"]]
-position = Vector2(43, 2)
 scale = Vector2(0.5, 0.5)
 collision_layer = 16
 collision_mask = 3
+gravity_point_unit_distance = 1.0
 script = ExtResource("1_tly24")
 
 [node name="BootsItemDrop" type="Sprite2D" parent="."]
-position = Vector2(-44, -4)
 texture = ExtResource("2_lps3v")
 
 [node name="PointLight2D" type="PointLight2D" parent="BootsItemDrop"]
 light_mask = 2
 visibility_layer = 2
 material = SubResource("CanvasItemMaterial_cu7ks")
-position = Vector2(1, -3)
-scale = Vector2(0.3, 0.3)
 enabled = false
 texture = SubResource("GradientTexture2D_nxopm")
 
@@ -78,15 +75,12 @@ modulate = Color(0, 0.247059, 0.741176, 0.8)
 light_mask = 2
 visibility_layer = 2
 material = SubResource("CanvasItemMaterial_41qik")
-position = Vector2(2.84782, -11.411)
-scale = Vector2(0.3, 0.3)
 texture = SubResource("GradientTexture2D_vpl58")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2(-43, -22)
-scale = Vector2(0.5, 0.5)
-shape = SubResource("CircleShape2D_2ukha")
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_ypi03")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

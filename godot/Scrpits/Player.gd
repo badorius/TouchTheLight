@@ -7,8 +7,8 @@ const JUMP_VELOCITY = -350.0
 @export var push_force = 80.0
 
 
-var max_live : int = 213
-var max_mana : float = 213.0
+@export var max_live : int = 213
+@export var max_mana : float = 213.0
 @export var live : int = max_live
 @export var mana : float = 0.0
 @export var arrows : int = 0
@@ -381,6 +381,23 @@ func increment_light_scale(increment_amount):
 		update_magic2()
 		update_magic3()
 
+
+func increase_live(amount):
+	if live <= max_live:
+		live += amount
+		live_sphere.value = live
+		if live > max_live:
+			live = max_live
+	
+func increase_mana(amount):
+	#pending FIX mana is mana, tourch is touch point and experience not light not mana
+	if live <= max_mana:
+		mana += amount
+		mana_sphere.value = mana
+		increment_light_scale(50.0)
+		if mana > max_mana:
+			mana = max_mana
+		
 
 func decrease_light_scale(decrease_amount):
 	if mana > 0.0:
