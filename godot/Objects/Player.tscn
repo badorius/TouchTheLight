@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://det6tiugqthdj" path="res://SoundFX/Minifantasy_Dungeon_SFX/07_human_atk_sword_2.wav" id="6_1poxq"]
 [ext_resource type="AudioStream" uid="uid://bjlsyjmsj3sum" path="res://SoundFX/Minifantasy_Dungeon_SFX/11_human_damage_3.wav" id="6_10oyl"]
 [ext_resource type="AudioStream" uid="uid://bb1rrtkdfsi2r" path="res://SoundFX/Minifantasy_Dungeon_SFX/07_human_atk_sword_3.wav" id="7_ihtqu"]
-[ext_resource type="PackedScene" uid="uid://c54skse0hk3ef" path="res://Objects/Levels/options.tscn" id="11_bkxg2"]
+[ext_resource type="PackedScene" uid="uid://cifcx1mheuher" path="res://Objects/Levels/Pause.tscn" id="11_t6it4"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_tyxwt"]
 blend_mode = 1
@@ -889,18 +889,15 @@ tree_root = SubResource("AnimationNodeStateMachine_nqriw")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="Popup" type="Popup" parent="."]
-position = Vector2i(150, 100)
-size = Vector2i(1600, 900)
-borderless = false
-transparent = true
+process_mode = 3
+position = Vector2i(470, 100)
+size = Vector2i(929, 929)
 
-[node name="options" parent="Popup" instance=ExtResource("11_bkxg2")]
-anchors_preset = -1
-offset_left = -500.0
-offset_top = 250.0
-offset_right = -500.0
-offset_bottom = 250.0
-scale = Vector2(0.6, 0.597)
+[node name="Pause" parent="Popup" instance=ExtResource("11_t6it4")]
+offset_left = -986.0
+offset_top = 464.92
+offset_right = -986.0
+offset_bottom = 464.92
 
 [connection signal="area_entered" from="Warrior/Area2DSword" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Warrior/Area2DSword" to="." method="_on_area_2d_body_entered"]
