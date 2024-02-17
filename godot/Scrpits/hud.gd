@@ -2,6 +2,8 @@ extends CanvasLayer
 
 @export var lives : int = 3
 @export var score : int = 0
+@export var max_score : int = 10000
+@export var timer : float = 300.0
 @export var arrows : int = 0
 @export var boots : int = 0
 @export var coat : int = 0
@@ -16,6 +18,7 @@ func _ready():
 	$GameOver.visible = false
 	$VBoxContainer.visible = false
 	$BloodCloudBloodOverlay.visible = false
+	$MaxScore.text = str("TOP SCORE: ", max_score)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -44,7 +47,18 @@ func update_lives(num):
 			
 func update_score(num):
 	score += num
-	$ScoreText.text = str("Score: ", score)
+	$ScoreText.text = str("SCORE: ", score)
+	update_max_score()
+	
+func update_max_score():
+	if score > max_score:
+		max_score = score
+		$MaxScore.text = str("TOP SCORE: ", max_score)
+
+	
+func update_timer():
+	timer -= 0.02
+	$Timer.text = str("TIMER: ", int(timer))
 	
 
 func get_boots():

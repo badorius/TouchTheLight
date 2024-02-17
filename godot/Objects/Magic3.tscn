@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://di4fxwgpax1sw"]
+[gd_scene load_steps=21 format=3 uid="uid://di4fxwgpax1sw"]
 
 [ext_resource type="Script" path="res://Scrpits/Magic3.gd" id="1_mehif"]
+[ext_resource type="Texture2D" uid="uid://byphetjtyt6i8" path="res://Assets/weapons/arrow/arrow.png" id="2_ht42v"]
 [ext_resource type="Texture2D" uid="uid://dtd8glnk8joof" path="res://Assets/Impact/Retro Impact Effect Pack 3 D.png" id="2_kbnqs"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7pdie"]
@@ -77,6 +78,18 @@ tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Arrow:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
@@ -167,6 +180,10 @@ transitions = ["Start", "Arrow_Fire", SubResource("AnimationNodeStateMachineTran
 collision_layer = 2
 collision_mask = 13
 script = ExtResource("1_mehif")
+
+[node name="Arrow" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_ht42v")
 
 [node name="Magic3" type="Sprite2D" parent="."]
 visible = false

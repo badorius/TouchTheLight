@@ -292,6 +292,7 @@ tree_root = SubResource("AnimationNodeStateMachine_oje4e")
 anim_player = NodePath("../AnimationPlayer")
 
 [node name="ProgressBar" parent="." instance=ExtResource("4_tiiwx")]
+visible = false
 position = Vector2(-23.0519, -74.9186)
 scale = Vector2(0.692642, 0.769481)
 

@@ -10,15 +10,17 @@ var state_machine
 
 
 func _ready():
+	$Arrow.visible = true
 	$Magic1.visible = true
 	state = "run"
 	state_machine = $AnimationTree.get('parameters/playback')
 	state_machine.travel('Arrow_Fire')
 	if direction == 1:
 		get_node( "RetroImpactEffectPack3C" ).set_flip_h( true )
+		get_node("Arrow").set_flip_h(false) 
 	if direction == -1:
 		get_node( "RetroImpactEffectPack3C" ).set_flip_h( false )
-
+		get_node("Arrow").set_flip_h(true) 
 func _physics_process(delta):
 	if state == "run":
 		if direction == 1:

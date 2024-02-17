@@ -92,7 +92,7 @@ func _ready():
 	death_sound = $Death
 	
 func _physics_process(delta):
-		
+	HUD.update_timer()
 	if state != "Hurt":
 		direction = Input.get_axis("Button_Left", "Button_Right")
 		
@@ -184,10 +184,11 @@ func _physics_process(delta):
 	
 	#QUIT GAME
 	if Input.is_action_just_pressed("ui_cancel"):
-		#PENDING FIX PAUSE
-		#get_tree().paused = true
-		game_pause()
-	
+		if get_tree().paused:
+			game_unpause()
+		else:
+			game_pause()
+
 	#PLAYER DOWN GAMEOVER
 	if global_position.y > 500:
 		#$AnimationPlayer.play("Death")
@@ -312,7 +313,15 @@ func game_over ():
 #QUIT GAME FUNCTION
 func game_pause ():
 		$Popup.visible = true
-		Engine.time_scale = 0
+		get_tree().paused = true
+		#Engine.time_scale = 0
+		#get_tree().change_scene_to_file("res://Objects/menu.tscn")
+	
+	#QUIT GAME FUNCTION
+func game_unpause ():
+		$Popup.visible = false
+		get_tree().paused = false
+		#Engine.time_scale = 0
 		#get_tree().change_scene_to_file("res://Objects/menu.tscn")
 	
 #ADD SCORE FUNCTION
@@ -538,7 +547,5 @@ func _input(event):
 
 
 func _on_popup_close_requested():
-		get_tree().paused = false
-		print("UnPausen!")
-		Engine.time_scale = 1
+	game_unpause()
 
