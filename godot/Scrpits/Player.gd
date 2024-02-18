@@ -281,6 +281,7 @@ func magic3(arrow_direction):
 
 func atack1():
 	var random_atack = randi() % 3
+	velocity.x = 0
 	match random_atack:
 		0:
 			state_machine.travel('Atack1')
