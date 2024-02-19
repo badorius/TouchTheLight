@@ -176,7 +176,7 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("1_t36q3")
 theme_override_font_sizes/font_size = 20
-text = "ESC: REDEFINE/VIEW KEYS"
+text = "P: PAUSE "
 
 [node name="ProgressBar" parent="." instance=ExtResource("2_w0elc")]
 visible = false

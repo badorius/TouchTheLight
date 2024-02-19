@@ -46,8 +46,9 @@ func _ready():
 	HitAttack_sound = $HitAttack
 	state_machine = $AnimationTree.get('parameters/playback')
 	#var player = get_parent().get_node("Player")
+	$Explode.visible = false
 
-
+	
 func _process(delta):
 		if global_position.distance_to(player.global_position) < DISTANCE_THRESHOLD * 5 or state == "Hurt":
 			startrun = true

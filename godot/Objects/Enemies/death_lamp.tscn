@@ -24,16 +24,16 @@ height = 256
 fill = 1
 fill_from = Vector2(0.513761, 0.490826)
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_3tqd2"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_gcshl"]
 blend_mode = 1
 light_mode = 2
 
-[sub_resource type="Gradient" id="Gradient_0x2va"]
+[sub_resource type="Gradient" id="Gradient_mgg7p"]
 offsets = PackedFloat32Array(0, 0.567742)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_jp8qb"]
-gradient = SubResource("Gradient_0x2va")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_de25r"]
+gradient = SubResource("Gradient_mgg7p")
 width = 256
 height = 256
 fill = 1
@@ -277,17 +277,20 @@ script = ExtResource("1_r72vd")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 material = SubResource("CanvasItemMaterial_x7jod")
-position = Vector2(0, 22)
+position = Vector2(0, 16)
 scale = Vector2(0.5, 0.5)
 enabled = false
+color = Color(1, 0.152941, 0.0823529, 0.745098)
 texture = SubResource("GradientTexture2D_jcy1i")
 
 [node name="Alo" type="Sprite2D" parent="PointLight2D"]
-modulate = Color(0.580392, 0, 0.282353, 0.294118)
-material = SubResource("CanvasItemMaterial_3tqd2")
-position = Vector2(2.84782, -11.411)
+modulate = Color(0.843137, 0.14902, 0.384314, 0.905882)
+light_mask = 2
+visibility_layer = 3
+material = SubResource("CanvasItemMaterial_gcshl")
+position = Vector2(-0.666667, 0)
 scale = Vector2(0.5, 0.5)
-texture = SubResource("GradientTexture2D_jp8qb")
+texture = SubResource("GradientTexture2D_de25r")
 
 [node name="DeathLamp" type="Area2D" parent="."]
 collision_layer = 4

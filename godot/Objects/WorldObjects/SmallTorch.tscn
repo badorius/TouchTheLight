@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Scrpits/SmallTorch.gd" id="1_nncw6"]
 [ext_resource type="AudioStream" uid="uid://dhc3kia3e06e8" path="res://SoundFX/Minifantasy_Dungeon_SFX/LightCatch.mp3" id="3_2rv8o"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cu7ks"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ggxep"]
 blend_mode = 1
 light_mode = 2
 particles_animation = true
@@ -12,31 +12,31 @@ particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = true
 
-[sub_resource type="Gradient" id="Gradient_whf75"]
-offsets = PackedFloat32Array(0, 0.53)
+[sub_resource type="Gradient" id="Gradient_eonhn"]
+offsets = PackedFloat32Array(0, 0.645161)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_nxopm"]
-gradient = SubResource("Gradient_whf75")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_uotme"]
+gradient = SubResource("Gradient_eonhn")
 width = 256
 height = 256
 fill = 1
-fill_from = Vector2(0.5, 0.5)
+fill_from = Vector2(0.513761, 0.490826)
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_41qik"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vp5mx"]
 blend_mode = 1
 light_mode = 2
 
-[sub_resource type="Gradient" id="Gradient_n7ywo"]
+[sub_resource type="Gradient" id="Gradient_7hm0l"]
 offsets = PackedFloat32Array(0, 0.567742)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_vpl58"]
-gradient = SubResource("Gradient_n7ywo")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_iyomg"]
+gradient = SubResource("Gradient_7hm0l")
 width = 256
 height = 256
 fill = 1
-fill_from = Vector2(0.5, 0.5)
+fill_from = Vector2(0.490826, 0.477064)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_2ukha"]
 radius = 4.0
@@ -110,22 +110,19 @@ texture = ExtResource("1_kal34")
 hframes = 4
 
 [node name="PointLight2D" type="PointLight2D" parent="SmallTourch"]
-light_mask = 2
 visibility_layer = 2
-material = SubResource("CanvasItemMaterial_cu7ks")
-position = Vector2(1, -17)
-scale = Vector2(0.5, 0.5)
-enabled = false
-color = Color(0, 0, 0, 1)
-blend_mode = 1
-texture = SubResource("GradientTexture2D_nxopm")
+material = SubResource("CanvasItemMaterial_ggxep")
+position = Vector2(1, -14)
+color = Color(1, 1, 0, 0.670588)
+texture = SubResource("GradientTexture2D_uotme")
 
 [node name="Alo" type="Sprite2D" parent="SmallTourch/PointLight2D"]
-modulate = Color(0, 0.247059, 0.741176, 0.294118)
-material = SubResource("CanvasItemMaterial_41qik")
-position = Vector2(2.84782, -11.411)
+modulate = Color(1, 1, 0.321569, 0.619608)
+light_mask = 2
+visibility_layer = 3
+material = SubResource("CanvasItemMaterial_vp5mx")
 scale = Vector2(0.5, 0.5)
-texture = SubResource("GradientTexture2D_vpl58")
+texture = SubResource("GradientTexture2D_iyomg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false

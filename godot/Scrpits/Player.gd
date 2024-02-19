@@ -183,7 +183,7 @@ func _physics_process(delta):
 	decrease_light_scale(0.01)
 	
 	#QUIT GAME
-	if Input.is_action_just_pressed("ui_cancel"):
+	if Input.is_action_just_pressed("ui_pause"):
 		if get_tree().paused:
 			game_unpause()
 		else:

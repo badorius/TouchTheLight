@@ -20,12 +20,12 @@ particles_anim_h_frames = 1
 particles_anim_v_frames = 1
 particles_anim_loop = true
 
-[sub_resource type="Gradient" id="Gradient_tcljp"]
+[sub_resource type="Gradient" id="Gradient_8qcjl"]
 offsets = PackedFloat32Array(0, 0.645161)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_fwqmo"]
-gradient = SubResource("Gradient_tcljp")
+gradient = SubResource("Gradient_8qcjl")
 width = 256
 height = 256
 fill = 1
@@ -35,12 +35,12 @@ fill_from = Vector2(0.513761, 0.490826)
 blend_mode = 1
 light_mode = 2
 
-[sub_resource type="Gradient" id="Gradient_6l6xk"]
+[sub_resource type="Gradient" id="Gradient_rcoms"]
 offsets = PackedFloat32Array(0, 0.567742)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_52isb"]
-gradient = SubResource("Gradient_6l6xk")
+gradient = SubResource("Gradient_rcoms")
 width = 256
 height = 256
 fill = 1
@@ -798,7 +798,7 @@ states/Start/position = Vector2(-145, 200)
 states/WalkRight/node = SubResource("AnimationNodeAnimation_kph6w")
 states/WalkRight/position = Vector2(392, 556)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_txkri"), "Idle", "Hurt", SubResource("AnimationNodeStateMachineTransition_ljdhm"), "Hurt", "Idle", SubResource("AnimationNodeStateMachineTransition_opp2q"), "Idle", "BowShooting", SubResource("AnimationNodeStateMachineTransition_gkfjh"), "BowShooting", "Idle", SubResource("AnimationNodeStateMachineTransition_10sck"), "Idle", "Atack1", SubResource("AnimationNodeStateMachineTransition_cwamc"), "Atack1", "Idle", SubResource("AnimationNodeStateMachineTransition_fv22o"), "Idle", "WalkRight", SubResource("AnimationNodeStateMachineTransition_6gxby"), "WalkRight", "Idle", SubResource("AnimationNodeStateMachineTransition_ylxy5"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_4hyks"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_pjqr6"), "SlideDown", "Idle", SubResource("AnimationNodeStateMachineTransition_78v02"), "Idle", "SlideDown", SubResource("AnimationNodeStateMachineTransition_o41a2"), "BowShooting", "WalkRight", SubResource("AnimationNodeStateMachineTransition_gumam"), "WalkRight", "BowShooting", SubResource("AnimationNodeStateMachineTransition_48t3i"), "Idle", "Atack2", SubResource("AnimationNodeStateMachineTransition_a20mk"), "Atack2", "Idle", SubResource("AnimationNodeStateMachineTransition_nl1iy"), "Atack3", "Idle", SubResource("AnimationNodeStateMachineTransition_531vj"), "Idle", "Atack3", SubResource("AnimationNodeStateMachineTransition_f487j"), "Hurt", "WalkRight", SubResource("AnimationNodeStateMachineTransition_seru0"), "WalkRight", "Hurt", SubResource("AnimationNodeStateMachineTransition_hak1x"), "SlideDown", "WalkRight", SubResource("AnimationNodeStateMachineTransition_qolep"), "WalkRight", "SlideDown", SubResource("AnimationNodeStateMachineTransition_aokv5"), "HitSword", "Idle", SubResource("AnimationNodeStateMachineTransition_tn31y"), "Atack1", "HitSword", SubResource("AnimationNodeStateMachineTransition_6xpr5"), "HitSword", "Atack1", SubResource("AnimationNodeStateMachineTransition_2s1eo"), "HitSword", "Atack2", SubResource("AnimationNodeStateMachineTransition_qepdv"), "Atack2", "HitSword", SubResource("AnimationNodeStateMachineTransition_62t16"), "HitSword", "Atack3", SubResource("AnimationNodeStateMachineTransition_lggy6"), "Atack3", "HitSword", SubResource("AnimationNodeStateMachineTransition_xx0vf"), "Hurt", "Death", SubResource("AnimationNodeStateMachineTransition_wumoa"), "Death", "End", SubResource("AnimationNodeStateMachineTransition_3tyd5")]
-graph_offset = Vector2(191.052, 96.637)
+graph_offset = Vector2(-177.197, -120.576)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 scale = Vector2(0.5, 0.5)
@@ -815,14 +815,15 @@ vframes = 11
 [node name="PointLight2D" type="PointLight2D" parent="Warrior"]
 material = SubResource("CanvasItemMaterial_tyxwt")
 position = Vector2(0, 22)
-scale = Vector2(0.5, 0.5)
 texture = SubResource("GradientTexture2D_fwqmo")
 
 [node name="Alo" type="Sprite2D" parent="Warrior/PointLight2D"]
-modulate = Color(0.172549, 1, 1, 0.105882)
+modulate = Color(0.843137, 0.87451, 0.462745, 0.541176)
+light_mask = 2
+visibility_layer = 3
 material = SubResource("CanvasItemMaterial_pahb3")
-position = Vector2(2.84782, -11.411)
-scale = Vector2(0.5, 0.5)
+position = Vector2(2, -6)
+scale = Vector2(0.2, 0.2)
 texture = SubResource("GradientTexture2D_52isb")
 
 [node name="Area2DSword" type="Area2D" parent="Warrior"]
