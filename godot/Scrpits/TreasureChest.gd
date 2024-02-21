@@ -7,9 +7,9 @@ var bob_height : float = 3.0
 var bob_speed : float = 8.0
 @onready var start_y : float = global_position.y
 var t : float = 0.0
-const MINY : float = 40.0
+const MINY : float = 110.0
 #var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-@onready var Explode : AnimationPlayer = get_node("MagicExplode/AnimationPlayer")
+#@onready var Explode : AnimationPlayer = get_node("MagicExplode/AnimationPlayer")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -32,8 +32,9 @@ func _process(delta):
 			explode()
 
 func explode():
-	$MagicExplode.visible = true
-	Explode.play("Explode")
+	#$MagicExplode.visible = true
+	#Explode.play("Explode")
+	pass
 
 func _on_body_entered(body):
 	if body.is_in_group("Player"):

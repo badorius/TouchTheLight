@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scrpits/TreasureChest.gd" id="1_lhixw"]
 [ext_resource type="Texture2D" uid="uid://d0jhry38a3cf8" path="res://Assets/Icons/Other_31.png" id="2_rdgcw"]
 [ext_resource type="AudioStream" uid="uid://dhc3kia3e06e8" path="res://SoundFX/Minifantasy_Dungeon_SFX/LightCatch.mp3" id="3_yjjqq"]
-[ext_resource type="PackedScene" uid="uid://cky4vcccjrld1" path="res://Objects/Efects/JumpEfect.tscn" id="4_ifd5r"]
+[ext_resource type="PackedScene" uid="uid://cky4vcccjrld1" path="res://Objects/Efects/JumpEfect.tscn" id="4_ckdea"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cu7ks"]
 blend_mode = 1
@@ -102,7 +102,7 @@ libraries = {
 [node name="LightCatch" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_yjjqq")
 
-[node name="MagicExplode" parent="." instance=ExtResource("4_ifd5r")]
+[node name="MagicExplode" parent="." instance=ExtResource("4_ckdea")]
 position = Vector2(-46, -3)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

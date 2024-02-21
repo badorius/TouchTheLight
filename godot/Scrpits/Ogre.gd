@@ -28,6 +28,9 @@ const Explode = preload("../Objects/Efects/EnemyExplode.tscn")
 var startrun : bool = false
 @onready var Camera : Camera2D = get_node("../../Camera2D")
  
+
+
+
 const FlayingEye = preload("../Objects/Enemies/FlayingEye.tscn")
 const Rock = preload("../Objects/WorldObjects/Rock.tscn")
 const Skeleton = preload("../Objects/Enemies/skeleton.tscn")
@@ -55,6 +58,7 @@ func _process(delta):
 			
 
 func _physics_process(delta):
+	print(state)
 	ProgressBar3.value = live/10.0
 	
 	if startrun and state != "Death":
@@ -124,7 +128,7 @@ func icerun():
 	print(arrow_direction)
 	
 func unset_attack():
-	state = "no"
+	state = "Iddle"
 
 func set_chaseplayer():
 	var direction = (player.global_position - global_position).normalized()
