@@ -680,6 +680,24 @@ autoplay = true
 position = Vector2(956, -347)
 texture = ExtResource("3_j27ob")
 
+[node name="SmallTorch" parent="." instance=ExtResource("5_bqg2e")]
+position = Vector2(526, 42)
+scale = Vector2(5, 5)
+
+[node name="SmallTorch2" parent="." instance=ExtResource("5_bqg2e")]
+position = Vector2(1776, 53)
+scale = Vector2(5, 5)
+
+[node name="SmallTorch3" parent="." instance=ExtResource("5_bqg2e")]
+visible = false
+position = Vector2(932, 49)
+scale = Vector2(5, 5)
+
+[node name="SmallTorch4" parent="." instance=ExtResource("5_bqg2e")]
+visible = false
+position = Vector2(1393, 54)
+scale = Vector2(5, 5)
+
 [node name="Player" type="Area2D" parent="."]
 position = Vector2(276, 4)
 scale = Vector2(5, 4.461)
@@ -772,22 +790,6 @@ position = Vector2(2.00004, 18.8991)
 rotation = -3.14159
 scale = Vector2(0.596601, 2.81336)
 shape = SubResource("RectangleShape2D_edx4i")
-
-[node name="SmallTorch" parent="." instance=ExtResource("5_bqg2e")]
-position = Vector2(526, 42)
-scale = Vector2(5, 5)
-
-[node name="SmallTorch2" parent="." instance=ExtResource("5_bqg2e")]
-position = Vector2(1776, 53)
-scale = Vector2(5, 5)
-
-[node name="SmallTorch3" parent="." instance=ExtResource("5_bqg2e")]
-position = Vector2(932, 49)
-scale = Vector2(5, 5)
-
-[node name="SmallTorch4" parent="." instance=ExtResource("5_bqg2e")]
-position = Vector2(1393, 54)
-scale = Vector2(5, 5)
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(-56, -84)

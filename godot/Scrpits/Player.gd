@@ -42,6 +42,7 @@ const Magic3 = preload("../Objects/Magic3.tscn")
 const DamageIndicator = preload("../Objects/Efects/damage_indicator.tscn")
 @export var arrow_direction : int = 1
 const Explode = preload( "../Objects/Efects/PlayerExplode.tscn")
+const JumpEfect = preload("../Objects/Efects/JumpEfect.tscn")
 
 # Load Items
 const BootsItemDrop = preload("../Objects/Items/BootsItemDrop.tscn")
@@ -299,6 +300,12 @@ func jump():
 	jump_sound.play()
 	velocity.y = JUMP_VELOCITY
 	state_machine.travel('Jump')
+	var main = get_tree().current_scene
+	var A = JumpEfect.instantiate()
+	A.global_position = global_position
+	A.global_position.y += 30
+	A.global_position.x -= 20
+	main.add_child(A)
 
 		
 func iddle():

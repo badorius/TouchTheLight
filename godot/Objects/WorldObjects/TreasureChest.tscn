@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scrpits/TreasureChest.gd" id="1_lhixw"]
 [ext_resource type="Texture2D" uid="uid://d0jhry38a3cf8" path="res://Assets/Icons/Other_31.png" id="2_rdgcw"]
 [ext_resource type="AudioStream" uid="uid://dhc3kia3e06e8" path="res://SoundFX/Minifantasy_Dungeon_SFX/LightCatch.mp3" id="3_yjjqq"]
-[ext_resource type="PackedScene" uid="uid://cky4vcccjrld1" path="res://Objects/Efects/MagicExplode.tscn" id="4_ifd5r"]
+[ext_resource type="PackedScene" uid="uid://cky4vcccjrld1" path="res://Objects/Efects/JumpEfect.tscn" id="4_ifd5r"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cu7ks"]
 blend_mode = 1
