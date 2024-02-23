@@ -3,7 +3,7 @@ extends CharacterBody2D
 @export var speed = 50.0
 #var AttackCount = 3
 const DISTANCE_THRESHOLD = 100  # Distancia mínima para separarte del jugador
-const MAX_DISTANCE_ATACK = 115
+const MAX_DISTANCE_ATACK = 200
 const MIN_DISTANCE_ATACK = 100
 const JUMP_VELOCITY = -350.0
 var state_machine
@@ -58,7 +58,6 @@ func _process(delta):
 			
 
 func _physics_process(delta):
-	print(state)
 	ProgressBar3.value = live/10.0
 	
 	if startrun and state != "Death":
@@ -73,24 +72,22 @@ func _physics_process(delta):
 					FreqCounter = 0
 					hurt(5)
 				
-				
 			if state != "Death":
-				if state != "Attack":
-					if abs(global_position.distance_to(player.global_position)) <= DISTANCE_THRESHOLD:
-						set_scapeplayer()
+					#if abs(global_position.distance_to(player.global_position)) <= MAX_DISTANCE_ATACK and abs(global_position.distance_to(player.global_position)) >= MIN_DISTANCE_ATACK:
+					if abs(global_position.distance_to(player.global_position)) <= MAX_DISTANCE_ATACK and state != "Attack":
+						print("Attack")
+						set_attack()
 					else:
-						set_chaseplayer()
-						
-				if abs(global_position.distance_to(player.global_position)) <= MAX_DISTANCE_ATACK and abs(global_position.distance_to(player.global_position)) >= MIN_DISTANCE_ATACK:
-					set_attack()
+						print("Iddle")
+						set_iddle()
 
-			
 			# Add the gravity.
 			if not is_on_floor():
 				velocity.y += gravity * delta
 			move_and_slide()
 	
 func set_iddle():
+	state = "Iddle"
 	state_machine.travel('Iddle')
 
 func set_attack():

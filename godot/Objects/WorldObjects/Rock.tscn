@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpqskvfltrsoc"]
+[gd_scene load_steps=5 format=3 uid="uid://cpqskvfltrsoc"]
 
 [ext_resource type="Script" path="res://Scrpits/Rock.gd" id="1_7j4ej"]
 [ext_resource type="Texture2D" uid="uid://cmjk7tkfxt68t" path="res://Assets/Objects/rocks/rocks.png" id="1_k17ps"]
+[ext_resource type="AudioStream" uid="uid://bo7g07bftf662" path="res://SoundFX/Magic/Thunderous Boom.mp3" id="3_tk71u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m1rxo"]
 radius = 9.5
@@ -23,5 +24,8 @@ frame = 5
 position = Vector2(4, -4)
 scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_m1rxo")
+
+[node name="thunder" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_tk71u")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
