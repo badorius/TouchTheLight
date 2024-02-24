@@ -2166,7 +2166,7 @@ position = Vector2(10307, -84)
 [node name="DropItems" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("14_nbcgr")]
-position = Vector2(-177, 163)
+position = Vector2(9394, 136)
 scale = Vector2(1, 1)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
