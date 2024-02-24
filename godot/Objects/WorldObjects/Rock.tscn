@@ -5,13 +5,22 @@
 [ext_resource type="AudioStream" uid="uid://bo7g07bftf662" path="res://SoundFX/Magic/Thunderous Boom.mp3" id="3_tk71u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m1rxo"]
-radius = 9.5
+radius = 10.5
 
 [node name="Rock" type="RigidBody2D" groups=["Rock"]]
 collision_layer = 8
 collision_mask = 7
 gravity_scale = 0.5
 script = ExtResource("1_7j4ej")
+
+[node name="Area2D" type="Area2D" parent="." groups=["enemies"]]
+collision_layer = 8
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4, -4)
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_m1rxo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(2, 2)
@@ -29,3 +38,4 @@ shape = SubResource("CircleShape2D_m1rxo")
 stream = ExtResource("3_tk71u")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

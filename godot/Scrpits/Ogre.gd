@@ -29,12 +29,8 @@ var startrun : bool = false
 @onready var Camera : Camera2D = get_node("../../Camera2D")
  
 
-
-
-const FlayingEye = preload("../Objects/Enemies/FlayingEye.tscn")
 const Rock = preload("../Objects/WorldObjects/Rock.tscn")
-const Skeleton = preload("../Objects/Enemies/skeleton.tscn")
-const NightBorne = preload("../Objects/Enemies/NightBorne.tscn")
+const FireBall = preload("../Objects/Efects/fire_storm.tscn")
 const IceArea = preload("../Objects/Efects/ice_area.tscn")
 const FireArea = preload("../Objects/Efects/fire_area.tscn")
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -73,13 +69,11 @@ func _physics_process(delta):
 					hurt(5)
 				
 			if state != "Death":
-					#if abs(global_position.distance_to(player.global_position)) <= MAX_DISTANCE_ATACK and abs(global_position.distance_to(player.global_position)) >= MIN_DISTANCE_ATACK:
-					if abs(global_position.distance_to(player.global_position)) <= MAX_DISTANCE_ATACK and state != "Attack":
-						print("Attack")
-						set_attack()
-					else:
-						print("Iddle")
-						set_iddle()
+				#if abs(global_position.distance_to(player.global_position)) <= MAX_DISTANCE_ATACK and abs(global_position.distance_to(player.global_position)) >= MIN_DISTANCE_ATACK:
+				if abs(global_position.distance_to(player.global_position)) <= MAX_DISTANCE_ATACK and state != "Attack":
+					set_attack()
+				else:
+					set_iddle()
 
 			# Add the gravity.
 			if not is_on_floor():
@@ -122,7 +116,7 @@ func icerun():
 	A.position.y = global_position.y + 50
 	A.direction = arrow_direction
 	main.add_child(A)
-	print(arrow_direction)
+
 	
 func unset_attack():
 	state = "Iddle"
@@ -140,6 +134,7 @@ func set_chaseplayer():
 		
 		
 func set_scapeplayer():
+	state = "ScapePlayer"
 	speed = player.SPEED + 50
 	var direction = (player.global_position - global_position).normalized()
 	if direction.x > 0:
@@ -177,7 +172,7 @@ func do_hurt():
 func drop_enemy():
 	var main = get_tree().current_scene
 	#Random enemy
-	var EnemyRnd = randi() % 1
+	var EnemyRnd = randi() % 2
 	
 	var offset_position = randi() % 300
 	var direction = (player.global_position - global_position).normalized()
@@ -185,33 +180,18 @@ func drop_enemy():
 	
 	match EnemyRnd:
 		0:
-			var EnemyDrop = Rock.instantiate()
+			var EnemyDrop = FireBall.instantiate()
 			if direction.x > 1:
 				EnemyDrop.global_position = Vector2(global_position.x  + offset_position , (global_position.y) - offset_position * 5)
 			else:
 				EnemyDrop.global_position = Vector2(global_position.x - 100  - offset_position , (global_position.y) - offset_position * 5)
 			main.add_child(EnemyDrop)
 		1:
-			var EnemyDrop = Skeleton.instantiate()
-
+			var EnemyDrop = Rock.instantiate()
 			if direction.x > 1:
-				EnemyDrop.global_position = Vector2(global_position.x*2  - offset_position , (global_position.y) - offset_position * 5)
+				EnemyDrop.global_position = Vector2(global_position.x  + offset_position , (global_position.y) - offset_position * 5)
 			else:
-				EnemyDrop.global_position = Vector2(global_position.x/2  - offset_position , (global_position.y) - offset_position * 5)
-			main.add_child(EnemyDrop)
-		2:
-			var EnemyDrop = NightBorne.instantiate()
-			if direction.x > 1:
-				EnemyDrop.global_position = Vector2(global_position.x*2  - offset_position , (global_position.y) - offset_position * 5)
-			else:
-				EnemyDrop.global_position = Vector2(global_position.x/2  - offset_position , (global_position.y) - offset_position * 5)
-			main.add_child(EnemyDrop)	
-		3:
-			var EnemyDrop = FlayingEye.instantiate()
-			if direction.x > 1:
-				EnemyDrop.global_position = Vector2(global_position.x*2  - offset_position , (global_position.y) - offset_position * 5)
-			else:
-				EnemyDrop.global_position = Vector2(global_position.x/2  - offset_position , (global_position.y) - offset_position * 5)
+				EnemyDrop.global_position = Vector2(global_position.x - 100  - offset_position , (global_position.y) - offset_position * 5)
 			main.add_child(EnemyDrop)
 
 
