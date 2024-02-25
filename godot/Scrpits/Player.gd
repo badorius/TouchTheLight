@@ -132,6 +132,7 @@ func _physics_process(delta):
 			# Down
 	if Input.is_action_pressed("Button_Down"):
 		position.y += 1
+		
 			
 	# Add the gravity.
 	if not is_on_floor():
