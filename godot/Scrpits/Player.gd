@@ -114,7 +114,6 @@ func _physics_process(delta):
 		if direction == 1:
 			get_node( "Warrior" ).set_flip_h( true )
 			$Warrior/Area2DSword.position.x = 0
-
 			
 		# Slide Down
 		if Input.is_action_pressed("Button_Dash"):
@@ -129,6 +128,11 @@ func _physics_process(delta):
 			state = "Idle"
 			iddle()
 
+
+			# Down
+	if Input.is_action_pressed("Button_Down"):
+		position.y += 1
+			
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
