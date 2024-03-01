@@ -474,10 +474,10 @@ func bounce():
 		
 func speed_down():
 	if not is_on_floor():
-		velocity.y = -100
-		
-	TMPSPEED = SPEED
-	SPEED = SPEED / 4
+		velocity.y = -100	
+	else:
+		TMPSPEED = SPEED
+		SPEED = SPEED / 4
 	
 func speed_up():
 	SPEED = TMPSPEED

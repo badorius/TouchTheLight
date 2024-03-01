@@ -16,7 +16,6 @@
 [ext_resource type="Texture2D" uid="uid://d2lfy54xgs6q2" path="res://Assets/Background/FortOfIllusion/front.png" id="7_702jy"]
 [ext_resource type="Texture2D" uid="uid://bosmcxp23w4ul" path="res://Assets/Background/HauntedForest/Props/pillars.png" id="7_ymveq"]
 [ext_resource type="Texture2D" uid="uid://cv0au4lfbk7us" path="res://Assets/Background/FortOfIllusion/Props/closed-door.png" id="8_sc6ho"]
-[ext_resource type="PackedScene" uid="uid://bkny06l7l1uby" path="res://Objects/ParalaxBG/parallax_background_lvl1.tscn" id="10_7grp6"]
 [ext_resource type="PackedScene" uid="uid://phnoalyvfkxs" path="res://Objects/WorldObjects/SmallTorch.tscn" id="11_jn1qr"]
 [ext_resource type="PackedScene" uid="uid://bis136hblwi22" path="res://Objects/Enemies/skeleton.tscn" id="12_gavhj"]
 [ext_resource type="PackedScene" uid="uid://ccixy0n1vgwcc" path="res://Objects/Enemies/NightBorne.tscn" id="13_7axb4"]
@@ -24,6 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://de2d43ynvsgip" path="res://Objects/Enemies/FlayingEye.tscn" id="16_ptn12"]
 [ext_resource type="PackedScene" uid="uid://bgi84ioegb3g6" path="res://Objects/HudObjects/hud.tscn" id="18_gh1o4"]
 [ext_resource type="AudioStream" uid="uid://cbvpffgrq2nyi" path="res://Music/BGMUSIC/Level1.mp3" id="19_0wrw4"]
+[ext_resource type="PackedScene" uid="uid://dc1wnggo3cnrp" path="res://Objects/ParalaxBG/parallax_background_lvl1.tscn" id="19_lk8ag"]
 [ext_resource type="Texture2D" uid="uid://deaw5e7ljld6i" path="res://Assets/Background/HauntedForest/Props/tree-2.png" id="22_yjjfu"]
 [ext_resource type="PackedScene" uid="uid://dh1dxnpdevukl" path="res://Objects/Enemies/Crow.tscn" id="25_yi138"]
 [ext_resource type="PackedScene" uid="uid://cue57mbnsjp20" path="res://Objects/Enemies/Ogre.tscn" id="26_4xsjt"]
@@ -1947,7 +1947,7 @@ position = Vector2(1949, -103)
 position = Vector2(1320, -104)
 texture = ExtResource("8_sc6ho")
 
-[node name="ParallaxBackground2" parent="." instance=ExtResource("10_7grp6")]
+[node name="ParallaxBackground" parent="." instance=ExtResource("19_lk8ag")]
 
 [node name="HUD" parent="." instance=ExtResource("18_gh1o4")]
 

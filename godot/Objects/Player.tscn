@@ -56,7 +56,7 @@ height = 32.0
 
 [sub_resource type="Animation" id="Animation_aiyqu"]
 resource_name = "Atack1"
-length = 0.35
+length = 0.2
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -65,7 +65,7 @@ tracks/0/path = NodePath("Warrior:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06, 0.12, 0.18, 0.24, 0.3),
+"times": PackedFloat32Array(0, 0.03, 0.06, 0.09, 0.13, 0.17),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector2i(9, 4), Vector2i(10, 4), Vector2i(11, 4), Vector2i(0, 5), Vector2i(1, 5), Vector2i(2, 5)]
@@ -77,7 +77,7 @@ tracks/1/path = NodePath("Warrior/Area2DSword/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.32),
+"times": PackedFloat32Array(0, 0.19),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -101,7 +101,7 @@ tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.32),
+"times": PackedFloat32Array(0, 0.19),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -114,7 +114,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_vqupq"]
 resource_name = "Atack1"
-length = 0.35
+length = 0.2
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -123,7 +123,7 @@ tracks/0/path = NodePath("Warrior:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06, 0.12, 0.18, 0.24, 0.3),
+"times": PackedFloat32Array(0, 0.03, 0.06, 0.09, 0.12, 0.15),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector2i(3, 5), Vector2i(4, 5), Vector2i(5, 5), Vector2i(6, 5), Vector2i(7, 5), Vector2i(8, 5)]
@@ -135,7 +135,7 @@ tracks/1/path = NodePath("Warrior/Area2DSword/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.33),
+"times": PackedFloat32Array(0, 0.19),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -159,7 +159,7 @@ tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.33),
+"times": PackedFloat32Array(0, 0.19),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
@@ -172,7 +172,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_dkk7b"]
 resource_name = "Atack1"
-length = 0.5
+length = 0.2
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -181,7 +181,7 @@ tracks/0/path = NodePath("Warrior:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06, 0.12, 0.18, 0.24, 0.3, 0.35, 0.41),
+"times": PackedFloat32Array(0, 0.02, 0.04, 0.07, 0.09, 0.12, 0.15, 0.18),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [Vector2i(9, 5), Vector2i(10, 5), Vector2i(11, 5), Vector2i(0, 6), Vector2i(1, 6), Vector2i(2, 6), Vector2i(3, 6), Vector2i(4, 6)]
@@ -193,7 +193,7 @@ tracks/1/path = NodePath("Warrior/Area2DSword/CollisionShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.48),
+"times": PackedFloat32Array(0, 0.19),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -217,7 +217,7 @@ tracks/3/path = NodePath(".")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.48),
+"times": PackedFloat32Array(0, 0.19),
 "transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [],
