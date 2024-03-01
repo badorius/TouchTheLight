@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 const MINSPEED = 100
 @export var SPEED = MINSPEED
+@export var TMPSPEED = MINSPEED
 const MAXSPEED = 250
 const JUMP_VELOCITY = -350.0
 @export var push_force = 80.0
@@ -470,6 +471,17 @@ func bounce():
 		velocity.x = -100
 	else:
 		velocity.x = 100
+		
+func speed_down():
+	if not is_on_floor():
+		velocity.y = -100
+		
+	TMPSPEED = SPEED
+	SPEED = SPEED / 4
+	
+func speed_up():
+	SPEED = TMPSPEED
+	
 
 func reset_skills():
 	live = max_live
