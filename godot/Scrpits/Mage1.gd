@@ -33,6 +33,7 @@ var t : float = 0.0
 func _ready():
 	ArrowDamage_sound = $ArrowDamage
 	state_machine = $AnimationTree.get('parameters/playback')
+	$CollisionShape2D.disabled = false
 
 
 	

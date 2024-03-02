@@ -32,6 +32,10 @@ var t : float = 0.0
 
 
 func _ready():
+	$Area2D/CollisionShape2D2.disabled = false
+	$CollisionShape2D.disabled = false
+	
+	
 	ArrowDamage_sound = $ArrowDamage
 	state_machine = $AnimationTree.get('parameters/playback')
 	$Sprite2D.visible = true
@@ -53,7 +57,7 @@ func _physics_process(delta):
 			
 	ProgressBar3.value = live
 	ArrowDamage_sound = $ArrowDamage
-	
+
 	if startrun and state != "Death":
 		if live <= 0:
 			death()
@@ -114,7 +118,6 @@ func set_chaseplayer():
 	state = "ChasePlayer"
 
 func hurt(damage):
-	print(live)
 	if live <= 0:
 		death()
 	else:
@@ -158,9 +161,6 @@ func toxic():
 	Toxic = true
 	
 	
-
-
-
 func _on_area_2d_body_entered(body):
 	var attack_power = randi() % 100
 	if body.is_in_group("Player"):

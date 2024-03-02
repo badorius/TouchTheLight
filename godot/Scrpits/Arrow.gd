@@ -36,10 +36,15 @@ func explode():
 
 
 func _on_area_entered(area):
+	pass
+	"""
 	state = "collided"
 	#FIX ##### Neds to wait before queue_free
-	state_machine.travel('Arrow_Explode')
+	#state_machine.travel('Arrow_Explode')
+	#queue_free()
+
 	if area.is_in_group("enemies"):
+
 		state_machine.travel('Arrow_Explode')
 		area.live -= 1
 		if area.live <= 0:
@@ -50,7 +55,7 @@ func _on_area_entered(area):
 			queue_free()
 	else:
 		state_machine.travel('Arrow_Explode')
-
+	"""
 			
 
 func _on_body_entered(body):

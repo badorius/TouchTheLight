@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://dh1dxnpdevukl"]
+[gd_scene load_steps=35 format=3 uid="uid://dh1dxnpdevukl"]
 
 [ext_resource type="Script" path="res://Scrpits/Crow.gd" id="1_dqcfn"]
 [ext_resource type="Texture2D" uid="uid://dg1ksifmwm7wx" path="res://Assets/Enemys/Crow/crow-all.png" id="2_34d1s"]
@@ -272,6 +272,9 @@ _data = {
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nvbf3"]
 animation = &"Death"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gisvo"]
+animation = &"Hurt"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kjn71"]
 animation = &"Iddle"
 
@@ -283,8 +286,6 @@ animation = &"StartFly"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ic34r"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_abhdj"]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_isctg"]
 switch_mode = 2
 
@@ -293,21 +294,29 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ro7n3"]
 switch_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rjsnf"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gn1nb"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6qpml"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8nn4d"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_drpgx"]
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_oje4e"]
 states/Death/node = SubResource("AnimationNodeAnimation_nvbf3")
 states/Death/position = Vector2(792.688, 175.138)
 states/End/position = Vector2(1221, 297)
+states/Hurt/node = SubResource("AnimationNodeAnimation_gisvo")
+states/Hurt/position = Vector2(602.316, 223.138)
 states/Iddle/node = SubResource("AnimationNodeAnimation_kjn71")
-states/Iddle/position = Vector2(213, 297)
+states/Iddle/position = Vector2(284, 254)
 states/Run/node = SubResource("AnimationNodeAnimation_7fui2")
-states/Run/position = Vector2(570, 413)
+states/Run/position = Vector2(594, 484)
 states/Start/position = Vector2(5, 306)
 states/StartFly/node = SubResource("AnimationNodeAnimation_p202v")
-states/StartFly/position = Vector2(362.091, 191)
-transitions = ["Start", "Iddle", SubResource("AnimationNodeStateMachineTransition_ic34r"), "Run", "Death", SubResource("AnimationNodeStateMachineTransition_abhdj"), "Death", "End", SubResource("AnimationNodeStateMachineTransition_isctg"), "Iddle", "StartFly", SubResource("AnimationNodeStateMachineTransition_njifs"), "StartFly", "Run", SubResource("AnimationNodeStateMachineTransition_ro7n3"), "StartFly", "Death", SubResource("AnimationNodeStateMachineTransition_rjsnf")]
-graph_offset = Vector2(-65.909, 77.138)
+states/StartFly/position = Vector2(292.091, 484)
+transitions = ["Start", "Iddle", SubResource("AnimationNodeStateMachineTransition_ic34r"), "Death", "End", SubResource("AnimationNodeStateMachineTransition_isctg"), "Iddle", "StartFly", SubResource("AnimationNodeStateMachineTransition_njifs"), "StartFly", "Run", SubResource("AnimationNodeStateMachineTransition_ro7n3"), "Iddle", "Hurt", SubResource("AnimationNodeStateMachineTransition_gn1nb"), "Run", "Hurt", SubResource("AnimationNodeStateMachineTransition_6qpml"), "StartFly", "Hurt", SubResource("AnimationNodeStateMachineTransition_8nn4d"), "Hurt", "Death", SubResource("AnimationNodeStateMachineTransition_drpgx")]
+graph_offset = Vector2(-133.684, 77.138)
 
 [node name="Crow" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 4
@@ -318,9 +327,6 @@ collision_layer = 4
 collision_mask = 2
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(-2.27374e-13, -1)
-rotation = -3.14159
-scale = Vector2(1.30915, 1.77055)
 shape = SubResource("CapsuleShape2D_nljga")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
@@ -347,9 +353,6 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2.27374e-13, -1)
-rotation = -3.14159
-scale = Vector2(1.30915, 1.77055)
 shape = SubResource("CapsuleShape2D_nljga")
 disabled = true
 

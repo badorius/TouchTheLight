@@ -27,6 +27,8 @@ const Explode = preload("../Objects/Efects/EnemyExplode.tscn")
 func _ready():
 	ArrowDamage_sound = $ArrowDamage
 	state_machine = $AnimationTree.get('parameters/playback')
+	$Area2D/CollisionShape2D2.disabled = false
+	$CollisionShape2D.disabled = false
 	#var player = get_parent().get_node("Player")
 
 	

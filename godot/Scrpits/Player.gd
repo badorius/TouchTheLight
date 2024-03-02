@@ -547,6 +547,7 @@ func _on_area_2d_body_entered(body):
 	if body.is_in_group("enemies"):
 		body.hurt(attack_power)
 		$AnimationPlayer.play("HitSword")
+		print("Hit sword", body)
 
 
 func _on_area_2d_area_entered(area):
