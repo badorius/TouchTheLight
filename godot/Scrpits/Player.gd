@@ -565,10 +565,11 @@ func _on_area_2d_body_body_entered(body):
 
 func _input(event):
 	if event is InputEventJoypadMotion:
-		print(
-				"Device: %s. Joypad Axis Index: %s. Strength: %s."
-				% [event.device, event.axis, event.axis_value]
-		)
+		pass
+		#print(
+		#		"Device: %s. Joypad Axis Index: %s. Strength: %s."
+		#		% [event.device, event.axis, event.axis_value]
+		#)
 
 
 func _on_popup_close_requested():

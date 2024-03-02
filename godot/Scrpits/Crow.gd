@@ -114,6 +114,7 @@ func set_chaseplayer():
 	state = "ChasePlayer"
 
 func hurt(damage):
+	print(live)
 	if live <= 0:
 		death()
 	else:
@@ -155,6 +156,7 @@ func decrease_speed(value):
 
 func toxic():
 	Toxic = true
+	
 	
 
 

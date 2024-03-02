@@ -44,10 +44,10 @@ func drop_enemy():
 			var EnemyDrop = DeathLamp.instantiate()
 			if EnemyDirection >= 1:
 				EnemyDrop.global_position = Vector2(player.global_position.x  + offset_position , RangeYEnemies)
-				print("Enemy left", EnemyDirection)
+
 			else:
 				EnemyDrop.global_position = Vector2(player.global_position.x - offset_position , RangeYEnemies)
-				print("Enemy right", EnemyDirection)
+
 			main.add_child(EnemyDrop)
 		1:
 			var EnemyDrop = Skeleton.instantiate()

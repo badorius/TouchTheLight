@@ -336,6 +336,7 @@ position = Vector2(2.84782, -11.411)
 texture = SubResource("GradientTexture2D_2d6ig")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("2_34d1s")
 hframes = 3
 vframes = 3
