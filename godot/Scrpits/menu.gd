@@ -5,22 +5,23 @@ var base_speed = 5
 var speed = base_speed
 var mouse_over : AudioStreamPlayer2D
 
+#@onready var Main : Node2D = get_pa get_node("") 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	mouse_over = $MouseOver
-
+	print(get_parent)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	
 	if direction == 1:
 		if $Player.position.x < 2300:
-			get_node( "/root/Menu/Player/Warrior" ).set_flip_h( true )
+			get_node( "Player/Warrior" ).set_flip_h( true )
 			$Player/AnimationPlayer.play("WalkRight")
 			$Player.position.x += speed
 		
-			get_node( "/root/Menu/skeleton/Walk" ).set_flip_h( false )
+			get_node( "skeleton/Walk" ).set_flip_h( false )
 			$skeleton/AnimationPlayer.play("Walk")
 			$skeleton.position.x += speed
 	
@@ -31,19 +32,19 @@ func _process(delta):
 	if direction == -1:
 		speed = base_speed * 2
 		if $Player.position.x > -1500:
-			get_node( "/root/Menu/Player/Warrior" ).set_flip_h( false )
+			get_node( "Player/Warrior" ).set_flip_h( false )
 			$Player/AnimationPlayer.play("WalkRight")
 			$Player.position.x -= speed
 		
-			get_node( "/root/Menu/skeleton/Walk" ).set_flip_h( true )
+			get_node( "skeleton/Walk" ).set_flip_h( true )
 			$skeleton/AnimationPlayer.play("Walk")
 			$skeleton.position.x -= speed
 			
-			get_node( "/root/Menu/FlayingEye/Sprite2D" ).set_flip_h( true )
+			get_node( "FlayingEye/Sprite2D" ).set_flip_h( true )
 			$FlayingEye/AnimationPlayer.play("Run")
 			$FlayingEye.position.x -= speed
 		
-			get_node( "/root/Menu/NightBorne/Sprite2D" ).set_flip_h( true )
+			get_node( "NightBorne/Sprite2D" ).set_flip_h( true )
 			$NightBorne/AnimationPlayer.play("Run")
 			$NightBorne.position.x -= speed
 		else:

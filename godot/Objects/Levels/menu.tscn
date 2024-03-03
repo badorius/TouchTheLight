@@ -660,9 +660,9 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 35.0
-offset_top = -190.0
+offset_top = -192.0
 offset_right = 35.0
-offset_bottom = -190.0
+offset_bottom = -192.0
 grow_vertical = 0
 script = ExtResource("1_pb8s7")
 
@@ -854,6 +854,8 @@ visibility_layer = 3
 color = Color(0.388235, 0.937255, 0.843137, 1)
 energy = 0.32
 blend_mode = 2
+
+[node name="Node2D" type="Node2D" parent="."]
 
 [connection signal="mouse_entered" from="VBoxContainer" to="." method="_on_v_box_container_mouse_entered"]
 [connection signal="mouse_entered" from="VBoxContainer/StartButton" to="." method="_on_start_button_mouse_entered"]

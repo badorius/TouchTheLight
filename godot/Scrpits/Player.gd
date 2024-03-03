@@ -556,7 +556,7 @@ func _on_area_2d_area_entered(area):
 		area.hurt(attack_power)
 
 	if area.is_in_group("door"):
-		get_tree().change_scene_to_file("res://Objects/Levels/Level1Boss.tscn")
+		get_tree().change_scene_to_file("res://Objects/Levels/Level2.tscn")
 		
 
 func _on_area_2d_body_body_entered(body):
