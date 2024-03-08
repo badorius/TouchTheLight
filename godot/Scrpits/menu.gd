@@ -4,13 +4,13 @@ var direction = 1
 var base_speed = 5
 var speed = base_speed
 var mouse_over : AudioStreamPlayer2D
-
+@onready var Main : Node2D = get_node("../../Main") 
 #@onready var Main : Node2D = get_pa get_node("") 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	mouse_over = $MouseOver
-	print(get_parent)
+	print(get_tree())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -55,6 +55,7 @@ func _process(delta):
 
 
 func _on_start_button_pressed():
+	#Main.ChangeLevel(1)
 	get_tree().change_scene_to_file("res://Objects/Levels/Level1.tscn")
 
 func _on_settings_button_pressed():
