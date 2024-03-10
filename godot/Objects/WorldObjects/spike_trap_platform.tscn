@@ -1,0 +1,55 @@
+[gd_scene load_steps=4 format=3 uid="uid://txuhhon2wiqd"]
+
+[ext_resource type="Texture2D" uid="uid://djsgas1kwcb1t" path="res://Assets/Tileset/Level2/magic-castle-tiles.png" id="1_6gdoh"]
+[ext_resource type="Script" path="res://Scrpits/spike_trap_platform.gd" id="1_fcgfw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ui02p"]
+size = Vector2(64, 32)
+
+[node name="SpikeTrapPlatform" type="Area2D"]
+script = ExtResource("1_fcgfw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(24, 0)
+shape = SubResource("RectangleShape2D_ui02p")
+
+[node name="Spike1" type="Sprite2D" parent="."]
+texture = ExtResource("1_6gdoh")
+region_enabled = true
+region_rect = Rect2(383.917, 46.8861, 16.621, 33.6475)
+
+[node name="Spike2" type="Sprite2D" parent="."]
+position = Vector2(16, 0)
+texture = ExtResource("1_6gdoh")
+region_enabled = true
+region_rect = Rect2(383.917, 46.8861, 16.621, 33.6475)
+
+[node name="Spike3" type="Sprite2D" parent="."]
+position = Vector2(32, 0)
+texture = ExtResource("1_6gdoh")
+region_enabled = true
+region_rect = Rect2(383.917, 46.8861, 16.621, 33.6475)
+
+[node name="Spike4" type="Sprite2D" parent="."]
+position = Vector2(48, 0)
+texture = ExtResource("1_6gdoh")
+region_enabled = true
+region_rect = Rect2(383.917, 46.8861, 16.621, 33.6475)
+
+[node name="BodySpike5" type="Sprite2D" parent="."]
+position = Vector2(24, -39)
+texture = ExtResource("1_6gdoh")
+region_enabled = true
+region_rect = Rect2(160.838, 161.824, 63.7248, 46.6508)
+
+[node name="BodySpike" type="Sprite2D" parent="."]
+position = Vector2(0, -39)
+texture = ExtResource("1_6gdoh")
+region_enabled = true
+region_rect = Rect2(448.024, 48.2489, 15.5605, 47.8784)
+
+[node name="BodySpike4" type="Sprite2D" parent="."]
+position = Vector2(48, -39)
+texture = ExtResource("1_6gdoh")
+region_enabled = true
+region_rect = Rect2(448.024, 48.2489, 15.5605, 47.8784)
