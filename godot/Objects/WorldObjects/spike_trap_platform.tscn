@@ -1,12 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://txuhhon2wiqd"]
+[gd_scene load_steps=5 format=3 uid="uid://txuhhon2wiqd"]
 
 [ext_resource type="Texture2D" uid="uid://djsgas1kwcb1t" path="res://Assets/Tileset/Level2/magic-castle-tiles.png" id="1_6gdoh"]
 [ext_resource type="Script" path="res://Scrpits/spike_trap_platform.gd" id="1_fcgfw"]
+[ext_resource type="AudioStream" uid="uid://cwue6pmgmh3i3" path="res://SoundFX/Minifantasy_Dungeon_SFX/Spikes_Trap_Platform.mp3" id="3_77lbp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ui02p"]
 size = Vector2(64, 32)
 
-[node name="SpikeTrapPlatform" type="Area2D"]
+[node name="SpikeTrapPlatform" type="Area2D" groups=["enemies"]]
+light_mask = 4
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_fcgfw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -53,3 +57,9 @@ position = Vector2(48, -39)
 texture = ExtResource("1_6gdoh")
 region_enabled = true
 region_rect = Rect2(448.024, 48.2489, 15.5605, 47.8784)
+
+[node name="SpikeDown" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_77lbp")
+max_distance = 500.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

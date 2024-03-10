@@ -6,11 +6,13 @@ var bob_height : float = 200.0
 var bob_speed : float = 4.0
 @onready var start_y : float = global_position.y
 var t : float = 0.0
+const attack_power : int = 10
+
+var SpikeDown : AudioStreamPlayer2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
-
+	SpikeDown = $SpikeDown
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -22,10 +24,14 @@ func _process(delta):
 		
 		# apply that to  Y position.
 		global_position.y = start_y + (d * bob_height)
-
-
+		
+		
+		# 0.99977890153385 0002054421772
+		if d >= 0.99977890153385:
+			print("Low")
+			SpikeDown.play()
 
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
-		body.update_boots(10)
-		queue_free()
+		body.hurt(attack_power)
+
