@@ -2732,6 +2732,12 @@ position = Vector2(4218, -143)
 [node name="SpikeTrapPlatform2" parent="." instance=ExtResource("21_ofh81")]
 position = Vector2(4344, -143)
 
+[node name="SpikeTrapPlatform3" parent="." instance=ExtResource("21_ofh81")]
+position = Vector2(4218, -143)
+
+[node name="SpikeTrapPlatform4" parent="." instance=ExtResource("21_ofh81")]
+position = Vector2(4344, -143)
+
 [node name="Objects" type="Node" parent="."]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -2905,10 +2911,6 @@ position = Vector2(-854, 0)
 
 [node name="PlatformLevel2V" parent="." instance=ExtResource("22_24k6q")]
 
-[node name="PlatformLevel2V2" parent="." instance=ExtResource("22_24k6q")]
-
-[node name="PlatformLevel2V3" parent="." instance=ExtResource("22_24k6q")]
-
 [node name="Player" parent="." instance=ExtResource("20_2myqg")]
-position = Vector2(-656, -37)
+position = Vector2(-525, -14)
 scale = Vector2(1, 1)

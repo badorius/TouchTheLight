@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://txuhhon2wiqd"]
+[gd_scene load_steps=6 format=3 uid="uid://txuhhon2wiqd"]
 
 [ext_resource type="Texture2D" uid="uid://djsgas1kwcb1t" path="res://Assets/Tileset/Level2/magic-castle-tiles.png" id="1_6gdoh"]
 [ext_resource type="Script" path="res://Scrpits/spike_trap_platform.gd" id="1_fcgfw"]
 [ext_resource type="AudioStream" uid="uid://cwue6pmgmh3i3" path="res://SoundFX/Minifantasy_Dungeon_SFX/Spikes_Trap_Platform.mp3" id="3_77lbp"]
+[ext_resource type="Texture2D" uid="uid://pfwcuyeejkrt" path="res://Assets/Tileset/Level2/magic-castle-sprites.png" id="3_082ac"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ui02p"]
 size = Vector2(64, 32)
@@ -41,22 +42,28 @@ region_enabled = true
 region_rect = Rect2(383.917, 46.8861, 16.621, 33.6475)
 
 [node name="BodySpike5" type="Sprite2D" parent="."]
-position = Vector2(24, -39)
-texture = ExtResource("1_6gdoh")
+position = Vector2(-6, -36)
+texture = ExtResource("3_082ac")
 region_enabled = true
-region_rect = Rect2(160.838, 161.824, 63.7248, 46.6508)
+region_rect = Rect2(438.049, 83.5247, 4.99985, 41.5594)
 
-[node name="BodySpike" type="Sprite2D" parent="."]
-position = Vector2(0, -39)
-texture = ExtResource("1_6gdoh")
+[node name="BodySpike7" type="Sprite2D" parent="."]
+position = Vector2(-6, -71)
+texture = ExtResource("3_082ac")
 region_enabled = true
-region_rect = Rect2(448.024, 48.2489, 15.5605, 47.8784)
+region_rect = Rect2(438.049, 83.5247, 4.99985, 41.5594)
 
-[node name="BodySpike4" type="Sprite2D" parent="."]
-position = Vector2(48, -39)
-texture = ExtResource("1_6gdoh")
+[node name="BodySpike6" type="Sprite2D" parent="."]
+position = Vector2(53, -36)
+texture = ExtResource("3_082ac")
 region_enabled = true
-region_rect = Rect2(448.024, 48.2489, 15.5605, 47.8784)
+region_rect = Rect2(438.049, 83.5247, 4.99985, 41.5594)
+
+[node name="BodySpike8" type="Sprite2D" parent="."]
+position = Vector2(53, -71)
+texture = ExtResource("3_082ac")
+region_enabled = true
+region_rect = Rect2(438.049, 83.5247, 4.99985, 41.5594)
 
 [node name="SpikeDown" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_77lbp")

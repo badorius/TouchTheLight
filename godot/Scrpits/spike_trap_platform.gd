@@ -6,7 +6,7 @@ var bob_height : float = 200.0
 var bob_speed : float = 4.0
 @onready var start_y : float = global_position.y
 var t : float = 0.0
-const attack_power : int = 10
+const attack_power : int = 50
 
 var SpikeDown : AudioStreamPlayer2D
 
