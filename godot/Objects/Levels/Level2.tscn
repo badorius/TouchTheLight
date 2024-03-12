@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bvnrpr7hr4em0"]
+[gd_scene load_steps=33 format=3 uid="uid://bvnrpr7hr4em0"]
 
 [ext_resource type="PackedScene" uid="uid://dxll0eoj3r4ef" path="res://Objects/MainCamera.tscn" id="1_3kktv"]
 [ext_resource type="Texture2D" uid="uid://ccpnn3i3xafue" path="res://Assets/Tileset/Level1.png" id="2_gbfub"]
@@ -21,7 +21,8 @@
 [ext_resource type="PackedScene" uid="uid://phnoalyvfkxs" path="res://Objects/WorldObjects/SmallTorch.tscn" id="19_6dman"]
 [ext_resource type="PackedScene" uid="uid://cf4d021lelowr" path="res://Objects/Player.tscn" id="20_2myqg"]
 [ext_resource type="PackedScene" uid="uid://txuhhon2wiqd" path="res://Objects/WorldObjects/spike_trap_platform.tscn" id="21_ofh81"]
-[ext_resource type="PackedScene" uid="uid://cbeeckhcqlaj0" path="res://Objects/WorldObjects/platform_level_2v.tscn" id="22_24k6q"]
+[ext_resource type="PackedScene" uid="uid://cbeeckhcqlaj0" path="res://Objects/WorldObjects/platform_level_2vDown.tscn" id="22_i8i17"]
+[ext_resource type="PackedScene" uid="uid://cwjl1pn3e1g87" path="res://Objects/WorldObjects/platform_level_2vUp.tscn" id="23_3frke"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_uwy2i"]
 texture = ExtResource("2_gbfub")
@@ -2909,8 +2910,12 @@ position = Vector2(944, 343)
 [node name="Enemies" type="Node2D" parent="."]
 position = Vector2(-854, 0)
 
-[node name="PlatformLevel2V" parent="." instance=ExtResource("22_24k6q")]
-
 [node name="Player" parent="." instance=ExtResource("20_2myqg")]
-position = Vector2(-525, -14)
+position = Vector2(-661, -20)
 scale = Vector2(1, 1)
+
+[node name="PlatformLevel2VDown" parent="." instance=ExtResource("22_i8i17")]
+position = Vector2(4838, -150)
+
+[node name="PlatformLevel2VUp" parent="." instance=ExtResource("23_3frke")]
+position = Vector2(4924, -151)
