@@ -14,6 +14,7 @@ const JUMP_VELOCITY = -350.0
 @export var mana : float = 0.0
 @export var arrows : int = 0
 @export var coat : int = 0
+@export var magic : int = 0
 
 var state_machine
 @export var state : String = "Idle"
@@ -530,6 +531,8 @@ func drop_item():
 		A.position.y = global_position.y + 15
 		main.add_child(A)
 
+func update_magic(magic):
+	magic = magic
 	
 
 func explode():

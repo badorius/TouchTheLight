@@ -21,6 +21,9 @@ const ArrowItemDrop = preload("../Objects/Items/ArrowItemDrop.tscn")
 const CoatItemDrop = preload("../Objects/Items/CoatItemDrop.tscn")
 const LivePotionDrop = preload("../Objects/Items/LivePotionDrop.tscn")
 const ManaPotionDrop = preload("../Objects/Items/ManaPotionDrop.tscn")
+const Magic1ItemDrop = preload("../Objects/Items/Magic1ItemDrop.tscn")
+const Magic2ItemDrop = preload("../Objects/Items/Magic2ItemDrop.tscn")
+const Magic3ItemDrop = preload("../Objects/Items/Magic3ItemDrop.tscn")
 const Explode = preload("../Objects/Efects/EnemyExplode.tscn")
 
 # Called when the node enters the scene tree for the first time.
@@ -117,7 +120,7 @@ func toxic():
 	
 func drop_item():
 		var main = get_tree().current_scene
-		var rnd = randi() % 5
+		var rnd = randi() % 8
 		match rnd:
 			0:
 				var A = BootsItemDrop.instantiate()
@@ -158,6 +161,34 @@ func drop_item():
 				
 			4:
 				var A = ManaPotionDrop.instantiate()
+				A.global_position = global_position
+				if direction.x == 1:
+					A.position.x = global_position.x + 15
+				else:
+					A.position.x = global_position.x - 45
+				A.position.y = global_position.y + 15
+				main.add_child(A)
+				
+			5:
+				var A = Magic1ItemDrop.instantiate()
+				A.global_position = global_position
+				if direction.x == 1:
+					A.position.x = global_position.x + 15
+				else:
+					A.position.x = global_position.x - 45
+				A.position.y = global_position.y + 15
+				main.add_child(A)
+			6:
+				var A = Magic2ItemDrop.instantiate()
+				A.global_position = global_position
+				if direction.x == 1:
+					A.position.x = global_position.x + 15
+				else:
+					A.position.x = global_position.x - 45
+				A.position.y = global_position.y + 15
+				main.add_child(A)
+			7:
+				var A = Magic3ItemDrop.instantiate()
 				A.global_position = global_position
 				if direction.x == 1:
 					A.position.x = global_position.x + 15
