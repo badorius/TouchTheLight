@@ -39,7 +39,7 @@ fill = 1
 fill_from = Vector2(0.490826, 0.477064)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_byeao"]
-size = Vector2(7.18315, 7.80656)
+size = Vector2(7.18315, 13.0792)
 
 [node name="ManaPotionDrop" type="Area2D" groups=["Rock"]]
 collision_layer = 16
@@ -69,7 +69,7 @@ scale = Vector2(0.3, 0.3)
 texture = SubResource("GradientTexture2D_53cmn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3.43884)
+position = Vector2(0, 0.152374)
 scale = Vector2(1.67058, 1.24662)
 shape = SubResource("RectangleShape2D_byeao")
 

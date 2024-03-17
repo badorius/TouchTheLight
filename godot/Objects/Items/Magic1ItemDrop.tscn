@@ -1,7 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://cndp5e7tkb3e0"]
+[gd_scene load_steps=11 format=3 uid="uid://cndp5e7tkb3e0"]
 
 [ext_resource type="Script" path="res://Scrpits/Magic1ItemDrop.gd" id="1_fux6k"]
-[ext_resource type="Texture2D" uid="uid://cs1i5ght724md" path="res://Assets/Impact/Retro Impact Effect Pack 3 C.png" id="2_nycjb"]
+[ext_resource type="Texture2D" uid="uid://bjpdv5b80cxo4" path="res://Assets/Icons/Quiver_Ice.png" id="2_lu8w0"]
 [ext_resource type="AudioStream" uid="uid://80pj6kwv0dva" path="res://SoundFX/Minifantasy_Dungeon_SFX/08_human_charge_1.wav" id="3_fodwo"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cu7ks"]
@@ -39,57 +39,17 @@ fill = 1
 fill_from = Vector2(0.490826, 0.477064)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ypi03"]
-size = Vector2(26, 36)
-
-[sub_resource type="Animation" id="Animation_p0lt4"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Magic1ItemDrop:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_eo2u1"]
-resource_name = "wait"
-length = 0.38
-loop_mode = 1
-step = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Magic1ItemDrop:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.07, 0.14, 0.2, 0.27, 0.33),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [138, 139, 140, 141, 142, 143]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_pvgiw"]
-_data = {
-"RESET": SubResource("Animation_p0lt4"),
-"wait": SubResource("Animation_eo2u1")
-}
+size = Vector2(37, 36)
 
 [node name="Magic1ItemDrop" type="Area2D" groups=["Torch"]]
+scale = Vector2(0.5, 0.5)
 collision_layer = 16
 collision_mask = 3
 gravity_point_unit_distance = 1.0
 script = ExtResource("1_fux6k")
 
 [node name="Magic1ItemDrop" type="Sprite2D" parent="."]
-texture = ExtResource("2_nycjb")
-hframes = 6
-vframes = 24
+texture = ExtResource("2_lu8w0")
 
 [node name="PointLight2D" type="PointLight2D" parent="Magic1ItemDrop"]
 light_mask = 2
@@ -107,14 +67,9 @@ texture = SubResource("GradientTexture2D_vpl58")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2(1, 0)
+position = Vector2(-0.5, 0)
+scale = Vector2(1, 1.2)
 shape = SubResource("RectangleShape2D_ypi03")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_pvgiw")
-}
-autoplay = "wait"
 
 [node name="LightCatch" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_fodwo")

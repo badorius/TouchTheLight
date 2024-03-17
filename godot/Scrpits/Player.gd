@@ -161,23 +161,19 @@ func _physics_process(delta):
 		atack1()
 	
 	if Input.is_action_just_pressed("Button_BowShooting"):
-		state = "BowShooting"
-		bowing(arrow_direction)
-		
-	# Magic Atack
-	if Input.is_action_just_pressed("Button_Magic1Ice"):
-		state = "Magic1"
-		magic1(arrow_direction)
-		
-	# Magic Atack
-	if Input.is_action_just_pressed("Button_Magic2Fire"):
-		state = "Magic2"
-		magic2(arrow_direction)
-		
-	# Magic Atack
-	if Input.is_action_just_pressed("Button_Magic3Poison"):
-		state = "Magic3"
-		magic3(arrow_direction)
+		match magic:
+			0:
+				state = "BowShooting"
+				bowing(arrow_direction)
+			1:
+				state = "BowShooting"
+				magic1(arrow_direction)
+			2:
+				state = "BowShooting"
+				magic2(arrow_direction)
+			3:
+				state = "BowShooting"
+				magic3(arrow_direction)
 		
 			
 	move_and_slide()
@@ -221,7 +217,7 @@ func slide(direction):
 func bowing(arrow_direction):
 	state_machine.travel('BowShooting')
 	if arrows > 0:
-		update_arrows(-1)
+		update_arrows(-1, magic)
 		arrow_sound.play()
 		var main = get_tree().current_scene
 		var A = Arrow.instantiate()
@@ -239,7 +235,6 @@ func bowing(arrow_direction):
 func magic1(arrow_direction):
 	state_machine.travel('BowShooting')
 	if mana > 0:
-		update_magic1()
 		arrow_sound.play()
 		decrease_light_scale(5.0)
 		var main = get_tree().current_scene
@@ -256,9 +251,8 @@ func magic1(arrow_direction):
 func magic2(arrow_direction):
 	state_machine.travel('BowShooting')
 	if mana > 0:
-		update_magic2()
 		arrow_sound.play()
-		decrease_light_scale(50.0)
+		decrease_light_scale(5.0)
 		var main = get_tree().current_scene
 		var A = Magic2.instantiate()
 		A.global_position = global_position
@@ -273,7 +267,6 @@ func magic2(arrow_direction):
 func magic3(arrow_direction):
 	state_machine.travel('BowShooting')
 	if mana > 0:
-		update_magic3()
 		arrow_sound.play()
 		decrease_light_scale(5.0)
 		var main = get_tree().current_scene
@@ -343,13 +336,15 @@ func game_unpause ():
 func add_score (amount):
 	HUD.update_score(amount)
 	
-func update_arrows (amount):
+func update_arrows (amount, magic_value):
 	if amount == 0:
 		arrows = 0
+		magic = 0
 	else:
+		magic = magic_value
 		arrows += amount
 		
-	HUD.update_arrows(amount)
+	HUD.update_arrows(amount, magic)
 	
 func update_boots (amount):
 	if amount == 0:
@@ -367,14 +362,6 @@ func update_coat (amount):
 		coat += amount
 	HUD.update_coat(amount)
 
-func update_magic1 ():
-	HUD.update_magic1(int(mana))
-
-func update_magic2 ():
-	HUD.update_magic2(int(mana))
-
-func update_magic3 ():
-	HUD.update_magic3(int(mana))
 	
 #UPDATE LIVES FUNCTION
 func death ():
@@ -400,10 +387,6 @@ func increment_light_scale(increment_amount):
 		if player_light.scale < max_light:
 			player_light.scale += Vector2(increment_amount/100, increment_amount/100)
 
-	if mana > 0:
-		update_magic1()
-		update_magic2()
-		update_magic3()
 
 
 func increase_live(amount):
@@ -432,10 +415,6 @@ func decrease_light_scale(decrease_amount):
 		if player_light.scale >= base_light:
 			player_light.scale -= Vector2(decrease_amount/100, decrease_amount/100)
 
-	if mana > 0:
-		update_magic1()
-		update_magic2()
-		update_magic3()
 		
 func do_hurt():
 	pass
@@ -490,10 +469,8 @@ func reset_skills():
 	mana = 0
 	mana_sphere.value = mana
 	player_light.scale = base_light
-	HUD.update_magic1(0)
-	HUD.update_magic2(0)
-	HUD.update_magic3(0)
-	update_arrows(0)
+	magic = 0
+	update_arrows(0, 0)
 	update_boots(0)
 	update_coat(0)
 
@@ -531,8 +508,9 @@ func drop_item():
 		A.position.y = global_position.y + 15
 		main.add_child(A)
 
-func update_magic(magic):
-	magic = magic
+func update_magic(value):
+	magic = value
+	print("Player magic: ", magic)
 	
 
 func explode():

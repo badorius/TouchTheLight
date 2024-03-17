@@ -39,7 +39,7 @@ fill = 1
 fill_from = Vector2(0.490826, 0.477064)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ypi03"]
-size = Vector2(26, 36)
+size = Vector2(28, 36)
 
 [sub_resource type="Animation" id="Animation_p0lt4"]
 length = 0.001
@@ -78,8 +78,6 @@ material = SubResource("CanvasItemMaterial_41qik")
 texture = SubResource("GradientTexture2D_vpl58")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_ypi03")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

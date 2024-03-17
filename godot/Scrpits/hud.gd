@@ -8,6 +8,7 @@ extends CanvasLayer
 @export var boots : int = 0
 @export var coat : int = 0
 @onready var player : CharacterBody2D = get_node("../Player")
+#@export var magic : int = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,7 +20,11 @@ func _ready():
 	$VBoxContainer.visible = false
 	$BloodCloudBloodOverlay.visible = false
 	$MaxScore.text = str("TOP SCORE: ", max_score)
-
+	$skills/ArrowsDecor/arrows0.visible = false
+	$skills/ArrowsDecor/arrows1.visible = false
+	$skills/ArrowsDecor/arrows2.visible = false
+	$skills/ArrowsDecor/arrows3.visible = false
+		
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -68,17 +73,42 @@ func get_coat():
 func get_arrows():
 	return arrows/10
 
-func update_arrows(num):
+func update_arrows(num, magic):
 	if num == 0:
 		arrows = 0
 	else:
 		arrows += num
 		
 	if arrows > 0:
-		$skills/ArrowsDecor/arrows.visible = true
+		print ("Hud Magic:", magic)
+		match magic:
+			0:
+				$skills/ArrowsDecor/arrows0.visible = true
+				$skills/ArrowsDecor/arrows1.visible = false
+				$skills/ArrowsDecor/arrows2.visible = false
+				$skills/ArrowsDecor/arrows3.visible = false
+			1:
+				$skills/ArrowsDecor/arrows0.visible = false
+				$skills/ArrowsDecor/arrows1.visible = true
+				$skills/ArrowsDecor/arrows2.visible = false
+				$skills/ArrowsDecor/arrows3.visible = false
+			2:
+				$skills/ArrowsDecor/arrows0.visible = false
+				$skills/ArrowsDecor/arrows1.visible = false
+				$skills/ArrowsDecor/arrows2.visible = true
+				$skills/ArrowsDecor/arrows3.visible = false
+			3:
+				$skills/ArrowsDecor/arrows0.visible = false
+				$skills/ArrowsDecor/arrows1.visible = false
+				$skills/ArrowsDecor/arrows2.visible = false
+				$skills/ArrowsDecor/arrows3.visible = true
+		
 		$skills/ArrowsDecor/LabelArrows.text = str(arrows)
 	else:
-		$skills/ArrowsDecor/arrows.visible = false
+		$skills/ArrowsDecor/arrows0.visible = false
+		$skills/ArrowsDecor/arrows1.visible = false
+		$skills/ArrowsDecor/arrows2.visible = false
+		$skills/ArrowsDecor/arrows3.visible = false
 		$skills/ArrowsDecor/LabelArrows.text = str(arrows)
 		
 func update_boots(num):
@@ -108,26 +138,6 @@ func update_coat(num):
 		$skills/CoatDecor/coat.visible = true
 		$skills/CoatDecor/LabelCoat.text = str(coat)
 
-func update_magic1 (mana):
-	$skills/Magic1Decor/LabelMagic1.text = str(mana)
-	if mana > 0:
-		$skills/Magic1Decor/magic1.visible = true
-	else:
-		$skills/Magic1Decor/magic1.visible = false
-
-func update_magic2 (mana):
-	$skills/Magic2Decor/LabelMagic2.text = str(mana)
-	if mana > 0:
-		$skills/Magic2Decor/magic2.visible = true
-	else:
-		$skills/Magic2Decor/magic2.visible = false
-		
-func update_magic3 (mana):
-	$skills/Magic3Decor/LabelMagic3.text = str(mana)
-	if mana > 0:
-		$skills/Magic3Decor/magic3.visible = true
-	else:
-		$skills/Magic3Decor/magic3.visible = false
 
 func gameover():
 	$GameOver.visible = true

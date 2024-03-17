@@ -30,7 +30,7 @@ func _process(delta):
 func _on_body_entered(body):
 	if body.is_in_group("Player"):
 		LightCatch.play()
-		body.update_magic(3)
+		body.update_arrows(10, 3)
 		queue_free()
 
 		

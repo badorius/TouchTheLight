@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bgi84ioegb3g6"]
+[gd_scene load_steps=32 format=3 uid="uid://bgi84ioegb3g6"]
 
 [ext_resource type="Script" path="res://Scrpits/hud.gd" id="1_ouvyj"]
 [ext_resource type="FontFile" uid="uid://uacc8gr3cirm" path="res://Assets/Fonts/G7MakaimuraTtf-xoZm.ttf" id="1_t36q3"]
@@ -11,19 +11,16 @@
 [ext_resource type="Texture2D" uid="uid://c1auk2f75bshk" path="res://Assets/Icons/Sword_13.png" id="7_7fiyl"]
 [ext_resource type="Texture2D" uid="uid://bdbe37fj23nff" path="res://Assets/UI/Foozle_UI_0001_RPG_Set_1/Main_Button_BG.png" id="7_abdec"]
 [ext_resource type="Texture2D" uid="uid://dn7ay3ws3pmr0" path="res://Assets/Icons/Inventory_6.png" id="7_qgghv"]
-[ext_resource type="Texture2D" uid="uid://bt3oaob452msy" path="res://Assets/Icons/Quiver_4.png" id="8_0ay83"]
-[ext_resource type="Texture2D" uid="uid://c4ddjb1nvgaop" path="res://Assets/Icons/Inventory_2.png" id="8_yx787"]
-[ext_resource type="Texture2D" uid="uid://bperdgy3turri" path="res://Assets/Icons/Skill_61.png" id="9_jroh7"]
 [ext_resource type="Texture2D" uid="uid://dpwb7kggo8cka" path="res://Assets/UI/Foozle_UI_0001_RPG_Set_1/Main_Button_Overlay_Light.png" id="9_jv36h"]
-[ext_resource type="Texture2D" uid="uid://d3re6hxqatdjr" path="res://Assets/Icons/Inventory_4.png" id="9_prvoa"]
+[ext_resource type="Texture2D" uid="uid://wwpar4rnrsfk" path="res://Assets/Icons/Quiver_0.png" id="9_kn3ag"]
 [ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://joystick/virtual_joystick.tscn" id="10_118px"]
-[ext_resource type="Texture2D" uid="uid://c30hdtdyyw470" path="res://Assets/Icons/Inventory_1.png" id="10_jx8xw"]
+[ext_resource type="Texture2D" uid="uid://bjpdv5b80cxo4" path="res://Assets/Icons/Quiver_Ice.png" id="10_b7dfw"]
 [ext_resource type="Texture2D" uid="uid://bxnymfjkk0eeq" path="res://Assets/Icons/Armor_11.png" id="10_n5klc"]
 [ext_resource type="Texture2D" uid="uid://dkx24vmvl8y54" path="res://Assets/UI/Foozle_UI_0001_RPG_Set_1/Main_Button_Fill_Mana.png" id="10_wym1h"]
 [ext_resource type="Texture2D" uid="uid://xm2x8owmvve4" path="res://Assets/Icons/Inventory_18.png" id="11_3fssb"]
 [ext_resource type="Texture2D" uid="uid://buv78jq5axbjv" path="res://Assets/Icons/Armor_58.png" id="11_k60nv"]
-[ext_resource type="Texture2D" uid="uid://oxup8fdeu2eu" path="res://Assets/Icons/Skill_30.png" id="15_dd81a"]
-[ext_resource type="Texture2D" uid="uid://c5kfqjcso7cvv" path="res://Assets/Icons/Skill_9.png" id="16_xo67i"]
+[ext_resource type="Texture2D" uid="uid://g3ym5qextodv" path="res://Assets/Icons/Quiver_Fire.png" id="11_ncwdy"]
+[ext_resource type="Texture2D" uid="uid://ft40g1wsde73" path="res://Assets/Icons/Quiver_Poison.png" id="12_hc4a7"]
 [ext_resource type="Texture2D" uid="uid://cri5e427y8r78" path="res://Assets/Background/GameOver/game_over.png" id="25_42ks8"]
 [ext_resource type="Texture2D" uid="uid://cu78ite370l6o" path="res://Assets/HUD/BackGround/Blood Cloud Blood Overlay.png" id="26_o2hjc"]
 [ext_resource type="AudioStream" uid="uid://c5v86gr878sqt" path="res://Music/BGMUSIC/game-over.mp3" id="27_pw423"]
@@ -241,7 +238,7 @@ offset_bottom = 218.0
 scale = Vector2(0.826383, 0.826383)
 
 [node name="SwordDecor" type="Sprite2D" parent="skills"]
-position = Vector2(226.88, 946.292)
+position = Vector2(564.491, 946.292)
 scale = Vector2(2.438, 2.438)
 texture = ExtResource("6_w5dld")
 flip_h = true
@@ -261,127 +258,52 @@ offset_bottom = -15.2336
 scale = Vector2(5.92657, 6.21394)
 
 [node name="ArrowsDecor" type="Sprite2D" parent="skills"]
-position = Vector2(453.167, 946.292)
+position = Vector2(790.778, 946.292)
 scale = Vector2(2.438, 2.438)
 texture = ExtResource("7_qgghv")
 flip_h = true
 
-[node name="arrows" type="Sprite2D" parent="skills/ArrowsDecor"]
+[node name="ButonArrows" type="Button" parent="skills/ArrowsDecor"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -23.8245
+offset_top = -25.8098
+offset_right = -15.8245
+offset_bottom = -17.8098
+scale = Vector2(5.92657, 6.21394)
+
+[node name="arrows0" type="Sprite2D" parent="skills/ArrowsDecor"]
+visible = false
 position = Vector2(3.05176e-05, -1.98538)
 scale = Vector2(1.02543, 1.02543)
-texture = ExtResource("8_0ay83")
+texture = ExtResource("9_kn3ag")
 flip_h = true
 
-[node name="ButonArrows" type="Button" parent="skills/ArrowsDecor/arrows"]
-modulate = Color(1, 1, 1, 0)
-offset_left = -23.2337
-offset_top = -23.2336
-offset_right = -15.2337
-offset_bottom = -15.2336
-scale = Vector2(5.92657, 6.21394)
+[node name="arrows1" type="Sprite2D" parent="skills/ArrowsDecor"]
+visible = false
+position = Vector2(3.05176e-05, -1.98538)
+scale = Vector2(1.02543, 1.02543)
+texture = ExtResource("10_b7dfw")
+flip_h = true
+
+[node name="arrows2" type="Sprite2D" parent="skills/ArrowsDecor"]
+visible = false
+position = Vector2(3.05176e-05, -1.98538)
+scale = Vector2(1.02543, 1.02543)
+texture = ExtResource("11_ncwdy")
+flip_h = true
+
+[node name="arrows3" type="Sprite2D" parent="skills/ArrowsDecor"]
+visible = false
+position = Vector2(3.05176e-05, -1.98538)
+scale = Vector2(1.02543, 1.02543)
+texture = ExtResource("12_hc4a7")
+flip_h = true
 
 [node name="LabelArrows" type="Label" parent="skills/ArrowsDecor"]
-offset_left = 1.24588
+offset_left = 7.94163
 offset_top = -23.8246
-offset_right = 311.246
-offset_bottom = 5.17538
-scale = Vector2(0.452977, 0.452977)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_t36q3")
-theme_override_font_sizes/font_size = 20
-text = "0"
-
-[node name="Magic1Decor" type="Sprite2D" parent="skills"]
-position = Vector2(685.505, 946.292)
-scale = Vector2(2.438, 2.438)
-texture = ExtResource("8_yx787")
-flip_h = true
-
-[node name="magic1" type="Sprite2D" parent="skills/Magic1Decor"]
-visible = false
-scale = Vector2(1.02543, 1.02543)
-texture = ExtResource("9_jroh7")
-flip_h = true
-
-[node name="ButonMagic1" type="Button" parent="skills/Magic1Decor/magic1"]
-modulate = Color(1, 1, 1, 0)
-offset_left = -23.2337
-offset_top = -23.2336
-offset_right = -15.2337
-offset_bottom = -15.2336
-scale = Vector2(5.92657, 6.21394)
-
-[node name="LabelMagic1" type="Label" parent="skills/Magic1Decor"]
-offset_left = 5.21661
-offset_top = -19.8539
-offset_right = 315.217
-offset_bottom = 9.14613
-scale = Vector2(0.452977, 0.452977)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_t36q3")
-theme_override_font_sizes/font_size = 20
-text = "0"
-
-[node name="Magic2Decor" type="Sprite2D" parent="skills"]
-position = Vector2(917.843, 946.292)
-scale = Vector2(2.438, 2.438)
-texture = ExtResource("9_prvoa")
-flip_h = true
-
-[node name="magic2" type="Sprite2D" parent="skills/Magic2Decor"]
-visible = false
-position = Vector2(0, -3.05176e-05)
-scale = Vector2(1.02543, 1.02543)
-texture = ExtResource("15_dd81a")
-flip_h = true
-
-[node name="ButonMagic2" type="Button" parent="skills/Magic2Decor/magic2"]
-modulate = Color(1, 1, 1, 0)
-offset_left = -23.2337
-offset_top = -23.2336
-offset_right = -15.2337
-offset_bottom = -15.2336
-scale = Vector2(5.92657, 6.21394)
-
-[node name="LabelMagic2" type="Label" parent="skills/Magic2Decor"]
-offset_left = 9.18741
-offset_top = -19.8539
-offset_right = 319.187
-offset_bottom = 9.14615
-scale = Vector2(0.452977, 0.452977)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_t36q3")
-theme_override_font_sizes/font_size = 20
-text = "0"
-
-[node name="Magic3Decor" type="Sprite2D" parent="skills"]
-position = Vector2(1143.54, 955.973)
-scale = Vector2(2.438, 2.438)
-texture = ExtResource("10_jx8xw")
-flip_h = true
-
-[node name="magic3" type="Sprite2D" parent="skills/Magic3Decor"]
-visible = false
-scale = Vector2(1.02543, 1.02543)
-texture = ExtResource("16_xo67i")
-flip_h = true
-
-[node name="ButonMagic3" type="Button" parent="skills/Magic3Decor/magic3"]
-modulate = Color(1, 1, 1, 0)
-offset_left = -23.2337
-offset_top = -23.2336
-offset_right = -15.2337
-offset_bottom = -15.2336
-scale = Vector2(5.92657, 6.21394)
-
-[node name="LabelMagic3" type="Label" parent="skills/Magic3Decor"]
-offset_left = 7.94154
-offset_top = -19.8539
 offset_right = 317.942
-offset_bottom = 9.14613
+offset_bottom = 5.17535
 scale = Vector2(0.452977, 0.452977)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -390,7 +312,7 @@ theme_override_font_sizes/font_size = 20
 text = "0"
 
 [node name="BootsDecor" type="Sprite2D" parent="skills"]
-position = Vector2(1375.88, 946.292)
+position = Vector2(1063.05, 946.292)
 scale = Vector2(2.438, 2.438)
 texture = ExtResource("11_3fssb")
 flip_h = true
@@ -415,7 +337,7 @@ theme_override_font_sizes/font_size = 20
 text = "0"
 
 [node name="CoatDecor" type="Sprite2D" parent="skills"]
-position = Vector2(1617.89, 946.292)
+position = Vector2(1305.06, 946.292)
 scale = Vector2(2.438, 2.438)
 texture = ExtResource("7_qgghv")
 flip_h = true
@@ -568,10 +490,7 @@ libraries = {
 }
 
 [connection signal="pressed" from="skills/SwordDecor/sword/ButonSword" to="." method="_on_buton_sword_pressed"]
-[connection signal="pressed" from="skills/ArrowsDecor/arrows/ButonArrows" to="." method="_on_buton_arrows_pressed"]
-[connection signal="pressed" from="skills/Magic1Decor/magic1/ButonMagic1" to="." method="_on_buton_magic_1_pressed"]
-[connection signal="pressed" from="skills/Magic2Decor/magic2/ButonMagic2" to="." method="_on_buton_magic_2_pressed"]
-[connection signal="pressed" from="skills/Magic3Decor/magic3/ButonMagic3" to="." method="_on_buton_magic_3_pressed"]
+[connection signal="pressed" from="skills/ArrowsDecor/ButonArrows" to="." method="_on_buton_arrows_pressed"]
 [connection signal="pressed" from="VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

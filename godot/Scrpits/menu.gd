@@ -4,7 +4,7 @@ var direction = 1
 var base_speed = 5
 var speed = base_speed
 var mouse_over : AudioStreamPlayer2D
-@onready var Main : Node2D = get_node("../../Main") 
+#@onready var Main : Node2D = get_node("../../Main") 
 #@onready var Main : Node2D = get_pa get_node("") 
 
 # Called when the node enters the scene tree for the first time.
