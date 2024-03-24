@@ -9,7 +9,7 @@ var state_machine
 @export var state : String = "Iddle"
 var target_position : Vector2
 @export var timer : float = 0
-@export var live : int = 50
+@export var live : int = 1000000
 @export var ArrowDamage_sound : AudioStreamPlayer2D
 @onready var player : CharacterBody2D = get_node("../../Player")
 @export var score_value : int = 50
@@ -34,7 +34,7 @@ func _ready():
 	ArrowDamage_sound = $ArrowDamage
 	state_machine = $AnimationTree.get('parameters/playback')
 	$CollisionShape2D.disabled = false
-
+	$".".modulate = "ffffff"
 
 	
 func _process(delta):
@@ -54,7 +54,6 @@ func _physics_process(delta):
 	
 	if startrun and state != "Death":
 		ProgressBar3.value = live
-		ArrowDamage_sound = $ArrowDamage
 		if live <= 0:
 			death()
 
@@ -76,13 +75,15 @@ func _physics_process(delta):
 	
 
 func hurt(damage):
-	if live <= 0:
+	if live <= 0  and state != "Death":
 		death()
 	else:
 		ArrowDamage_sound.play()
 		#state_machine.travel('Hurt')
-		live -= damage
-		ProgressBar3.value = live
+		#live -= damage
+		speed = speed * 1.1
+		bob_speed = bob_speed * 1.1
+		#ProgressBar3.value = live
 		state = "Hurt"
 		
 		#FIX Random size
