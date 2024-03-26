@@ -305,8 +305,7 @@ func atack1():
 		2:
 			state_machine.travel('Atack3') 
 			attack_power = 150 * ((mana / 100) + 1)
-
-
+			
 		
 func jump():
 	jump_sound.play()
@@ -464,6 +463,7 @@ func bounce():
 	else:
 		velocity.x = 100
 		
+	
 func speed_down():
 	if not is_on_floor():
 		velocity.y = -100	
