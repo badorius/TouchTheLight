@@ -182,7 +182,6 @@ collision_mask = 13
 script = ExtResource("1_mehif")
 
 [node name="Arrow" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_ht42v")
 
 [node name="Magic3" type="Sprite2D" parent="."]
@@ -195,7 +194,7 @@ scale = Vector2(0.2, 0.2)
 texture = SubResource("GradientTexture2D_2wgaa")
 
 [node name="Alo" type="Sprite2D" parent="Magic3/PointLight2D"]
-modulate = Color(0, 0.247059, 0.741176, 0.8)
+modulate = Color(0, 0.364706, 0.321569, 0.8)
 material = SubResource("CanvasItemMaterial_jf025")
 position = Vector2(2.84782, -11.411)
 texture = SubResource("GradientTexture2D_2qj11")
@@ -206,6 +205,7 @@ scale = Vector2(1.17122, 0.96)
 shape = SubResource("CapsuleShape2D_56qty")
 
 [node name="RetroImpactEffectPack3C" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.505882)
 position = Vector2(-7, 0)
 texture = ExtResource("2_kbnqs")
 hframes = 6

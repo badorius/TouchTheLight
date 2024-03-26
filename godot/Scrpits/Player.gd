@@ -134,8 +134,7 @@ func _physics_process(delta):
 			# Down
 	if Input.is_action_pressed("Button_Down"):
 		position.y += 1
-		
-			
+	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -154,12 +153,18 @@ func _physics_process(delta):
 		jump()
 
 
-	# Fire BOW
-		# Sword Atack
+
+	# Sword Atack
 	if Input.is_action_just_pressed("Button_SwordAttack"):
 		state = "Atack1"
 		atack1()
-	
+		
+	# MagicMana control
+	if Input.is_action_just_pressed("Button_MagicMana"):
+		state = "MagicMana"
+		MagicMana()
+		
+	# Fire BOW
 	if Input.is_action_just_pressed("Button_BowShooting"):
 		match magic:
 			0:
@@ -211,7 +216,11 @@ func slide(direction):
 	state_machine.travel('SlideDown')
 	dash_sound.play()
 
-
+#Func MAGIC MANA
+func MagicMana():
+	if mana > 0:
+		state_machine.travel('Jump')
+		decrease_light_scale(5.0)
 
 #FUNC BOWING
 func bowing(arrow_direction):
@@ -234,9 +243,10 @@ func bowing(arrow_direction):
 #FUNC MAGIC
 func magic1(arrow_direction):
 	state_machine.travel('BowShooting')
-	if mana > 0:
+	if arrows > 0:
+		update_arrows(-1, magic)
 		arrow_sound.play()
-		decrease_light_scale(5.0)
+		#decrease_light_scale(5.0)
 		var main = get_tree().current_scene
 		var A = Magic1.instantiate()
 		A.global_position = global_position
@@ -250,9 +260,10 @@ func magic1(arrow_direction):
 
 func magic2(arrow_direction):
 	state_machine.travel('BowShooting')
-	if mana > 0:
+	if arrows > 0:
+		update_arrows(-1, magic)
 		arrow_sound.play()
-		decrease_light_scale(5.0)
+		#decrease_light_scale(5.0)
 		var main = get_tree().current_scene
 		var A = Magic2.instantiate()
 		A.global_position = global_position
@@ -266,9 +277,10 @@ func magic2(arrow_direction):
 
 func magic3(arrow_direction):
 	state_machine.travel('BowShooting')
-	if mana > 0:
+	if arrows > 0:
+		update_arrows(-1, magic)
 		arrow_sound.play()
-		decrease_light_scale(5.0)
+		#decrease_light_scale(5.0)
 		var main = get_tree().current_scene
 		var A = Magic3.instantiate()
 		A.global_position = global_position

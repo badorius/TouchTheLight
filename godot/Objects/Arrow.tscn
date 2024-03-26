@@ -218,6 +218,7 @@ scale = Vector2(1.17122, 0.96)
 shape = SubResource("CapsuleShape2D_56qty")
 
 [node name="RetroImpactEffectPack3C" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-7, 0)
 texture = ExtResource("3_4eptg")
 hframes = 6

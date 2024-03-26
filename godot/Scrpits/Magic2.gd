@@ -30,8 +30,8 @@ func _physics_process(delta):
 		if direction == -1:
 			position -= transform.x * speed * delta
 			get_node( "Magic2" ).set_flip_h( false )
-		if abs(position.x) > MaxDist:
-			explode()
+		#if abs(position.x) > MaxDist:
+		#	explode()
 
 
 func explode():

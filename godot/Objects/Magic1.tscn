@@ -182,7 +182,6 @@ collision_mask = 13
 script = ExtResource("1_eehyy")
 
 [node name="Arrow" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_eshan")
 
 [node name="Magic1" type="Sprite2D" parent="."]
@@ -206,6 +205,7 @@ scale = Vector2(1.17122, 0.96)
 shape = SubResource("CapsuleShape2D_56qty")
 
 [node name="RetroImpactEffectPack3C" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.462745)
 position = Vector2(-7, 0)
 texture = ExtResource("2_sc6aa")
 hframes = 6
