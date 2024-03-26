@@ -5,7 +5,7 @@ extends Area2D
 @export var damage : int = 100
 @export var state : String = "run"
 var state_machine
-
+const MaxDist : int = 350
 #Sounds
 
 
@@ -29,10 +29,15 @@ func _physics_process(delta):
 		if direction == -1:
 			position -= transform.x * speed * delta
 			get_node( "Arrow" ).set_flip_h( true )
+			
+		print (abs(position.x))
+		if abs(position.x) > MaxDist:
+			explode()
+		
 
 
 func explode():
-	pass
+	state_machine.travel('Arrow_Explode')
 
 
 func _on_area_entered(area):
