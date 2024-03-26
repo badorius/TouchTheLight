@@ -12,6 +12,7 @@ var state_machine
 var FreqToxic : float = 10.0
 var FreqCounter : float = 0
 @export var score_value : int = 10
+const MaxDistPlayer : int = 350
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -60,6 +61,9 @@ func _physics_process(delta):
 		else:
 			FreqCounter = 0
 			hurt(5)
+		
+	if abs(global_position.x - player.global_position.x) > MaxDistPlayer:
+		queue_free()
 		
 	if live <= 0 and state != "Death":
 		death()
@@ -196,6 +200,7 @@ func drop_item():
 					A.position.x = global_position.x - 45
 				A.position.y = global_position.y + 15
 				main.add_child(A)
+		
 				
 
 func _on_death_lamp_body_entered(body):
