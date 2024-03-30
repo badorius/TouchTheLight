@@ -26,7 +26,6 @@ func _physics_process(delta):
 	if shaking == false:
 		global_position = player.global_position
 	#position = lerp(position,player.position, 5 * delta)
-	#print(player.global_position)
 	
 func randomOffset() -> Vector2:
 	return Vector2(rng.randf_range(-shake_strenght,shake_strenght),rng.randf_range(-shake_strenght,shake_strenght))

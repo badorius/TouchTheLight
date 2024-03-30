@@ -80,7 +80,6 @@ func update_arrows(num, magic):
 		arrows += num
 		
 	if arrows > 0:
-		print ("Hud Magic:", magic)
 		match magic:
 			0:
 				$skills/ArrowsDecor/arrows0.visible = true

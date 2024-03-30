@@ -30,7 +30,6 @@ func _physics_process(delta):
 			position -= transform.x * speed * delta
 			get_node( "Arrow" ).set_flip_h( true )
 			
-		print (abs(position.x))
 		#if abs(position.x) > MaxDist:
 		#	explode()
 		

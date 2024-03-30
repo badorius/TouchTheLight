@@ -45,6 +45,7 @@ const DamageIndicator = preload("../Objects/Efects/damage_indicator.tscn")
 @export var arrow_direction : int = 1
 const Explode = preload( "../Objects/Efects/PlayerExplode.tscn")
 const JumpEfect = preload("../Objects/Efects/JumpEfect.tscn")
+const FireStorm = preload("../Objects/Efects/Player_fire_storm.tscn")
 
 # Load Items
 const BootsItemDrop = preload("../Objects/Items/BootsItemDrop.tscn")
@@ -96,6 +97,7 @@ func _ready():
 	
 func _physics_process(delta):
 	HUD.update_timer()
+	print(state)
 	if state != "Hurt":
 		direction = Input.get_axis("Button_Left", "Button_Right")
 		
@@ -125,7 +127,7 @@ func _physics_process(delta):
 			
 			
 	else:
-		if state != "Hurt":
+		if state != "Hurt" and state != "MagicMana":
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 			state = "Idle"
 			iddle()
@@ -219,8 +221,19 @@ func slide(direction):
 #Func MAGIC MANA
 func MagicMana():
 	if mana > 0:
-		state_machine.travel('Jump')
+		state_machine.travel('MagicMana')
 		decrease_light_scale(5.0)
+		var main = get_tree().current_scene
+		#ICE OBJECT
+		#var A = IceArea.instantiate()
+		#FIRE OBJECT
+		var A = FireStorm.instantiate()
+		A.global_position = global_position
+		A.position.y = global_position.y + 50
+		main.add_child(A)
+
+
+
 
 #FUNC BOWING
 func bowing(arrow_direction):
@@ -522,7 +535,6 @@ func drop_item():
 
 func update_magic(value):
 	magic = value
-	print("Player magic: ", magic)
 	
 
 func explode():
@@ -540,7 +552,6 @@ func _on_area_2d_body_entered(body):
 	if body.is_in_group("enemies"):
 		body.hurt(attack_power)
 		$AnimationPlayer.play("HitSword")
-		print("Hit sword", body)
 
 
 func _on_area_2d_area_entered(area):
@@ -560,10 +571,6 @@ func _on_area_2d_body_body_entered(body):
 func _input(event):
 	if event is InputEventJoypadMotion:
 		pass
-		#print(
-		#		"Device: %s. Joypad Axis Index: %s. Strength: %s."
-		#		% [event.device, event.axis, event.axis_value]
-		#)
 
 
 func _on_popup_close_requested():

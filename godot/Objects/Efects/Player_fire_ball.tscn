@@ -155,11 +155,11 @@ collision_mask = 3
 script = ExtResource("1_x0hur")
 
 [node name="FireSprite" type="Sprite2D" parent="."]
-visible = false
 texture = ExtResource("2_f7ima")
 hframes = 9
 
 [node name="FireBall" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-2, -42)
 texture = ExtResource("3_ymego")
 hframes = 4

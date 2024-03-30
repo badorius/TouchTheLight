@@ -2911,7 +2911,6 @@ position = Vector2(944, 343)
 position = Vector2(-854, 0)
 
 [node name="Player" parent="." instance=ExtResource("20_2myqg")]
-position = Vector2(-661, -20)
 scale = Vector2(1, 1)
 
 [node name="PlatformLevel2VDown" parent="." instance=ExtResource("22_i8i17")]

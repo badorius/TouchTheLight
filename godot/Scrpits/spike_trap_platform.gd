@@ -28,7 +28,6 @@ func _process(delta):
 		
 		# 0.99977890153385 0002054421772
 		if d >= 0.99977890153385:
-			print("Low")
 			SpikeDown.play()
 
 func _on_body_entered(body):
