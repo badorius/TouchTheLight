@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bgcm2ah0c0uro"]
-
-[ext_resource type="Script" path="res://Scrpits/Player_fire_storm.gd" id="1_k8wbd"]
-
-[node name="FireStorm" type="Node2D"]
-script = ExtResource("1_k8wbd")

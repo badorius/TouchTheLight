@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgcm2ah0c0uro"]
+
+[ext_resource type="Script" path="res://Scrpits/PlayerThunderStorm.gd" id="1_7wq26"]
+
+[node name="PlayerThunderStorm" type="Node2D"]
+script = ExtResource("1_7wq26")

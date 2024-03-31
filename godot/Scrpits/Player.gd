@@ -17,7 +17,7 @@ const JUMP_VELOCITY = -350.0
 @export var magic : int = 0
 
 var state_machine
-@export var state : String = "Idle"
+@export var state : String = "Iddle"
 @export var attack_power : int  = 10
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -45,7 +45,7 @@ const DamageIndicator = preload("../Objects/Efects/damage_indicator.tscn")
 @export var arrow_direction : int = 1
 const Explode = preload( "../Objects/Efects/PlayerExplode.tscn")
 const JumpEfect = preload("../Objects/Efects/JumpEfect.tscn")
-const FireStorm = preload("../Objects/Efects/Player_fire_storm.tscn")
+const ThunderStorm = preload("../Objects/Efects/PlayerThunderStorm.tscn")
 
 # Load Items
 const BootsItemDrop = preload("../Objects/Items/BootsItemDrop.tscn")
@@ -98,7 +98,7 @@ func _ready():
 func _physics_process(delta):
 	HUD.update_timer()
 	print(state)
-	if state != "Hurt":
+	if state != "Hurt" and state != "MagicMana":
 		direction = Input.get_axis("Button_Left", "Button_Right")
 		
 	# Get the input direction and handle the movement/deceleration and orientation.
@@ -162,7 +162,7 @@ func _physics_process(delta):
 		atack1()
 		
 	# MagicMana control
-	if Input.is_action_just_pressed("Button_MagicMana"):
+	if Input.is_action_just_pressed("Button_MagicMana") and state != "MagicMana":
 		state = "MagicMana"
 		MagicMana()
 		
@@ -220,17 +220,20 @@ func slide(direction):
 
 #Func MAGIC MANA
 func MagicMana():
-	if mana > 0:
+	if mana > 0 and is_on_floor():
+		velocity.y = JUMP_VELOCITY/2
 		state_machine.travel('MagicMana')
-		decrease_light_scale(5.0)
+		decrease_light_scale(50.0)
 		var main = get_tree().current_scene
 		#ICE OBJECT
 		#var A = IceArea.instantiate()
 		#FIRE OBJECT
-		var A = FireStorm.instantiate()
+		var A = ThunderStorm.instantiate()
 		A.global_position = global_position
-		A.position.y = global_position.y + 50
+		A.position.y = global_position.y
 		main.add_child(A)
+	else:
+		state = "Iddle"
 
 
 
