@@ -182,18 +182,17 @@ collision_mask = 29
 script = ExtResource("1_jiqlf")
 
 [node name="StormSprite" type="Sprite2D" parent="."]
-self_modulate = Color(0, 1, 1, 1)
 texture = ExtResource("2_imfeq")
 hframes = 15
 
 [node name="PointLight2D" type="PointLight2D" parent="StormSprite"]
 material = SubResource("CanvasItemMaterial_jp2b5")
 position = Vector2(0, 22)
-color = Color(0, 1, 1, 1)
+color = Color(0.32549, 1, 1, 1)
 texture = SubResource("GradientTexture2D_l26ff")
 
 [node name="Alo" type="Sprite2D" parent="StormSprite/PointLight2D"]
-modulate = Color(0, 0.952941, 0.976471, 0.592157)
+modulate = Color(0.2, 0.952941, 0.976471, 0.592157)
 light_mask = 2
 visibility_layer = 3
 material = SubResource("CanvasItemMaterial_s67v7")

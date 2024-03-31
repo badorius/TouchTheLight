@@ -221,7 +221,6 @@ func slide(direction):
 #Func MAGIC MANA
 func MagicMana():
 	if mana > 0 and is_on_floor():
-		velocity.y = JUMP_VELOCITY/2
 		state_machine.travel('MagicMana')
 		decrease_light_scale(50.0)
 		var main = get_tree().current_scene
