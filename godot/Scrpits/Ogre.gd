@@ -10,7 +10,7 @@ var state_machine
 @export var state : String = "Iddle"
 var target_position : Vector2
 @export var timer : float = 0
-@export var live : int = 1000
+@export var live : int = 5000
 @export var arrow_direction : int
 @export var ArrowDamage_sound : AudioStreamPlayer2D
 @export var StartAttack_sound : AudioStreamPlayer2D
