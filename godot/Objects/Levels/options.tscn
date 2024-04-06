@@ -15,7 +15,7 @@ var current_button : Button
 @onready var button_Dash : Button = $VBoxButtons/Button_Dash
 @onready var button_SwordAttack : Button = $VBoxButtons/Button_SwordAttack
 @onready var button_BowShooting : Button = $VBoxButtons/Button_BowShooting
-
+@onready var button_MagicMana : Button = $VBoxButtons/Button_MagicMana
 
 @onready var label_Left : Label = $VBoxLabel/Label_Left
 @onready var label_Right : Label = $VBoxLabel/Label_Right
@@ -23,7 +23,7 @@ var current_button : Button
 @onready var label_Dash : Label = $VBoxLabel/Label_Dash
 @onready var label_SwordAttack : Label = $VBoxLabel/Label_SwordAttack
 @onready var label_BowShooting : Label = $VBoxLabel/Label_BowShooting
-
+@onready var label_MagicMana : Label = $VBoxLabel/Label_MagicMana
 
 @onready var info_panel : PanelContainer = $PanelContainer
 
@@ -37,6 +37,7 @@ func _ready() -> void:
 	button_Dash.pressed.connect(_on_button_pressed.bind(button_Dash))
 	button_SwordAttack.pressed.connect(_on_button_pressed.bind(button_SwordAttack))
 	button_BowShooting.pressed.connect(_on_button_pressed.bind(button_BowShooting))
+	button_MagicMana.pressed.connect(_on_button_pressed.bind(button_MagicMana))
 
 
 	
@@ -117,6 +118,12 @@ func _update_labels() -> void:
 		label_BowShooting.text = eb6[0].as_text()
 	else:
 		label_BowShooting.text = \"\"
+	
+	var eb7 : Array[InputEvent] = InputMap.action_get_events(\"Button_MagicMana\")
+	if !eb7.is_empty():
+		label_MagicMana.text = eb7[0].as_text()
+	else:
+		label_MagicMana.text = \"\"
 		
 	
 	
@@ -211,6 +218,11 @@ layout_mode = 2
 text = "x
 "
 
+[node name="Label_MagicMana" type="Label" parent="VBoxLabel"]
+layout_mode = 2
+text = "c
+"
+
 [node name="VBoxButtons" type="VBoxContainer" parent="."]
 layout_mode = 0
 offset_left = 426.0
@@ -243,6 +255,10 @@ text = "SwordAttack"
 [node name="Button_BowShooting" type="Button" parent="VBoxButtons"]
 layout_mode = 2
 text = "BowShooting"
+
+[node name="Button_MagicMana" type="Button" parent="VBoxButtons"]
+layout_mode = 2
+text = "MagicMana"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

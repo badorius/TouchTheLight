@@ -37,4 +37,12 @@ func shake_window():
 	if shake_strenght > 0:
 		shake_strenght = lerpf(shake_strenght,0,ShakeFade * sum)
 		offset = randomOffset()
+		
+func shake():
+	var randNum = randi_range(1,3)
+	
+	match randNum:
+		1:$AnimationPlayer.play("Shake1")
+		2:$AnimationPlayer.play("Shake2")
+		3:$AnimationPlayer.play("Shake3")
 	

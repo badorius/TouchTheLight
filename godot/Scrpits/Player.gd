@@ -235,8 +235,6 @@ func MagicMana():
 		state = "Iddle"
 
 
-
-
 #FUNC BOWING
 func bowing(arrow_direction):
 	state_machine.travel('BowShooting')
@@ -447,7 +445,7 @@ func do_hurt():
 	#player.hurt(attack_power)
 
 func hurt(damage):
-		#MainCam.shake_window()
+		MainCam.shake()
 		state = "Hurt"
 		state_machine.travel('Hurt')
 		live -= damage
