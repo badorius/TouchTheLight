@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://byqvuvlnfsd8p"]
+
+[ext_resource type="Script" path="res://Scrpits/platform_level_2Right.gd" id="1_5gkg0"]
+[ext_resource type="Texture2D" uid="uid://dgrf5yy23k4ym" path="res://Assets/Background/FortOfIllusion/tileset.png" id="2_thwpo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kqj1a"]
+size = Vector2(32.609, 19.3616)
+
+[node name="PlatformLevel2VRight" type="AnimatableBody2D"]
+script = ExtResource("1_5gkg0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_thwpo")
+region_enabled = true
+region_rect = Rect2(95.3494, 13.3781, 33.6475, 19.3237)
+region_filter_clip_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kqj1a")
