@@ -295,9 +295,6 @@ shape = SubResource("RectangleShape2D_cikv1")
 stream = ExtResource("7_c4dj0")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_ccbmn")
-}
 tree_root = SubResource("AnimationNodeStateMachine_n346a")
 anim_player = NodePath("../AnimationPlayer")
 

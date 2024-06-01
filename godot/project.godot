@@ -13,7 +13,8 @@ config_version=5
 config/name="TouchTheLight"
 run/main_scene="res://Objects/Levels/menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://Assets/Art/Ingrid.ico"
+config/icon="res://Assets/Art/ICO/Ingrid.svg"
+config/windows_native_icon="res://Assets/Art/ICO/Ingrid_64.ico"
 
 [display]
 
