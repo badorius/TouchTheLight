@@ -13,7 +13,7 @@ config_version=5
 config/name="TouchTheLight"
 run/main_scene="res://Objects/Levels/menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://Assets/Art/ICO/Ingrid.svg"
+config/icon="res://Assets/Art/Ingrid.png"
 config/windows_native_icon="res://Assets/Art/ICO/Ingrid_64.ico"
 
 [display]
@@ -138,6 +138,5 @@ Button_MagicMana={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-renderer/rendering_method="gl_compatibility"
 textures/vram_compression/import_etc2_astc=true
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
