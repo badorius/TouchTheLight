@@ -4,6 +4,8 @@ var speed = 50.0
 var live = 10
 @onready var player : CharacterBody2D = get_node("../Player")
 const DamageIndicator = preload("res://Objects/Efects/damage_indicator.tscn")
+const PointsIndicator = preload("res://Objects/Efects/points_indicator.tscn")
+@export var pointsvalue : int = 50
 @export var ArrowDamage_sound : AudioStreamPlayer2D
 var state : String = "Non"
 var state_machine
@@ -91,11 +93,20 @@ func explode():
 		main.add_child(A)
 
 func death():
+	#FIX Random size
+	var offset_position = randi() % 20
+	var main = get_tree().current_scene
+	var D = PointsIndicator.instantiate()
+	var color = "white"
+	D.global_position = Vector2(global_position.x - offset_position, (global_position.y) - offset_position)
+	D.show_points(pointsvalue, color)
+	main.add_child(D)
+		
 	state = "Death"
 	state_machine.travel('Death')
 	$DeathLampWalk.visible = false
 	explode()
-	player.add_score(score_value)
+	player.add_score(pointsvalue)
 	drop_item()
 	
 func hurt(damage):
@@ -107,14 +118,6 @@ func hurt(damage):
 			live -= damage
 			#ProgressBar3.value = live
 			
-			#FIX Random size
-			var offset_position = randi() % 20
-			var main = get_tree().current_scene
-			var D = DamageIndicator.instantiate()
-			var color = "yellow"
-			D.global_position = Vector2(global_position.x - offset_position, (global_position.y) - offset_position)
-			D.show_damage(damage, color)
-			main.add_child(D)
 
 func decrease_speed(value):
 	speed -= value

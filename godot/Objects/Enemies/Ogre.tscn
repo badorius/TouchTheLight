@@ -545,9 +545,6 @@ target_position = Vector2(49, 0)
 collide_with_areas = true
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_ebeq2")
-}
 tree_root = SubResource("AnimationNodeStateMachine_oje4e")
 anim_player = NodePath("../AnimationPlayer")
 

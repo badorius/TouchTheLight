@@ -23,6 +23,8 @@ var target_position : Vector2
 var FreqToxic : float = 10.0
 var FreqCounter : float = 0
 const DamageIndicator = preload("../Objects/Efects/damage_indicator.tscn")
+const PointsIndicator = preload("res://Objects/Efects/points_indicator.tscn")
+@export var pointsvalue : int = 1000
 @onready var ProgressBar3 : TextureProgressBar = get_node("ProgressBar/Control/TextureProgressBar")
 const Explode = preload("../Objects/Efects/EnemyExplode.tscn")
 var startrun : bool = false
@@ -216,13 +218,22 @@ func explode():
 		main.add_child(A)
 		
 func death():
+	#FIX Random size
+	var offset_position = randi() % 20
+	var main = get_tree().current_scene
+	var D = PointsIndicator.instantiate()
+	var color = "white"
+	D.global_position = Vector2(global_position.x - offset_position, (global_position.y) - offset_position)
+	D.show_points(pointsvalue, color)
+	main.add_child(D)
+	
 	state = "Death"
 	drop_item()
 	$Sprite2D.visible = false
 	velocity = Vector2(0, 0)
 	state_machine.travel('Death')
 	explode()
-	player.add_score(score_value)
+	player.add_score(pointsvalue)
 	level_completed = true
 	#ADD ANIMATION TRESURE LIGHT AND NEXT LEVEL
 	#get_tree().change_scene_to_file("res://Objects/Level2.tscn")

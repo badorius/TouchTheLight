@@ -16,6 +16,8 @@ var target_position : Vector2
 @export var attack_power = randi() % 30
 @export var is_over_player : bool = false
 const DamageIndicator = preload("../Objects/Efects/damage_indicator.tscn")
+const PointsIndicator = preload("res://Objects/Efects/points_indicator.tscn")
+@export var pointsvalue : int = 1000
 var startrun : bool = false
 @export var Toxic : bool = false
 var FreqToxic : float = 10.0
@@ -198,11 +200,20 @@ func explode():
 		main.add_child(A)
 		
 func death():
+	#FIX Random size
+	var offset_position = randi() % 20
+	var main = get_tree().current_scene
+	var D = PointsIndicator.instantiate()
+	var color = "white"
+	D.global_position = Vector2(global_position.x - offset_position, (global_position.y) - offset_position)
+	D.show_points(pointsvalue, color)
+	main.add_child(D)
+	
 	state = "Death"
 	velocity = Vector2(0, 0)
 	state_machine.travel('Death')
 	explode()
-	player.add_score(score_value)
+	player.add_score(pointsvalue)
 
 
 func decrease_speed(value):

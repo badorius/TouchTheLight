@@ -27,7 +27,7 @@ func set_color(color):
 
 func set_colours(ColourMode):
 	if ColourMode == "white":
-		colour = Color(0,0,0)
+		colour = Color(255,255,255)
 	elif ColourMode == "red":
 		colour = Color(255,0,0)
 	elif ColourMode == "blue":

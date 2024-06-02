@@ -130,18 +130,7 @@ func hurt(damage):
 			live -= damage
 			ProgressBar3.value = live
 			
-			#FIX Random size
-			var offset_position = randi() % 20
-			var main = get_tree().current_scene
-			var D = DamageIndicator.instantiate()
-			var color = "yellow"
-			D.global_position = Vector2(global_position.x - offset_position, (global_position.y) - offset_position)
-			D.show_damage(damage, color)
-			main.add_child(D)
-		
 
-			
-			
 func changeSprite2D(state):
 	
 	$Walk.visible = false
@@ -175,17 +164,17 @@ func death():
 	var offset_position = randi() % 20
 	var main = get_tree().current_scene
 	var D = PointsIndicator.instantiate()
-	var color = "yellow"
+	var color = "white"
 	D.global_position = Vector2(global_position.x - offset_position, (global_position.y) - offset_position)
 	D.show_points(pointsvalue, color)
-	
 	main.add_child(D)
+	
 	state = "Death"
 	drop_item()
 	changeSprite2D(state)
 	state_machine.travel('Death')
 	explode()
-	player.add_score(score_value)
+	player.add_score(pointsvalue)
 
 	
 	

@@ -246,9 +246,6 @@ shape = SubResource("CapsuleShape2D_nljga")
 stream = ExtResource("3_m4nwf")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_xc5pc")
-}
 tree_root = SubResource("AnimationNodeStateMachine_oje4e")
 anim_player = NodePath("../AnimationPlayer")
 

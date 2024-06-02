@@ -325,9 +325,6 @@ libraries = {
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 root_node = NodePath("../DeathLamp")
-libraries = {
-"": SubResource("AnimationLibrary_pcvus")
-}
 tree_root = SubResource("AnimationNodeStateMachine_q41s2")
 anim_player = NodePath("../AnimationPlayer")
 

@@ -15,6 +15,8 @@ var target_position : Vector2
 @export var score_value : int = 50
 @export var attack_power = randi() % 30
 const DamageIndicator = preload("../Objects/Efects/damage_indicator.tscn")
+const PointsIndicator = preload("res://Objects/Efects/points_indicator.tscn")
+@export var pointsvalue : int = 300
 var startrun : bool = false
 @export var Toxic : bool = false
 var FreqToxic : float = 10.0
@@ -147,15 +149,7 @@ func hurt(damage):
 		live -= damage
 		ProgressBar3.value = live
 		state = "Hurt"
-		
-		#FIX Random size
-		var offset_position = randi() % 20
-		var main = get_tree().current_scene
-		var D = DamageIndicator.instantiate()
-		var color = "yellow"
-		D.global_position = Vector2(global_position.x - offset_position, (global_position.y) - offset_position)
-		D.show_damage(damage, color)
-		main.add_child(D)
+
 
 
 func do_hurt():
@@ -170,6 +164,16 @@ func explode():
 		main.add_child(A)
 		
 func death():
+	#FIX Random size
+	var offset_position = randi() % 20
+	var main = get_tree().current_scene
+	var D = PointsIndicator.instantiate()
+	var color = "white"
+	D.global_position = Vector2(global_position.x - offset_position, (global_position.y) - offset_position)
+	D.show_points(pointsvalue, color)
+	main.add_child(D)
+	player.add_score(pointsvalue)
+	
 	state = "Death"
 	velocity = Vector2(0, 0)
 	state_machine.travel('Death')
