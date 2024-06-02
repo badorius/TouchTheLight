@@ -20,6 +20,7 @@ var target_position : Vector2
 @export var is_over_player : bool = false
 @export var level_completed : bool = false
 @export var Toxic : bool = false
+@export var Ice : bool = false
 var FreqToxic : float = 10.0
 var FreqCounter : float = 0
 const DamageIndicator = preload("../Objects/Efects/damage_indicator.tscn")
@@ -64,11 +65,16 @@ func _physics_process(delta):
 			
 		else:
 			if Toxic == true:
+				$ToxicLight2D.color = "199f00e5"
+				$ToxicLight2D.visible = true
 				if FreqCounter < FreqToxic:
 					FreqCounter += 0.1
 				else:
 					FreqCounter = 0
-					hurt(5)
+					hurt(50)
+					
+			if Ice == true:
+				$IceLight2D.visible = true
 				
 			if state != "Death":
 				#if abs(global_position.distance_to(player.global_position)) <= MAX_DISTANCE_ATACK and abs(global_position.distance_to(player.global_position)) >= MIN_DISTANCE_ATACK:
@@ -246,7 +252,14 @@ func _on_area_2d_body_entered(body):
 		Camera.shake_window()
 		
 func decrease_speed(value):
-	speed -= value
+	if speed < 0:
+		speed = 0
+	else:
+		speed -= value
 
 func toxic():
 	Toxic = true
+
+func ice():
+	Ice = true
+	

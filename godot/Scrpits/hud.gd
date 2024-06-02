@@ -64,7 +64,12 @@ func update_max_score():
 func update_timer():
 	timer -= 0.02
 	$Timer.text = str("TIMER: ", int(timer))
-	
+	if timer <= 0:
+		reset_timer()
+		player.death()
+		
+func reset_timer():
+	timer = 300.0
 
 func get_boots():
 	return boots/10

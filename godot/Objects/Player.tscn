@@ -998,9 +998,6 @@ stream = ExtResource("5_riwm1")
 stream = ExtResource("6_10oyl")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_gp6am")
-}
 tree_root = SubResource("AnimationNodeStateMachine_nqriw")
 anim_player = NodePath("../AnimationPlayer")
 

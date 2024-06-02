@@ -1,10 +1,44 @@
-[gd_scene load_steps=35 format=3 uid="uid://dh1dxnpdevukl"]
+[gd_scene load_steps=41 format=3 uid="uid://dh1dxnpdevukl"]
 
 [ext_resource type="Script" path="res://Scrpits/Crow.gd" id="1_dqcfn"]
 [ext_resource type="Texture2D" uid="uid://dg1ksifmwm7wx" path="res://Assets/Enemys/Crow/crow-all.png" id="2_34d1s"]
 [ext_resource type="AudioStream" uid="uid://dvwu6sflwmb4f" path="res://SoundFX/Minifantasy_Dungeon_SFX/croworraven1-6749.mp3" id="3_w7ifd"]
 [ext_resource type="AudioStream" uid="uid://dfpqvm4laxcko" path="res://SoundFX/Minifantasy_Dungeon_SFX/11_human_damage_1.wav" id="3_xtsif"]
 [ext_resource type="PackedScene" uid="uid://bvlwbq6jwj25q" path="res://Objects/HudObjects/progress_bar3.tscn" id="4_w2hj0"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_oi4cl"]
+blend_mode = 1
+light_mode = 2
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Gradient" id="Gradient_mfpnb"]
+offsets = PackedFloat32Array(0, 0.645161)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mumn4"]
+gradient = SubResource("Gradient_mfpnb")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.513761, 0.490826)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hh0b1"]
+blend_mode = 1
+light_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_yvqn8"]
+offsets = PackedFloat32Array(0, 0.567742)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3qe41"]
+gradient = SubResource("Gradient_yvqn8")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.490826, 0.477064)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_nljga"]
 radius = 9.03674
@@ -321,6 +355,22 @@ graph_offset = Vector2(-133.684, 77.138)
 [node name="Crow" type="CharacterBody2D" groups=["enemies"]]
 collision_layer = 4
 script = ExtResource("1_dqcfn")
+
+[node name="ToxicLight2D" type="PointLight2D" parent="."]
+visible = false
+material = SubResource("CanvasItemMaterial_oi4cl")
+enabled = false
+color = Color(0.0966688, 0.621642, 9.62615e-07, 0.898039)
+texture = SubResource("GradientTexture2D_mumn4")
+
+[node name="Alo" type="Sprite2D" parent="ToxicLight2D"]
+modulate = Color(0.0980392, 0.623529, 0, 0.898039)
+light_mask = 2
+visibility_layer = 3
+material = SubResource("CanvasItemMaterial_hh0b1")
+position = Vector2(-0.666667, 0)
+scale = Vector2(0.5, 0.5)
+texture = SubResource("GradientTexture2D_3qe41")
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 4

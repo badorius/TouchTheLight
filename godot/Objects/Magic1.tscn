@@ -218,9 +218,6 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_og2ca")
-}
 tree_root = SubResource("AnimationNodeStateMachine_k0xtr")
 anim_player = NodePath("../AnimationImpact")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://cue57mbnsjp20"]
+[gd_scene load_steps=49 format=3 uid="uid://cue57mbnsjp20"]
 
 [ext_resource type="Script" path="res://Scrpits/Ogre.gd" id="1_82kp1"]
 [ext_resource type="Texture2D" uid="uid://dqgfrwceg00rm" path="res://Assets/Enemys/Ogre/ogre-all.png" id="2_ub6u4"]
@@ -8,6 +8,40 @@
 [ext_resource type="Texture2D" uid="uid://cs1i5ght724md" path="res://Assets/Impact/Retro Impact Effect Pack 3 C.png" id="5_j7b80"]
 [ext_resource type="AudioStream" uid="uid://ci7ln16h8yadw" path="res://SoundFX/Minifantasy_Dungeon_SFX/20_orc_special_atk.wav" id="6_h8kdp"]
 [ext_resource type="AudioStream" uid="uid://csosdgajfy7ca" path="res://SoundFX/Minifantasy_Dungeon_SFX/21_orc_damage_1.wav" id="7_ds00c"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_q1oet"]
+blend_mode = 1
+light_mode = 2
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Gradient" id="Gradient_g4bfe"]
+offsets = PackedFloat32Array(0, 0.645161)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jtphl"]
+gradient = SubResource("Gradient_g4bfe")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.513761, 0.490826)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_0qhp4"]
+blend_mode = 1
+light_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_nti87"]
+offsets = PackedFloat32Array(0, 0.567742)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ls5yw"]
+gradient = SubResource("Gradient_nti87")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.490826, 0.477064)
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vo1ju"]
 blend_mode = 1
@@ -470,6 +504,22 @@ graph_offset = Vector2(-296.312, -38.7095)
 position = Vector2(102, 136)
 collision_layer = 4
 script = ExtResource("1_82kp1")
+
+[node name="ToxicLight2D" type="PointLight2D" parent="."]
+visible = false
+material = SubResource("CanvasItemMaterial_q1oet")
+enabled = false
+color = Color(0.0966688, 0.621642, 9.62615e-07, 0.898039)
+texture = SubResource("GradientTexture2D_jtphl")
+
+[node name="Alo" type="Sprite2D" parent="ToxicLight2D"]
+modulate = Color(0.0980392, 0.623529, 0, 0.898039)
+light_mask = 2
+visibility_layer = 3
+material = SubResource("CanvasItemMaterial_0qhp4")
+position = Vector2(-0.666667, 0)
+scale = Vector2(0.5, 0.5)
+texture = SubResource("GradientTexture2D_ls5yw")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 light_mask = 2

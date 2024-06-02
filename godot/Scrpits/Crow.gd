@@ -18,6 +18,7 @@ var target_position : Vector2
 const DamageIndicator = preload("../Objects/Efects/damage_indicator.tscn")
 const PointsIndicator = preload("res://Objects/Efects/points_indicator.tscn")
 @export var Toxic : bool = false
+@export var Ice : bool = false
 var startrun : bool = false
 var FreqToxic : float = 10.0
 var FreqCounter : float = 0
@@ -51,11 +52,16 @@ func _process(delta):
 			
 func _physics_process(delta):
 	if Toxic == true:
+		$ToxicLight2D.color = "199f00e5"
+		$ToxicLight2D.visible = true
 		if FreqCounter < FreqToxic:
 			FreqCounter += 0.1
 		else:
 			FreqCounter = 0
-			hurt(5)
+			hurt(50)
+			
+	if Ice == true:
+		$IceLight2D.visible = true
 			
 	ProgressBar3.value = live
 	ArrowDamage_sound = $ArrowDamage
@@ -159,11 +165,16 @@ func death():
 	explode()
 
 func decrease_speed(value):
-	speed -= value
+	if speed < 0:
+		speed = 0
+	else:
+		speed -= value
 
 func toxic():
 	Toxic = true
 	
+func ice():
+	Ice = true
 	
 func _on_area_2d_body_entered(body):
 	var attack_power = randi() % 100

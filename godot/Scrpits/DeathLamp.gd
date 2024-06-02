@@ -11,6 +11,7 @@ var state : String = "Non"
 var state_machine
 @export var direction : Vector2
 @export var Toxic : bool = false
+@export var Ice : bool = false
 var FreqToxic : float = 10.0
 var FreqCounter : float = 0
 @export var score_value : int = 10
@@ -58,11 +59,16 @@ func _process(delta):
 func _physics_process(delta):
 
 	if Toxic == true:
+		$ToxicLight2D.color = "199f00e5"
+		$ToxicLight2D.visible = true
 		if FreqCounter < FreqToxic:
 			FreqCounter += 0.1
 		else:
 			FreqCounter = 0
-			hurt(5)
+			hurt(50)
+			
+	if Ice == true:
+		$IceLight2D.visible = true
 		
 	if abs(global_position.x - player.global_position.x) > MaxDistPlayer:
 		queue_free()
@@ -120,10 +126,16 @@ func hurt(damage):
 			
 
 func decrease_speed(value):
-	speed -= value
+	if speed < 0:
+		speed = 0
+	else:
+		speed -= value
 	
 func toxic():
 	Toxic = true
+
+func ice():
+	Ice = true
 	
 func drop_item():
 		var main = get_tree().current_scene

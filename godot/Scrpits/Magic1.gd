@@ -1,8 +1,9 @@
 extends Area2D
+#ICE MAGIC
 
 @export var speed = 750
 @export var direction : int = 1
-@export var damage : int = 5
+@export var damage : int = 1
 @export var state : String = "run"
 var state_machine
 const MaxDist : int = 350
@@ -60,7 +61,8 @@ func _on_body_entered(body):
 	state_machine.travel('Arrow_Explode')
 	if body.is_in_group("enemies"):
 		body.live -= 1
-		body.decrease_speed(20)
+		body.ice()
+		body.decrease_speed(100)
 		if body.live <= 0:
 			state_machine.travel('Arrow_Explode')
 			body.death()

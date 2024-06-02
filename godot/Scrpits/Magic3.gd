@@ -1,8 +1,8 @@
 extends Area2D
-
+#TOXIC ARROW
 @export var speed = 750
 @export var direction : int = 1
-@export var damage : int = 5
+@export var damage : int = 1
 @export var state : String = "run"
 var state_machine
 const MaxDist : int = 350

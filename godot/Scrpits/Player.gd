@@ -399,6 +399,8 @@ func death ():
 		mana_sphere.value = 0.0
 		lives -= 1
 		HUD.update_lives(-1)
+		reset_skills()
+		gotocheckpoint()
 
 	
 # Función para incrementar la escala de la luz
@@ -495,9 +497,11 @@ func reset_skills():
 	mana_sphere.value = mana
 	player_light.scale = base_light
 	magic = 0
+	
 	update_arrows(0, 0)
 	update_boots(0)
 	update_coat(0)
+	HUD.reset_timer()
 
 
 func drop_item():

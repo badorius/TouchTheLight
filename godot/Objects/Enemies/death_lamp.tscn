@@ -1,11 +1,45 @@
-[gd_scene load_steps=27 format=3 uid="uid://cseirvljks3fe"]
+[gd_scene load_steps=45 format=3 uid="uid://cseirvljks3fe"]
 
 [ext_resource type="Script" path="res://Scrpits/DeathLamp.gd" id="1_r72vd"]
 [ext_resource type="Texture2D" uid="uid://cee7nuslemuep" path="res://Assets/Enemys/DeathLamp/death-lamp-rise.png" id="2_byf18"]
 [ext_resource type="Texture2D" uid="uid://b14kynn8s8o2j" path="res://Assets/Enemys/DeathLamp/death-lamp-walk.png" id="3_8qomj"]
 [ext_resource type="AudioStream" uid="uid://dfpqvm4laxcko" path="res://SoundFX/Minifantasy_Dungeon_SFX/11_human_damage_1.wav" id="4_khu5s"]
 
-[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_x7jod"]
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_uqyfg"]
+blend_mode = 1
+light_mode = 2
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Gradient" id="Gradient_aco7p"]
+offsets = PackedFloat32Array(0, 0.645161)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1wmpd"]
+gradient = SubResource("Gradient_aco7p")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.513761, 0.490826)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_u8e2u"]
+blend_mode = 1
+light_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_0rmar"]
+offsets = PackedFloat32Array(0, 0.567742)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_t6x6n"]
+gradient = SubResource("Gradient_0rmar")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.490826, 0.477064)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hnqtx"]
 blend_mode = 1
 light_mode = 2
 particles_animation = true
@@ -17,8 +51,42 @@ particles_anim_loop = true
 offsets = PackedFloat32Array(0, 0.645161)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_jcy1i"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_s0bge"]
 gradient = SubResource("Gradient_gmaye")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.513761, 0.490826)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_j6hyl"]
+blend_mode = 1
+light_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_mgg7p"]
+offsets = PackedFloat32Array(0, 0.567742)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3mlxr"]
+gradient = SubResource("Gradient_mgg7p")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.490826, 0.477064)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_x7jod"]
+blend_mode = 1
+light_mode = 2
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Gradient" id="Gradient_v777e"]
+offsets = PackedFloat32Array(0, 0.645161)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jcy1i"]
+gradient = SubResource("Gradient_v777e")
 width = 256
 height = 256
 fill = 1
@@ -28,12 +96,12 @@ fill_from = Vector2(0.513761, 0.490826)
 blend_mode = 1
 light_mode = 2
 
-[sub_resource type="Gradient" id="Gradient_mgg7p"]
+[sub_resource type="Gradient" id="Gradient_pb3yq"]
 offsets = PackedFloat32Array(0, 0.567742)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_de25r"]
-gradient = SubResource("Gradient_mgg7p")
+gradient = SubResource("Gradient_pb3yq")
 width = 256
 height = 256
 fill = 1
@@ -270,10 +338,76 @@ states/Walk/node = SubResource("AnimationNodeAnimation_dr386")
 states/Walk/position = Vector2(485, 174)
 transitions = ["Start", "Rise", SubResource("AnimationNodeStateMachineTransition_5wivr"), "Rise", "Walk", SubResource("AnimationNodeStateMachineTransition_j2dyy"), "Walk", "Death", SubResource("AnimationNodeStateMachineTransition_waoti"), "Death", "End", SubResource("AnimationNodeStateMachineTransition_jh41s"), "Rise", "Death", SubResource("AnimationNodeStateMachineTransition_hntth")]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_co27w"]
+blend_mode = 1
+light_mode = 2
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = true
+
+[sub_resource type="Gradient" id="Gradient_617qu"]
+offsets = PackedFloat32Array(0, 0.645161)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fjyr1"]
+gradient = SubResource("Gradient_617qu")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.513761, 0.490826)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_i8vo5"]
+blend_mode = 1
+light_mode = 2
+
+[sub_resource type="Gradient" id="Gradient_1olxx"]
+offsets = PackedFloat32Array(0, 0.567742)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_pq4jy"]
+gradient = SubResource("Gradient_1olxx")
+width = 256
+height = 256
+fill = 1
+fill_from = Vector2(0.490826, 0.477064)
+
 [node name="DeathLamp" type="CharacterBody2D" groups=["enemies"]]
 scale = Vector2(1.5, 1.5)
 collision_layer = 4
 script = ExtResource("1_r72vd")
+
+[node name="IceLight2D" type="PointLight2D" parent="."]
+visible = false
+material = SubResource("CanvasItemMaterial_uqyfg")
+enabled = false
+color = Color(0, 0.496518, 0.99163, 0.898039)
+texture = SubResource("GradientTexture2D_1wmpd")
+
+[node name="Alo" type="Sprite2D" parent="IceLight2D"]
+modulate = Color(0, 0.498039, 0.992157, 0.898039)
+light_mask = 2
+visibility_layer = 3
+material = SubResource("CanvasItemMaterial_u8e2u")
+position = Vector2(-0.666667, 0)
+scale = Vector2(0.5, 0.5)
+texture = SubResource("GradientTexture2D_t6x6n")
+
+[node name="ToxicLight2D" type="PointLight2D" parent="."]
+visible = false
+material = SubResource("CanvasItemMaterial_hnqtx")
+enabled = false
+color = Color(0.0966688, 0.621642, 9.62615e-07, 0.898039)
+texture = SubResource("GradientTexture2D_s0bge")
+
+[node name="Alo" type="Sprite2D" parent="ToxicLight2D"]
+modulate = Color(0.0980392, 0.623529, 0, 0.898039)
+light_mask = 2
+visibility_layer = 3
+material = SubResource("CanvasItemMaterial_j6hyl")
+position = Vector2(-0.666667, 0)
+scale = Vector2(0.5, 0.5)
+texture = SubResource("GradientTexture2D_3mlxr")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 material = SubResource("CanvasItemMaterial_x7jod")
@@ -330,5 +464,21 @@ anim_player = NodePath("../AnimationPlayer")
 
 [node name="ArrowDamage" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_khu5s")
+
+[node name="ToxicLight2D2" type="PointLight2D" parent="."]
+visible = false
+material = SubResource("CanvasItemMaterial_co27w")
+enabled = false
+color = Color(0.0966688, 0.621642, 9.62615e-07, 0.898039)
+texture = SubResource("GradientTexture2D_fjyr1")
+
+[node name="Alo" type="Sprite2D" parent="ToxicLight2D2"]
+modulate = Color(0.0980392, 0.623529, 0, 0.898039)
+light_mask = 2
+visibility_layer = 3
+material = SubResource("CanvasItemMaterial_i8vo5")
+position = Vector2(-0.666667, 0)
+scale = Vector2(0.5, 0.5)
+texture = SubResource("GradientTexture2D_pq4jy")
 
 [connection signal="body_entered" from="DeathLamp" to="." method="_on_death_lamp_body_entered"]

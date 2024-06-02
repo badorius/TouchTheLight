@@ -19,6 +19,7 @@ const PointsIndicator = preload("res://Objects/Efects/points_indicator.tscn")
 @export var pointsvalue : int = 1000
 var startrun : bool = false
 @export var Toxic : bool = false
+@export var Ice : bool = false
 var FreqToxic : float = 10.0
 var FreqCounter : float = 0
 @onready var ProgressBar3 : TextureProgressBar = get_node("ProgressBar/Control/TextureProgressBar") 
@@ -48,11 +49,16 @@ func _process(delta):
 func _physics_process(delta):
 	
 	if Toxic == true:
+		$ToxicLight2D.color = "199f00e5"
+		$ToxicLight2D.visible = true
 		if FreqCounter < FreqToxic:
 			FreqCounter += 0.1
 		else:
 			FreqCounter = 0
-			hurt(5)
+			hurt(50)
+			
+	if Ice == true:
+		$IceLight2D.visible = true
 	
 	if startrun and state != "Death":
 		ProgressBar3.value = live
@@ -116,7 +122,14 @@ func death():
 	explode()
 
 func decrease_speed(value):
-	speed -= value
+	if speed < 0:
+		speed = 0
+	else:
+		speed -= value
 
 func toxic():
 	Toxic = true
+
+func ice():
+	Ice = true
+	
