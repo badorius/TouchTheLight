@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bgi84ioegb3g6"]
+[gd_scene load_steps=39 format=3 uid="uid://bgi84ioegb3g6"]
 
 [ext_resource type="Script" path="res://Scrpits/hud.gd" id="1_ouvyj"]
 [ext_resource type="FontFile" uid="uid://uacc8gr3cirm" path="res://Assets/Fonts/G7MakaimuraTtf-xoZm.ttf" id="1_t36q3"]
@@ -22,8 +22,15 @@
 [ext_resource type="Texture2D" uid="uid://g3ym5qextodv" path="res://Assets/Icons/Quiver_Fire.png" id="11_ncwdy"]
 [ext_resource type="Texture2D" uid="uid://ft40g1wsde73" path="res://Assets/Icons/Quiver_Poison.png" id="12_hc4a7"]
 [ext_resource type="Texture2D" uid="uid://cri5e427y8r78" path="res://Assets/Background/GameOver/game_over.png" id="25_42ks8"]
+[ext_resource type="Texture2D" uid="uid://3sscq6mubilj" path="res://Assets/UI/1. Arrow Left.png" id="25_apy4b"]
+[ext_resource type="Texture2D" uid="uid://cixwav6d0t6bp" path="res://Assets/UI/2. Arrow Right.png" id="26_6i4rk"]
 [ext_resource type="Texture2D" uid="uid://cu78ite370l6o" path="res://Assets/HUD/BackGround/Blood Cloud Blood Overlay.png" id="26_o2hjc"]
 [ext_resource type="AudioStream" uid="uid://c5v86gr878sqt" path="res://Music/BGMUSIC/game-over.mp3" id="27_pw423"]
+[ext_resource type="Texture2D" uid="uid://c5rlfloct7gf1" path="res://Assets/UI/3. Arrow Up.png" id="27_v8gds"]
+[ext_resource type="Texture2D" uid="uid://cwlbryyecryhi" path="res://Assets/UI/4. Arrow Down.png" id="28_ihw6u"]
+[ext_resource type="Texture2D" uid="uid://c12x5cmhly1kk" path="res://Assets/Icons/Skill_47.png" id="29_gno03"]
+[ext_resource type="Texture2D" uid="uid://c23bajnl3qn6b" path="res://Assets/Icons/Skill_55.png" id="30_1ohdp"]
+[ext_resource type="Texture2D" uid="uid://bg3h0yydww4qp" path="res://Assets/Icons/Skill_60.png" id="31_lo0cy"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_mdf3p"]
 color = Color(0, 0.282353, 0.290196, 1)
@@ -434,9 +441,13 @@ offset_right = 268.0
 offset_bottom = -156.0
 scale = Vector2(1.5, 1.5)
 visibility_mode = 1
-action_up = "ui_accept"
+action_left = "Button_Left"
+action_right = "Button_Right"
+action_up = "Button_Jump"
+action_down = "Button_Down"
 
 [node name="Virtual Joystick2" parent="." instance=ExtResource("10_118px")]
+visible = false
 modulate = Color(0.0862745, 0.305882, 0.584314, 0.294118)
 offset_left = 1501.0
 offset_top = -463.0
@@ -488,6 +499,52 @@ texture = ExtResource("26_o2hjc")
 libraries = {
 "": SubResource("AnimationLibrary_bfn64")
 }
+
+[node name="TouchScreenButtonLeft" type="TouchScreenButton" parent="."]
+visible = false
+position = Vector2(-16, 784)
+scale = Vector2(10, 10)
+texture_normal = ExtResource("25_apy4b")
+action = "Button_Left"
+
+[node name="TouchScreenButtonRight" type="TouchScreenButton" parent="."]
+visible = false
+position = Vector2(278, 782)
+scale = Vector2(10, 10)
+texture_normal = ExtResource("26_6i4rk")
+action = "Button_Right"
+
+[node name="TouchScreenButtonUp" type="TouchScreenButton" parent="."]
+visible = false
+position = Vector2(129, 642)
+scale = Vector2(10, 10)
+texture_normal = ExtResource("27_v8gds")
+action = "Button_Jump"
+
+[node name="TouchScreenButtonDown" type="TouchScreenButton" parent="."]
+visible = false
+position = Vector2(133, 933)
+scale = Vector2(10, 10)
+texture_normal = ExtResource("28_ihw6u")
+action = "Button_Down"
+
+[node name="TouchScreenButtonSwordAttack" type="TouchScreenButton" parent="."]
+position = Vector2(1529, 792)
+scale = Vector2(2, 2)
+texture_normal = ExtResource("29_gno03")
+action = "Button_SwordAttack"
+
+[node name="TouchScreenButtonBowShooting" type="TouchScreenButton" parent="."]
+position = Vector2(1678, 645)
+scale = Vector2(2, 2)
+texture_normal = ExtResource("30_1ohdp")
+action = "Button_BowShooting"
+
+[node name="TouchScreenButtonMagicMana" type="TouchScreenButton" parent="."]
+position = Vector2(1824, 797)
+scale = Vector2(2, 2)
+texture_normal = ExtResource("31_lo0cy")
+action = "Button_MagicMana"
 
 [connection signal="pressed" from="skills/SwordDecor/sword/ButonSword" to="." method="_on_buton_sword_pressed"]
 [connection signal="pressed" from="skills/ArrowsDecor/ButonArrows" to="." method="_on_buton_arrows_pressed"]
